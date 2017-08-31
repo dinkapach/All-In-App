@@ -42,7 +42,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { HttpModule } from '@angular/http';
-
+import { LocalNotifications } from '@ionic-native/local-notifications';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
@@ -58,7 +58,6 @@ import { AddSaleComponent } from '../pages/add-sale/add-sale.component';
 import { AddPointsComponent } from '../pages/add-points/add-points.component';
 import { SubscirbePointsComponent } from '../pages/subscribe-points/subscribe-points.component';
 import { ShowSalesComponent } from '../pages/show-sales/show-sales.component';
-import { LocalNotifications } from '@ionic-native/local-notifications';
 
 @NgModule({
   declarations: [
@@ -169,7 +168,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     SuperManagerService,
     AlertService,
     Camera,
-	LocalNotifications
+	LocalNotifications,
     //{ provide: Camera, useClass: CameraMock },
     ]
 })

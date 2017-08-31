@@ -10,9 +10,6 @@
         "cordova-plugin-camera": {
             "PACKAGE_NAME": "io.ionic.starter"
         },
-        "de.appplant.cordova.plugin.local-notification": {
-            "PACKAGE_NAME": "io.ionic.starter"
-        },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "io.ionic.starter"
         },
@@ -29,6 +26,9 @@
             "PACKAGE_NAME": "io.ionic.starter"
         },
         "phonegap-plugin-barcodescanner": {
+            "PACKAGE_NAME": "io.ionic.starter"
+        },
+        "de.appplant.cordova.plugin.local-notification": {
             "PACKAGE_NAME": "io.ionic.starter"
         }
     },
