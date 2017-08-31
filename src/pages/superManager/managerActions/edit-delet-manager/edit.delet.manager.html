@@ -1,0 +1,16 @@
+<ion-header>
+    <ion-navbar primary>
+        <ion-title>Edit/Delete Manager</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<ion-searchbar [(ngModel)]="searchManager" (ionInput)="searchManagers()"></ion-searchbar>
+<ion-grid >
+        <ion-row *ngFor="let manager of managersArr">
+            <ion-col>
+                <manager-card [manager]="manager" (managerDeleted)="handleManagerDeleted($event)"></manager-card>
+            </ion-col>
+        </ion-row>
+</ion-grid>
+</ion-content>

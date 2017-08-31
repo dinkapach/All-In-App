@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-navbar>
+      <!-- <ion-buttons> -->
+          <button ion-button icon-only menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+      <!-- </ion-buttons> -->
+    <ion-title *ngIf="user">Welcome {{user.firstName}}</ion-title>
+        <button ion-button (click)="onClickUpdateProfile()">
+            Update Profile
+          </button>
+          <button ion-button (click)="onClickAddManualClub()" >Add Manual Club</button>
+          <button ion-button (click)="onClickChangePassword()" >Change Password</button>
+          <button ion-button (click)="onClickLogout()" color="danger">Logout</button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-searchbar [(ngModel)]="searchClub" (ionInput)="searchClubs()"></ion-searchbar>
+  
+  <button ion-button icon-only (click)="openPopupFilter($event)">
+      <ion-icon name="more"></ion-icon> </button>
+    
+  <!-- <button ion-button (click)="onClickManualClubs()">Manual Clubs</button> -->
+
+  <!-- <ion-grid>
+    <ion-row *ngFor="let gridArr of grid">
+      <ion-col col-6 *ngFor="let club of gridArr">
+        <club-card [club]="club"> </club-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+  <ion-grid>
+    <ion-row *ngFor="let club of clubsDisplay">
+      <ion-col>
+        <club-card [club]="club" [subDetailsToPresent]="chosenOption"></club-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row *ngFor="let clubManual of clubsManualDisplay">
+      <ion-col>
+        <club-manual-card [club]="clubManual" [subDetailsToPresent]="chosenOption" (clubDeleted)="handleClubDeleted($event)"></club-manual-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-footer>
+    <ion-fab>
+      <button (click)="onClickAddClub()" ion-fab>Add Club</button>
+    </ion-fab>
+    </ion-footer>
+    
+</ion-content>

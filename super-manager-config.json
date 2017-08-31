@@ -1,0 +1,5 @@
+{
+    "CLUB_ACTIONS" : ["add club", "edit/delete club"],
+    "MANAGER_ACTIONS": ["add manager","edit/delete manager", "add existing club to manager"],
+    "CUSTOMER_ACTIONS": ["remove customer"]
+}

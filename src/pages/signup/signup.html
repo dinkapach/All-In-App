@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Singup</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <form [formGroup]="formData" (ngSubmit)="submitSingup()">
+        <ion-list>
+            <ion-item>
+                <ion-input formControlName="id" placeholder="Id" type="text" [(ngModel)]="newCustomer.id"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input formControlName="firstName" placeholder="First Name" type="text" [(ngModel)]="newCustomer.firstName"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input formControlName="lastName" placeholder="Last Name" type="text" [(ngModel)]="newCustomer.lastName"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input formControlName="username" placeholder="Username" type="text" [(ngModel)]="newCustomer.username"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input formControlName="password" placeholder="Password" type="password" [(ngModel)]="newCustomer.password"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input formControlName="address" placeholder="Address" type="text" [(ngModel)]="newCustomer.address"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input formControlName="email" placeholder="Email" type="email" [(ngModel)]="newCustomer.email"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input formControlName="phoneNumber" placeholder="Phone Number" type="text" [(ngModel)]="newCustomer.phoneNumber"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input formControlName="birthday" placeholder="Birthday" type="text" [(ngModel)]="newCustomer.birthday"></ion-input>
+            </ion-item>       
+        </ion-list>
+        <button type="submit" ion-button round>Singup</button>
+    </form>
+
+
+    <ion-list>
+        <button ion-button clear (click)="goToLoginPage()">Already have an account?</button>
+    </ion-list>
+
+</ion-content>
+

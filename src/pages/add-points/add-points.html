@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>Add Points</ion-title>
+    </ion-navbar>
+  </ion-header>
+  <ion-content>
+     <form [formGroup]="formData"(ngSubmit)="addingPointsToCustomerById()">
+           <!--first line do not show-->
+          <ion-list>
+              <ion-item>
+                  <ion-input formControlName="points" placeholder="Points" type="number"></ion-input>
+              </ion-item> 
+               <ion-item>
+                  <ion-input formControlName="id" placeholder="Id" type="number"></ion-input>
+              </ion-item>      
+          </ion-list>
+          <button type="submit" ion-button round>Submit</button>
+      </form>
+  </ion-content>

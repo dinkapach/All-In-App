@@ -1,0 +1,60 @@
+<ion-header>
+    <ion-navbar no-border-bottom>
+      <ion-title>
+          {{superManager.userName}}
+      </ion-title>
+    </ion-navbar>
+  
+    <ion-toolbar no-border-top>
+      <ion-segment [(ngModel)]="viewOptions">
+        <ion-segment-button value="managers">
+          Managers
+        </ion-segment-button>
+        <ion-segment-button value="customers">
+          Customers
+        </ion-segment-button>
+        <ion-segment-button value="clubs">
+          Clubs
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <div [ngSwitch]="viewOptions">  
+      <ion-list *ngSwitchCase="'managers'">
+        <ion-grid>
+          <ion-row *ngFor="let action of managerActions">
+              <ion-col>
+                <button ion-button round (click)="onClickManagerAction(action)">{{action}}</button>
+              </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-list>
+
+      <ion-list *ngSwitchCase="'customers'">
+        <ion-grid>
+          <ion-row *ngFor="let action of customerActions">
+              <ion-col>
+                <button ion-button round (click)="onClickCustomerAction(action)">{{action}}</button>
+              </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-list>
+  
+      <ion-list *ngSwitchCase="'clubs'">
+          <ion-grid>
+            <ion-row *ngFor="let action of clubActions">
+                <ion-col>
+                  <button ion-button round (click)="onClickClubAction(action)">{{action}}</button>
+                </ion-col>
+            </ion-row>
+          </ion-grid>
+      </ion-list>
+
+      <ion-list *ngSwitchDefault>
+          <!-- <receipt-scan [club]="club"></receipt-scan> -->
+      </ion-list>
+
+    </div>
+  </ion-content>

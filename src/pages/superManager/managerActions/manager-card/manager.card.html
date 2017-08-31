@@ -1,0 +1,17 @@
+<ion-card>
+<ion-list *ngIf="manager"  padding>
+    <ion-item-sliding #item >
+        <ion-item>
+            <p> manager id: {{manager.id}} </p>
+            <p> manager: {{manager.userName}} </p>
+            <p> manager: {{manager.firstName}} </p> 
+            <p> manager: {{manager.lastName}} </p> 
+            <p> manager: {{manager.email}} </p> 
+        </ion-item>
+        <ion-item-options side="left">
+            <button ion-button color="danger" (click)="editManagerClick(manager)">Edit</button>
+            <button ion-button (click)="deleteManagerClick(manager)">Delete</button>
+        </ion-item-options>
+    </ion-item-sliding>
+</ion-list>
+</ion-card>

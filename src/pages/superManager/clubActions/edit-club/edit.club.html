@@ -1,0 +1,36 @@
+<ion-header>
+        <ion-navbar primary>
+            <ion-title>Edit Club</ion-title>
+        </ion-navbar>
+    </ion-header>
+          
+    <ion-content padding>
+        <ion-list>
+            <ion-item>
+            <ion-label floating  >Manager ID</ion-label>
+            <ion-input type="number" [(ngModel)]="editedClub.id" ></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating  >Name</ion-label>
+                <ion-input type="text" [(ngModel)]="editedClub.name" ></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating  >Address</ion-label>
+                <ion-input type="text" [(ngModel)]="editedClub.address" ></ion-input>
+            </ion-item>
+            <ion-item>
+                    <ion-label floating  >Open Houer</ion-label>  
+                    <ion-datetime displayFormat="HH" pickerFormat="HH" [(ngModel)]="editedClub.openingHours[0]"></ion-datetime>
+              </ion-item>
+              <ion-item>
+                    <ion-label floating  >Close Hour</ion-label>  
+                    <ion-datetime displayFormat="HH" pickerFormat="HH" [(ngModel)]="editedClub.openingHours[1]"></ion-datetime>
+                </ion-item>    
+            <ion-item>
+                <ion-label floating  >phoneNumber</ion-label>
+                <ion-input type="text" [(ngModel)]="editedClub.phoneNumber" ></ion-input>
+            </ion-item>
+    
+            <button ion-button (click)="onClickSave()">Save</button>
+        </ion-list>
+    </ion-content>

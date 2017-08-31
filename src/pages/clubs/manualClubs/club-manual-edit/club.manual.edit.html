@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-navbar>
+    <ion-buttons end>
+        <button (click)="updateClub()">
+            <ion-icon name="refresh"></ion-icon>
+        </button>
+    </ion-buttons>
+    <ion-title>Edit Club</ion-title>
+    </ion-navbar>
+</ion-header>
+    
+<ion-content padding>
+    <form [formGroup]="formData">
+        <ion-list>
+            <ion-item>
+                <ion-input formControlName="img" placeholder="Image" type="text" [(ngModel)]="club.img" (blur)="onBlur($event)"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input formControlName="id" placeholder="Id" type="text" [(ngModel)]="club.id"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input formControlName="name" placeholder="Name" type="text" [(ngModel)]="club.name"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input formControlName="address" placeholder="Address" type="text"  [(ngModel)]="club.address" (blur)="onBlur($event)"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input formControlName="phoneNumber" placeholder="PhoneNumber" type="text" [(ngModel)]="club.phoneNumber" (blur)="onBlur($event)"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input formControlName="points" placeholder="Points" type="text" [(ngModel)]="club.points" (blur)="onBlur($event)"></ion-input>
+            </ion-item>
+        </ion-list>
+    </form>
+</ion-content>
+    

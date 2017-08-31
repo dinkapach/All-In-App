@@ -1,0 +1,17 @@
+<ion-card>
+        <ion-list *ngIf="club"  padding>
+            <ion-item-sliding #item >
+                <ion-item>
+                    <p> club id: {{club.id}} </p>
+                    <p> club name: {{club.name}} </p>
+                    <p> club address: {{club.address}} </p> 
+                    <p> club phoneNumber: {{club.phoneNumber}} </p> 
+                    <p> club openingHours: {{club.openingHours}} </p> 
+                </ion-item>
+            <ion-item-options side="left">
+                    <button ion-button color="danger" (click)="editClubClick(club)">Edit</button>
+                    <button ion-button (click)="deleteClubClick(club)">Delete</button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+</ion-card>

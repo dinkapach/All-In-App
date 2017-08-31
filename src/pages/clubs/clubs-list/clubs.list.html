@@ -1,0 +1,14 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button icon-only (click)="clickClose()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+      <ion-title>Clubs</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list *ngIf="clubs">
+        <ion-item *ngFor="let club of clubs" (click)="onClubClicked(club)"> {{club.name}} </ion-item> 
+    </ion-list>
+</ion-content>

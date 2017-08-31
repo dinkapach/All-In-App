@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Add Sale</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+   <form [formGroup]="formData"(ngSubmit)="addingSale()"> 
+        <ion-list>
+            <ion-item>
+                <ion-label floating>Image</ion-label>
+                <ion-input formControlName="img" type="text" value={{sale?.img}} (blur)="onBlur($event)"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input formControlName="id" placeholder="ID" type="number"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input formControlName="name" placeholder="Name" type="string"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input formControlName="description" placeholder="Description" type="string"></ion-input>
+            </ion-item>    
+            <ion-item>
+                <ion-input formControlName="price" placeholder="Price" type="number"></ion-input>
+            </ion-item>     
+            <ion-item>
+                <ion-input formControlName="points" placeholder="Points" type="number"></ion-input>
+            </ion-item>    
+        </ion-list>
+        <button type="submit" ion-button round>Add Sale</button>
+    </form>
+</ion-content>

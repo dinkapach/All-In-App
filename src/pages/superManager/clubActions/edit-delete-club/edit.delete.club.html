@@ -1,0 +1,16 @@
+<ion-header>
+        <ion-navbar primary>
+            <ion-title>Edit/Delete Club</ion-title>
+        </ion-navbar>
+    </ion-header>
+    
+    <ion-content padding>
+    <ion-searchbar [(ngModel)]="searchclub" (ionInput)="searchClubs()"></ion-searchbar>
+    <ion-grid >
+            <ion-row *ngFor="let club of clubsArr">
+                <ion-col>
+                    <club-card-super [club]="club" (clubDeleted)="handleClubDeleted($event)"></club-card-super>
+                </ion-col>
+            </ion-row>
+    </ion-grid>
+    </ion-content>

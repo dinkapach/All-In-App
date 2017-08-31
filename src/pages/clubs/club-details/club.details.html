@@ -1,0 +1,108 @@
+<ion-header>
+    <ion-navbar no-border-bottom>
+      <ion-title>
+          {{club.name}}
+      </ion-title>
+    </ion-navbar>
+  
+    <ion-toolbar no-border-top>
+      <ion-segment [(ngModel)]="viewOptions">
+        <ion-segment-button value="receipts">
+          Receipts
+        </ion-segment-button>
+        <ion-segment-button value="credits" (click)=onClickCredits() >
+          Credits
+        </ion-segment-button>
+        <ion-segment-button *ngIf="club.sales" value="sales">
+          Sales
+        </ion-segment-button>
+        <!-- <ion-segment-button *ngIf="club.sales" value="sales">
+          Delete Club
+        </ion-segment-button>
+        <ion-segment-button *ngIf="club.sales" value="sales">
+          
+        </ion-segment-button> -->
+      </ion-segment>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <div [ngSwitch]="viewOptions">  
+      <ion-list *ngSwitchCase="'receipts'">
+        <receipt-scan [club]="club"></receipt-scan>
+      </ion-list>
+
+      <ion-list *ngSwitchCase="'credits'">
+        <show-credits [creditArr]="creditArr" [club]="club"></show-credits>
+      </ion-list>
+  
+      <ion-list *ngSwitchCase="'sales'">
+          <ion-grid>
+            <ion-row *ngFor="let sale of club.sales">
+                <ion-col>
+                  <sale-card [sale] = "sale"></sale-card>
+                </ion-col>
+            </ion-row>
+          </ion-grid>
+      </ion-list>
+
+      <ion-list *ngSwitchDefault>
+          <receipt-scan [club]="club"></receipt-scan>
+      </ion-list>
+
+    </div>
+  </ion-content>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- <ion-header>
+
+  <ion-navbar>
+      <ion-title>{{club.name}}</ion-title>
+  </ion-navbar>
+  <ion-toolbar>
+      <ion-segment [(ngModel)]="icons" color="secondary">
+        <ion-segment-button value="camera">
+          <ion-icon name="camera">Receipts</ion-icon>
+        </ion-segment-button>
+        <ion-segment-button value="bookmark">
+          <ion-icon name="bookmark"></ion-icon>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+
+  </ion-header>
+
+  <ion-content padding>
+  <img [src]="club.img"/>
+  <h2>You have </h2>
+
+  <button (click)="onClickReceipts()" ion-button>Receipts</button>
+  <button ion-button (click)="addCredit()">
+        add credit
+      </button>
+  <button ion-button (click)="showCredits()">
+        show credits
+  </button>
+  <button ion-button (click)="deleteClub()">
+    delete Club
+  </button> 
+  
+  <ion-list *ngIf="club.sales">
+      <ion-list-header color="light"> Sales: </ion-list-header>
+    <ion-grid>
+      <ion-row *ngFor="let sale of club.sales">
+        <ion-col>
+        <sale-card [sale] = "sale"></sale-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+  </ion-content> -->

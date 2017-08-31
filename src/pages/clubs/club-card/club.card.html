@@ -1,0 +1,35 @@
+<ion-card padding >
+    <ion-buttons *ngIf="club.isManual" end>
+        <button (click)="onClickDeleteClub(club)">
+            <ion-icon name="trash"></ion-icon>
+        </button>
+        <button (click)="onClickEditClub(club)">
+            <ion-icon name="create"></ion-icon>
+        </button>
+    </ion-buttons>
+    <ion-item>
+        <ion-thumbnail item-start>    
+  <img [src]="club.img"/>
+</ion-thumbnail>
+<ion-card-content (click)="onClubClicked()">
+    <ion-card-title>
+      {{club.name}}
+    </ion-card-title>
+    <div [ngSwitch]="subDetailsToPresent">
+      <div *ngSwitchCase="'sales'">
+        <p *ngFor="let sale of club.sales">
+          {{sale.description}}
+        </p>
+      </div>
+      <div *ngSwitchCase="'clubDetails'">
+        <p> {{club.name}} phone number: {{club.phoneNumber}} </p>
+        <p> {{club.name}} address: {{club.address}} </p>
+      </div>
+      <div *ngSwitchDefault>
+        <p> {{club.name}} phone number: {{club.phoneNumber}} </p>
+        <p> {{club.name}} address: {{club.address}} </p>
+      </div>
+    </div>
+  </ion-card-content>
+</ion-item>
+</ion-card>
