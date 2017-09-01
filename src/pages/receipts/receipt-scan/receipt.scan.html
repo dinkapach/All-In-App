@@ -1,9 +1,11 @@
 <div padding class="card-background-page" style="margin-top: 77px; margin-bottom: 77px;">
 
-<ion-fab left top>
+<ion-fab bottom right>
     <button ion-fab color="vibrant" mini><ion-icon name="add"></ion-icon></button>
-    <ion-fab-list side="right">
+    <ion-fab-list side="top">
       <button ion-fab ><ion-icon name="albums" (click)="onClickFromGallery()" ></ion-icon></button>
+    </ion-fab-list>
+    <ion-fab-list side="left">
       <button ion-fab><ion-icon name="camera" (click)="onClickTakePhoto()"></ion-icon></button>
     </ion-fab-list>
   </ion-fab>

@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content padding *ngIf="user">
-    <img [src]="user?.img"/>
+    <img id="profile-img" [src]="user?.img"/>
     <form [formGroup]="formData">
         <ion-list>
             <ion-item>
