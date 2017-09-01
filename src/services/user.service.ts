@@ -93,7 +93,7 @@ export class UserService {
         .map( res => res.json());
     }
 
-    getCostumerByCostumerId(customerId : Number){
+    getCostumerByCostumerId(customerId : number){
         console.log("get customer from repository..."+ customerId);
         return this.http.get(`${this.url}/api/users/`, customerId)
             .map(response => response.json()),
