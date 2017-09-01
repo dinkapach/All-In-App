@@ -6,6 +6,7 @@ import { Credit } from './../../models/credit.model';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ClubService } from './../../services/club.service';
 import { EditCreditComponent } from './../edit-credit/edit-credit.component';
+// import { EditSaleComponent } from '../edit-sale/edit.sale.component';
 
 @Component({
     selector: 'credit-card',

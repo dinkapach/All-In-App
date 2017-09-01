@@ -59,6 +59,8 @@ import { AddPointsComponent } from '../pages/add-points/add-points.component';
 import { SubscirbePointsComponent } from '../pages/subscribe-points/subscribe-points.component';
 import { ShowSalesComponent } from '../pages/show-sales/show-sales.component';
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { EditSaleComponent } from '../pages/edit-sale/edit.sale.component';
+
 
 @NgModule({
   declarations: [
@@ -79,6 +81,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     DashboardManagerComponent,
     EditProfileComponent,
     EditCreditComponent,
+    EditSaleComponent,
     FilterClubDetailsComponent,
     AddClubManualComponent,
     ClubManualCardComponent,
@@ -136,6 +139,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     EditClubManuallyComponent,
     ScanReceiptComponent,
     EditPasswordComponent,
+    EditSaleComponent,
     ClubManualDetailsComponent,
     AddSaleComponent,
     AddPointsComponent,

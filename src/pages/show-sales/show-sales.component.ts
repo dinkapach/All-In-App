@@ -38,7 +38,4 @@ export class ShowSalesComponent{
             return sale.id != saleToRemove.id;
         })
     }
-
-  
-
- }
+}

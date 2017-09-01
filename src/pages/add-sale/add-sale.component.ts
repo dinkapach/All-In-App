@@ -31,7 +31,7 @@ export class AddSaleComponent{
      private managerService: ManagerService, private navCtrl : NavController,
       private alertCtrl: AlertController) {
         this.formData = fBuilder.group ({
-            'id' : ["", Validators.required],
+            'id' :Date.now(),
             'name': ["", Validators.required],
             'description' : ["", Validators.required],
             'price' : ["", Validators.required],

@@ -102,6 +102,15 @@ export class UserService {
         };
     }  
 
+     getIdByCostumerId(customerId : Number){
+        console.log("get customer from repository..."+ customerId);
+        return this.http.get(`${this.url}/api/users/getIdByCustomerId`, customerId)
+            .map(response => response.json()),
+        err => {
+            console.log("error at getUserById: " + err);           
+        };
+    } 
+
     addCredit(credit: Credit): Observable<boolean> {
         console.log("adding credit 6");
         return this.http.post(`${this.url}/api/users/addCredit`, {
@@ -122,6 +131,7 @@ export class UserService {
     
 
     editCredit(credit: Credit): Observable<boolean> {
+        console.log('edit credit :' + this.getUserId());
         return this.http.post(`${this.url}/api/users/editCredit`, {
             customerId: this.getUserId(),
             creditUpdate: credit

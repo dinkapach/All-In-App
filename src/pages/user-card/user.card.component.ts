@@ -29,9 +29,11 @@ export class UserCardComponent implements OnInit {
     }
 
     ngOnInit() {
+       
         if (this.userClub != null){
         this.managerService.getCustomerDetails(this.userClub.customerId)
         .subscribe(userDisplay=>{
+            
             this.userDisplay = userDisplay;
         })
     }

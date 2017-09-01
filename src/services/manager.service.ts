@@ -12,10 +12,11 @@ export class ManagerService {
     private url: string;
     private currentManager: Manager;
     private isManager: Boolean;
-
+    private customersArr: User[];
     constructor(private http : Http, private storage: Storage) {
         this.url = environment[environment.RUNNING];
         console.log(this.url);
+
     }
 
     getLocalManager(){
@@ -25,6 +26,11 @@ export class ManagerService {
     setLocalManager(manager: Manager){
         // this.storage.set("managerDetails", manager);
         this.currentManager = manager;
+    }
+
+    setCustomerArray(customers : User[])
+    {
+        this.customersArr = customers;
     }
 
     addSale(clubId: any, sale: Sale){
@@ -88,5 +94,15 @@ export class ManagerService {
         return this.http.get(`${this.url}/api/manager/getCustomerDetails/${customerId}`)
         .map(res => res.json());
     }
+
+     editSale(sale: Sale): Observable<boolean> {
+         console.log ('service edit sale :' + this.getClubId());
+        return this.http.post(`${this.url}/api/manager/editSale`, {
+            clubId: this.getClubId(),
+            saleUpdate: sale
+         })
+        .map( res => res.json());
+    }
+   
 
 }

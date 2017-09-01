@@ -5,6 +5,7 @@ import { ManagerService } from '../../services/manager.service';
 import { ManagerComponent } from '../manager/manager.component';
 import { ClubService } from '../../services/club.service';
 import { NavController, AlertController } from 'ionic-angular';
+import { EditSaleComponent } from '../edit-sale/edit.sale.component';
 
 
 @Component({
@@ -18,15 +19,18 @@ export class SaleCardComponent implements OnInit {
 
     constructor(private navCtrl: NavController,private managerService: ManagerService,
     private clubService : ClubService,  private alertCtrl: AlertController) {
+
     }
 
     ngOnInit() {
     }
 
-    onSaleClicked() {
-      //  this.navCtrl.push(ClubDetailsComponent, {club : this.club});
+   
 
-    }
+    editSaleClick(sale){
+        this.navCtrl.push(EditSaleComponent, {sale: sale});
+    } 
+
     deleteSaleClick(sale){
         var clubId = this.managerService.getLocalManager().clubId;
         var saleId = sale.id;

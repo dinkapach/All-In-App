@@ -31,7 +31,8 @@ import { ManagerService } from '../../services/manager.service';
 export class ShowCustomerComponent{
     club: Club;
     userCard: UserClub;
-  
+    customerDisplay: UserClub[];
+    searchCustomer: string;
       constructor(private fBuilder : FormBuilder, private http: Http, private navCtrl : NavController,
         private userService: UserService, private navParams: NavParams,
         private alertCtrl: AlertController, private managerService: ManagerService) {
@@ -39,16 +40,21 @@ export class ShowCustomerComponent{
           this.club = this.navParams.get("club");
         }
 
-        
+        ngOnInit(){
+          this.customerDisplay = this.club.usersClub;
+        }
            
         handleUserDeleted(userToRemove){
         
         }
-      // handleUserDeleted(userToRemove){
-    //     this.userArr = this.userArr.filter(user => {
-    //         return user.id != userToRemove.id;
-    //     })
-    // }
 
+         searchCustomers() {
+        console.log("on search clubs: " + this.searchCustomer);
+          this.customerDisplay = this.club.usersClub;
+        this.customerDisplay = this.customerDisplay.filter(customer => {
 
- }
+                return customer.customerId.toString().startsWith(this.searchCustomer); 
+        });
+     
+    }
+}
