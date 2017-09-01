@@ -164,7 +164,7 @@ export class DashboardComponent implements OnInit {
     searchClubs() {
         console.log("on search clubs: " + this.searchClub);
         this.clubsDisplay = this.user.clubs.filter(club => {
-            return club.name.toLowerCase().startsWith(this.searchClub);
+            return club.name.toLowerCase().startsWith(this.searchClub.toLowerCase());
         });
     }
 
