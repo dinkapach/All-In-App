@@ -10,8 +10,8 @@
 </ion-header>
 
 <ion-content>
-  <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)" [pullMin]="300">
+    <ion-refresher-content> </ion-refresher-content>
   </ion-refresher>
   <ion-searchbar [(ngModel)]="searchClub" (ionInput)="searchClubs()"></ion-searchbar>
   
