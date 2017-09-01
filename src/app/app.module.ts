@@ -172,10 +172,13 @@ import { CustomerSettingsComponent } from '../pages/customer-settings/customer-s
     AlertService,
     LocalNotifications,
     CameraService,
-    Camera,
     LocalNotifications,
-    LoadingService
-    //{ provide: Camera, useClass: CameraMock },
+    LoadingService,
+    LocalNotifications,
+    
+    
+    //Camera,
+    { provide: Camera, useClass: CameraMock },
     ]
 })
 export class AppModule {}

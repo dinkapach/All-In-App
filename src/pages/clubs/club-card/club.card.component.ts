@@ -23,6 +23,7 @@ export class ClubCardComponent implements OnInit {
     }
 
     onClubClicked() {
+        console.log("click!");
       this.navCtrl.push(ClubDetailsComponent, {club : this.club});
     }
 }
