@@ -40,7 +40,7 @@ export class EditPasswordComponent{
         return {
           areEqual: true
         };
-      }
+    }
     
 
     onClickChangePassword() {
