@@ -10,6 +10,7 @@ import { Http } from '@angular/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'; 
 import 'rxjs/add/operator/map';
 import { ManagerComponent } from '../manager/manager.component';
+import { LoadingService } from '../../helpers/loading-service';
 
 @Component({
     selector: 'login',
@@ -22,7 +23,7 @@ export class LoginComponent {
     
     constructor(private fBuilder : FormBuilder, private alertCtrl: AlertController, private http: Http, 
     private signService : SigningService, private navCtrl : NavController, private signingSuperManager:SigningSuperManagerService,
-    private userService: UserService) {
+    private userService: UserService, private loadingService: LoadingService) {
         this.isManager = false;
         this.formData = fBuilder.group({
             // 'email': ["allin@gmail.com", Validators.required],
@@ -35,7 +36,7 @@ export class LoginComponent {
     submitLogin() {
         const emailVal = this.formData.value.email;
         const passwordVal = this.formData.value.password;
-        //this.isSuperManager = true; // DELETE
+        this.loadingService.presentLoading();
         if(this.isSuperManager){
             this.signingSuperManager.loginSuperManager(emailVal, passwordVal)
             .subscribe(superManager => {
@@ -45,7 +46,12 @@ export class LoginComponent {
                 else{
                     console.log("problam in submit login for super manager");
                 }
-            })
+            },
+            err => {
+                console.log(err);
+                alert(err);
+            },
+            () => this.loadingService.dismissLoading());
         }
         else {
             this.signService.loginUser(emailVal, passwordVal, this.isManager)
@@ -57,11 +63,15 @@ export class LoginComponent {
                 else {
                     console.log('user not connected');
                     alert("Your user name or password inncorrect");
+                    // this.loadingService.dismissLoading();
                 }
             },
             err => {
                 console.log(err);
                 alert(err);
+            },
+            () => {
+                this.loadingService.dismissLoading();
             });
         }
     }

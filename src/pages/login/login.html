@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content padding>
-    <form [formGroup]="formData" (ngSubmit)="submitLogin()">
+    <form [formGroup]="formData" #loginForm="ngForm" (ngSubmit)="submitLogin()">
         <ion-list>
             <ion-item>
                 <ion-input formControlName="email" placeholder="Email" type="email"></ion-input>
@@ -14,7 +14,7 @@
                 <ion-input formControlName="password" placeholder="Password" type="password"></ion-input>
             </ion-item>    
         </ion-list>
-        <button type="submit" ion-button round>Log in</button>
+        <button type="submit" ion-button round [disabled]="!loginForm.form.valid">Log in</button>
     </form>
 
 <ion-list>

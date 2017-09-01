@@ -1,26 +1,15 @@
 <ion-header>
   <ion-navbar>
-      <!-- <ion-buttons> -->
-          <button ion-button icon-only menuToggle>
-            <ion-icon name="menu"></ion-icon>
+    <ion-title>Dashborad</ion-title>
+    <ion-buttons end>
+          <button ion-button (click)="onClickSettings()" icon-only>
+            <ion-icon name="more"></ion-icon>
           </button>
-      <!-- </ion-buttons> -->
-    <ion-title *ngIf="user">Welcome {{user.firstName}}</ion-title>
-        <button ion-button (click)="onClickUpdateProfile()">
-            Update Profile
-          </button>
-          <button ion-button (click)="onClickAddManualClub()" >Add Manual Club</button>
-          <button ion-button (click)="onClickChangePassword()" >Change Password</button>
-          <button ion-button (click)="onClickAddClubByScanQR()" >Add club By Scan QR</button>
-          <button ion-button (click)="onClickLogout()" color="danger">Logout</button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-<!-- <div>
-    {{barcodeData}}
-</div> -->
-
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>

@@ -25,6 +25,7 @@ import 'rxjs/add/operator/map';
 import { EditPasswordComponent } from '../edit-password/edit-password.component';
 import { SigningService } from '../../services/signing.service';
 import { LoginComponent } from '../login/login.component';
+import { CustomerSettingsComponent } from '../customer-settings/customer-settings.component';
 
 @Component({
     selector: 'dashboard',
@@ -99,12 +100,6 @@ export class DashboardComponent implements OnInit {
         }
     }
 
-    onClickLogout(){
-        this.signService.logoutUser().subscribe(isAuth => {
-            this.navCtrl.setRoot(LoginComponent);
-        });
-    }
-
     onClickAddClubByScanQR(){
         this.barcodeScanner.scan().then((barcodeData) => {
             this.barcodeData = barcodeData; //JSON.stringify(barcodeData);
@@ -162,8 +157,8 @@ export class DashboardComponent implements OnInit {
         }
     }
 
-    onClickChangePassword(){
-        this.navCtrl.push(EditPasswordComponent);
+    onClickSettings(){
+        this.navCtrl.push(CustomerSettingsComponent);
     }
 
     searchClubs() {
@@ -171,10 +166,6 @@ export class DashboardComponent implements OnInit {
         this.clubsDisplay = this.user.clubs.filter(club => {
             return club.name.toLowerCase().startsWith(this.searchClub);
         });
-    }
-
-    onClickUpdateProfile() {
-        this.navCtrl.push(EditProfileComponent);
     }
 
     onClickAddManualClub(){

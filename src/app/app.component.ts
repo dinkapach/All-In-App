@@ -6,6 +6,7 @@ import { LoginComponent } from '../pages/login/login.component';
 import { ManagerComponent } from '../pages/manager/manager.component';
 import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { SigningService } from '../services/signing.service';
+import { CustomerSettingsComponent } from '../pages/customer-settings/customer-settings.component';
 @Component({
   templateUrl: 'app.html'
 })
@@ -26,7 +27,7 @@ export class MyApp {
       splashScreen.hide();
 	  alert("platform ready");
     });
-
+    // this.rootPage = CustomerSettingsComponent;
     this.loadApp();
   }
 

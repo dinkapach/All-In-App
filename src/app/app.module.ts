@@ -59,6 +59,8 @@ import { AddSaleComponent } from '../pages/add-sale/add-sale.component';
 import { AddPointsComponent } from '../pages/add-points/add-points.component';
 import { SubscirbePointsComponent } from '../pages/subscribe-points/subscribe-points.component';
 import { ShowSalesComponent } from '../pages/show-sales/show-sales.component';
+import { LoadingService } from '../helpers/loading-service';
+import { CustomerSettingsComponent } from '../pages/customer-settings/customer-settings.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +92,7 @@ import { ShowSalesComponent } from '../pages/show-sales/show-sales.component';
     AddPointsComponent,
     SubscirbePointsComponent,
     ShowSalesComponent,
-    
+    CustomerSettingsComponent,
     // super manager stuff
     SuperManagerDashboardComponent,
     ManagerCardComponent,
@@ -141,7 +143,7 @@ import { ShowSalesComponent } from '../pages/show-sales/show-sales.component';
     AddPointsComponent,
     SubscirbePointsComponent,
     ShowSalesComponent,
-    
+    CustomerSettingsComponent,
     // super manager stuff
     SuperManagerDashboardComponent,
     ManagerCardComponent,
@@ -171,7 +173,8 @@ import { ShowSalesComponent } from '../pages/show-sales/show-sales.component';
     LocalNotifications,
     CameraService,
     Camera,
-	  LocalNotifications,
+    LocalNotifications,
+    LoadingService
     //{ provide: Camera, useClass: CameraMock },
     ]
 })

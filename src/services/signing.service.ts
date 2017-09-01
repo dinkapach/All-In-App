@@ -84,7 +84,6 @@ export class SigningService {
             .subscribe((data) =>{
                 console.log("got user data from login: ");
                 console.log(data);
-
                 if (isManager){
                     // console.log("set manager in storage");
                     this.managerService.setLocalManager(data);
@@ -95,12 +94,15 @@ export class SigningService {
                 }
                 this.saveLoggedInUserToStorage(data, isManager);
                 observer.next(true);
+                observer.complete();
             },
             err => {
                 console.log("error at login service");
                 observer.next(false);
+                observer.complete();
             },
             () => {
+                console.log("complete observer");
                 observer.complete();
             });
         });
