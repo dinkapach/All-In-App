@@ -1,9 +1,19 @@
-<div style="margin-top: 88px; margin-bottom: 88px;">
-<ion-header>
-  <ion-navbar>
-    <ion-title>Credits</ion-title>
-  </ion-navbar>
-</ion-header>
+<div>
+    <button ion-button full (click)="onClickAddCredit()" >
+        <ion-icon name="clipboard"></ion-icon>&nbsp;&nbsp; Add Credit</button>
+    
+      <ion-grid *ngIf="user">
+        <ion-row *ngFor="let credit of creditArr">
+          <ion-col>
+             <credit-card [credit]="credit" (creditDeleted)="handleCreditDeleted($event)"></credit-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+</div>
+
+
+<!-- <div style="margin-top: 77px; margin-bottom: 77px;">
+
 
 <button ion-button full (click)="onClickAddCredit()" >
     <ion-icon name="clipboard"></ion-icon>&nbsp;&nbsp; Add Credit</button>
@@ -16,4 +26,4 @@
     </ion-row>
   </ion-grid>
 
-</div>
+</div> -->

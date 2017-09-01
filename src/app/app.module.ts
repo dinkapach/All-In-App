@@ -170,9 +170,9 @@ import { ShowSalesComponent } from '../pages/show-sales/show-sales.component';
     AlertService,
     LocalNotifications,
     CameraService,
-    Camera,
+    //Camera,
 	  LocalNotifications,
-    //{ provide: Camera, useClass: CameraMock },
+    { provide: Camera, useClass: CameraMock },
     ]
 })
 export class AppModule {}

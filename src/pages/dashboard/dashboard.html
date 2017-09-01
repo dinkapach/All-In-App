@@ -9,9 +9,7 @@
         <button ion-button (click)="onClickUpdateProfile()">
             Update Profile
           </button>
-          <button ion-button (click)="onClickAddManualClub()" >Add Manual Club</button>
           <button ion-button (click)="onClickChangePassword()" >Change Password</button>
-          <button ion-button (click)="onClickAddClubByScanQR()" >Add club By Scan QR</button>
           <button ion-button (click)="onClickLogout()" color="danger">Logout</button>
   </ion-navbar>
 </ion-header>
@@ -45,10 +43,21 @@
     </ion-row>
   </ion-grid>
 
-  <ion-footer>
+  <ion-fab bottom right>
+      <button ion-fab color="vibrant" mini><ion-icon name="add"></ion-icon></button>
+      <ion-fab-list side="top">
+        <button ion-fab (click)="onClickAddManualClub()" ><ion-icon name="hand"></ion-icon></button>
+      </ion-fab-list>
+      <ion-fab-list side="left">
+        <button ion-fab (click)="onClickAddClubByScanQR()"><ion-icon name="qr-scanner"></ion-icon></button>
+        <button ion-fab (click)="onClickAddClub()" ><ion-icon name="beer"></ion-icon></button>
+      </ion-fab-list>
+    </ion-fab>
+
+  <!-- <ion-footer>
     <ion-fab>
       <button (click)="onClickAddClub()" ion-fab>Add Club</button>
     </ion-fab>
-    </ion-footer>
+    </ion-footer> -->
     
 </ion-content>
