@@ -57,7 +57,6 @@ export class SuperManagerDashboardComponent implements OnInit{
     }
 
      onClickClubAction(action){
-        //this.navCtrl.push(ClubActionComponent, {action: action});
         switch(action){
             case superManagerConfig.CLUB_ACTIONS[0]:
                 this.navCtrl.push(AddClubComponent);

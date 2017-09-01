@@ -31,7 +31,7 @@ export class ClubService {
         .map(response => response.json());
     }
 
-    getClubByObjectId(clubId : string ) : Observable<any> {
+    getClubByObjectId(clubId : string ) : Observable<Club> {
         return this.http.get(`${this.url}/api/club/objectid/${clubId}`)
          .map(response => response.json());
     }

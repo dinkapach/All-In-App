@@ -150,8 +150,9 @@ export class UserService {
         .map( res => res.json());
     // });
     }
-    saveReceipt(picture: any): Observable<any> {
-        return this.http.post(`${this.url}/api/users/saveReceipt`, {
+    
+    saveImg(picture: any): Observable<any> {
+        return this.http.post(`${this.url}/api/users/saveImg`, {
             picture: picture
         })
         .map( res => res.json());

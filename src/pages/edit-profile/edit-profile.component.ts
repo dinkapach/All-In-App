@@ -21,6 +21,7 @@ export class EditProfileComponent{
     user: User;
     updatedUser: any = {};
     formData : FormGroup;
+    isUrlImg: boolean;
 
     constructor(private fBuilder : FormBuilder, private http: Http, private navCtrl : NavController,
         private userService: UserService, private navParams: NavParams, private alertCtrl: AlertController) {

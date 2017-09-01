@@ -5,7 +5,6 @@ import { User } from './../../../models/user.model';
 import { NavParams, NavController, AlertController } from 'ionic-angular';
 import { Club } from './../../../models/club.model';
 import { Component, Input, OnInit } from '@angular/core';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { AddCreditComponent } from '../../add-credit/add-credit.component';
 import { ShowCreditsComponent } from '../../show-credits/show-credits.component';
 
@@ -15,12 +14,11 @@ import { ShowCreditsComponent } from '../../show-credits/show-credits.component'
 })
 export class ClubDetailsBaseComponent {
     club: any;
-    barcodeData : string;
     user: User;
     viewOptions: string;
     creditArr: any
 
-    constructor(public navParams: NavParams, public barcodeScanner: BarcodeScanner,
+    constructor(public navParams: NavParams, 
         public navCtrl: NavController, public userService: UserService, 
         public clubService: ClubService, public alertCtrl: AlertController) {
             this.user = this.userService.getLocalUser();
@@ -30,14 +28,6 @@ export class ClubDetailsBaseComponent {
     onClickReceipts() {
         let isManual = false;
         this.navCtrl.push(ScanReceiptComponent, {club: this.club , isManual : isManual });
-
-        // this.barcodeScanner.scan().then((barcodeData) => {
-        //     console.log(barcodeData);
-        //     this.barcodeData = JSON.stringify(barcodeData);
-        // }, (err) => {
-        //     console.log(err);            
-        //     this.barcodeData = JSON.stringify(err);
-        // });
     }
 
 
