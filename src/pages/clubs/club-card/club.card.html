@@ -1,7 +1,7 @@
-
-  <ion-card (click)="onClubClicked()">
-    <img [src]="club.img"/>
-    <ion-card-content >
+<ion-card>
+  <div (click)="onClubClicked()">
+    <img [src]="club.img" />
+    <ion-card-content>
       <ion-card-title>
         {{club.name}}
       </ion-card-title>
@@ -21,28 +21,29 @@
         </div>
       </div>
     </ion-card-content>
+  </div>
 
-    <ion-row no-padding>
-      <ion-col>
-        <button ion-button clear small color="danger" icon-start (click)="onClickEditClub(club)" *ngIf="club.isManual">
+  <ion-row no-padding>
+    <ion-col>
+      <button ion-button clear small color="danger" icon-start (click)="onClickEditClub(club)" *ngIf="club.isManual">
           <ion-icon name='create'></ion-icon>
           Edit
         </button>
-      </ion-col>
-      <ion-col text-center>
-        <button ion-button clear small color="danger" icon-start (click)="onClickDeleteClub(club)" *ngIf="club.isManual">
+    </ion-col>
+    <ion-col text-center>
+      <button ion-button clear small color="danger" icon-start (click)="onClickDeleteClub(club)" *ngIf="club.isManual">
           <ion-icon name='trash'></ion-icon>
           delete
         </button>
-      </ion-col>
-    </ion-row>
+    </ion-col>
+  </ion-row>
 
-  </ion-card>
-
-
+</ion-card>
 
 
-  <!-- <ion-card padding >
+
+
+<!-- <ion-card padding >
     <ion-buttons *ngIf="club.isManual" end>
         <button (click)="onClickDeleteClub(club)">
             <ion-icon name="trash"></ion-icon>

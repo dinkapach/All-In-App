@@ -58,6 +58,8 @@ export class DashboardComponent implements OnInit {
         this.initGrid();
     }
 
+
+
     doRefresh(refresher){
         console.log('Begin async operation', refresher);
         this.userService.getUserById()
