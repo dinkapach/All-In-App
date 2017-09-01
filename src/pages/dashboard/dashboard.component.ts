@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit {
         private modalCtrl: ModalController, private navCtrl: NavController,
         private popOverCtrl: PopoverController, private storage: Storage,
         private signService : SigningService, private barcodeScanner: BarcodeScanner) {
-        this.grid = new Array<Array<Club>>();
+        // this.grid = new Array<Array<Club>>();
         this.searchClub = '';
     }
 
@@ -55,7 +55,7 @@ export class DashboardComponent implements OnInit {
         this.user = this.userService.getLocalUser();
         this.clubsDisplay = this.user.clubs;
         this.clubsManualDisplay = this.user.manuallyClubs;
-        this.initGrid();
+        // this.initGrid();
     }
 
 
@@ -84,23 +84,23 @@ export class DashboardComponent implements OnInit {
         });
         }
 
-    initGrid(){
-        console.log("init dashborad grid");
-        console.log(this.user);
-        const size = Math.ceil(this.user.clubs.length / 2);
-        var j = 0;
-        for (var i = 0; i < size; i++) {
-            this.grid[i] = new Array<Club>();
-            if (size > 1 && i != size - 1) {
-                for (j = 0; j < 2; j++) {
-                    this.grid[i][j] = this.user.clubs[i * 2 + j];
-                }
-            }
-            if (i == size - 1 && size % 2 == 0) {
-                this.grid[i][j] = this.user.clubs[i * 2 + j];
-            }
-        }
-    }
+    // initGrid(){
+    //     console.log("init dashborad grid");
+    //     console.log(this.user);
+    //     const size = Math.ceil(this.user.clubs.length / 2);
+    //     var j = 0;
+    //     for (var i = 0; i < size; i++) {
+    //         this.grid[i] = new Array<Club>();
+    //         if (size > 1 && i != size - 1) {
+    //             for (j = 0; j < 2; j++) {
+    //                 this.grid[i][j] = this.user.clubs[i * 2 + j];
+    //             }
+    //         }
+    //         if (i == size - 1 && size % 2 == 0) {
+    //             this.grid[i][j] = this.user.clubs[i * 2 + j];
+    //         }
+    //     }
+    // }
 
     onClickAddClubByScanQR(){
         this.barcodeScanner.scan().then((barcodeData) => {
