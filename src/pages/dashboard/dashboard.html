@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title text-center>Dashboard</ion-title>
+    <ion-title>Dashboard</ion-title>
     <ion-buttons end>
           <button ion-button (click)="onClickSettings()" icon-only>
             <ion-icon name="more"></ion-icon>
@@ -23,9 +23,9 @@
       <ion-col>
         <club-card [club]="club" [subDetailsToPresent]="chosenOption"></club-card>
       </ion-col>
-      <ion-col>
+      <!-- <ion-col>
         <club-card [club]="club" [subDetailsToPresent]="chosenOption"></club-card>
-      </ion-col>
+      </ion-col> -->
     </ion-row>
   </ion-grid>
 
