@@ -1,3 +1,4 @@
+import { CameraService } from './../helpers/camera-service';
 import { DeleteCustomerComponent } from './../pages/superManager/customerActions/delete-customer/delete.customer.component';
 import { CustomerCardSuperComponent } from './../pages/superManager/customerActions/customer-card-super/customer.card.super.component';
 import { EditDeleteClubComponent } from './../pages/superManager/clubActions/edit-delete-club/edit.delete.club.component';
@@ -168,8 +169,9 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     SigningSuperManagerService,
     SuperManagerService,
     AlertService,
+    LocalNotifications,
+    CameraService,
     Camera,
-	LocalNotifications
     //{ provide: Camera, useClass: CameraMock },
     ]
 })

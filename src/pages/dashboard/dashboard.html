@@ -11,11 +11,16 @@
           </button>
           <button ion-button (click)="onClickAddManualClub()" >Add Manual Club</button>
           <button ion-button (click)="onClickChangePassword()" >Change Password</button>
+          <button ion-button (click)="onClickAddClubByScanQR()" >Add club By Scan QR</button>
           <button ion-button (click)="onClickLogout()" color="danger">Logout</button>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
+<!-- <div>
+    {{barcodeData}}
+</div> -->
+
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>

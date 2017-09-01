@@ -18,6 +18,8 @@ import { UserService } from './../../services/user.service';
 import { EditProfileComponent } from './../edit-profile/edit-profile.component';
 import { AddClubManualComponent } from './../clubs/manualClubs/club-add-manual/club.add.manual.component';
 import { User } from './../../models/user.model';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+
 
 import 'rxjs/add/operator/map';
 import { EditPasswordComponent } from '../edit-password/edit-password.component';
@@ -36,12 +38,13 @@ export class DashboardComponent implements OnInit {
     grid: Array<Array<Club>>;
     editProfilePage = EditProfileComponent;
     chosenOption: string;
+    barcodeData : any;
 
     constructor(private navParams: NavParams, private userService: UserService,
         private clubService: ClubService, private loader: LoadingController,
         private modalCtrl: ModalController, private navCtrl: NavController,
         private popOverCtrl: PopoverController, private storage: Storage,
-        private signService : SigningService) {
+        private signService : SigningService, private barcodeScanner: BarcodeScanner) {
         this.grid = new Array<Array<Club>>();
         this.searchClub = '';
     }
@@ -102,10 +105,38 @@ export class DashboardComponent implements OnInit {
         });
     }
 
+    onClickAddClubByScanQR(){
+        this.barcodeScanner.scan().then((barcodeData) => {
+            this.barcodeData = barcodeData; //JSON.stringify(barcodeData);
+            if(this.barcodeData.cancelled == 0){
+            let clubObjId = this.barcodeData.text;
+            this.clubService.getClubByObjectId(clubObjId)
+            .subscribe( clubRes => {            
+                if(clubRes){
+                    this.addClubToCustomer(clubRes);
+                }
+                else {
+                    alert("club wasnt save")
+                }
+            })
+        }
+    }, (err) => {
+        console.log(err);            
+        // this.barcodeData = JSON.stringify(err);
+        });
+        
+    }
+
     onClickAddClub() {
         let clubsModal = this.modalCtrl.create(ClubsListComponent);
         clubsModal.onDidDismiss(clubChosen => {
-            if (clubChosen) {
+            this.addClubToCustomer(clubChosen);
+        });
+        clubsModal.present();
+    }
+
+    addClubToCustomer(clubChosen) {
+        if (clubChosen) {
             let isExists = false; 
             // check if the user already have the club
             this.user.clubs.forEach((club) => {
@@ -129,8 +160,6 @@ export class DashboardComponent implements OnInit {
                     })
             }
         }
-    });
-        clubsModal.present();
     }
 
     onClickChangePassword(){

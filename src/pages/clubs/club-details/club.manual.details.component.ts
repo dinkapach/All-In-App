@@ -19,10 +19,10 @@ export class ClubManualDetailsComponent extends ClubDetailsBaseComponent impleme
     // barcodeData : string;
     // user: User
 
-    constructor(public navParams: NavParams, public barcodeScanner: BarcodeScanner,
+    constructor(public navParams: NavParams,
         public navCtrl: NavController, public userService: UserService, 
         public clubService: ClubService, public alertCtrl: AlertController) {
-            super(navParams, barcodeScanner, navCtrl, userService, clubService, alertCtrl);
+            super(navParams, navCtrl, userService, clubService, alertCtrl);
             //this.user = this.userService.getLocalUser();
     }
 
