@@ -33,6 +33,12 @@ export class ShowStatisticsComponent{
     userCard: UserClub;
     customerDisplay: UserClub[];
     searchCustomer: string;
+    childs : number = 0;
+    teenagers : number = 0;;
+    olds : number = 0;;
+    totalCustomers  : number = 0;
+    joinedThisMonth : number = 0;
+
       constructor(private fBuilder : FormBuilder, private http: Http, private navCtrl : NavController,
         private userService: UserService, private navParams: NavParams,
         private alertCtrl: AlertController, private managerService: ManagerService) {
@@ -42,48 +48,48 @@ export class ShowStatisticsComponent{
         }
 
         getStatistics(){
-          var childs = 0;
-          var teenagers = 0;
-          var olds = 0;
-          var totalCustomers;
-          var joinedThisMonth = 0;
           var date = new Date();
           var thisMonth = date.getMonth;
+          var customersArr;
+         
 
-        this.managerService.getLocalCustomers()
-        .subscribe(customers => {
-           customers.forEach(customer => {
-             var age = this.calculateAge(customer.birthDate);
-             
-             if (age < 20){
-               childs++;
-             }
-             else if( age < 30){
-               teenagers++;
-             }
-             else{
-               olds++;
-             }
-           });
-           
+        customersArr = this.managerService.getLocalCustomers()
+       
+        customersArr.forEach(customer => {
+          //console.log("customer" , customer);
+          var date = new Date(customer.customerId.birthday);
+          var din = new Date(age);
+          var age = new Date().getFullYear() - date.getFullYear(); 
+          
+          if (age < 20){
+            this.childs++;
+          }
+          else if( age < 30){
+            this.teenagers++;
+          }
+          else{
+            this.olds++;
+          }
+        
+        })   
 
-           totalCustomers = childs + teenagers + olds;
-           joinedThisMonth = this.getNumOfJoinedThisMonth();
+        this.totalCustomers = this.childs + this.teenagers + this.olds;
+           this.joinedThisMonth = this.getNumOfJoinedThisMonth();
 
-           console.log("total customers: " + totalCustomers);
-           console.log("childs: " + childs);
-           console.log("teens: " + teenagers);
-           console.log("olds: " + olds);
-           console.log("joinedThisMonth: " + joinedThisMonth);
-        })       
+           console.log("total customerssss: " + this.totalCustomers);
+          //  console.log("childs: " + childs);
+          //  console.log("teens: " + teenagers);
+          //  console.log("olds: " + olds);
+          //  console.log("joinedThisMonth: " + joinedThisMonth);    
       }
 
       getNumOfJoinedThisMonth(){
         var numOfJoins = 0;
         var thisDate = new Date();
-        var thisMonth = thisDate.getMonth;
+        var thisMonth = thisDate.getMonth();
           this.club.usersClub.forEach(userClub =>{
-            if(userClub.joinDate.getMonth == thisMonth){
+            var joinDate = new Date(userClub.joinDate)
+            if(joinDate.getMonth() == thisMonth){
               numOfJoins++;
             }
           })
