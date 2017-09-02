@@ -65,6 +65,7 @@ export class ShowStatisticsComponent{
                olds++;
              }
            });
+           
 
            totalCustomers = childs + teenagers + olds;
            joinedThisMonth = this.getNumOfJoinedThisMonth();
