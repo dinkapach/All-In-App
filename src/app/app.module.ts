@@ -64,6 +64,8 @@ import { CustomerSettingsComponent } from '../pages/customer-settings/customer-s
 import { EditSaleComponent } from '../pages/edit-sale/edit.sale.component';
 import { SaleViewComponent } from '../pages/sale-view/sale.view.component';
 import { SaleCardManagerComponent } from '../pages/sale-cardManager/sale.cardManager.component';
+import { ShowStatisticsComponent } from '../pages/show-statistics/show-statistics.component';
+
 
 
 @NgModule({
@@ -86,6 +88,7 @@ import { SaleCardManagerComponent } from '../pages/sale-cardManager/sale.cardMan
     EditProfileComponent,
     EditCreditComponent,
     EditSaleComponent,
+    ShowStatisticsComponent,
     FilterClubDetailsComponent,
     AddClubManualComponent,
     ClubManualCardComponent,
@@ -146,6 +149,7 @@ import { SaleCardManagerComponent } from '../pages/sale-cardManager/sale.cardMan
     ScanReceiptComponent,
     EditPasswordComponent,
     EditSaleComponent,
+    ShowStatisticsComponent,
     ClubManualDetailsComponent,
     AddSaleComponent,
     AddPointsComponent,

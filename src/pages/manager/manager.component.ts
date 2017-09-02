@@ -13,6 +13,7 @@ import { UserService } from './../../services/user.service';
 import { User } from './../../models/user.model';
 import { Manager } from './../../models/manager.model';
 import { ShowCustomerComponent } from './../show-customer/show-customer.component';
+import { ShowStatisticsComponent } from './../show-statistics/show-statistics.component';
 import 'rxjs/add/operator/map';
 import { AddSaleComponent } from './../add-sale/add-sale.component';
 import { AddPointsComponent } from './../add-points/add-points.component';
@@ -20,6 +21,7 @@ import { SubscirbePointsComponent } from './../subscribe-points/subscribe-points
 import { SigningService } from '../../services/signing.service';
 import { LoginComponent } from '../login/login.component';
 import { ShowSalesComponent } from './../show-sales/show-sales.component';
+
 
 
 @Component({
@@ -109,4 +111,18 @@ export class ManagerComponent {
             this.navCtrl.setRoot(LoginComponent);
         });
     }
+
+    showStatistics(){
+         console.log(this.manager);
+          this.clubService.getClubByObjectId(this.manager.clubId)
+          .subscribe(club =>{
+              if (club)
+              {
+                  this.navCtrl.push(ShowStatisticsComponent, {club: club});
+              }
+              else{
+                   console.log("Error No clubs");
+              }
+          })
+     }
 }
