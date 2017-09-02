@@ -11,6 +11,10 @@
       <button type="submit" (click)="addSale()" ion-button round>Add Sale</button>
       <button type="submit" (click)="showSales()" ion-button round>My Sales</button>
       <button ion-button (click)="onClickLogout()" color="danger">Logout</button>
-
-  
-</ion-content> 
+  <ion-item>
+      <img [src]="club.img"/>
+    <ion-card-title>
+      {{club.name}}
+    </ion-card-title>  
+  </ion-item>
+</ion-content>

@@ -25,13 +25,13 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class AddSaleComponent{
     formData : FormGroup;
-    sale = new Sale;
+    sale = new Sale();
   
      constructor(private fBuilder : FormBuilder, private http: Http, 
      private managerService: ManagerService, private navCtrl : NavController,
       private alertCtrl: AlertController) {
         this.formData = fBuilder.group ({
-            'id' : ["", Validators.required],
+            'id' :Date.now(),
             'name': ["", Validators.required],
             'description' : ["", Validators.required],
             'price' : ["", Validators.required],
@@ -43,7 +43,7 @@ export class AddSaleComponent{
 
  addingSale(){
         this.sale.id =  this.formData.value.id;
-        this.sale.img = "";
+        this.sale.img = this.formData.value.img;
         this.sale.name = this.formData.value.name;
         this.sale.points = this.formData.value.points;
         this.sale.description = this.formData.value.description;
@@ -64,4 +64,9 @@ export class AddSaleComponent{
        this.navCtrl.pop();
        });
     }
+
+    // onBlur(event){
+    //     var formName = event.target.attributes['formControlName'].value;
+ 
+    // }
 }

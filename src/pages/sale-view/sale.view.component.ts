@@ -4,30 +4,32 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ManagerService } from '../../services/manager.service';
 import { ManagerComponent } from '../manager/manager.component';
 import { ClubService } from '../../services/club.service';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, AlertController, NavParams } from 'ionic-angular';
 import { EditSaleComponent } from '../edit-sale/edit.sale.component';
 import { AddSaleComponent} from '../add-sale/add-sale.component'
-import {SaleViewComponent } from '../sale-view/sale.view.component'
+
 
 @Component({
-    selector: 'sale-card',
-    templateUrl: 'sale.card.html'
+    selector: 'sale-view',
+    templateUrl: 'sale.view.html'
 })
-export class SaleCardComponent implements OnInit {
+export class SaleViewComponent implements OnInit {
     @Input()
     sale: Sale;
-    @Output() saleDeleted = new EventEmitter();
+ 
 
     constructor(private navCtrl: NavController,private managerService: ManagerService,
-    private clubService : ClubService,  private alertCtrl: AlertController) {
+    private clubService : ClubService,  private alertCtrl: AlertController,
+    private navParams: NavParams,) {
+    this.sale = this.navParams.get("sale");
 
     }
 
     ngOnInit() {
     }
 
-    onSaleClicked()
-    {
-         this.navCtrl.push(SaleViewComponent, {sale: this.sale});
-    }
+    // onSaleClicked()
+    // {
+    //      this.navCtrl.push(AddSaleComponent);
+    // }
 }

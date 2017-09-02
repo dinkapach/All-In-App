@@ -22,7 +22,7 @@ import { ClubManualCardComponent } from './../pages/clubs/club-card/club.manual.
 import { AddClubManualComponent } from './../pages/clubs/manualClubs/club-add-manual/club.add.manual.component';
 import { FilterClubDetailsComponent } from './../pages/dashboard/filter-club.component';
 import { ManagerService } from './../services/manager.service';
-import { DashboardManagerComponent } from './../pages/dashboard-manager/dashboard.manager.component';
+// import { DashboardManagerComponent } from './../pages/dashboard-manager/dashboard.manager.component';
 import { SaleCardComponent } from  './../pages/sale-card/sale.card.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { ClubsListComponent } from './../pages/clubs/clubs-list/clubs.list.component';
@@ -61,6 +61,10 @@ import { SubscirbePointsComponent } from '../pages/subscribe-points/subscribe-po
 import { ShowSalesComponent } from '../pages/show-sales/show-sales.component';
 import { LoadingService } from '../helpers/loading-service';
 import { CustomerSettingsComponent } from '../pages/customer-settings/customer-settings.component';
+import { EditSaleComponent } from '../pages/edit-sale/edit.sale.component';
+import { SaleViewComponent } from '../pages/sale-view/sale.view.component';
+import { SaleCardManagerComponent } from '../pages/sale-cardManager/sale.cardManager.component';
+
 
 @NgModule({
   declarations: [
@@ -78,9 +82,10 @@ import { CustomerSettingsComponent } from '../pages/customer-settings/customer-s
     UserCardComponent,
     ShowCreditsComponent,
     ShowCustomerComponent,
-    DashboardManagerComponent,
+    // DashboardManagerComponent,
     EditProfileComponent,
     EditCreditComponent,
+    EditSaleComponent,
     FilterClubDetailsComponent,
     AddClubManualComponent,
     ClubManualCardComponent,
@@ -93,6 +98,8 @@ import { CustomerSettingsComponent } from '../pages/customer-settings/customer-s
     SubscirbePointsComponent,
     ShowSalesComponent,
     CustomerSettingsComponent,
+    SaleViewComponent,
+    SaleCardManagerComponent,
     // super manager stuff
     SuperManagerDashboardComponent,
     ManagerCardComponent,
@@ -120,7 +127,7 @@ import { CustomerSettingsComponent } from '../pages/customer-settings/customer-s
     AddCreditComponent,
     SignupComponent,
     DashboardComponent,
-    DashboardManagerComponent,
+    // DashboardManagerComponent,
     ClubCardComponent,
     ClubsListComponent,
     ClubDetailsComponent,
@@ -138,12 +145,15 @@ import { CustomerSettingsComponent } from '../pages/customer-settings/customer-s
     EditClubManuallyComponent,
     ScanReceiptComponent,
     EditPasswordComponent,
+    EditSaleComponent,
     ClubManualDetailsComponent,
     AddSaleComponent,
     AddPointsComponent,
     SubscirbePointsComponent,
     ShowSalesComponent,
     CustomerSettingsComponent,
+    SaleViewComponent,
+    SaleCardManagerComponent,
     // super manager stuff
     SuperManagerDashboardComponent,
     ManagerCardComponent,
@@ -170,13 +180,9 @@ import { CustomerSettingsComponent } from '../pages/customer-settings/customer-s
     SigningSuperManagerService,
     SuperManagerService,
     AlertService,
-    LocalNotifications,
     CameraService,
     LocalNotifications,
     LoadingService,
-    LocalNotifications,
-    
-    
     //Camera,
     { provide: Camera, useClass: CameraMock },
     ]

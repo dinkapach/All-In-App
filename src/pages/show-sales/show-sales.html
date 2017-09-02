@@ -10,7 +10,7 @@
     <ion-grid>
     <ion-row *ngFor="let sale of club.sales">
       <ion-col>
-       <sale-card [sale] = "sale"(saleDeleted)="handleSaleDeleted($event)"></sale-card>
+       <sale-cardManager [sale] = "sale"(saleDeleted)="handleSaleDeleted($event)"></sale-cardManager>
        </ion-col>
     </ion-row>
   </ion-grid>
