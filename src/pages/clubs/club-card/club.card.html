@@ -2,7 +2,7 @@
   <div (click)="onClubClicked()">
     <img [src]="club.img" />
     <ion-card-content>
-      <ion-card-title>
+      <ion-card-title text-center>
         {{club.name}}
       </ion-card-title>
       <div [ngSwitch]="subDetailsToPresent">
@@ -12,12 +12,30 @@
           </p>
         </div>
         <div *ngSwitchCase="'clubDetails'">
-          <p> {{club.name}} phone number: {{club.phoneNumber}} </p>
-          <p> {{club.name}} address: {{club.address}} </p>
+          <ion-item>
+            <ion-icon name="call" item-start large></ion-icon>
+            <p>{{club.phoneNumber}}</p>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="cart" item-start large></ion-icon>
+            <p>{{club.address}}</p>
+          </ion-item>
+          <!-- <p> {{club.name}} phone number: {{club.phoneNumber}} </p>
+          <p> {{club.name}} address: {{club.address}} </p> -->
         </div>
         <div *ngSwitchDefault>
-          <p> {{club.name}} phone number: {{club.phoneNumber}} </p>
-          <p> {{club.name}} address: {{club.address}} </p>
+          <ion-item>
+            <ion-icon name="call" item-start large></ion-icon>
+            <p>{{club.phoneNumber}}</p>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="cart" item-start large></ion-icon>
+            <p>{{club.address}}</p>
+          </ion-item>
+          <!-- <ion-item>
+              <ion-icon name="trophy" item-start large></ion-icon>
+              <p>{{club.points}}</p>
+          </ion-item> -->
         </div>
       </div>
     </ion-card-content>

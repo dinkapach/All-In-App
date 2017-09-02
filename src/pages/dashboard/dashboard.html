@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title text-center>Dashboard</ion-title>
+    <ion-title>Dashboard</ion-title>
     <ion-buttons end>
           <button ion-button (click)="onClickSettings()" icon-only>
             <ion-icon name="more"></ion-icon>
@@ -10,8 +10,8 @@
 </ion-header>
 
 <ion-content>
-  <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)" [pullMin]="300">
+    <ion-refresher-content> </ion-refresher-content>
   </ion-refresher>
   <ion-searchbar [(ngModel)]="searchClub" (ionInput)="searchClubs()"></ion-searchbar>
   
@@ -23,6 +23,9 @@
       <ion-col>
         <club-card [club]="club" [subDetailsToPresent]="chosenOption"></club-card>
       </ion-col>
+      <!-- <ion-col>
+        <club-card [club]="club" [subDetailsToPresent]="chosenOption"></club-card>
+      </ion-col> -->
     </ion-row>
   </ion-grid>
 
