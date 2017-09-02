@@ -77,7 +77,7 @@ export class ShowStatisticsComponent{
 
       getNumOfJoinedThisMonth(){
           this.club.usersClub.forEach(userClub =>{
-            var joinMonth = this.club.usersClub;
+            var joinMonth = userClub;
           })
       }
  
