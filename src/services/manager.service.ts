@@ -35,6 +35,7 @@ export class ManagerService {
 
     setLocalManager(manager: Manager, club: Club){
         // this.storage.set("managerDetails", manager);
+        console.log(manager, club);
         this.currentManager = manager;
         this.currentClub = club;
         this.currentCustomers = this.currentClub.usersClub;
