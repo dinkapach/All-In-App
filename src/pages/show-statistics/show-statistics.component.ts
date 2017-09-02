@@ -45,6 +45,7 @@ export class ShowStatisticsComponent{
           var childs = 0;
           var teenagers = 0;
           var olds = 0;
+          var totalCustomers;
           var joinedThisMonth = 0;
           var date = new Date();
           var thisMonth = date.getMonth;
@@ -65,20 +66,28 @@ export class ShowStatisticsComponent{
              }
            });
 
+           totalCustomers = childs + teenagers + olds;
+           joinedThisMonth = this.getNumOfJoinedThisMonth();
+
+           console.log("total customers: " + totalCustomers);
            console.log("childs: " + childs);
            console.log("teens: " + teenagers);
            console.log("olds: " + olds);
            console.log("joinedThisMonth: " + joinedThisMonth);
-        })
-
-        
-        
+        })       
       }
 
       getNumOfJoinedThisMonth(){
+        var numOfJoins = 0;
+        var thisDate = new Date();
+        var thisMonth = thisDate.getMonth;
           this.club.usersClub.forEach(userClub =>{
-            var joinMonth = userClub;
+            if(userClub.joinDate.getMonth == thisMonth){
+              numOfJoins++;
+            }
           })
+
+          return numOfJoins;
       }
  
        calculateAge(dateString) {
