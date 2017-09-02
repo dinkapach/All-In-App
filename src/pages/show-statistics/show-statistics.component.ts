@@ -38,36 +38,47 @@ export class ShowStatisticsComponent{
         private alertCtrl: AlertController, private managerService: ManagerService) {
           
           this.club = this.navParams.get("club");
-          this.getUsersClubAges();
+          this.getStatistics();
         }
 
-        getUsersClubAges(){
+        getStatistics(){
           var childs = 0;
           var teenagers = 0;
           var olds = 0;
+          var joinedThisMonth = 0;
+          var date = new Date();
+          var thisMonth = date.getMonth;
 
-
- 
         this.managerService.getCustomersArr(this.club.id)
         .subscribe(customers => {
            customers.forEach(customer => {
              var age = this.calculateAge(customer.birthDate);
+             
              if (age < 20){
-               childs;
+               childs++;
              }
              else if( age < 30){
-               teenagers;
+               teenagers++;
              }
              else{
-               olds;
+               olds++;
              }
            });
 
            console.log("childs: " + childs);
            console.log("teens: " + teenagers);
            console.log("olds: " + olds);
+           console.log("joinedThisMonth: " + joinedThisMonth);
         })
+
         
+        
+      }
+
+      getNumOfJoinedThisMonth(){
+          this.club.usersClub.forEach(userClub =>{
+            var joinMonth = this.club.usersClub;
+          })
       }
  
        calculateAge(dateString) {

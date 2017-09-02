@@ -58,8 +58,6 @@ export class DashboardComponent implements OnInit {
         // this.initGrid();
     }
 
-
-
     doRefresh(refresher){
         console.log('Begin async operation', refresher);
         this.userService.getUserById()
@@ -173,10 +171,6 @@ export class DashboardComponent implements OnInit {
     onClickAddManualClub(){
         this.navCtrl.push(AddClubManualComponent);
     }
-
-    // onClickManualClubs(){
-    //     this.navCtrl.push(ClubManualDashboardComponent, { clubManual: this.user.manuallyClubs })
-    // }
 
     openPopupFilter() {
         let popover = this.popOverCtrl.create(FilterClubDetailsComponent);
