@@ -21,7 +21,7 @@ import { ClubManualCardComponent } from './../pages/clubs/club-card/club.manual.
 import { AddClubManualComponent } from './../pages/clubs/manualClubs/club-add-manual/club.add.manual.component';
 import { FilterClubDetailsComponent } from './../pages/dashboard/filter-club.component';
 import { ManagerService } from './../services/manager.service';
-import { DashboardManagerComponent } from './../pages/dashboard-manager/dashboard.manager.component';
+// import { DashboardManagerComponent } from './../pages/dashboard-manager/dashboard.manager.component';
 import { SaleCardComponent } from  './../pages/sale-card/sale.card.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { ClubsListComponent } from './../pages/clubs/clubs-list/clubs.list.component';
@@ -60,7 +60,8 @@ import { SubscirbePointsComponent } from '../pages/subscribe-points/subscribe-po
 import { ShowSalesComponent } from '../pages/show-sales/show-sales.component';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { EditSaleComponent } from '../pages/edit-sale/edit.sale.component';
-
+import { SaleViewComponent } from '../pages/sale-view/sale.view.component';
+import { SaleCardManagerComponent } from '../pages/sale-cardManager/sale.cardManager.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,7 @@ import { EditSaleComponent } from '../pages/edit-sale/edit.sale.component';
     UserCardComponent,
     ShowCreditsComponent,
     ShowCustomerComponent,
-    DashboardManagerComponent,
+    // DashboardManagerComponent,
     EditProfileComponent,
     EditCreditComponent,
     EditSaleComponent,
@@ -93,7 +94,9 @@ import { EditSaleComponent } from '../pages/edit-sale/edit.sale.component';
     AddPointsComponent,
     SubscirbePointsComponent,
     ShowSalesComponent,
-    
+    SaleViewComponent,
+    SaleCardManagerComponent,
+
     // super manager stuff
     SuperManagerDashboardComponent,
     ManagerCardComponent,
@@ -121,7 +124,7 @@ import { EditSaleComponent } from '../pages/edit-sale/edit.sale.component';
     AddCreditComponent,
     SignupComponent,
     DashboardComponent,
-    DashboardManagerComponent,
+    // DashboardManagerComponent,
     ClubCardComponent,
     ClubsListComponent,
     ClubDetailsComponent,
@@ -145,6 +148,8 @@ import { EditSaleComponent } from '../pages/edit-sale/edit.sale.component';
     AddPointsComponent,
     SubscirbePointsComponent,
     ShowSalesComponent,
+    SaleViewComponent,
+    SaleCardManagerComponent,
     
     // super manager stuff
     SuperManagerDashboardComponent,

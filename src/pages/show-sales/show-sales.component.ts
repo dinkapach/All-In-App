@@ -11,6 +11,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { SaleCardComponent } from '../sale-card/sale.card.component';
 import { Club } from '../../models/club.model';
 import { AddSaleComponent } from './../add-sale/add-sale.component';
+import { SaleCardManagerComponent } from './../sale-cardManager/sale.cardManager.component'
 //TODO:
 //Send the updated fields instead of everything
 

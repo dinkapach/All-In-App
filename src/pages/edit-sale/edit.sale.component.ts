@@ -69,21 +69,4 @@ export class EditSaleComponent {
        this.navCtrl.pop();
        });
     }
-  
-
-
-//  updateCurrSale(){
-//         Object.keys(this.updatedsale).forEach(key => {
-//             let value = this.updatedsale[key];
-//             console.log(value);
-//             this.club[key] = this.updatedsale[key];
-//           });
-//     }
-//      onBlur(event){
-//         var formName = event.target.attributes['formControlName'].value;
-//         this.updateSale[formName] = this.formData.value[formName];
-   
-//     }
-
-
 }

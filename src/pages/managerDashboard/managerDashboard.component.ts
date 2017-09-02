@@ -23,10 +23,10 @@ import { ShowSalesComponent } from './../show-sales/show-sales.component';
 
 
 @Component({
-    selector: 'manager',
-    templateUrl: 'manager.html'
+    selector: 'managerDashboard',
+    templateUrl: 'managerDashboard.html'
 })
-export class ManagerComponent {
+export class ManagerDashboardComponent {
     formData : FormGroup;
     manager : Manager;
     club : Club;
@@ -34,26 +34,17 @@ export class ManagerComponent {
     private managerService: ManagerService,private clubService: ClubService, 
     private navCtrl : NavController, private userService: UserService,
     private signService : SigningService ) {
-
-           console.log("getting manager from service:");
-        this.manager = this.managerService.getLocalManager();
-        this.clubService.getClubByObjectId(this.manager.clubId)
-        .subscribe(club=>{
-            this.club = club;
-            console.log('manager componenet club : ' + this.club.name);
-        })
-        
      
     }
 
       ngOnInit() {
-        // console.log("getting manager from service:");
-        // this.manager = this.managerService.getLocalManager();
-        // this.clubService.getClubByObjectId(this.manager.clubId)
-        // .subscribe(club=>{
-        //     this.club = club;
-        //     console.log('manager componenet club : ' + this.club.name);
-        // })
+        console.log("getting manager from service:");
+        this.manager = this.managerService.getLocalManager();
+        this.clubService.getClubByObjectId(this.manager.clubId)
+        .subscribe(club=>{
+            this.club = club;
+            console.log('manager componenet club : ' + this.club);
+        })
     }
 
     addSale(){
