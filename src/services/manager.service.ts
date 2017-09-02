@@ -29,7 +29,7 @@ export class ManagerService {
         return this.currentClub;
     }
 
-    getLocalCustomer(){
+    getLocalCustomers(){
         return this.currentCustomers;
     }
 
@@ -116,11 +116,4 @@ export class ManagerService {
          })
         .map( res => res.json());
     }
-
-    getcurrentCustomers(clubId: number){
-         return this.http.get(`${this.url}/api/manager/getCustomers/${clubId}`)
-         .map(res => res.json());
-     }
-   
-
 }
