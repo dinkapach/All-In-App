@@ -40,6 +40,7 @@ export class ManagerService {
         this.currentClub = club;
         this.currentCustomers = this.currentClub.usersClub;
         console.log(manager, club);
+        console.log("current customers", this.currentCustomers);
     }
 
     setCustomerArray(customers : User[])
