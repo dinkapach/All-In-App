@@ -6,13 +6,15 @@ import { Http } from '@angular/http';
 import { Manager } from './../models/manager.model';
 import { Storage } from '@ionic/storage';
 import * as environment from './../../environment.json';
+import { Club } from '../models/club.model';
 
 @Injectable()
 export class ManagerService {
     private url: string;
     private currentManager: Manager;
+    private currentClub: Club;
     private isManager: Boolean;
-    private customersArr: User[];
+    private currentCustomers;
     constructor(private http : Http, private storage: Storage) {
         this.url = environment[environment.RUNNING];
         console.log(this.url);
@@ -23,14 +25,25 @@ export class ManagerService {
         return this.currentManager;
     }
 
-    setLocalManager(manager: Manager){
+    getLocalClub(){
+        return this.currentClub;
+    }
+
+    getLocalCustomers(){
+        return this.currentCustomers;
+    }
+
+    setLocalManager(manager: Manager, club: Club){
         // this.storage.set("managerDetails", manager);
         this.currentManager = manager;
+        this.currentClub = club;
+        this.currentCustomers = this.currentClub.usersClub;
+        console.log(manager, club);
     }
 
     setCustomerArray(customers : User[])
     {
-        this.customersArr = customers;
+        this.currentCustomers = customers;
     }
 
     addSale(clubId: any, sale: Sale){
@@ -103,11 +116,4 @@ export class ManagerService {
          })
         .map( res => res.json());
     }
-
-    getCustomersArr(clubId: number){
-         return this.http.get(`${this.url}/api/manager/getCustomers/${clubId}`)
-         .map(res => res.json());
-     }
-   
-
 }

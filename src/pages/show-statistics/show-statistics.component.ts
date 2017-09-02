@@ -50,7 +50,7 @@ export class ShowStatisticsComponent{
           var date = new Date();
           var thisMonth = date.getMonth;
 
-        this.managerService.getCustomersArr(this.club.id)
+        this.managerService.getLocalCustomers()
         .subscribe(customers => {
            customers.forEach(customer => {
              var age = this.calculateAge(customer.birthDate);
