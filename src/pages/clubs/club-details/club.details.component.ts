@@ -21,10 +21,12 @@ export class ClubDetailsComponent extends ClubDetailsBaseComponent implements On
         public navCtrl: NavController, public userService: UserService,
         public clubService: ClubService, public alertCtrl: AlertController) {
         super(navParams, navCtrl, userService, clubService, alertCtrl);
+        this.viewOptions = 'sales'
     }
 
     ngOnInit() {
         // this.club = this.navParams.get("club");
     }
+
 
 }

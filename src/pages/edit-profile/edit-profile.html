@@ -1,16 +1,34 @@
 <ion-header>
-  <ion-navbar primary>
-    <ion-buttons end>
-        <button (click)="onClickupdateInfo()">
+    <ion-navbar primary>
+        <ion-buttons end>
+            <button (click)="onClickupdateInfo()">
             <ion-icon name="refresh"></ion-icon>
         </button>
-    </ion-buttons>
-    <ion-title>Edit Profile</ion-title>
-  </ion-navbar>
+        </ion-buttons>
+        <ion-title>Edit Profile</ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding *ngIf="user">
-    <img id="profile-img" [src]="user?.img"/>
+    <ion-card>
+        <img id="profile-img" [src]="user?.img" />
+        <ion-card-content></ion-card-content>
+        <ion-row no-padding>
+            <ion-col>
+                <button ion-button clear small color="danger" icon-start (click)="onClickTakePhoto()">
+                    <ion-icon name='camera'></ion-icon>
+                    teke photo
+                </button>
+            </ion-col>
+            <ion-col text-center>
+                <button ion-button clear small color="danger" icon-start>
+                    <ion-icon name='albums'></ion-icon>
+                    choose from gallery
+                </button>
+            </ion-col>
+        </ion-row>
+
+    </ion-card>
     <form [formGroup]="formData">
         <ion-list>
             <ion-item>
@@ -22,7 +40,7 @@
                 <ion-input formControlName="id" type="text" value={{user?.id}} (blur)="onBlur($event)" disabled="true"></ion-input>
             </ion-item>
             <ion-item>
-                    <ion-label floating>First Name</ion-label>
+                <ion-label floating>First Name</ion-label>
                 <ion-input formControlName="firstName" type="text" value={{user?.firstName}} (blur)="onBlur($event)"></ion-input>
             </ion-item>
             <ion-item>
@@ -30,7 +48,7 @@
                 <ion-input formControlName="lastName" type="text" value={{user?.lastName}} (blur)="onBlur($event)"></ion-input>
             </ion-item>
             <ion-item>
-                 <ion-label floating>Address</ion-label>
+                <ion-label floating>Address</ion-label>
                 <ion-input formControlName="address" type="text" value={{user?.address}} (blur)="onBlur($event)"></ion-input>
             </ion-item>
             <ion-item>
@@ -44,7 +62,7 @@
             <ion-item>
                 <ion-label floating>Birthday</ion-label>
                 <ion-input formControlName="birthday" type="text" value={{user?.birthday}} (blur)="onBlur($event)"></ion-input>
-            </ion-item>       
+            </ion-item>
         </ion-list>
     </form>
     <button (click)="onClickTest()">Test</button>

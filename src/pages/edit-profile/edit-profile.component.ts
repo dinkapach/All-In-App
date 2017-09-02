@@ -1,3 +1,4 @@
+import { CameraService } from './../../helpers/camera-service';
 import { LoginComponent } from './../login/login.component';
 import { AddCreditComponent } from './../add-credit/add-credit.component';
 import { UserService } from './../../services/user.service';
@@ -24,7 +25,8 @@ export class EditProfileComponent{
     isUrlImg: boolean;
 
     constructor(private fBuilder : FormBuilder, private http: Http, private navCtrl : NavController,
-        private userService: UserService, private navParams: NavParams, private alertCtrl: AlertController) {
+        private userService: UserService, private navParams: NavParams, private alertCtrl: AlertController, 
+        private cameraService: CameraService) {
         this.user = this.userService.getLocalUser();
 
         // this.formData.controls['email'].setValue("din@gmail.com");
@@ -55,6 +57,16 @@ export class EditProfileComponent{
     onClickTest(){
         console.log(this.updatedUser);
         this.updateUser();
+    }
+
+    onClickTakePhoto() {
+        this.cameraService.takePhotoFromCamera()
+        .then(url => {
+            this.updatedUser.img = url;
+        })
+        .catch(err => {
+            console.log("err to take picture", err);
+        })
     }
 
     onClickupdateInfo() {

@@ -9,7 +9,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 @Injectable()
 export class CameraService {
     //options: CameraOptions;
-    base64Image: string;
+    private base64Image: string;
 
     constructor(private alertCtrl: AlertController, private camera: Camera,
         private userService: UserService) {
@@ -35,7 +35,7 @@ export class CameraService {
         return this.getPhoto(options);
     }
 
-    getPhoto(options: CameraOptions): Promise<string> {
+    private getPhoto(options: CameraOptions): Promise<string> {
         return new Promise((resolve, reject) => {
             this.camera.getPicture(options).then((imageData) => {
                 // imageData is either a base64 encoded string or a file URI

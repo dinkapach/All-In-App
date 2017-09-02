@@ -24,6 +24,7 @@ export class ClubManualDetailsComponent extends ClubDetailsBaseComponent impleme
         public clubService: ClubService, public alertCtrl: AlertController) {
             super(navParams, navCtrl, userService, clubService, alertCtrl);
             //this.user = this.userService.getLocalUser();
+            this.viewOptions = 'receipts'
     }
 
     ngOnInit() {
