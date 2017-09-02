@@ -103,6 +103,11 @@ export class ManagerService {
          })
         .map( res => res.json());
     }
+
+    getCustomersArr(clubId: number){
+         return this.http.get(`${this.url}/api/manager/getCustomers/${clubId}`)
+         .map(res => res.json());
+     }
    
 
 }
