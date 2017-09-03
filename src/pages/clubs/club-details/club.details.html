@@ -40,7 +40,7 @@
       <ion-grid>
         <ion-row *ngFor="let sale of club.sales">
           <ion-col>
-            <sale-card [sale]="sale"></sale-card>
+            <sale-card [sale]="sale" (click)="onSaleClicked(sale)"></sale-card>
           </ion-col>
         </ion-row>
       </ion-grid>

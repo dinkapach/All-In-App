@@ -25,9 +25,4 @@ export class SaleCardComponent implements OnInit {
 
     ngOnInit() {
     }
-
-    onSaleClicked()
-    {
-         this.navCtrl.push(SaleViewComponent, {sale: this.sale});
-    }
 }
