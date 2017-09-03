@@ -17,40 +17,39 @@ import { ManagerService } from '../../services/manager.service';
 })
 export class UserCardComponent implements OnInit {
     @Input()
-    userClub : UserClub;
-    userDisplay : User;
+    userClub: UserClub;
+    userDisplay: User;
     @Output() userDeleted = new EventEmitter();
 
-    constructor(private clubService : ClubService, private navCtrl: NavController,
-    private userService: UserService,private managerService: ManagerService, 
-    private alertCtrl: AlertController) {
-
+    constructor(private clubService: ClubService, private navCtrl: NavController,
+        private userService: UserService, private managerService: ManagerService,
+        private alertCtrl: AlertController) {
 
     }
 
     ngOnInit() {
-       
-        if (this.userClub != null){
-        this.managerService.getCustomerDetails(this.userClub.customerId)
-        .subscribe(userDisplay=>{
-            
-            this.userDisplay = userDisplay;
-        })
-    }
+
+        if (this.userClub) {
+            this.managerService.getCustomerDetails(this.userClub.customerId)
+                .subscribe(userDisplay => {
+                    console.log(userDisplay);
+                    this.userDisplay = userDisplay;
+                })
+        }
     }
 
-    deleteUserClick(userToRemove){
+    deleteUserClick(userToRemove) {
         console.log("deleteUserClick, user to removee:", userToRemove)
         this.managerService.deleteCustomerFromClub(userToRemove, this.managerService.getLocalManager().clubId)
-        .subscribe(isDeleted => {
-            if(isDeleted) {
-                console.log("user deleted from club succecfully");
-                this.presentAlert();
-            }
-        })   
+            .subscribe(isDeleted => {
+                if (isDeleted) {
+                    console.log("user deleted from club succecfully");
+                    this.presentAlert();
+                }
+            })
     }
 
-    presentAlert(){
+    presentAlert() {
         let alert = this.alertCtrl.create({
             subTitle: 'user deleted from club succecfully',
             buttons: ['סבבה']
