@@ -119,4 +119,13 @@ export class ManagerService {
          })
         .map( res => res.json());
     }
+
+    updateClub(clubUpdate : any) : Observable<boolean> {
+        console.log("updating club: " + clubUpdate);
+        return this.http.post(`${this.url}/api/manager/updateClubInfo`, { 
+            customerUpdate: clubUpdate,
+            clubId: this.getClubId()
+         })
+        .map( res => res.json());
+    }
 }
