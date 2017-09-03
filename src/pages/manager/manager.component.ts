@@ -49,6 +49,11 @@ export class ManagerComponent {
         this.navCtrl.push(AddSaleComponent);
     }
 
+    onClickEditClub(club){
+        // this.navCtrl.push(EditClubComponent, {club : club});
+    }
+    
+
     // showCustomers(){
     //     console.log(this.manager);
     //      this.clubService.getClubByObjectId(this.manager.clubId)

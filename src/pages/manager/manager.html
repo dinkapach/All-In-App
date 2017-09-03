@@ -13,5 +13,32 @@
       <button type="submit" (click)="showStatistics()" ion-button round>Show Statistics</button>
       <button ion-button (click)="onClickLogout()" color="danger">Logout</button>
 
-  
+      <ion-card>
+    <img [src]="club.img"/>
+        </ion-card>
+    <!--<ion-card-content>-->
+      <ion-card-title text-center>
+        {{club.name}}
+      </ion-card-title>
+          <ion-item>
+            <ion-icon name="call" item-start large></ion-icon>
+            <p>{{club.phoneNumber}}</p>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="cart" item-start large></ion-icon>
+            <p>{{club.address}}</p>
+            </ion-item>   
+            <ion-item>  
+             <ion-icon name="time" item-start large></ion-icon>
+            <p>{{club.openingHours}}</p>
+            </ion-item>  
+
+     <ion-row no-padding>
+    <ion-col>
+      <button ion-button clear small color="danger" icon-start (click)="onClickEditClub(club)" >
+          <ion-icon name='create'></ion-icon>
+          Edit
+        </button>
+      </ion-col>
+  </ion-row>
 </ion-content> 

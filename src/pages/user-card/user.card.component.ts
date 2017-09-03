@@ -40,6 +40,7 @@ export class UserCardComponent implements OnInit {
     }
 
     deleteUserClick(userToRemove) {
+        console.log (this.managerService.getLocalManager().clubId);
         console.log("deleteUserClick, user to removee:", userToRemove)
         this.managerService.deleteCustomerFromClub(userToRemove, this.managerService.getLocalManager().clubId)
             .subscribe(isDeleted => {
