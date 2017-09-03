@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UserService } from './../../services/user.service';
 import { Credit } from './../../models/credit.model';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { CloneService } from '../../helpers/clone-service';
 
 @Component({
   selector: 'edit-credit',
@@ -13,7 +14,8 @@ export class EditCreditComponent {
   credit: Credit;
   formGroup : FormGroup;
   
-  constructor(private fBuilder : FormBuilder, public navCtrl: NavController, public navParams: NavParams, private userService: UserService) {
+  constructor(private fBuilder : FormBuilder, public navCtrl: NavController, public navParams: NavParams, private userService: UserService,
+    private cloneService: CloneService) {
     this.credit = this.navParams.get("credit");
     this.initCredit();
     this.buildForm();
@@ -31,10 +33,12 @@ export class EditCreditComponent {
   }
 
   initCredit(){
-      this.updatedCredit = { 
-          clubId: this.credit.clubId,
-          id: this.credit.id
-        };
+    this.updatedCredit = this.cloneService.getDeepCopyOfCredit(this.credit);
+    // this.updatedCredit = 
+    //   this.updatedCredit = { 
+    //       clubId: this.credit.clubId,
+    //       id: this.credit.id
+    //     };
   }
 
   ionViewDidLoad() {
@@ -48,10 +52,12 @@ export class EditCreditComponent {
           console.log(isAuth);
           if(isAuth){
               // this.showAlert("Profile Updated" + isAuth);
-              console.log(isAuth);
+              this.credit = this.updatedCredit;
+              alert("updated");
+              this.navCtrl.pop();
           }
           else{
-              // this.showAlert("Updated failed"+isAuth);
+            alert("not updated");
           }
       });
   }
