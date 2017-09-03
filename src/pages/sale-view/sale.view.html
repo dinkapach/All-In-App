@@ -1,21 +1,15 @@
-
-
 <ion-header>
   <ion-navbar>
-    <ion-title>{{sale.name}}</ion-title>
+    <ion-title>Sale</ion-title>
     </ion-navbar>
 </ion-header>
-
-
 <ion-content>
-    <ion-grid>
-    <ion-item>
-          <img [src]="sale.img"/>
-          <p> sale description: {{sale.description}}  </p>
-          <p> sale price: {{sale.price}} </p>
-          <p> sale point: {{sale.point}} </p>  
-   </ion-item>
- </ion-grid>
+  <h2>{{sale.name}}</h2>
+  <img [src]="sale.img"/>
+  <h3>Description</h3>
+  <p>{{sale.description}} </p>
+  <p><span class="bold-text">Price:</span> {{sale.price}}</p>
+  <a ion-button icon-only href="tel:{{club.phoneNumber}}">
+      <ion-icon name="call"></ion-icon>
+  </a>
 </ion-content>
-
-
