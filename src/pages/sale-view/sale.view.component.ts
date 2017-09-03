@@ -23,14 +23,9 @@ export class SaleViewComponent implements OnInit {
     private navParams: NavParams) {
     this.sale = this.navParams.get("sale");
     this.club = this.navParams.get("club");
-    console.log(this.club);
+    // console.log(this.club);
     }
 
     ngOnInit() {
     }
-
-    // onSaleClicked()
-    // {
-    //      this.navCtrl.push(AddSaleComponent);
-    // }
 }
