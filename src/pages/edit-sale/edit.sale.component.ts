@@ -44,7 +44,7 @@ export class EditSaleComponent {
 
   updateSale(){
     console.log(this.sale);
-    this.managerService.editSale(this.sale)
+    this.managerService.editSale(this.updatedSale)
       .subscribe(isAuth => {
           console.log(isAuth);
           if(isAuth){

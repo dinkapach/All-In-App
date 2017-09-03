@@ -18,6 +18,9 @@
   <ion-refresher (ionRefresh)="doRefresh($event)" [pullMin]="300">
     <ion-refresher-content> </ion-refresher-content>
   </ion-refresher>
+
+  <p>asyns +  {{customerObservable | async}} </p>
+  <button ion-button (click)="testObserver()">testObserver</button>
   
   <button ion-button icon-only (click)="openPopupFilter($event)">
       <ion-icon name="more"></ion-icon> </button>
