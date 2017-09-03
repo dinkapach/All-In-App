@@ -1,3 +1,5 @@
+import { CloneService } from './../helpers/clone-service';
+import { ActionSheetCameraOptions } from './../helpers/action-sheet-camera-options';
 import { CameraService } from './../helpers/camera-service';
 import { DeleteCustomerComponent } from './../pages/superManager/customerActions/delete-customer/delete.customer.component';
 import { CustomerCardSuperComponent } from './../pages/superManager/customerActions/customer-card-super/customer.card.super.component';
@@ -189,6 +191,11 @@ import { ShowStatisticsComponent } from '../pages/show-statistics/show-statistic
     CameraService,
     LocalNotifications,
     LoadingService,
+    LocalNotifications,
+    ActionSheetCameraOptions,
+    CloneService,
+    
+    
     //Camera,
     { provide: Camera, useClass: CameraMock },
     ]

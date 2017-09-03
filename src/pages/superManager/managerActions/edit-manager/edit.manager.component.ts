@@ -1,3 +1,4 @@
+import { CloneService } from './../../../../helpers/clone-service';
 import { SuperManagerService } from './../../../../services/superManager.service';
 import { Manager } from './../../../../models/manager.model';
 import { NavController, AlertController, NavParams } from 'ionic-angular';
@@ -13,9 +14,10 @@ export class EditManagerComponent implements OnInit {
    editedManager: Manager;
 
     constructor( private navCtrl: NavController, private alertCtrl: AlertController,
-        private superManagerService: SuperManagerService, private navParams: NavParams) {
+        private superManagerService: SuperManagerService, private navParams: NavParams, 
+        private cloneService : CloneService) {
         this.manager = this.navParams.get("manager");
-        this.editedManager = this.DoDeepCopyOfManager(this.manager);
+        this.editedManager = this.cloneService.getDeepCopyOfManager(this.manager);
         console.log(this.editedManager);
     }
 
@@ -23,19 +25,19 @@ export class EditManagerComponent implements OnInit {
 
     }
 
-    DoDeepCopyOfManager(manager: Manager) {
-        let copyOfManager: Manager = new Manager();
-        copyOfManager.id = manager.id;
-        copyOfManager.clubId = manager.clubId;
-        copyOfManager.firstName = manager.firstName;
-        copyOfManager.lastName = manager.lastName;
-        copyOfManager.email = manager.email;
-        copyOfManager.permissions = manager.permissions;
-        copyOfManager.password = manager.password;
-        copyOfManager.userName = manager.userName;
+    // DoDeepCopyOfManager(manager: Manager) {
+    //     let copyOfManager: Manager = new Manager();
+    //     copyOfManager.id = manager.id;
+    //     copyOfManager.clubId = manager.clubId;
+    //     copyOfManager.firstName = manager.firstName;
+    //     copyOfManager.lastName = manager.lastName;
+    //     copyOfManager.email = manager.email;
+    //     copyOfManager.permissions = manager.permissions;
+    //     copyOfManager.password = manager.password;
+    //     copyOfManager.userName = manager.userName;
 
-        return copyOfManager;
-    }
+    //     return copyOfManager;
+    // }
 
     onClickSave(){
         console.log("edited manager: ",this.editedManager);

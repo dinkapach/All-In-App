@@ -1,26 +1,30 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Dashboard</ion-title>
-    <ion-buttons end>
-          <button ion-button (click)="onClickSettings()" icon-only>
-            <ion-icon name="more"></ion-icon>
-          </button>
-    </ion-buttons>
+        <ion-title>Dashboard</ion-title>
+        <ion-buttons end>
+              <button ion-button (click)="onClickSettings()" icon-only>
+                <ion-icon name="more"></ion-icon>
+              </button>
+        </ion-buttons>
   </ion-navbar>
+  <ion-toolbar no-border-top>
+      <ion-searchbar [(ngModel)]="searchClub" (ionInput)="searchClubs()" placeholder="search clubs"></ion-searchbar>
+      <!-- <ion-searchbar [hidden]="!showClubSearchBar" #clubSearchBar [(ngModel)]="searchClub" 
+      (ionInput)="searchClubs()" (ionCancel)="onClearClubSearchBar()" showCancelButton></ion-searchbar> -->
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-refresher (ionRefresh)="doRefresh($event)" [pullMin]="300">
     <ion-refresher-content> </ion-refresher-content>
   </ion-refresher>
-  <ion-searchbar [(ngModel)]="searchClub" (ionInput)="searchClubs()"></ion-searchbar>
   
   <button ion-button icon-only (click)="openPopupFilter($event)">
       <ion-icon name="more"></ion-icon> </button>
 
   <ion-grid>
-    <ion-row *ngFor="let club of clubsDisplay">
-      <ion-col>
+    <ion-row>
+      <ion-col *ngFor="let club of clubsDisplay">
         <club-card [club]="club" [subDetailsToPresent]="chosenOption"></club-card>
       </ion-col>
       <!-- <ion-col>
@@ -30,8 +34,8 @@
   </ion-grid>
 
   <ion-grid>
-    <ion-row *ngFor="let clubManual of clubsManualDisplay">
-      <ion-col>
+    <ion-row>
+      <ion-col *ngFor="let clubManual of clubsManualDisplay">
         <club-manual-card [club]="clubManual" [subDetailsToPresent]="chosenOption" (clubDeleted)="handleClubDeleted($event)"></club-manual-card>
       </ion-col>
     </ion-row>

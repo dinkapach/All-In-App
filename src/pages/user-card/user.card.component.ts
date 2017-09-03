@@ -17,14 +17,15 @@ import { ManagerService } from '../../services/manager.service';
 })
 export class UserCardComponent implements OnInit {
     @Input()
+
     customer;
     // userDisplay : User;
+
     @Output() userDeleted = new EventEmitter();
 
-    constructor(private clubService : ClubService, private navCtrl: NavController,
-    private userService: UserService,private managerService: ManagerService, 
-    private alertCtrl: AlertController) {
-        
+    constructor(private clubService: ClubService, private navCtrl: NavController,
+        private userService: UserService, private managerService: ManagerService,
+        private alertCtrl: AlertController) {
     }
 
     ngOnInit() {
@@ -38,18 +39,18 @@ export class UserCardComponent implements OnInit {
     // }
     }
 
-    deleteUserClick(userToRemove){
+    deleteUserClick(userToRemove) {
         console.log("deleteUserClick, user to removee:", userToRemove)
         this.managerService.deleteCustomerFromClub(userToRemove, this.managerService.getLocalManager().clubId)
-        .subscribe(isDeleted => {
-            if(isDeleted) {
-                console.log("user deleted from club succecfully");
-                this.presentAlert();
-            }
-        })   
+            .subscribe(isDeleted => {
+                if (isDeleted) {
+                    console.log("user deleted from club succecfully");
+                    this.presentAlert();
+                }
+            })
     }
 
-    presentAlert(){
+    presentAlert() {
         let alert = this.alertCtrl.create({
             subTitle: 'user deleted from club succecfully',
             buttons: ['סבבה']

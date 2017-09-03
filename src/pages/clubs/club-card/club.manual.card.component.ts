@@ -13,6 +13,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class ClubManualCardComponent implements OnInit {
     user: User;
+    userPoints: number;
     @Input()
     club: ClubManually;
     @Input()
@@ -25,6 +26,7 @@ export class ClubManualCardComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.userPoints = this.club.points;
     }
 
     onClubClicked(){
