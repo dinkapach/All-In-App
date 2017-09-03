@@ -49,20 +49,24 @@ export class ManagerComponent {
         this.navCtrl.push(AddSaleComponent);
     }
 
-    showCustomers(){
-        console.log(this.manager);
-         this.clubService.getClubByObjectId(this.manager.clubId)
-         .subscribe(club =>{
-             if (club)
-             {
-                  this.navCtrl.push(ShowCustomerComponent, {club: club});
-             }
-             else{
-                  console.log("Error No clubs");
-             }
+    // showCustomers(){
+    //     console.log(this.manager);
+    //      this.clubService.getClubByObjectId(this.manager.clubId)
+    //      .subscribe(club =>{
+    //          if (club)
+    //          {
+    //               this.navCtrl.push(ShowCustomerComponent, {club: club});
+    //          }
+    //          else{
+    //               console.log("Error No clubs");
+    //          }
 
-         })
+    //      })
  
+    // }
+
+    showCustomers(){
+        this.navCtrl.push(ShowCustomerComponent);
     }
 
     showSales(){

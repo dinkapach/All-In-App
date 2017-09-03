@@ -1,15 +1,15 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>My Customers:</ion-title>
+    <ion-title>My Customers</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
     <ion-searchbar [(ngModel)]="searchCustomer" (ionInput)="searchCustomers()"></ion-searchbar>
  <ion-grid>
-    <ion-row *ngFor="let userClub of customerDisplay">
+    <ion-row *ngFor="let customer of customersArray">
       <ion-col>  
-        <user-card [userClub]="userClub" (userDeleted)="handleUserDeleted($event)"></user-card>
+        <user-card [customer]="customer" (userDeleted)="handleUserDeleted($event)"></user-card>
       </ion-col>
     </ion-row>
   </ion-grid>
