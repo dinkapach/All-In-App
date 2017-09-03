@@ -8,8 +8,21 @@
     <ion-title>Edit Club</ion-title>
     </ion-navbar>
 </ion-header>
-    
-<ion-content padding>
+
+<ion-content padding *ngIf="club">
+    <ion-card>
+        <img id="edit-club-img" [src]="club?.img" />
+        <ion-card-content></ion-card-content>
+        <ion-row no-padding>
+            <ion-col>
+                <button ion-button clear small color="danger" icon-start 
+                (click)="onClickOpenCameraOptionTake()" >
+                    <ion-icon name='create'></ion-icon>
+                    edit
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-card>
     <form [formGroup]="formData">
         <ion-list>
             <ion-item>
