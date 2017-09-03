@@ -1,3 +1,4 @@
+import { ClubInformation } from './../pages/clubs/club-information/club.information.component';
 import { CloneService } from './../helpers/clone-service';
 import { ActionSheetCameraOptions } from './../helpers/action-sheet-camera-options';
 import { CameraService } from './../helpers/camera-service';
@@ -105,6 +106,7 @@ import { ShowStatisticsComponent } from '../pages/show-statistics/show-statistic
     CustomerSettingsComponent,
     SaleViewComponent,
     SaleCardManagerComponent,
+    ClubInformation,
     // super manager stuff
     SuperManagerDashboardComponent,
     ManagerCardComponent,
@@ -160,6 +162,7 @@ import { ShowStatisticsComponent } from '../pages/show-statistics/show-statistic
     CustomerSettingsComponent,
     SaleViewComponent,
     SaleCardManagerComponent,
+    ClubInformation,
     // super manager stuff
     SuperManagerDashboardComponent,
     ManagerCardComponent,
@@ -172,7 +175,8 @@ import { ShowStatisticsComponent } from '../pages/show-statistics/show-statistic
     EditDeleteClubComponent,    
     EditClubComponent,
     CustomerCardSuperComponent,
-    DeleteCustomerComponent
+    DeleteCustomerComponent,
+    
   ],
   providers: [
     StatusBar,
@@ -194,8 +198,8 @@ import { ShowStatisticsComponent } from '../pages/show-statistics/show-statistic
     CloneService,
     
     
-    //Camera,
-    { provide: Camera, useClass: CameraMock },
+    Camera,
+    //{ provide: Camera, useClass: CameraMock },
     ]
 })
 export class AppModule {}

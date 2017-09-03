@@ -1,7 +1,8 @@
+import { ClubInformation } from './../club-information/club.information.component';
 import { UserService } from './../../../services/user.service';
 import { ClubManually } from './../../../models/clubManually.model';
 import { ClubDetailsComponent } from './../club-details/club.details.component';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 import { Club } from './../../../models/club.model';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
@@ -17,19 +18,37 @@ export class ClubCardComponent implements OnInit {
     subDetailsToPresent: string;
     userPoints: number;
 
-    constructor(private navCtrl: NavController, private userService: UserService) {
-        let user = this.userService.getLocalUser();
-        this.getUserPointsByClubId(user.id)
+    constructor(private navCtrl: NavController, private userService: UserService,
+        public modalCtrl: ModalController) {
+        
+        
     }
 
     ngOnInit() {
         console.log("init club card", this.club);
+        this.getUserPointsByClubId()
     }
 
-    getUserPointsByClubId(userId) {
-        // this.club.usersClub.forEach(userClub => {
-            
-        // })
+    onClickPresentClubInfo(club) {
+        console.log(club);
+        let modal = this.modalCtrl.create(ClubInformation, club);
+        modal.present();
+    }
+
+    getUserPointsByClubId() {
+        this.userService.getUserObjectId()
+        .subscribe( res => {
+            if(res.isAuth){
+                this.club.usersClub.forEach(userClub => {
+                    if(userClub.customerId == res.userObjId){
+                        this.userPoints = userClub.points;
+                    }
+                })
+            }
+            else{
+                console.log("err in getUserPointsByClubId");
+            }
+        })
     }
 
     onClubClicked() {
