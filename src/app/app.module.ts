@@ -1,3 +1,4 @@
+import { ClubInformation } from './../pages/clubs/club-information/club.information.component';
 import { CloneService } from './../helpers/clone-service';
 import { ActionSheetCameraOptions } from './../helpers/action-sheet-camera-options';
 import { CameraService } from './../helpers/camera-service';
@@ -68,7 +69,7 @@ import { EditManagerClubComponent } from '../pages/edit-manager-club/edit-manage
 import { SaleViewComponent } from '../pages/sale-view/sale.view.component';
 import { SaleCardManagerComponent } from '../pages/sale-cardManager/sale.cardManager.component';
 import { ShowStatisticsComponent } from '../pages/show-statistics/show-statistics.component';
-
+import { EditProfileManagerComponent } from '../pages/edit-profileManager/edit.profileManager.component';
 
 @NgModule({
   declarations: [
@@ -106,6 +107,8 @@ import { ShowStatisticsComponent } from '../pages/show-statistics/show-statistic
     CustomerSettingsComponent,
     SaleViewComponent,
     SaleCardManagerComponent,
+    ClubInformation,
+    EditProfileManagerComponent,
     // super manager stuff
     SuperManagerDashboardComponent,
     ManagerCardComponent,
@@ -161,6 +164,8 @@ import { ShowStatisticsComponent } from '../pages/show-statistics/show-statistic
     CustomerSettingsComponent,
     SaleViewComponent,
     SaleCardManagerComponent,
+    ClubInformation,
+    EditProfileManagerComponent,
     // super manager stuff
     SuperManagerDashboardComponent,
     ManagerCardComponent,
@@ -174,7 +179,8 @@ import { ShowStatisticsComponent } from '../pages/show-statistics/show-statistic
     EditDeleteClubComponent,    
     EditClubComponent,
     CustomerCardSuperComponent,
-    DeleteCustomerComponent
+    DeleteCustomerComponent,
+    
   ],
   providers: [
     StatusBar,
@@ -196,8 +202,8 @@ import { ShowStatisticsComponent } from '../pages/show-statistics/show-statistic
     CloneService,
     
     
-    //Camera,
-    { provide: Camera, useClass: CameraMock },
+    Camera,
+    //{ provide: Camera, useClass: CameraMock },
     ]
 })
 export class AppModule {}

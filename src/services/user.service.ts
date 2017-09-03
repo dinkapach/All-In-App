@@ -60,8 +60,8 @@ export class UserService {
     }
 
 
+    getUserByCustomerId(customerId : number) : Observable<User> {
 
-    getUserByCustomerId(customerId : Number) : Observable<User> {
         let params: URLSearchParams = new URLSearchParams();
         params.set('id', customerId.toString());
         let requestOptions = new RequestOptions();
@@ -104,7 +104,7 @@ export class UserService {
         };
     }  
 
-     getIdByCostumerId(customerId : Number){
+     getIdByCostumerId(customerId : number){
         console.log("get customer from repository..."+ customerId);
         return this.http.get(`${this.url}/api/users/getIdByCustomerId`, customerId)
             .map(response => response.json()),
@@ -169,4 +169,10 @@ export class UserService {
         })
         .map( res => res.json());
     }
+
+    getUserObjectId() : Observable<any>{
+        let userId = this.getLocalUser().id;
+        return this.http.get(`${this.url}/api/users/getUserObjectId/${userId}`)
+            .map(response => response.json());
+    } 
 }

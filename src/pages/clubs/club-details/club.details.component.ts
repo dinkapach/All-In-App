@@ -9,6 +9,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { AddCreditComponent } from '../../add-credit/add-credit.component';
 import { ShowCreditsComponent } from '../../show-credits/show-credits.component';
+import { SaleViewComponent } from '../../sale-view/sale.view.component';
+import { Sale } from '../../../models/sales.model';
 
 @Component({
     selector: 'club-details',
@@ -28,5 +30,8 @@ export class ClubDetailsComponent extends ClubDetailsBaseComponent implements On
         // this.club = this.navParams.get("club");
     }
 
-
+    onSaleClicked(sale: Sale){
+        console.log("new");
+         this.navCtrl.push(SaleViewComponent, {sale: sale, club: this.club});
+    }
 }

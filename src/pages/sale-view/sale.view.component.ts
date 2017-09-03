@@ -7,6 +7,7 @@ import { ClubService } from '../../services/club.service';
 import { NavController, AlertController, NavParams } from 'ionic-angular';
 import { EditSaleComponent } from '../edit-sale/edit.sale.component';
 import { AddSaleComponent} from '../add-sale/add-sale.component'
+import { Club } from '../../models/club.model';
 
 
 @Component({
@@ -14,22 +15,17 @@ import { AddSaleComponent} from '../add-sale/add-sale.component'
     templateUrl: 'sale.view.html'
 })
 export class SaleViewComponent implements OnInit {
-    @Input()
     sale: Sale;
- 
+    club: Club;
 
     constructor(private navCtrl: NavController,private managerService: ManagerService,
     private clubService : ClubService,  private alertCtrl: AlertController,
-    private navParams: NavParams,) {
+    private navParams: NavParams) {
     this.sale = this.navParams.get("sale");
-
+    this.club = this.navParams.get("club");
+    // console.log(this.club);
     }
 
     ngOnInit() {
     }
-
-    // onSaleClicked()
-    // {
-    //      this.navCtrl.push(AddSaleComponent);
-    // }
 }

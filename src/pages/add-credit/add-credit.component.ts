@@ -64,7 +64,6 @@ export class AddCreditComponent{
 
     buildAddCreditForm(){
         this.formData = this.fBuilder.group({
-            'id': ["", Validators.required],
             'dateOfPurchase' : ["", Validators.required],
             'dateOfExpired': ["", Validators.required],
             'items' : ["", Validators.required],

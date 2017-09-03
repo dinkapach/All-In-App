@@ -2,16 +2,17 @@
     <ion-navbar>
         <ion-title>Welcome Manager {{manager.firstName}}</ion-title>
      </ion-navbar>
-  </ion-header>
-  
-  <ion-content padding>
-      <button type="submit" (click)="subscribePointsToCustomerById()" ion-button round>Subscribe Points</button>
-      <button type="submit" (click)="addPointsToCustomerById()" ion-button round>Add Points</button>
-      <button type="submit" (click)="showCustomers()" ion-button round>Show Customers</button>
-      <button type="submit" (click)="addSale()" ion-button round>Add Sale</button>
-      <button type="submit" (click)="showSales()" ion-button round>My Sales</button>
-      <button type="submit" (click)="showStatistics()" ion-button round>Show Statistics</button>
+</ion-header> 
+<ion-content padding>
+      <button (click)="subscribePointsToCustomerById()" ion-button round>Subscribe Points</button>
+      <button (click)="addPointsToCustomerById()" ion-button round>Add Points</button>
+      <button (click)="showCustomers()" ion-button round>Show Customers</button>
+      <button (click)="addSale()" ion-button round>Add Sale</button>
+      <button (click)="showSales()" ion-button round>My Sales</button>
+      <button (click)="showStatistics()" ion-button round>Show Statistics</button>
+       <button (click)="editProfile()" ion-button round>Edit Profile</button>
       <button ion-button (click)="onClickLogout()" color="danger">Logout</button>
+
 
       <ion-card>
     <img [src]="club.img"/>
@@ -42,3 +43,6 @@
       </ion-col>
   </ion-row>
 </ion-content> 
+
+
+
