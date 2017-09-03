@@ -21,14 +21,12 @@ export class EditSaleComponent {
   updatedsale: any = {};
   sale: Sale;
   formData : FormGroup;
-  club : Club;
-  clubId : string;
+
   constructor(private fBuilder : FormBuilder, public navCtrl: NavController,
    public navParams: NavParams, private alertCtrl: AlertController,
    private managerService: ManagerService) {
     this.sale = this.navParams.get("sale");
     console.log(this.updatedsale);
-   this.clubId = managerService.getClubId();
    
         this.formData = fBuilder.group({
             'id': ["", Validators.required],
@@ -41,8 +39,6 @@ export class EditSaleComponent {
     console.log(this.sale);
   }
 
- 
-
   updateSale(){
     console.log(this.sale);
     this.managerService.editSale(this.sale)
@@ -51,7 +47,7 @@ export class EditSaleComponent {
           if(isAuth){
              this.presentAlert();
               console.log(isAuth);
-               console.log(" update sale  ");
+               console.log("sale updated");
           }
           else{
               console.log(" Not update club ");
@@ -61,7 +57,7 @@ export class EditSaleComponent {
 
      presentAlert(){
     let alert = this.alertCtrl.create({
-        subTitle: 'sale added to club succecfully',
+        subTitle: 'sale edited succecfully',
         buttons: ['סבבה']
     });
        alert.present();

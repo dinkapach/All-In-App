@@ -39,23 +39,10 @@ export class ManagerComponent {
 
            console.log("getting manager from service:");
         this.manager = this.managerService.getLocalManager();
-        this.clubService.getClubByObjectId(this.manager.clubId)
-        .subscribe(club=>{
-            this.club = club;
-            console.log('manager componenet club : ' + this.club.name);
-        })
-        
-     
+        this.club = this.managerService.getLocalClub();
     }
 
       ngOnInit() {
-        // console.log("getting manager from service:");
-        // this.manager = this.managerService.getLocalManager();
-        // this.clubService.getClubByObjectId(this.manager.clubId)
-        // .subscribe(club=>{
-        //     this.club = club;
-        //     console.log('manager componenet club : ' + this.club.name);
-        // })
     }
 
     addSale(){
@@ -79,21 +66,7 @@ export class ManagerComponent {
     }
 
     showSales(){
-        this.clubService.getClubByObjectId(this.manager.clubId)
-         .subscribe(club =>{
-             if (club)
-             {  
-                let salesByClubArr = [];
-                this.club.sales.forEach(sale =>{
-                    salesByClubArr.push(sale);
-                })
-                this.navCtrl.push(ShowSalesComponent, {club: club, salesByClubArr: salesByClubArr});
-             }
-             else{
-                  console.log("Error No clubs");
-             }
-
-         })
+        this.navCtrl.push(ShowSalesComponent, {club: this.club});
     }
     
     addPointsToCustomerById()
