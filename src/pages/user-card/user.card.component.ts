@@ -17,26 +17,25 @@ import { ManagerService } from '../../services/manager.service';
 })
 export class UserCardComponent implements OnInit {
     @Input()
-    userClub : UserClub;
-    userDisplay : User;
+    customer;
+    // userDisplay : User;
     @Output() userDeleted = new EventEmitter();
 
     constructor(private clubService : ClubService, private navCtrl: NavController,
     private userService: UserService,private managerService: ManagerService, 
     private alertCtrl: AlertController) {
-
-
+        
     }
 
     ngOnInit() {
-       
-        if (this.userClub != null){
-        this.managerService.getCustomerDetails(this.userClub.customerId)
-        .subscribe(userDisplay=>{
+        console.log(this.customer);
+    //     if (this.userClub != null){
+    //     this.managerService.getCustomerDetails(this.userClub.customerId)
+    //     .subscribe(userDisplay=>{
             
-            this.userDisplay = userDisplay;
-        })
-    }
+    //         this.userDisplay = userDisplay;
+    //     })
+    // }
     }
 
     deleteUserClick(userToRemove){

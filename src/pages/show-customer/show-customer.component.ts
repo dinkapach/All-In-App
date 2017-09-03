@@ -31,29 +31,29 @@ import { ManagerService } from '../../services/manager.service';
 export class ShowCustomerComponent{
     club: Club;
     userCard: UserClub;
-    customerDisplay: UserClub[];
+    customersArray: UserClub[];
     searchCustomer: string;
       constructor(private fBuilder : FormBuilder, private http: Http, private navCtrl : NavController,
         private userService: UserService, private navParams: NavParams,
         private alertCtrl: AlertController, private managerService: ManagerService) {
          
-          this.club = this.navParams.get("club");
+          this.club = this.managerService.getLocalClub();
+          this.customersArray = this.managerService.getLocalCustomers();
         }
 
         ngOnInit(){
-          this.customerDisplay = this.club.usersClub;
         }
            
         handleUserDeleted(userToRemove){
         
         }
 
-         searchCustomers() {
+        searchCustomers() {
         console.log("on search clubs: " + this.searchCustomer);
-          this.customerDisplay = this.club.usersClub;
-        this.customerDisplay = this.customerDisplay.filter(customer => {
-
-                return customer.customerId.toString().startsWith(this.searchCustomer); 
+          // this.customersArray = this.club.usersClub;
+        this.customersArray = this.club.usersClub.filter(customer => {
+          let customerFullName = customer.customerId.firstName + " " + customer.customerId.lastName;
+                return customerFullName.toString().toLowerCase().startsWith(this.searchCustomer.toLowerCase()); 
         });
      
     }

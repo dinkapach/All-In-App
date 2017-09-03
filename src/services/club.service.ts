@@ -65,14 +65,6 @@ export class ClubService {
         .map( res => res.json());
     }
 
-     deleteSale(saleId: Number , club: Club): Observable<boolean> {
-        return this.http.post(`${this.url}/api/club/deleteSale`, {
-            saleId: saleId,
-            club: club            
-         })
-        .map( res => res.json());
-    }
-
     addClubToCustomer(club: Club) : Observable<Boolean> {
         return this.http.post(`${this.url}/api/club/addToCustomer`, {
             user: this.userService.getLocalUser(),
