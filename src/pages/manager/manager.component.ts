@@ -21,6 +21,7 @@ import { SubscirbePointsComponent } from './../subscribe-points/subscribe-points
 import { SigningService } from '../../services/signing.service';
 import { LoginComponent } from '../login/login.component';
 import { ShowSalesComponent } from './../show-sales/show-sales.component';
+import { EditProfileManagerComponent } from './../edit-profileManager/edit.profileManager.component';
 
 
 
@@ -39,61 +40,42 @@ export class ManagerComponent {
 
            console.log("getting manager from service:");
         this.manager = this.managerService.getLocalManager();
-        this.clubService.getClubByObjectId(this.manager.clubId)
-        .subscribe(club=>{
-            this.club = club;
-            console.log('manager componenet club : ' + this.club.name);
-        })
-        
-     
+        this.club = this.managerService.getLocalClub();
     }
 
       ngOnInit() {
-        // console.log("getting manager from service:");
-        // this.manager = this.managerService.getLocalManager();
-        // this.clubService.getClubByObjectId(this.manager.clubId)
-        // .subscribe(club=>{
-        //     this.club = club;
-        //     console.log('manager componenet club : ' + this.club.name);
-        // })
     }
 
     addSale(){
         this.navCtrl.push(AddSaleComponent);
     }
 
-    showCustomers(){
-        console.log(this.manager);
-         this.clubService.getClubByObjectId(this.manager.clubId)
-         .subscribe(club =>{
-             if (club)
-             {
-                  this.navCtrl.push(ShowCustomerComponent, {club: club});
-             }
-             else{
-                  console.log("Error No clubs");
-             }
+    // showCustomers(){
+    //     console.log(this.manager);
+    //      this.clubService.getClubByObjectId(this.manager.clubId)
+    //      .subscribe(club =>{
+    //          if (club)
+    //          {
+    //               this.navCtrl.push(ShowCustomerComponent, {club: club});
+    //          }
+    //          else{
+    //               console.log("Error No clubs");
+    //          }
 
-         })
+    //      })
  
+    // }
+
+    showCustomers(){
+        this.navCtrl.push(ShowCustomerComponent);
+    }
+
+    editProfile(){
+          this.navCtrl.push(EditProfileManagerComponent);
     }
 
     showSales(){
-        this.clubService.getClubByObjectId(this.manager.clubId)
-         .subscribe(club =>{
-             if (club)
-             {  
-                let salesByClubArr = [];
-                this.club.sales.forEach(sale =>{
-                    salesByClubArr.push(sale);
-                })
-                this.navCtrl.push(ShowSalesComponent, {club: club, salesByClubArr: salesByClubArr});
-             }
-             else{
-                  console.log("Error No clubs");
-             }
-
-         })
+        this.navCtrl.push(ShowSalesComponent, {club: this.club});
     }
     
     addPointsToCustomerById()

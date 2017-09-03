@@ -5,9 +5,7 @@ import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { User } from './../../../../models/user.model';
 import { ClubManually } from './../../../../models/clubManually.model'
-
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'; 
-
 
 @Component({
     selector: 'club-add-manual',
@@ -16,7 +14,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class AddClubManualComponent {
     user: User;
     clubNew: ClubManually;
-    formData : FormGroup;
+    addClubForm : FormGroup;
 
     constructor(private fBuilder : FormBuilder, private http: Http, private navCtrl : NavController,
         private userService: UserService, private navParams: NavParams, private alertCtrl: AlertController,
@@ -24,52 +22,35 @@ export class AddClubManualComponent {
         this.user = this.userService.getLocalUser();
         this.clubNew = new ClubManually();
         this.clubNew.isManual = true;
-        
-        this.formData = fBuilder.group({
-            'id': ["", Validators.required],
-            'name': ["", Validators.required],
-            'address': ["", Validators.required],
-            'phoneNumber': ["", Validators.required],
-            'img': [""],
-            'points': [""],
-
-        })
+        this.initNewClub();
+        this.buildForm();
     }
 
-    updateInfo() {
-            if (this.clubNew) {
-            let isExists = false; 
-            // check if the user already have the club
-            this.user.manuallyClubs.forEach((club) => {
-                if(club.id == this.clubNew.id){
-                    isExists = true;
-                    }
-            })
-            console.log(isExists);
+    initNewClub(){
+        this.clubNew = new ClubManually();
+        this.clubNew.isManual = true;
+        this.clubNew.id = Date.now();
+    }
 
-            if(!isExists) {  //add club only if its new club
-                this.user.manuallyClubs.push(this.clubNew);
-                this.userService.updateUser(this.user)
-                    .subscribe(isUpdated => {
-                        if (isUpdated) {
-                            console.log("updated");
-                            let alert = this.alertCtrl.create({
-                                subTitle: 'Club Added',
-                                buttons: ['סבבה']
-                            });
-                        alert.present();
-                        alert.onDidDismiss(() => {
-                            this.navCtrl.pop();
-                        });
-                        }
-                        else {
-                            console.log("not updated");
-                        }
-                    })
-            }
-            else{
+    buildForm(){
+        this.addClubForm = this.fBuilder.group({
+            'name': ["", Validators.required],
+            'address': [""],
+            'phoneNumber': [""],
+            'img': [""],
+            'points': [""],
+        });
+    }
+
+    onClickAddClub() {
+        console.log(this.clubNew);
+        this.user.manuallyClubs.push(this.clubNew);
+        this.userService.updateUser(this.user)
+        .subscribe(isUpdated => {
+            if (isUpdated) {
+                console.log("updated");
                 let alert = this.alertCtrl.create({
-                    subTitle: 'Club id already exist',
+                    subTitle: 'Club Added',
                     buttons: ['סבבה']
                 });
             alert.present();
@@ -77,12 +58,10 @@ export class AddClubManualComponent {
                 this.navCtrl.pop();
             });
             }
-        }
-    }
-
-    onBlur(event){
-        var formName = event.target.attributes['formControlName'].value;
-        this.clubNew[formName] = this.formData.value[formName];
+            else {
+                console.log("not updated");
+            }
+        });
     }
 
             // to do
@@ -142,6 +121,4 @@ export class AddClubManualComponent {
                         // handle error
                     })
             }
-
-
 }

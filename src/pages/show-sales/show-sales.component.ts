@@ -27,15 +27,17 @@ export class ShowSalesComponent{
         private userService: UserService, private navParams: NavParams, 
         private alertCtrl: AlertController) {
             this.club = this.navParams.get("club");
-            this.saleArr = this.navParams.get("salesByClubArr");
-   
+            this.saleArr = this.club.sales;
+            // console.log(this.saleArr);
         }
 
-        addSale(){
+    addSale(){
         this.navCtrl.push(AddSaleComponent);
     }
-      handleSaleDeleted(saleToRemove){
-        this.saleArr = this.saleArr.filter(sale => {
+
+    handleSaleDeleted(saleToRemove){
+        console.log("delete sale emmited");
+        this.club.sales = this.club.sales.filter(sale => {
             return sale.id != saleToRemove.id;
         })
     }

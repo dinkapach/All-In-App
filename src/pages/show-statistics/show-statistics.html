@@ -1,16 +1,16 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Hello:</ion-title>
+    <ion-title>Statistics:</ion-title>
   </ion-navbar>
 </ion-header>
 
-<!--<ion-content>
-    <ion-searchbar [(ngModel)]="searchCustomer" (ionInput)="searchCustomers()"></ion-searchbar>
- <ion-grid>
-    <ion-row *ngFor="let userClub of customerDisplay">
-      <ion-col>  
-        <user-card [userClub]="userClub" (userDeleted)="handleUserDeleted($event)"></user-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  </ion-content>-->
+<ion-content padding>
+  <ion-item>
+      <p> Total customers:    {{totalCustomers}}           </p>
+      <p> childs  (10 - 20):  {{childs}}                   </p>
+      <p> teens  (20 - 30):   {{teenagers}}                </p>
+      <p> olds   (30+):       {{olds}}                     </p> 
+      <p> joined this month:   {{joinedThisMonth}}         </p> 
+  </ion-item>
+</ion-content>
+

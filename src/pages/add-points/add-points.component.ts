@@ -21,7 +21,8 @@ export class AddPointsComponent{
     formData : FormGroup;
     
   
-     constructor(private fBuilder : FormBuilder, private http: Http, private managerService: ManagerService, private navCtrl : NavController) {
+     constructor(private fBuilder : FormBuilder, private http: Http, 
+     private managerService: ManagerService, private navCtrl : NavController) {
         this.formData = fBuilder.group ({
             'id' : ["", Validators.required],
             'points' : ["", Validators.required],

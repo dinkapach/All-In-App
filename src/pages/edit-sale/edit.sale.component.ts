@@ -30,10 +30,7 @@ export class EditSaleComponent {
         private managerService: ManagerService, private cloneService: CloneService,
          private cameraService: CameraService, public actionSheetCtrl: ActionSheetController) {
         this.sale = this.navParams.get("sale");
-
         this.updatedSale = this.cloneService.getDeepCopyOfSale(this.sale);
-        this.clubId = managerService.getClubId();
-
         this.formData = fBuilder.group({
             'id': ["", Validators.required],
             'name': ["", Validators.required],
@@ -45,23 +42,22 @@ export class EditSaleComponent {
         console.log(this.sale);
     }
 
+  updateSale(){
+    console.log(this.sale);
+    this.managerService.editSale(this.sale)
+      .subscribe(isAuth => {
+          console.log(isAuth);
+          if(isAuth){
+             this.presentAlert();
+              console.log(isAuth);
+               console.log("sale updated");
+          }
+          else{
+              console.log(" Not update club ");
+          }
+      });
+  }
 
-
-    updateSale() {
-        console.log(this.updatedSale);
-        this.managerService.editSale(this.updatedSale)
-            .subscribe(isAuth => {
-                console.log(isAuth);
-                if (isAuth) {
-                    this.presentAlert();
-                    console.log(isAuth);
-                    console.log(" update sale  ");
-                }
-                else {
-                    console.log(" Not update club ");
-                }
-            });
-    }
 
     presentAlert() {
         let alert = this.alertCtrl.create({
