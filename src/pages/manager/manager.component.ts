@@ -21,6 +21,7 @@ import { SubscirbePointsComponent } from './../subscribe-points/subscribe-points
 import { SigningService } from '../../services/signing.service';
 import { LoginComponent } from '../login/login.component';
 import { ShowSalesComponent } from './../show-sales/show-sales.component';
+import { EditManagerClubComponent } from '../edit-manager-club/edit-manager-club.component';
 
 
 
@@ -50,7 +51,7 @@ export class ManagerComponent {
     }
 
     onClickEditClub(club){
-        // this.navCtrl.push(EditClubComponent, {club : club});
+         this.navCtrl.push(EditManagerClubComponent);
     }
     
 

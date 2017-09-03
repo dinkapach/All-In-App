@@ -59,6 +59,8 @@ export class UserService {
         });
     }
 
+
+
     getUserByCustomerId(customerId : Number) : Observable<User> {
         let params: URLSearchParams = new URLSearchParams();
         params.set('id', customerId.toString());

@@ -29,15 +29,12 @@ export class EditManagerClubComponent{
         private managerService: ManagerService, private navParams: NavParams, private alertCtrl: AlertController, 
         private cameraService: CameraService) {
         this.club = this.managerService.getLocalClub();
-
-        // this.formData.controls['email'].setValue("din@gmail.com");
         this.updatedClub = { };
 
         this.formData = fBuilder.group({
             'name': ["", Validators.required],
             'address': ["", Validators.required],
             'phoneNumber': ["", Validators.required],
-            'openingHours': ["", Validators.required],
             'img': [""],
         })
         console.log(this.formData.controls);
