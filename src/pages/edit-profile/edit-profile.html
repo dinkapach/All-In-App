@@ -15,15 +15,10 @@
         <ion-card-content></ion-card-content>
         <ion-row no-padding>
             <ion-col>
-                <button ion-button clear small color="danger" icon-start (click)="onClickTakePhoto()">
-                    <ion-icon name='camera'></ion-icon>
-                    teke photo
-                </button>
-            </ion-col>
-            <ion-col text-center>
-                <button ion-button clear small color="danger" icon-start>
-                    <ion-icon name='albums'></ion-icon>
-                    choose from gallery
+                <button ion-button clear small color="danger" icon-start 
+                (click)="onClickOpenCameraOptionTake()" >
+                    <ion-icon name='create'></ion-icon>
+                    edit
                 </button>
             </ion-col>
         </ion-row>
