@@ -33,6 +33,9 @@ export class ManagerService {
         return this.currentCustomers;
     }
     
+    getClubId(){
+        return this.currentClub.id;
+    }
 
     setLocalManager(manager: Manager, club: Club){
         // this.storage.set("managerDetails", manager);
@@ -83,11 +86,7 @@ export class ManagerService {
             clubId: clubId
          })
         .map( res => res.json());
-    }
-
-    getClubId(){
-        return this.currentManager.clubId;
-    }
+        }
 
     subscribePointsToCustomerById(customerId: number, clubId:number, numOfPoints: number){
         this.http.post(`${this.url}/api/manager/subscribePointsToCustomerById`,{
@@ -109,6 +108,14 @@ export class ManagerService {
     getCustomerDetails(customerId: number){
         return this.http.get(`${this.url}/api/manager/getCustomerDetails/${customerId}`)
         .map(res => res.json());
+    }
+
+    deleteSale(saleId: Number): Observable<boolean> {
+        return this.http.post(`${this.url}/api/club/deleteSale`, {
+            saleId: saleId,
+            clubId: this.getClubId()
+         })
+        .map( res => res.json());
     }
 
      editSale(sale: Sale): Observable<boolean> {
