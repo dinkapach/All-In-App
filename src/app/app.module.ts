@@ -1,3 +1,4 @@
+import { CloneService } from './../helpers/clone-service';
 import { ActionSheetCameraOptions } from './../helpers/action-sheet-camera-options';
 import { CameraService } from './../helpers/camera-service';
 import { DeleteCustomerComponent } from './../pages/superManager/customerActions/delete-customer/delete.customer.component';
@@ -190,6 +191,7 @@ import { ShowStatisticsComponent } from '../pages/show-statistics/show-statistic
     LoadingService,
     LocalNotifications,
     ActionSheetCameraOptions,
+    CloneService,
     
     
     //Camera,

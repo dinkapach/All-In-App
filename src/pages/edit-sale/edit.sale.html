@@ -14,26 +14,40 @@
 
 
 <ion-content padding>
+    <ion-card>
+            <img id="edit-sale-img" [src]="updatedSale?.img" />
+            <ion-card-content></ion-card-content>
+            <ion-row no-padding>
+                <ion-col>
+                    <button ion-button clear small color="danger" icon-start 
+                    (click)="onClickOpenCameraOptionTake()" >
+                        <ion-icon name='create'></ion-icon>
+                        edit
+                    </button>
+                </ion-col>
+            </ion-row>
+        </ion-card>
+
+
      <form [formGroup]="formData"(ngSubmit)="updateSale()">
-  
         <ion-list>
             <ion-item>
-                <ion-input formControlName="id" placeholder="Id" type="text" *ngIf="sale" [(ngModel)]="sale.id"></ion-input>
+                <ion-input formControlName="id" placeholder="Id" type="text" *ngIf="updatedSale" [(ngModel)]="updatedSale.id"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-input formControlName="name" placeholder="name" type="text" *ngIf="sale" [(ngModel)]="sale.name"></ion-input>
+                <ion-input formControlName="name" placeholder="name" type="text" *ngIf="updatedSale" [(ngModel)]="updatedSale.name"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-input formControlName="img" placeholder="img" type="text" *ngIf="sale" [(ngModel)]="sale.img"></ion-input>
+                <ion-input formControlName="img" placeholder="img" type="text" *ngIf="updatedSale" [(ngModel)]="updatedSale.img"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-input formControlName="description" placeholder="description" type="text" *ngIf="sale" [(ngModel)]="sale.description" ></ion-input>
+                <ion-input formControlName="description" placeholder="description" type="text" *ngIf="updatedSale" [(ngModel)]="updatedSale.description" ></ion-input>
             </ion-item>
             <ion-item>
-                <ion-input formControlName="points" placeholder="points" type="number" *ngIf="sale" [(ngModel)]="sale.points"></ion-input>
+                <ion-input formControlName="points" placeholder="points" type="number" *ngIf="updatedSale" [(ngModel)]="updatedSale.points"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-input formControlName="price" placeholder="price" type="number" *ngIf="sale" [(ngModel)]="sale.price" ></ion-input>
+                <ion-input formControlName="price" placeholder="price" type="number" *ngIf="updatedSale" [(ngModel)]="updatedSale.price" ></ion-input>
             </ion-item>   
         </ion-list>
          <button type="Submit" ion-button round>Submit</button>

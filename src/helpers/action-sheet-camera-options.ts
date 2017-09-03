@@ -47,7 +47,7 @@ export class ActionSheetCameraOptions {
     onClickTakePhoto(paramToUpdate) {
         this.cameraService.takePhotoFromCamera()
             .then(url => {
-                this.saveImgInUpdaatedUser(paramToUpdate, url)
+                this.updateImg(paramToUpdate, url)
             })
             .catch(err => {
                 console.log("err to take picture", err);
@@ -58,7 +58,7 @@ export class ActionSheetCameraOptions {
      onClickGetPhotoFromGallery(paramToUpdate) {
         this.cameraService.choosePhotoFromGallery()
             .then(url => {
-                this.saveImgInUpdaatedUser(paramToUpdate, url);
+                this.updateImg(paramToUpdate, url);
             })
             .catch(err => {
                 console.log("err to take picture", err);
@@ -66,7 +66,7 @@ export class ActionSheetCameraOptions {
             })
     }
 
-    saveImgInUpdaatedUser(paramToUpdate, url) {
+    updateImg(paramToUpdate, url) {
         console.log("in save img")
         paramToUpdate.img = url;
     }

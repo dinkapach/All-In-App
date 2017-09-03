@@ -35,6 +35,7 @@ export class EditProfileComponent {
 
         // this.formData.controls['email'].setValue("din@gmail.com");
         this.updatedUser = {};
+        this.updatedUser.img = this.user.img;
 
         this.formData = fBuilder.group({
             'id': ["", Validators.required],
@@ -109,14 +110,14 @@ export class EditProfileComponent {
     // }
 
     // to do
-    saveImgInUpdaatedUser(url) {
+    updateImg(url) {
         console.log("in save img")
         this.updatedUser.img = url;
     }
 
     onClickOpenCameraOptionTake() {
         let actionSheet = this.actionSheetCtrl.create({
-            title: 'Modify your album',
+            title: 'Choose Camera Option',
             buttons: [
                 {
                     text: 'Camera',
@@ -147,7 +148,7 @@ export class EditProfileComponent {
     onClickTakePhoto() {
         this.cameraService.takePhotoFromCamera()
             .then(url => {
-                this.saveImgInUpdaatedUser(url)
+                this.updateImg(url)
             })
             .catch(err => {
                 console.log("err to take picture", err);
@@ -158,7 +159,7 @@ export class EditProfileComponent {
     onClickGetPhotoFromGallery() {
         this.cameraService.choosePhotoFromGallery()
             .then(url => {
-                this.saveImgInUpdaatedUser(url);
+                this.updateImg(url);
             })
             .catch(err => {
                 console.log("err to take picture", err);
