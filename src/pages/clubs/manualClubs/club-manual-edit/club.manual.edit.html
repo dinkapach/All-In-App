@@ -1,70 +1,32 @@
 <ion-header>
-    <ion-navbar>
-    <ion-buttons end>
-        <button (click)="updateClub()">
-            <ion-icon name="refresh"></ion-icon>
-        </button>
-    </ion-buttons>
-    <ion-title>Edit Club</ion-title>
-    </ion-navbar>
-</ion-header>
-
-          
-<ion-content padding>
-    <form [formGroup]="formData">
-        <ion-list>
-         <!--<ion-item>
-            <ion-label floating>Img</ion-label>
-            <ion-input formControlName="img" type="text" value={{club?.img}} ></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label floating>Id</ion-label>
-            <ion-input formControlName="id" type="text" value={{club.id}} ></ion-input>
-          </ion-item>
-            
-          <ion-item>
-            <ion-label floating>Name</ion-label>
-            <ion-input formControlName="name" type="text" value={{club.name}} ></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label floating>Address</ion-label>
-            <ion-input formControlName="address" type="text" value={{club.address}} ></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label floating>Phone Number</ion-label>
-            <ion-input formControlName="phoneNumber" type="text" value={{club.phoneNumber}} ></ion-input>
-          </ion-item>
-
-         <ion-item>
-            <ion-label floating>Points</ion-label>
-            <ion-input formControlName="points" type="number" value={{club?.points}} ></ion-input>
-          </ion-item>
-      </ion-list>
-    </form>
-</ion-content>-->
-
-            <ion-item>
-                <ion-input formControlName="img" placeholder="Image" type="text" [(ngModel)]="club.img" (blur)="onBlur($event)"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-input formControlName="id" placeholder="Id" type="text" [(ngModel)]="club.id"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-input formControlName="name" placeholder="Name" type="text" [(ngModel)]="club.name"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-input formControlName="address" placeholder="Address" type="text"  [(ngModel)]="club.address" (blur)="onBlur($event)"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-input formControlName="phoneNumber" placeholder="PhoneNumber" type="text" [(ngModel)]="club.phoneNumber" (blur)="onBlur($event)"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-input formControlName="points" placeholder="Points" type="text" [(ngModel)]="club.points" (blur)="onBlur($event)"></ion-input>
-            </ion-item>
-        </ion-list>
-    </form>
-</ion-content>
-    
+        <ion-navbar primary>
+          <ion-title>Edit Club</ion-title>
+        </ion-navbar>
+      </ion-header>
+      <ion-content padding>
+          <form [formGroup]="editClubForm" #editManualClubForm="ngForm" (ngSubmit)="onClickEditClub()">
+              <ion-list>
+                <ion-item>
+                    <ion-label floating>Name</ion-label>
+                    <ion-input formControlName="name" type="text" [(ngModel)]="club.name" ></ion-input>
+                </ion-item>  
+                <ion-item>
+                    <ion-label floating>Img</ion-label>
+                    <ion-input formControlName="img" type="text" [(ngModel)]="club.img" ></ion-input>
+                </ion-item>
+                  <ion-item>
+                    <ion-label floating>Address</ion-label>
+                    <ion-input formControlName="address" type="text" [(ngModel)]="club.address" ></ion-input>
+                </ion-item>
+                  <ion-item>
+                    <ion-label floating>Phone Number</ion-label>
+                    <ion-input formControlName="phoneNumber" type="text" [(ngModel)]="club.phoneNumber" ></ion-input>
+                </ion-item>
+                  <ion-item>
+                    <ion-label floating>Points</ion-label>
+                    <ion-input formControlName="points" type="number" [(ngModel)]="club.points" ></ion-input>
+                </ion-item>
+            </ion-list>
+            <button ion-button class="submit-btn" full type="submit" [disabled]="!editManualClubForm.form.valid">Edit Club</button>        
+          </form>
+      </ion-content>

@@ -4,12 +4,6 @@ import { UserService } from './../../services/user.service';
 import { Credit } from './../../models/credit.model';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
-/**
- * Generated class for the EditCredit page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 @Component({
   selector: 'edit-credit',
   templateUrl: 'edit-credit.html',
@@ -17,31 +11,39 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 export class EditCreditComponent {
   updatedCredit: any = {};
   credit: Credit;
-  formData : FormGroup;
+  formGroup : FormGroup;
   
   constructor(private fBuilder : FormBuilder, public navCtrl: NavController, public navParams: NavParams, private userService: UserService) {
     this.credit = this.navParams.get("credit");
-    console.log(this.updatedCredit);
-    this.updatedCredit = { idona: 24 };
-
-        this.formData = fBuilder.group({
-            'id': ["", Validators.required],
-            'clubId': ["", Validators.required],
-            'dateOfPurchase': ["", Validators.required],
-            'dateOfExpired': ["", Validators.required],
-            'items': ["", Validators.required],
-            'totalCredit': ["", Validators.required],
-        })
+    this.initCredit();
+    this.buildForm();
+    console.log("updated credit: " ,this.updatedCredit);
     console.log(this.credit);
+  }
+
+  buildForm(){
+    this.formGroup = this.fBuilder.group({
+        'dateOfPurchase': ["", Validators.required],
+        'dateOfExpired': ["", Validators.required],
+        'items': ["", Validators.required],
+        'totalCredit': ["", Validators.required]
+    });
+  }
+
+  initCredit(){
+      this.updatedCredit = { 
+          clubId: this.credit.clubId,
+          id: this.credit.id
+        };
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EditCredit');
   }
 
-  updateCredit(){
-    console.log(this.credit);
-    this.userService.editCredit(this.credit)
+  onClickEditCredit(){
+    console.log(this.updatedCredit);
+    this.userService.editCredit(this.updatedCredit)
       .subscribe(isAuth => {
           console.log(isAuth);
           if(isAuth){
@@ -53,12 +55,4 @@ export class EditCreditComponent {
           }
       });
   }
-
-      onBlur(event){
-        var formName = event.target.attributes['formControlName'].value;
-        this.updatedCredit[formName] = this.formData.value[formName];
-        // console.log(this.updatedCredit);
-        // console.log(this.credit);
-    }
-
 }
