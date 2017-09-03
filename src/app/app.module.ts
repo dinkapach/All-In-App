@@ -64,6 +64,7 @@ import { CustomerSettingsComponent } from '../pages/customer-settings/customer-s
 import { EditSaleComponent } from '../pages/edit-sale/edit.sale.component';
 import { SaleViewComponent } from '../pages/sale-view/sale.view.component';
 import { SaleCardManagerComponent } from '../pages/sale-cardManager/sale.cardManager.component';
+import { EditProfileManagerComponent } from '../pages/edit-profileManager/edit.profileManager.component';
 
 
 @NgModule({
@@ -100,6 +101,7 @@ import { SaleCardManagerComponent } from '../pages/sale-cardManager/sale.cardMan
     CustomerSettingsComponent,
     SaleViewComponent,
     SaleCardManagerComponent,
+    EditProfileManagerComponent,
     // super manager stuff
     SuperManagerDashboardComponent,
     ManagerCardComponent,
@@ -154,6 +156,7 @@ import { SaleCardManagerComponent } from '../pages/sale-cardManager/sale.cardMan
     CustomerSettingsComponent,
     SaleViewComponent,
     SaleCardManagerComponent,
+    EditProfileManagerComponent,
     // super manager stuff
     SuperManagerDashboardComponent,
     ManagerCardComponent,

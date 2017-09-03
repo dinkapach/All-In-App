@@ -8,10 +8,44 @@
     <ion-title>Edit Club</ion-title>
     </ion-navbar>
 </ion-header>
-    
+
+          
 <ion-content padding>
     <form [formGroup]="formData">
         <ion-list>
+         <!--<ion-item>
+            <ion-label floating>Img</ion-label>
+            <ion-input formControlName="img" type="text" value={{club?.img}} ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating>Id</ion-label>
+            <ion-input formControlName="id" type="text" value={{club.id}} ></ion-input>
+          </ion-item>
+            
+          <ion-item>
+            <ion-label floating>Name</ion-label>
+            <ion-input formControlName="name" type="text" value={{club.name}} ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating>Address</ion-label>
+            <ion-input formControlName="address" type="text" value={{club.address}} ></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating>Phone Number</ion-label>
+            <ion-input formControlName="phoneNumber" type="text" value={{club.phoneNumber}} ></ion-input>
+          </ion-item>
+
+         <ion-item>
+            <ion-label floating>Points</ion-label>
+            <ion-input formControlName="points" type="number" value={{club?.points}} ></ion-input>
+          </ion-item>
+      </ion-list>
+    </form>
+</ion-content>-->
+
             <ion-item>
                 <ion-input formControlName="img" placeholder="Image" type="text" [(ngModel)]="club.img" (blur)="onBlur($event)"></ion-input>
             </ion-item>

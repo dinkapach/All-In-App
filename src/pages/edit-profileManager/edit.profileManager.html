@@ -1,0 +1,47 @@
+<ion-header>
+    <ion-navbar primary>
+        <ion-buttons end>
+            <button (click)="onClickupdateInfo()">
+            <ion-icon name="refresh"></ion-icon>
+        </button>
+        </ion-buttons>
+        <ion-title>Edit Profile</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding *ngIf="manager">
+  
+    <form [formGroup]="formData">
+        <ion-list>
+            <ion-item>
+                <ion-label floating>Id</ion-label>
+                <ion-input formControlName="id" type="text" value={{manager?.id}} (blur)="onBlur($event)" disabled="true"></ion-input>
+            </ion-item>
+
+             <ion-item>
+                <ion-label floating>User Name</ion-label>
+                <ion-input formControlName="userName" type="text" value={{manager?.userName}} (blur)="onBlur($event)"></ion-input>
+            </ion-item>
+            
+            <ion-item>
+                <ion-label floating>First Name</ion-label>
+                <ion-input formControlName="firstName" type="text" value={{user?.firstName}} (blur)="onBlur($event)"></ion-input>
+            </ion-item>
+            
+            <ion-item>
+                <ion-label floating>Last Name</ion-label>
+                <ion-input formControlName="lastName" type="text" value={{user?.lastName}} (blur)="onBlur($event)"></ion-input>
+            </ion-item>
+           
+            <ion-item>
+                <ion-label floating>Email</ion-label>
+                <ion-input formControlName="email" type="email" value={{user?.email}} (blur)="onBlur($event)"></ion-input>
+            </ion-item>
+        
+        </ion-list>
+    </form>
+    <button (click)="onClickTest()">Test</button>
+</ion-content>
+
+
+

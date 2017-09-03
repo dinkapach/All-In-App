@@ -21,9 +21,14 @@
 <ion-content padding>
     <form [formGroup]="formData">
         <ion-list>
+
+            <!--<ion-item>
+                <ion-label floating>Id</ion-label>
+                <ion-input formControlName="id" type="text" value={{credit.id}}></ion-input>
+            </ion-item>-->
             <ion-item>
                 <ion-input formControlName="id" placeholder="Id" type="text" *ngIf="credit" [(ngModel)]="credit.id"></ion-input>
-            </ion-item>
+            </ion-item> 
             <ion-item>
                 <ion-input formControlName="clubId" placeholder="clubId" type="text" *ngIf="credit" [(ngModel)]="credit.clubId"></ion-input>
             </ion-item>
@@ -38,7 +43,7 @@
             </ion-item>
             <ion-item>
                 <ion-input formControlName="totalCredit" placeholder="TotalCredit" type="number" *ngIf="credit" [(ngModel)]="credit.totalCredit" (blur)="onBlur($event)"></ion-input>
-            </ion-item>   
+            </ion-item>   -->
         </ion-list>
     </form>
 </ion-content>

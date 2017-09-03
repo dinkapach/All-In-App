@@ -10,8 +10,29 @@
                 <ion-label floating>Image</ion-label>
                 <ion-input formControlName="img" type="text"></ion-input>
             </ion-item>
-            
             <ion-item>
+                <ion-label floating>Name</ion-label>
+                <ion-input formControlName="name" type="text" value={{sale?.name}} ></ion-input>
+            </ion-item>
+              <ion-item>
+                <ion-label floating>Description</ion-label>
+                <ion-input formControlName="description" type="text" value={{sale.description}} ></ion-input>
+            </ion-item>
+             <ion-item>
+                <ion-label floating>Price</ion-label>
+                <ion-input formControlName="price" type="number" value={{sale?.price}} ></ion-input>
+            </ion-item>
+             <ion-item>
+                <ion-label floating>Points</ion-label>
+                <ion-input formControlName="points" type="number" value={{sale?.points}}></ion-input>
+            </ion-item>
+        </ion-list>
+        <button type="submit" ion-button round>Add Sale</button>
+    </form>
+</ion-content>
+
+
+            <!--<ion-item>
                 <ion-input formControlName="name" placeholder="Name" type="string"></ion-input>
             </ion-item>
             <ion-item>
@@ -22,8 +43,6 @@
             </ion-item>     
             <ion-item>
                 <ion-input formControlName="points" placeholder="Points" type="number"></ion-input>
-            </ion-item>    
-        </ion-list>
-        <button type="submit" ion-button round>Add Sale</button>
-    </form>
-</ion-content>
+            </ion-item>    -->
+   
+

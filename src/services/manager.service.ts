@@ -23,6 +23,10 @@ export class ManagerService {
         return this.currentManager;
     }
 
+     getLocalManagerId(){
+        return this.currentManager.id;
+    }
+
     setLocalManager(manager: Manager){
         // this.storage.set("managerDetails", manager);
         this.currentManager = manager;
@@ -93,6 +97,15 @@ export class ManagerService {
     getCustomerDetails(customerId: number){
         return this.http.get(`${this.url}/api/manager/getCustomerDetails/${customerId}`)
         .map(res => res.json());
+    }
+
+    updateManager(managerUpdate : any ) : Observable<boolean> {
+        console.log("updating manager: " + managerUpdate);
+        return this.http.post(`${this.url}/api/manager/updateManagerInfo`, { 
+            managerUpdate: managerUpdate,
+            managerId: this.getLocalManagerId()
+         })
+        .map( res => res.json());
     }
 
      editSale(sale: Sale): Observable<boolean> {
