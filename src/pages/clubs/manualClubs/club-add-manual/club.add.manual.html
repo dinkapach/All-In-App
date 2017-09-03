@@ -1,35 +1,48 @@
 <ion-header>
     <ion-navbar primary>
-      <ion-buttons end>
-          <button (click)="updateInfo()">
+        <ion-buttons end>
+            <button (click)="updateInfo()">
               <ion-icon name="refresh"></ion-icon>
           </button>
-      </ion-buttons>
-      <ion-title>Add Club Manually</ion-title>
+        </ion-buttons>
+        <ion-title>Add Club Manually</ion-title>
     </ion-navbar>
-  </ion-header>
-  
-  <ion-content padding>
-      <form [formGroup]="formData">
-          <ion-list>
-              <ion-item>
-                  <ion-input formControlName="img" placeholder="Image" type="text" [(ngModel)]="clubNew.img" (blur)="onBlur($event)"></ion-input>
-              </ion-item>
-              <ion-item>
-                  <ion-input formControlName="id" placeholder="Id" type="text" [(ngModel)]="clubNew.id"></ion-input>
-              </ion-item>
-              <ion-item>
-                  <ion-input formControlName="name" placeholder="Name" type="text"  [(ngModel)]="clubNew.name" (blur)="onBlur($event)"></ion-input>
-              </ion-item>
-              <ion-item>
-                  <ion-input formControlName="address" placeholder="Address" type="text" [(ngModel)]="clubNew.address" (blur)="onBlur($event)"></ion-input>
-              </ion-item>
-              <ion-item>
-                  <ion-input formControlName="phoneNumber" placeholder="Phone Number" type="text"  [(ngModel)]="clubNew.phoneNumber" (blur)="onBlur($event)"></ion-input>
-              </ion-item>
-              <ion-item>
-                  <ion-input formControlName="points" placeholder="Points" type="text" [(ngModel)]="clubNew.points" (blur)="onBlur($event)"></ion-input>
-              </ion-item>       
-          </ion-list>
-      </form>
-  </ion-content>
+</ion-header>
+
+<ion-content padding>
+    <ion-card>
+        <img id="add-club-img" [src]="clubNew?.img" />
+        <ion-card-content></ion-card-content>
+        <ion-row no-padding>
+            <ion-col>
+                <button ion-button clear small color="danger" icon-start (click)="onClickOpenCameraOptionTake()">
+                    <ion-icon name='create'></ion-icon>
+                    Add Photo
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+
+    <form [formGroup]="formData">
+        <ion-list>
+            <ion-item>
+                <ion-input formControlName="img" placeholder="Image" type="text" [(ngModel)]="clubNew.img" (blur)="onBlur($event)"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input formControlName="id" placeholder="Id" type="text" [(ngModel)]="clubNew.id"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input formControlName="name" placeholder="Name" type="text" [(ngModel)]="clubNew.name" (blur)="onBlur($event)"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input formControlName="address" placeholder="Address" type="text" [(ngModel)]="clubNew.address" (blur)="onBlur($event)"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input formControlName="phoneNumber" placeholder="Phone Number" type="text" [(ngModel)]="clubNew.phoneNumber" (blur)="onBlur($event)"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input formControlName="points" placeholder="Points" type="text" [(ngModel)]="clubNew.points" (blur)="onBlur($event)"></ion-input>
+            </ion-item>
+        </ion-list>
+    </form>
+</ion-content>

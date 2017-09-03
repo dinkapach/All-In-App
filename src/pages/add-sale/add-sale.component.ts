@@ -1,9 +1,10 @@
+import { CameraService } from './../../helpers/camera-service';
 import { ManagerService } from './../../services/manager.service';
 import { UserService } from './../../services/user.service';
 import { User } from './../../models/user.model';
 import { Http } from '@angular/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'; 
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ActionSheetController } from 'ionic-angular';
 import {Observable} from 'rxjs/Observable';
 import {CreditsCardComponent} from  '../credits-card/credits.card.component';
 import {UserCardComponent} from  '../user-card/usercard.component';
@@ -29,7 +30,8 @@ export class AddSaleComponent{
   
      constructor(private fBuilder : FormBuilder, private http: Http, 
      private managerService: ManagerService, private navCtrl : NavController,
-      private alertCtrl: AlertController) {
+      private alertCtrl: AlertController, private cameraService: CameraService,
+       public actionSheetCtrl: ActionSheetController) {
         this.formData = fBuilder.group ({
             'id' :Date.now(),
             'name': ["", Validators.required],
@@ -69,4 +71,62 @@ export class AddSaleComponent{
     //     var formName = event.target.attributes['formControlName'].value;
  
     // }
+
+            // to do
+    updateImg(url) {
+        console.log("in save img")
+        this.sale.img = url;
+    }
+        
+    onClickOpenCameraOptionTake() {
+        let actionSheet = this.actionSheetCtrl.create({
+            title: 'Choose Camera Option',
+            buttons: [
+                {
+                    text: 'Camera',
+                    role: 'destructive',
+                    handler: () => {
+                        this.onClickTakePhoto();
+                    }
+                },
+                {
+                    text: 'Photo Libary',
+                    handler: () => {
+                        this.onClickGetPhotoFromGallery();
+                    }
+                },
+                {
+                    text: 'Cancel',
+                    role: 'cancel',
+                    handler: () => {
+                        console.log('Cancel clicked');
+                    }
+                }
+            ]
+        });
+
+        actionSheet.present();
+    }
+
+    onClickTakePhoto() {
+        this.cameraService.takePhotoFromCamera()
+            .then(url => {
+                this.updateImg(url)
+            })
+            .catch(err => {
+                console.log("err to take picture", err);
+                // handle error
+            })
+    }
+
+    onClickGetPhotoFromGallery() {
+        this.cameraService.choosePhotoFromGallery()
+            .then(url => {
+                this.updateImg(url);
+            })
+            .catch(err => {
+                console.log("err to take picture", err);
+                // handle error
+            })
+    }
 }

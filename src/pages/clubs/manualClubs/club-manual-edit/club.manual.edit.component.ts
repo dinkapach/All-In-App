@@ -1,3 +1,4 @@
+import { CloneService } from './../../../../helpers/clone-service';
 import { CameraService } from './../../../../helpers/camera-service';
 import { User } from './../../../../models/user.model';
 import { ClubManually } from './../../../../models/clubManually.model';
@@ -19,9 +20,9 @@ export class EditClubManuallyComponent {
   
   constructor(private fBuilder : FormBuilder, public navCtrl: NavController, public navParams: NavParams,
     private alertCtrl: AlertController, private userService: UserService, private cameraService: CameraService,
-    public actionSheetCtrl: ActionSheetController) {
+    public actionSheetCtrl: ActionSheetController, private cloneService: CloneService) {
     this.club = this.navParams.get("club");
-    this.updatedClub = this.club;
+    this.updatedClub = this.cloneService.getDeepCopyOfClubManually(this.club);
     this.user = this.userService.getLocalUser();
 
         this.formData = fBuilder.group({
@@ -79,14 +80,14 @@ export class EditClubManuallyComponent {
     }
 
         // to do
-        saveImgInUpdaatedUser(url) {
+        updateImg(url) {
             console.log("in save img")
             this.updatedClub.img = url;
         }
     
         onClickOpenCameraOptionTake() {
             let actionSheet = this.actionSheetCtrl.create({
-                title: 'Modify your album',
+                title: 'Choose Camera Option',
                 buttons: [
                     {
                         text: 'Camera',
@@ -117,7 +118,7 @@ export class EditClubManuallyComponent {
         onClickTakePhoto() {
             this.cameraService.takePhotoFromCamera()
                 .then(url => {
-                    this.saveImgInUpdaatedUser(url)
+                    this.updateImg(url)
                 })
                 .catch(err => {
                     console.log("err to take picture", err);
@@ -128,7 +129,7 @@ export class EditClubManuallyComponent {
         onClickGetPhotoFromGallery() {
             this.cameraService.choosePhotoFromGallery()
                 .then(url => {
-                    this.saveImgInUpdaatedUser(url);
+                    this.updateImg(url);
                 })
                 .catch(err => {
                     console.log("err to take picture", err);

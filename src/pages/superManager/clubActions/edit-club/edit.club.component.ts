@@ -1,3 +1,4 @@
+import { CloneService } from './../../../../helpers/clone-service';
 import { Club } from './../../../../models/club.model';
 import { SuperManagerService } from './../../../../services/superManager.service';
 import { NavController, AlertController, NavParams } from 'ionic-angular';
@@ -13,9 +14,10 @@ export class EditClubComponent implements OnInit {
    editedClub: Club;
 
     constructor( private navCtrl: NavController, private alertCtrl: AlertController,
-        private superManagerService: SuperManagerService, private navParams: NavParams) {
+        private superManagerService: SuperManagerService, private navParams: NavParams,
+        private cloneService: CloneService) {
         this.club = this.navParams.get("club");
-        this.editedClub = this.DoDeepCopyOfClub(this.club);
+        this.editedClub = this.cloneService.getDeepCopyOfClub(this.club);
         console.log(this.editedClub);
     }
 
@@ -23,16 +25,16 @@ export class EditClubComponent implements OnInit {
 
     }
 
-    DoDeepCopyOfClub(club: Club) {
-        let copyOfClub: Club = new Club();
-        copyOfClub.id = club.id;
-        copyOfClub.name = club.name;
-        copyOfClub.address = club.address;
-        copyOfClub.openingHours = club.openingHours;
-        copyOfClub.phoneNumber = club.phoneNumber;
+    // DoDeepCopyOfClub(club: Club) {
+    //     let copyOfClub: Club = new Club();
+    //     copyOfClub.id = club.id;
+    //     copyOfClub.name = club.name;
+    //     copyOfClub.address = club.address;
+    //     copyOfClub.openingHours = club.openingHours;
+    //     copyOfClub.phoneNumber = club.phoneNumber;
 
-        return copyOfClub;
-    }
+    //     return copyOfClub;
+    // }
 
     onClickSave(){
         console.log("edited manager: ",this.editedClub);
