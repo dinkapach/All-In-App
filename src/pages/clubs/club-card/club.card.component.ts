@@ -1,3 +1,4 @@
+import { UserService } from './../../../services/user.service';
 import { ClubManually } from './../../../models/clubManually.model';
 import { ClubDetailsComponent } from './../club-details/club.details.component';
 import { NavController } from 'ionic-angular';
@@ -14,12 +15,21 @@ export class ClubCardComponent implements OnInit {
     club: Club;
     @Input()
     subDetailsToPresent: string;
+    userPoints: number;
 
-    constructor(private navCtrl: NavController) {
+    constructor(private navCtrl: NavController, private userService: UserService) {
+        let user = this.userService.getLocalUser();
+        this.getUserPointsByClubId(user.id)
     }
 
     ngOnInit() {
         console.log("init club card", this.club);
+    }
+
+    getUserPointsByClubId(userId) {
+        // this.club.usersClub.forEach(userClub => {
+            
+        // })
     }
 
     onClubClicked() {
