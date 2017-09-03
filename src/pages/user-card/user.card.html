@@ -1,6 +1,30 @@
+<ion-card *ngIf="userDisplay">
+    <ion-card-content>
+      <ion-card-title>
+          {{userDisplay.firstName}}
+          {{userDisplay.lastName}}
+      </ion-card-title>
+      <p> Address: {{userDisplay.address}} </p>
+      <p> Email: {{userDisplay.email}} </p>
+      <p> Phone Number: {{userDisplay.phoneNumber}} </p>  
+    </ion-card-content>
+  
+    <ion-row no-padding>
+      <ion-col text-center>
+        <button ion-button clear small color="danger" icon-start (click)="deleteSaleClick(sale)">
+              <ion-icon name='trash'></ion-icon>
+              Delete
+            </button>
+      </ion-col>
+    </ion-row>
+  
+  </ion-card>
 
 
-  <ion-card padding>
+
+
+
+  <!-- <ion-card padding>
   <ion-card-content>
  <ion-list *ngIf="userDisplay">
     <ion-item-sliding #item >
@@ -20,4 +44,4 @@
   </ion-list>
 
    </ion-card-content>
-</ion-card>
+</ion-card> -->

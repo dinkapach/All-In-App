@@ -45,7 +45,7 @@ export class AddSaleComponent{
 
  addingSale(){
         this.sale.id =  this.formData.value.id;
-        this.sale.img = this.formData.value.img;
+        //this.sale.img //.= this.formData.value.img;
         this.sale.name = this.formData.value.name;
         this.sale.points = this.formData.value.points;
         this.sale.description = this.formData.value.description;

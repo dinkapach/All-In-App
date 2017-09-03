@@ -1,4 +1,40 @@
-<ion-card padding  >
+<ion-card>
+    <div (click)="onClubClicked()">
+    <img [src]="sale.img"/>
+    <ion-card-content>
+      <ion-card-title>
+          {{sale.name}}
+      </ion-card-title>
+      <p> sale description: {{sale.description}}  </p>
+      <p> sale price: {{sale.price}} </p>
+      <p> sale point: {{sale.point}} </p>  
+    </ion-card-content>
+    </div>
+  
+    <ion-row no-padding>
+      <ion-col>
+        <button ion-button clear small color="danger" icon-start (click)="editSaleClick(sale)">
+              <ion-icon name='create'></ion-icon>
+              Edit
+            </button>
+      </ion-col>
+      <ion-col text-center>
+        <button ion-button clear small color="danger" icon-start (click)="deleteSaleClick(sale)">
+              <ion-icon name='trash'></ion-icon>
+              Delete
+            </button>
+      </ion-col>
+    </ion-row>
+  
+  </ion-card>
+
+
+
+
+
+
+
+<!-- <ion-card padding  >
   <img [src]="sale.img"/>
   <ion-card-content>
 
@@ -19,4 +55,4 @@
       </ion-item-sliding>
     </ion-list>
   </ion-card-content>
- </ion-card>
+ </ion-card> -->
