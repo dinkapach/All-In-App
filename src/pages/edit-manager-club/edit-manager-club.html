@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-navbar primary>
+        <ion-buttons end>
+            <button (click)="onClickupdateInfo()">
+            <ion-icon name="refresh"></ion-icon>
+        </button>
+        </ion-buttons>
+        <ion-title>Edit Club</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding *ngIf="club">
+    <ion-card>
+        <img id="club-img" [src]="club?.img" />
+        <ion-card-content></ion-card-content>
+        <ion-row no-padding>
+            <ion-col>
+                <button ion-button clear small color="danger" icon-start (click)="onClickTakePhoto()">
+                    <ion-icon name='camera'></ion-icon>
+                    teke photo
+                </button>
+            </ion-col>
+            <ion-col text-center>
+                <button ion-button clear small color="danger" icon-start>
+                    <ion-icon name='albums'></ion-icon>
+                    choose from gallery
+                </button>
+            </ion-col>
+        </ion-row>
+
+    </ion-card>
+    <form [formGroup]="formData">
+        <ion-list>
+            <ion-item>
+                <ion-label floating>Image</ion-label>
+                <ion-input formControlName="img" type="text" value={{club?.img}} (blur)="onBlur($event)"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Name</ion-label>
+                <ion-input formControlName="name" type="text" value={{club?.name}} (blur)="onBlur($event)" disabled="true"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Address</ion-label>
+                <ion-input formControlName="address" type="text" value={{club?.address}} (blur)="onBlur($event)"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Opening Hours</ion-label>
+                <ion-input formControlName="openingHours" type="text" value={{club?.openingHours}} (blur)="onBlur($event)"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Phone Number</ion-label>
+                <ion-input formControlName="phoneNumber" type="text" value={{club?.phoneNumber}} (blur)="onBlur($event)"></ion-input>
+            </ion-item>
+        </ion-list>
+    </form>
+    <button (click)="onClickTest()">Test</button>
+</ion-content>
