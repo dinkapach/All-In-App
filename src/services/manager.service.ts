@@ -18,13 +18,12 @@ export class ManagerService {
     constructor(private http : Http, private storage: Storage) {
         this.url = environment[environment.RUNNING];
         console.log(this.url);
-
     }
 
     getLocalManager(){
         return this.currentManager;
     }
-
+	
     getLocalClub(){
         return this.currentClub;
     }
@@ -35,6 +34,10 @@ export class ManagerService {
     
     getClubId(){
         return this.currentClub.id;
+    }
+	
+	getLocalManagerId(){
+        return this.currentManager.id;
     }
 
     setLocalManager(manager: Manager, club: Club){
@@ -47,8 +50,7 @@ export class ManagerService {
         console.log("current customers", this.currentCustomers);
     }
 
-    setCustomerArray(customers : User[])
-    {
+    setCustomerArray(customers : User[]){
         this.currentCustomers = customers;
     }
 
@@ -114,6 +116,15 @@ export class ManagerService {
         return this.http.post(`${this.url}/api/club/deleteSale`, {
             saleId: saleId,
             clubId: this.getClubId()
+         })
+        .map( res => res.json());
+    }
+	
+    updateManager(managerUpdate : any ) : Observable<boolean> {
+        console.log("updating manager: " + managerUpdate);
+        return this.http.post(`${this.url}/api/manager/updateManagerInfo`, { 
+            managerUpdate: managerUpdate,
+            managerId: this.getLocalManagerId()
          })
         .map( res => res.json());
     }

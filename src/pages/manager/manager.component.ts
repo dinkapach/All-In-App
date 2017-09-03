@@ -21,6 +21,7 @@ import { SubscirbePointsComponent } from './../subscribe-points/subscribe-points
 import { SigningService } from '../../services/signing.service';
 import { LoginComponent } from '../login/login.component';
 import { ShowSalesComponent } from './../show-sales/show-sales.component';
+import { EditProfileManagerComponent } from './../edit-profileManager/edit.profileManager.component';
 
 
 
@@ -67,6 +68,10 @@ export class ManagerComponent {
 
     showCustomers(){
         this.navCtrl.push(ShowCustomerComponent);
+    }
+
+    editProfile(){
+          this.navCtrl.push(EditProfileManagerComponent);
     }
 
     showSales(){
