@@ -8,7 +8,7 @@ import {
 }
     from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ClubDetailsComponent } from './../clubs/club-details/club.details.component';
 import { ClubsListComponent } from './../clubs/clubs-list/clubs.list.component';
 import { FilterClubDetailsComponent } from './filter-club.component';
@@ -40,6 +40,9 @@ export class DashboardComponent implements OnInit {
     editProfilePage = EditProfileComponent;
     chosenOption: string;
     barcodeData : any;
+    showClubSearchBar: Boolean = false;
+    @ViewChild('clubSearchBar') clubSearchBar;
+    
 
     constructor(private navParams: NavParams, private userService: UserService,
         private clubService: ClubService, private loader: LoadingController,
@@ -58,7 +61,15 @@ export class DashboardComponent implements OnInit {
         // this.initGrid();
     }
 
+    onClearClubSearchBar(){
+        this.showClubSearchBar = !this.showClubSearchBar
+    }
 
+    onClickSearchButton(){
+        console.log(this.clubSearchBar);
+        this.clubSearchBar.setFocus();
+        this.showClubSearchBar = !this.showClubSearchBar
+    }
 
     doRefresh(refresher){
         console.log('Begin async operation', refresher);

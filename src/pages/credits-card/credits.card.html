@@ -3,9 +3,9 @@
     <ion-card-title>
       credit id: {{credit.id}}
     </ion-card-title>
-    <p> credit items: {{credit.items}} </p>
-    <p> date of purchase: {{credit.dateOfPurchase}} </p> 
-    <p> date of expired: {{credit.dateOfExpired}} </p> 
+    <p>Items: {{credit.items}} </p>
+    <p>Purchase: {{credit.dateOfPurchase | date }}</p> 
+    <p>Expired: {{credit.dateOfExpired | date }}</p> 
   </ion-card-content>
 
   <ion-row no-padding>
