@@ -107,11 +107,8 @@ import { EditProfileManagerComponent } from '../pages/edit-profileManager/edit.p
     CustomerSettingsComponent,
     SaleViewComponent,
     SaleCardManagerComponent,
-<<<<<<< HEAD
     ClubInformation,
-=======
     EditProfileManagerComponent,
->>>>>>> 31d0436f6d37914af6424b940ef5902c1f48d445
     // super manager stuff
     SuperManagerDashboardComponent,
     ManagerCardComponent,
