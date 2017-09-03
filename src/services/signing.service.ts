@@ -35,7 +35,7 @@ export class SigningService {
                 // console.log("is manager: " ,isManager);
                 console.log(data);
                 if(isManager){
-                    this.managerService.setLocalManager(data.data);
+                    this.managerService.setLocalManager(data.data.manager, data.data.club);
                 }
                 else{
                     this.userService.setLocalUser(data.data);
@@ -86,7 +86,7 @@ export class SigningService {
                 console.log(data);
                 if (isManager){
                     // console.log("set manager in storage");
-                    this.managerService.setLocalManager(data);
+                    this.managerService.setLocalManager(data.manager, data.club);
                 }
                 else {
                     // console.log("set customer in storage");
@@ -113,6 +113,7 @@ export class SigningService {
             isManager: isManager,
             data: data
         }
+        console.log("saving user to storage");
         console.log(currentUser);
         this.storage.set(environment.CURRENT_USER_KEY, currentUser);
     }

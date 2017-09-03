@@ -185,10 +185,6 @@ export class DashboardComponent implements OnInit {
         this.navCtrl.push(AddClubManualComponent);
     }
 
-    // onClickManualClubs(){
-    //     this.navCtrl.push(ClubManualDashboardComponent, { clubManual: this.user.manuallyClubs })
-    // }
-
     openPopupFilter() {
         let popover = this.popOverCtrl.create(FilterClubDetailsComponent);
         popover.present();

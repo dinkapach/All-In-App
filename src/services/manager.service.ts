@@ -6,13 +6,15 @@ import { Http } from '@angular/http';
 import { Manager } from './../models/manager.model';
 import { Storage } from '@ionic/storage';
 import * as environment from './../../environment.json';
+import { Club } from '../models/club.model';
 
 @Injectable()
 export class ManagerService {
     private url: string;
     private currentManager: Manager;
+    private currentClub: Club;
     private isManager: Boolean;
-    private customersArr: User[];
+    private currentCustomers;
     constructor(private http : Http, private storage: Storage) {
         this.url = environment[environment.RUNNING];
         console.log(this.url);
@@ -23,14 +25,31 @@ export class ManagerService {
         return this.currentManager;
     }
 
-    setLocalManager(manager: Manager){
+    getLocalClub(){
+        return this.currentClub;
+    }
+
+    getLocalCustomers(){
+        return this.currentCustomers;
+    }
+    
+    getClubId(){
+        return this.currentClub.id;
+    }
+
+    setLocalManager(manager: Manager, club: Club){
         // this.storage.set("managerDetails", manager);
+        console.log(manager, club);
         this.currentManager = manager;
+        this.currentClub = club;
+        this.currentCustomers = this.currentClub.usersClub;
+        console.log(manager, club);
+        console.log("current customers", this.currentCustomers);
     }
 
     setCustomerArray(customers : User[])
     {
-        this.customersArr = customers;
+        this.currentCustomers = customers;
     }
 
     addSale(clubId: any, sale: Sale){
@@ -67,11 +86,7 @@ export class ManagerService {
             clubId: clubId
          })
         .map( res => res.json());
-    }
-
-    getClubId(){
-        return this.currentManager.clubId;
-    }
+        }
 
     subscribePointsToCustomerById(customerId: number, clubId:number, numOfPoints: number){
         this.http.post(`${this.url}/api/manager/subscribePointsToCustomerById`,{
@@ -95,6 +110,14 @@ export class ManagerService {
         .map(res => res.json());
     }
 
+    deleteSale(saleId: Number): Observable<boolean> {
+        return this.http.post(`${this.url}/api/club/deleteSale`, {
+            saleId: saleId,
+            clubId: this.getClubId()
+         })
+        .map( res => res.json());
+    }
+
      editSale(sale: Sale): Observable<boolean> {
          console.log ('service edit sale :' + this.getClubId());
         return this.http.post(`${this.url}/api/manager/editSale`, {
@@ -103,11 +126,4 @@ export class ManagerService {
          })
         .map( res => res.json());
     }
-
-    getCustomersArr(clubId: number){
-         return this.http.get(`${this.url}/api/manager/getCustomers/${clubId}`)
-         .map(res => res.json());
-     }
-   
-
 }

@@ -20,8 +20,7 @@ export class SignupComponent{
 
     constructor(private fBuilder : FormBuilder, private http: Http, private navCtrl : NavController,
         private signingService: SigningService) {
-        //this.url = environment[environment.RUNNING];
-      //  console.log(this.url);
+        
       this.newCustomer = new User();
 
         this.formData = fBuilder.group({
@@ -41,12 +40,8 @@ export class SignupComponent{
 
     submitSingup() {
         console.log(this.newCustomer);
-    //     customer.age;
-    //     customer.clubs = [];
-    //     customer.credits = [];
-    //     customer.img = "sdc";
-    //     customer.receipts = [];
-
+        this.newCustomer.joinDate = new Date();
+        console.log(this.newCustomer.joinDate);
         this.signingService.signupUser(this.newCustomer)
         .subscribe(newCust => {
             if(newCust){

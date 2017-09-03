@@ -1,41 +1,15 @@
-<ion-card *ngIf="userDisplay">
-    <ion-card-content>
-      <ion-card-title>
-          {{userDisplay.firstName}}
-          {{userDisplay.lastName}}
-      </ion-card-title>
-      <p> Address: {{userDisplay.address}} </p>
-      <p> Email: {{userDisplay.email}} </p>
-      <p> Phone Number: {{userDisplay.phoneNumber}} </p>  
-    </ion-card-content>
-  
-    <ion-row no-padding>
-      <ion-col text-center>
-        <button ion-button clear small color="danger" icon-start (click)="deleteSaleClick(sale)">
-              <ion-icon name='trash'></ion-icon>
-              Delete
-            </button>
-      </ion-col>
-    </ion-row>
-  
-  </ion-card>
-
-
-
-
-
-  <!-- <ion-card padding>
+  <ion-card padding>
   <ion-card-content>
- <ion-list *ngIf="userDisplay">
+ <ion-list>
     <ion-item-sliding #item >
       <ion-item>
           <ion-card-title>
-              {{userDisplay.firstName}}
-              {{userDisplay.lastName}}
+              {{customer.customerId.firstName}}
+              {{customer.customerId.lastName}}
           </ion-card-title>
-          <p> Address: {{userDisplay.address}} </p>
-          <p> Email: {{userDisplay.email}} </p>
-          <p> Phone Number: {{userDisplay.phoneNumber}} </p>  
+          <p> Address: {{customer.customerId.address}} </p>
+          <p> Email: {{customer.customerId.email}} </p>
+          <p> Phone Number: {{customer.customerId.phoneNumber}} </p>  
       </ion-item>
       <ion-item-options side="left">
         <button ion-button (click)="deleteUserClick(userDisplay)">Delete</button>
@@ -44,4 +18,4 @@
   </ion-list>
 
    </ion-card-content>
-</ion-card> -->
+</ion-card>
