@@ -1,11 +1,12 @@
 <ion-card>
-    <!-- <div (click)="onSaleClicked()"> -->
-    <img [src]="sale.img"/>
-    <ion-card-content>
-      <ion-card-title>
-          {{sale.name}}
-      </ion-card-title>
-
-    </ion-card-content>
-    <!-- </div> -->
-  </ion-card>
+  <ion-card-content>
+    <ion-item>
+        <ion-avatar item-start *ngIf="sale.img">
+            <img [src]="sale.img"/>
+        </ion-avatar>
+        <ion-card-title>
+            {{sale.name}}
+        </ion-card-title>
+    </ion-item>
+  </ion-card-content>
+</ion-card>
