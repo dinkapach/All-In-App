@@ -1,31 +1,23 @@
 <ion-header>
-        <ion-toolbar>
-          <ion-title>
-            Club Information
-          </ion-title>
-          <ion-buttons start>
-            <button ion-button (click)="dismiss()">
-              <span ion-text color="primary">Close</span>
-            </button>
-          </ion-buttons>
-        </ion-toolbar>
-      </ion-header>
-      
-      <ion-content>
-        <ion-list>
-            <ion-item>
-              <ion-avatar item-start>
-                <img src="{{club?.img}}">
-              </ion-avatar>
-              <h2>{{club?.name}}</h2>
-              <p>{{club?.phoneNumber}} </p>
-            </ion-item>
-      
-            <ion-item *ngFor="let item of detailsToPresent">
-              {{item.content}}
-              <ion-note item-end>
-                {{item.note}}
-              </ion-note>
-            </ion-item>
-        </ion-list>
-      </ion-content>
+  <ion-toolbar>
+    <ion-title>
+      Club Information
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary">Close</span>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item>
+    <ion-avatar item-start>
+      <img src="{{club?.img}}">
+    </ion-avatar>
+    <h2>{{club?.name}}</h2>
+    <p *ngIf="club.phoneNumber">Phone:  {{club.phoneNumber}} </p>
+    <p *ngIf="club.address">Address:  {{club.address}} </p>
+    <p *ngIf="club.openingHours">Opening:  {{club.openingHours[0]}} - {{club.openingHours[0]}}</p>
+  </ion-item>
+</ion-content>
