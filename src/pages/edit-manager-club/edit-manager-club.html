@@ -1,10 +1,10 @@
 <ion-header>
     <ion-navbar primary>
-        <ion-buttons end>
+        <!-- <ion-buttons end>
             <button (click)="onClickupdateInfo()">
             <ion-icon name="refresh"></ion-icon>
         </button>
-        </ion-buttons>
+        </ion-buttons> -->
         <ion-title>Edit Club</ion-title>
     </ion-navbar>
 </ion-header>
@@ -29,34 +29,31 @@
         </ion-row>
 
     </ion-card>
-    <form [formGroup]="formData">
+    <form [formGroup]="formData" #editClubForm="ngForm" (ngSubmit)="onClickupdateInfo()">
         <ion-list>
             <ion-item>
-                <ion-label floating>Image</ion-label>
-                <ion-input formControlName="img" type="text" value={{club?.img}} (blur)="onBlur($event)"></ion-input>
-            </ion-item>
-            <ion-item>
                 <ion-label floating>Name</ion-label>
-                <ion-input formControlName="name" type="text" value={{club?.name}} (blur)="onBlur($event)" ></ion-input>
+                <ion-input formControlName="name" type="text" [(ngModel)]="updatedClub.name"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label floating>Address</ion-label>
-                <ion-input formControlName="address" type="text" value={{club?.address}} (blur)="onBlur($event)"></ion-input>
+                <ion-input formControlName="address" type="text" [(ngModel)]="updatedClub.address"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label floating>Phone Number</ion-label>
-                <ion-input formControlName="phoneNumber" type="text" value={{club?.phoneNumber}} (blur)="onBlur($event)"></ion-input>
+                <ion-input formControlName="phoneNumber" type="text" [(ngModel)]="updatedClub.phoneNumber"></ion-input>
             </ion-item>
-
-                <!--<ion-item>
-                    <ion-label floating  >Open Houer</ion-label>  
-                    <ion-datetime formControlName="openHours" pickerFormat="HH" value="club.openingHours[0]"></ion-datetime>
+                <ion-item>
+                    <ion-label floating>Opening Hour</ion-label>  
+                    <ion-datetime formControlName="openingHour" pickerFormat="HH:mm" [(ngModel)]="updatedClub.openingHours[0]"></ion-datetime>
               </ion-item>
-
               <ion-item>
-                    <ion-label floating  >Close Hour</ion-label>  
-                    <ion-datetime formControlName="closeHours" pickerFormat="HH" value="club.openingHours[1]"></ion-datetime>
-                </ion-item>   -->
+                    <ion-label floating>Closing Hour</ion-label>  
+                    <ion-datetime formControlName="closingHour" pickerFormat="HH:mm" [(ngModel)]="updatedClub.openingHours[1]"></ion-datetime>
+                </ion-item>  
         </ion-list>
+        <button ion-button class="submit-btn" full type="submit" 
+            [disabled]="!editClubForm.form.valid">Edit Club
+        </button>
     </form>
 </ion-content>

@@ -46,6 +46,7 @@ export class ManagerComponent {
            console.log("getting manager from service:");
         this.manager = this.managerService.getLocalManager();
         this.club = this.managerService.getLocalClub();
+        console.log(this.club);
     }
 
       ngOnInit() {

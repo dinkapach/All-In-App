@@ -22,7 +22,11 @@ export class CloneService {
         copyOfClub.address = club.address;
         copyOfClub.openingHours = club.openingHours;
         copyOfClub.phoneNumber = club.phoneNumber;
-
+        copyOfClub.isManual = club.isManual;
+        copyOfClub.usersClub = club.usersClub;
+        copyOfClub.sales = club.sales;
+        copyOfClub.branches = club.branches;
+        
         return copyOfClub;
     }
 
