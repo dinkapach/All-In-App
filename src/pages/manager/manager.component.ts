@@ -13,7 +13,7 @@ import { UserService } from './../../services/user.service';
 import { User } from './../../models/user.model';
 import { Manager } from './../../models/manager.model';
 import { ShowCustomerComponent } from './../show-customer/show-customer.component';
-import { ShowStatisticsComponent } from './../show-statistics/show-statistics.component';
+import { ShowStatisticsComponent } from './../show-statistics/show.statistics.component';
 import 'rxjs/add/operator/map';
 import { AddSaleComponent } from './../add-sale/add-sale.component';
 import { AddPointsComponent } from './../add-points/add-points.component';
@@ -45,6 +45,7 @@ export class ManagerComponent {
            console.log("getting manager from service:");
         this.manager = this.managerService.getLocalManager();
         this.club = this.managerService.getLocalClub();
+        console.log(this.club);
     }
 
       ngOnInit() {
@@ -94,7 +95,8 @@ export class ManagerComponent {
     }
     subscribePointsToCustomerById()
     {
-         this.navCtrl.push(SubscirbePointsComponent);
+      
+          this.navCtrl.push(SubscirbePointsComponent);
     }
     onClickLogout()
     {  
