@@ -1,103 +1,86 @@
-<!-- <ion-card> -->
-  <!-- <ion-list> -->
-    <ion-item>
-  <!-- <div (click)="onClubClicked()"> -->
-        <ion-thumbnail item-start>
+<ion-item>
+    <ion-thumbnail item-start (click)="onClubClicked()">
       <img id="card-img" [src]="club.img" />
     </ion-thumbnail>
-    
-    <!-- <ion-card-content> -->
-      <!-- <ion-card-title> -->
-       <h2> {{club.name}}</h2>
-      <!-- </ion-card-title> -->
-          <!-- <ion-item> -->
-              <button ion-button large clear color="dark">
-              <ion-icon name="trophy" item-start large></ion-icon>
-              {{userPoints}}
-              </button>
-              <ion-row no-padding>
-                  <ion-col>
-                    <button ion-button clear small color="danger" icon-start (click)="onClickEditClub(club)" *ngIf="club.isManual">
-                        <ion-icon name='create'></ion-icon>
-                        Edit
-                      </button>
-                  </ion-col>
-                  <ion-col text-center>
-                    <button ion-button clear small color="danger" icon-start (click)="onClickDeleteClub(club)" *ngIf="club.isManual">
-                        <ion-icon name='trash'></ion-icon>
-                        delete
-                      </button>
-                  </ion-col>
-                  <ion-col text-right>
-                    <button ion-button clear small color="dark" icon-start (click)="onClickPresentClubInfo({club: club})">
-                        <ion-icon name='information-circle'></ion-icon>
-                        Club Info
-                      </button>
-                  </ion-col>
-                </ion-row>
-            <!-- </ion-item> -->
-    <!-- </ion-card-content> -->
-  <!-- </div> -->
-</ion-item>
-  <!-- </ion-list> -->
-<!-- </ion-card> -->
+    <h2> {{club.name}}</h2>
+    <button ion-button large clear color="dark">
+      <ion-icon name="trophy" item-start large></ion-icon>
+      {{userPoints}}
+    </button>
+    <ion-row no-padding>
+        <ion-col>
+          <button ion-button clear small color="danger" icon-start (click)="onClickEditClub(club)" *ngIf="club.isManual">
+              <ion-icon name='create'></ion-icon>
+              Edit
+            </button>
+        </ion-col>
+        <ion-col text-center>
+          <button ion-button clear small color="danger" icon-start (click)="onClickDeleteClub(club)" *ngIf="club.isManual">
+              <ion-icon name='trash'></ion-icon>
+              delete
+            </button>
+        </ion-col>
+        <ion-col text-right>
+          <button ion-button clear small color="dark" icon-start (click)="onClickPresentClubInfo({club: club})">
+              <ion-icon name='information-circle'></ion-icon>
+              Club Info
+            </button>
+        </ion-col>
+      </ion-row>
+  </ion-item>
 
-
-
-
-
-<!-- <ion-card>
-  <div (click)="onClubClicked()">
-    <img [src]="club.img" />
-    <ion-card-content>
-      <ion-card-title text-center>
-        {{club.name}}
-      </ion-card-title>
-      <div [ngSwitch]="subDetailsToPresent">
-        <div *ngSwitchCase="'sales'">
-          <p *ngFor="let sale of club.sales">
-            {{sale.description}}
-          </p>
-        </div>
-        <div *ngSwitchCase="'clubDetails'">
-          <ion-item>
-            <ion-icon name="call" item-start large></ion-icon>
-            <p>{{club.phoneNumber}}</p>
-          </ion-item>
-          <ion-item>
-            <ion-icon name="cart" item-start large></ion-icon>
-            <p>{{club.address}}</p>
-          </ion-item>
-
-        </div>
-        <div *ngSwitchDefault>
-          <ion-item>
-            <ion-icon name="call" item-start large></ion-icon>
-            <p>{{club.phoneNumber}}</p>
-          </ion-item>
-
-          <ion-item>
-              <ion-icon name="trophy" item-start large></ion-icon>
-              <p>{{userPoints}}</p>
+  <!-- <ion-card>
+    <div (click)="onClubClicked()">
+      <img [src]="club.img" />
+      <ion-card-content>
+        <ion-card-title text-center>
+          {{club.name}}
+        </ion-card-title>
+        <div [ngSwitch]="subDetailsToPresent">
+          <div *ngSwitchCase="'sales'">
+            <p *ngFor="let sale of club.sales">
+              {{sale.description}}
+            </p>
+          </div>
+          <div *ngSwitchCase="'clubDetails'">
+            <ion-item>
+              <ion-icon name="call" item-start large></ion-icon>
+              <p>{{club.phoneNumber}}</p>
             </ion-item>
+            <ion-item>
+              <ion-icon name="cart" item-start large></ion-icon>
+              <p>{{club.address}}</p>
+            </ion-item>
+  
+          </div>
+          <div *ngSwitchDefault>
+            <ion-item>
+              <ion-icon name="call" item-start large></ion-icon>
+              <p>{{club.phoneNumber}}</p>
+            </ion-item>
+  
+            <ion-item>
+                <ion-icon name="trophy" item-start large></ion-icon>
+                <p>{{userPoints}}</p>
+              </ion-item>
+          </div>
         </div>
-      </div>
-    </ion-card-content>
-  </div>
-
-  <ion-row no-padding>
-    <ion-col>
-      <button ion-button clear small color="danger" icon-start (click)="onClickEditClub(club)" *ngIf="club.isManual">
-          <ion-icon name='create'></ion-icon>
-          Edit
-        </button>
-    </ion-col>
-    <ion-col text-center>
-      <button ion-button clear small color="danger" icon-start (click)="onClickDeleteClub(club)" *ngIf="club.isManual">
-          <ion-icon name='trash'></ion-icon>
-          delete
-        </button>
-    </ion-col>
-  </ion-row>
-
-</ion-card> -->
+      </ion-card-content>
+    </div>
+  
+    <ion-row no-padding>
+      <ion-col>
+        <button ion-button clear small color="danger" icon-start (click)="onClickEditClub(club)" *ngIf="club.isManual">
+            <ion-icon name='create'></ion-icon>
+            Edit
+          </button>
+      </ion-col>
+      <ion-col text-center>
+        <button ion-button clear small color="danger" icon-start (click)="onClickDeleteClub(club)" *ngIf="club.isManual">
+            <ion-icon name='trash'></ion-icon>
+            delete
+          </button>
+      </ion-col>
+    </ion-row>
+  
+  </ion-card> -->
