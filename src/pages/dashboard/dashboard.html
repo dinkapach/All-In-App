@@ -9,8 +9,6 @@
   </ion-navbar>
   <ion-toolbar no-border-top>
       <ion-searchbar [(ngModel)]="searchClub" (ionInput)="searchClubs()" placeholder="search clubs"></ion-searchbar>
-      <!-- <ion-searchbar [hidden]="!showClubSearchBar" #clubSearchBar [(ngModel)]="searchClub" 
-      (ionInput)="searchClubs()" (ionCancel)="onClearClubSearchBar()" showCancelButton></ion-searchbar> -->
   </ion-toolbar>
 </ion-header>
 
@@ -22,16 +20,9 @@
   <button ion-button icon-only (click)="openPopupFilter($event)">
       <ion-icon name="more"></ion-icon> </button>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col *ngFor="let club of clubsDisplay">
-        <club-card [club]="club" [subDetailsToPresent]="chosenOption"></club-card>
-      </ion-col>
-      <!-- <ion-col>
-        <club-card [club]="club" [subDetailsToPresent]="chosenOption"></club-card>
-      </ion-col> -->
-    </ion-row>
-  </ion-grid>
+  <ion-list>
+      <club-card *ngFor="let club of clubsDisplay" [club]="club" [subDetailsToPresent]="chosenOption"></club-card>
+  </ion-list>
 
   <ion-grid>
     <ion-row>

@@ -1,41 +1,47 @@
-<ion-card>
-  <div (click)="onClubClicked()">
-    <img id="card-img" [src]="club.img" />
-    <ion-card-content>
-      <ion-card-title text-center>
-        {{club.name}}
-      </ion-card-title>
-          <ion-item>
+<!-- <ion-card> -->
+  <!-- <ion-list> -->
+    <ion-item>
+  <!-- <div (click)="onClubClicked()"> -->
+        <ion-thumbnail item-start>
+      <img id="card-img" [src]="club.img" />
+    </ion-thumbnail>
+    
+    <!-- <ion-card-content> -->
+      <!-- <ion-card-title> -->
+       <h2> {{club.name}}</h2>
+      <!-- </ion-card-title> -->
+          <!-- <ion-item> -->
               <button ion-button large clear color="dark">
               <ion-icon name="trophy" item-start large></ion-icon>
               {{userPoints}}
               </button>
-            </ion-item>
-    </ion-card-content>
-  </div>
+              <ion-row no-padding>
+                  <ion-col>
+                    <button ion-button clear small color="danger" icon-start (click)="onClickEditClub(club)" *ngIf="club.isManual">
+                        <ion-icon name='create'></ion-icon>
+                        Edit
+                      </button>
+                  </ion-col>
+                  <ion-col text-center>
+                    <button ion-button clear small color="danger" icon-start (click)="onClickDeleteClub(club)" *ngIf="club.isManual">
+                        <ion-icon name='trash'></ion-icon>
+                        delete
+                      </button>
+                  </ion-col>
+                  <ion-col text-right>
+                    <button ion-button clear small color="dark" icon-start (click)="onClickPresentClubInfo({club: club})">
+                        <ion-icon name='information-circle'></ion-icon>
+                        Club Info
+                      </button>
+                  </ion-col>
+                </ion-row>
+            <!-- </ion-item> -->
+    <!-- </ion-card-content> -->
+  <!-- </div> -->
+</ion-item>
+  <!-- </ion-list> -->
+<!-- </ion-card> -->
 
-  <ion-row no-padding>
-    <ion-col>
-      <button ion-button clear small color="danger" icon-start (click)="onClickEditClub(club)" *ngIf="club.isManual">
-          <ion-icon name='create'></ion-icon>
-          Edit
-        </button>
-    </ion-col>
-    <ion-col text-center>
-      <button ion-button clear small color="danger" icon-start (click)="onClickDeleteClub(club)" *ngIf="club.isManual">
-          <ion-icon name='trash'></ion-icon>
-          delete
-        </button>
-    </ion-col>
-    <ion-col text-right>
-      <button ion-button clear small color="dark" icon-start (click)="onClickPresentClubInfo({club: club})">
-          <ion-icon name='information-circle'></ion-icon>
-          Club Info
-        </button>
-    </ion-col>
-  </ion-row>
-
-</ion-card>
 
 
 
