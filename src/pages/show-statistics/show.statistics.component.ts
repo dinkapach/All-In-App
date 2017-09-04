@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
-
 import { Club } from './../../models/club.model';
 import { UserClub } from './../../models/userClub.model';
 import { UserService } from './../../services/user.service';
