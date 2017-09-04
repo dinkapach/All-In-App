@@ -64,21 +64,14 @@ export class ManagerService {
         })
     }
 
-    addPointsToCustomerById(customerId: number, clubId:number, numOfPoints: number){
+    addPointsToCustomerById(customerId: any, clubObjId:any, numOfPoints: number){
+        console.log("in addPointsToCustomerById", customerId, clubObjId, numOfPoints)
         this.http.post(`${this.url}/api/manager/addPointsToCustomerById`,{
             customerId : customerId,
-            clubId : clubId,
+            clubObjId : clubObjId,
             numOfPoints : numOfPoints
             
-        }).map(res => res.json())
-         .subscribe(function (isAuth) {
-             if(isAuth) {
-                console.log("Added points"); //where customer not found still print this
-            }
-            else {
-                console.log("Not added points");
-            }
-        })
+        }).map(res => res.json());
     }
 
 
