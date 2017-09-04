@@ -6,6 +6,8 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 import { Http } from '@angular/http';
+import { User } from '../models/user.model';
+import { Credit } from '../models/credit.model';
 
 
 @Injectable()
@@ -25,6 +27,19 @@ export class CloneService {
 
         return copyOfClub;
     }
+
+    // getDeepCopyOfCustomer(customer: User) {
+    //     let copyOfCustomer: User = new User();
+    //     copyOfCustomer.id = customer.id;
+    //     copyOfCustomer.clubId = customer.clubId;
+    //     copyOfCustomer.firstName = customer.firstName;
+    //     copyOfCustomer.lastName = customer.lastName;
+    //     copyOfCustomer.email = customer.email;
+    //     copyOfCustomer.password = customer.password;
+    //     copyOfCustomer.userName = customer.userName;
+
+    //     return copyOfCustomer;
+    // }
 
     getDeepCopyOfManager(manager: Manager) {
         let copyOfManager: Manager = new Manager();
@@ -63,6 +78,18 @@ export class CloneService {
         copyOfSale.price =  sale.price;
 
         return copyOfSale;
+    }
+
+    getDeepCopyOfCredit(credit: Credit) {
+        let copyOfCredit: Credit = new Credit();
+        copyOfCredit.id = credit.id;
+        copyOfCredit.clubId = credit.clubId;
+        copyOfCredit.dateOfExpired = credit.dateOfExpired;
+        copyOfCredit.dateOfPurchase = credit.dateOfPurchase;
+        copyOfCredit.items = credit.items;
+        copyOfCredit.totalCredit = credit.totalCredit;
+        
+        return copyOfCredit;
     }
 
 

@@ -21,7 +21,11 @@ import { SubscirbePointsComponent } from './../subscribe-points/subscribe-points
 import { SigningService } from '../../services/signing.service';
 import { LoginComponent } from '../login/login.component';
 import { ShowSalesComponent } from './../show-sales/show-sales.component';
+
+import { EditManagerClubComponent } from '../edit-manager-club/edit-manager-club.component';
+
 import { EditProfileManagerComponent } from './../edit-profileManager/edit.profileManager.component';
+
 
 
 
@@ -49,6 +53,11 @@ export class ManagerComponent {
     addSale(){
         this.navCtrl.push(AddSaleComponent);
     }
+
+    onClickEditClub(club){
+         this.navCtrl.push(EditManagerClubComponent);
+    }
+    
 
     // showCustomers(){
     //     console.log(this.manager);

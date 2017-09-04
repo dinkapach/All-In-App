@@ -29,7 +29,7 @@ export class SaleCardManagerComponent implements OnInit {
     } 
 
     deleteSaleClick(sale){
-            console.log("in delete sale");
+            console.log("in delete sale", sale.id);
             this.managerService.deleteSale(this.sale.id)
             .subscribe(isAuth => {
                 console.log("From 'delete-sale.component', print 'isAuth': ", isAuth);

@@ -30,6 +30,7 @@ export class UserCardComponent implements OnInit {
 
     ngOnInit() {
         console.log(this.customer);
+        console.log(this.customer._id);
     //     if (this.userClub != null){
     //     this.managerService.getCustomerDetails(this.userClub.customerId)
     //     .subscribe(userDisplay=>{
@@ -39,15 +40,35 @@ export class UserCardComponent implements OnInit {
     // }
     }
 
-    deleteUserClick(userToRemove) {
-        console.log("deleteUserClick, user to removee:", userToRemove)
-        this.managerService.deleteCustomerFromClub(userToRemove, this.managerService.getLocalManager().clubId)
-            .subscribe(isDeleted => {
-                if (isDeleted) {
-                    console.log("user deleted from club succecfully");
-                    this.presentAlert();
+    // deleteUserClick(customer) {
+    //     console.log (this.managerService.getLocalManager().clubId);
+    //     console.log("deleteUserClick, user to removee:", customer);
+    //     // this.userService.getUserById(userToRemove.customerId.id);
+        
+    //     this.managerService.deleteCustomerFromClub(customer, this.managerService.getLocalManager().clubId)
+    //         .subscribe(isDeleted => {
+    //             if (isDeleted) {
+    //                 console.log("user deleted from club succecfully");
+    //                 this.presentAlert();
+    //             }
+    //         })
+    // }
+
+        deleteUserClickTest(customer){
+          console.log("in delete user test" ,customer.customerId._id);
+            console.log("in delete user test" , customer );
+            this.managerService.deleteUserTest(customer.customerId._id)
+            .subscribe(isAuth => {
+                console.log("From 'delete-sale.component', print 'isAuth': ", isAuth);
+                if(isAuth){
+                    alert("sale deleted");
+                     this.userDeleted.emit(customer);
                 }
-            })
+            else{
+                alert("error delete sale");
+                console.log("unSuccess");
+            }
+        });
     }
 
     presentAlert() {

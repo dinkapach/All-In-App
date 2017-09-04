@@ -129,6 +129,15 @@ export class ManagerService {
         .map( res => res.json());
     }
 
+        deleteUserTest(customerId: any): Observable<boolean> {
+            console.log("heeeeeeeeeeeeeeeeeeehncfmcf,dl,dkdm");
+        return this.http.post(`${this.url}/api/manager/deleteUserTest`, {
+            customerId: customerId,
+            clubId: this.getClubId()
+         })
+        .map( res => res.json());
+    }
+
      editSale(sale: Sale): Observable<boolean> {
          console.log ('service edit sale :' + this.getClubId());
         return this.http.post(`${this.url}/api/manager/editSale`, {
@@ -139,9 +148,9 @@ export class ManagerService {
     }
 
     updateClub(clubUpdate : any) : Observable<boolean> {
-        console.log("updating club: " + clubUpdate);
+        console.log("updating club: " , clubUpdate);
         return this.http.post(`${this.url}/api/manager/updateClubInfo`, { 
-            customerUpdate: clubUpdate,
+            clubUpdate: clubUpdate,
             clubId: this.getClubId()
          })
         .map( res => res.json());

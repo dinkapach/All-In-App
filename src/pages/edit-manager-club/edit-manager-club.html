@@ -37,15 +37,11 @@
             </ion-item>
             <ion-item>
                 <ion-label floating>Name</ion-label>
-                <ion-input formControlName="name" type="text" value={{club?.name}} (blur)="onBlur($event)" disabled="true"></ion-input>
+                <ion-input formControlName="name" type="text" value={{club?.name}} (blur)="onBlur($event)" ></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label floating>Address</ion-label>
                 <ion-input formControlName="address" type="text" value={{club?.address}} (blur)="onBlur($event)"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label floating>Opening Hours</ion-label>
-                <ion-input formControlName="openingHours" type="text" value={{club?.openingHours}} (blur)="onBlur($event)"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label floating>Phone Number</ion-label>
@@ -53,5 +49,4 @@
             </ion-item>
         </ion-list>
     </form>
-    <button (click)="onClickTest()">Test</button>
 </ion-content>
