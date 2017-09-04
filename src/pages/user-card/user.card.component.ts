@@ -40,35 +40,18 @@ export class UserCardComponent implements OnInit {
     // }
     }
 
-    // deleteUserClick(customer) {
-    //     console.log (this.managerService.getLocalManager().clubId);
-    //     console.log("deleteUserClick, user to removee:", customer);
-    //     // this.userService.getUserById(userToRemove.customerId.id);
+    deleteUserClick(customer) {
+        console.log (this.managerService.getLocalManager().clubId);
+        console.log("deleteUserClick, user to removee:", customer);
+        // this.userService.getUserById(userToRemove.customerId.id);
         
-    //     this.managerService.deleteCustomerFromClub(customer, this.managerService.getLocalManager().clubId)
-    //         .subscribe(isDeleted => {
-    //             if (isDeleted) {
-    //                 console.log("user deleted from club succecfully");
-    //                 this.presentAlert();
-    //             }
-    //         })
-    // }
-
-        deleteUserClickTest(customer){
-          console.log("in delete user test" ,customer.customerId._id);
-            console.log("in delete user test" , customer );
-            this.managerService.deleteUserTest(customer.customerId._id)
-            .subscribe(isAuth => {
-                console.log("From 'delete-sale.component', print 'isAuth': ", isAuth);
-                if(isAuth){
-                    alert("sale deleted");
-                     this.userDeleted.emit(customer);
+        this.managerService.deleteCustomerFromClub(customer.customerId._id, this.managerService.getLocalManager().clubId)
+            .subscribe(isDeleted => {
+                if (isDeleted) {
+                    console.log("user deleted from club succecfully");
+                    this.presentAlert();
                 }
-            else{
-                alert("error delete sale");
-                console.log("unSuccess");
-            }
-        });
+            })
     }
 
     presentAlert() {

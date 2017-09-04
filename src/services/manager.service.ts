@@ -82,9 +82,9 @@ export class ManagerService {
     }
 
 
-    deleteCustomerFromClub(user: User, clubId: any) : Observable<Boolean> {
+    deleteCustomerFromClub(userObjectId: any, clubId: any) : Observable<Boolean> {
         return this.http.post(`${this.url}/api/manager/deleteCustomer`, {
-            user: user,
+            userObjectId: userObjectId,
             clubId: clubId
          })
         .map( res => res.json());
@@ -129,14 +129,6 @@ export class ManagerService {
         .map( res => res.json());
     }
 
-        deleteUserTest(customerId: any): Observable<boolean> {
-            console.log("heeeeeeeeeeeeeeeeeeehncfmcf,dl,dkdm");
-        return this.http.post(`${this.url}/api/manager/deleteUserTest`, {
-            customerId: customerId,
-            clubId: this.getClubId()
-         })
-        .map( res => res.json());
-    }
 
      editSale(sale: Sale): Observable<boolean> {
          console.log ('service edit sale :' + this.getClubId());
