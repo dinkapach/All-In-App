@@ -1,7 +1,7 @@
 {
     "DEV" : "http://localhost:3000",
     "PRODUCTION" : "https://all-in-app.herokuapp.com",
-    "RUNNING" : "PRODUCTION",
+    "RUNNING" : "DEV",
 
     "CUSTOMER_LOGIN_URL": "/api/index",
     "MANAGER_LOGIN_URL": "/api/index/manager",

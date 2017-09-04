@@ -11,6 +11,7 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 import {Observable} from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
+import { CloneService } from '../../helpers/clone-service';
 
 //TODO:
 //Send the updated fields instead of everything
@@ -27,19 +28,17 @@ export class EditManagerClubComponent{
 
     constructor(private fBuilder : FormBuilder, private http: Http, private navCtrl : NavController,
         private managerService: ManagerService, private navParams: NavParams, private alertCtrl: AlertController, 
-        private cameraService: CameraService) {
+        private cameraService: CameraService, private cloneService: CloneService) {
         this.club = this.managerService.getLocalClub();
-        this.updatedClub = { };
+        this.updatedClub = this.cloneService.getDeepCopyOfClub(this.club);
 
         this.formData = fBuilder.group({
             'name': ["", Validators.required],
             'address': ["", Validators.required],
             'phoneNumber': ["", Validators.required],
-            'openingHours': ["", Validators.required],
-            
-            'img': [""],
+            'openingHour': ["", Validators.required],
+            'closingHour': ["", Validators.required],
         })
-        console.log(this.formData.controls);
         this.loadFormValuesFromUser();
     }
 
@@ -96,10 +95,5 @@ export class EditManagerClubComponent{
       buttons: ['סבבה']
     });
     alert.present();
-    }
-
-    onBlur(event){
-        var formName = event.target.attributes['formControlName'].value;
-        this.updatedClub[formName] = this.formData.value[formName];
     }
 }
