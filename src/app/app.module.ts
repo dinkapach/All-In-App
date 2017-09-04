@@ -68,10 +68,9 @@ import { EditSaleComponent } from '../pages/edit-sale/edit.sale.component';
 import { EditManagerClubComponent } from '../pages/edit-manager-club/edit-manager-club.component';
 import { SaleViewComponent } from '../pages/sale-view/sale.view.component';
 import { SaleCardManagerComponent } from '../pages/sale-cardManager/sale.cardManager.component';
-import { ShowStatisticsComponent } from '../pages/show-statistics/show-statistics.component';
+import { ShowStatisticsComponent } from '../pages/show-statistics/show.statistics.component';
 import { EditProfileManagerComponent } from '../pages/edit-profileManager/edit.profileManager.component';
 
-import { HomePageComponent } from '../pages/home-page/home.page.component';
 @NgModule({
   declarations: [
     MyApp,
@@ -110,7 +109,7 @@ import { HomePageComponent } from '../pages/home-page/home.page.component';
     SaleCardManagerComponent,
     ClubInformation,
     EditProfileManagerComponent,
-    HomePageComponent,
+
     // super manager stuff
     SuperManagerDashboardComponent,
     ManagerCardComponent,
@@ -168,7 +167,7 @@ import { HomePageComponent } from '../pages/home-page/home.page.component';
     SaleCardManagerComponent,
     ClubInformation,
     EditProfileManagerComponent,
-    HomePageComponent,
+   
     // super manager stuff
     SuperManagerDashboardComponent,
     ManagerCardComponent,
