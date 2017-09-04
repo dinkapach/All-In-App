@@ -1,3 +1,4 @@
+import { Manager } from './../../models/manager.model';
 import { User } from './../../models/user.model';
 import { Club } from './../../models/club.model';
 import { UserService } from './../../services/user.service';
@@ -17,7 +18,6 @@ import { ManagerService } from '../../services/manager.service';
 })
 export class UserCardComponent implements OnInit {
     @Input()
-
     customer;
     // userDisplay : User;
 
@@ -31,20 +31,20 @@ export class UserCardComponent implements OnInit {
     ngOnInit() {
         console.log(this.customer);
         console.log(this.customer._id);
-    //     if (this.userClub != null){
-    //     this.managerService.getCustomerDetails(this.userClub.customerId)
-    //     .subscribe(userDisplay=>{
-            
-    //         this.userDisplay = userDisplay;
-    //     })
-    // }
+        //     if (this.userClub != null){
+        //     this.managerService.getCustomerDetails(this.userClub.customerId)
+        //     .subscribe(userDisplay=>{
+
+        //         this.userDisplay = userDisplay;
+        //     })
+        // }
     }
 
     deleteUserClick(customer) {
-        console.log (this.managerService.getLocalManager().clubId);
+        console.log(this.managerService.getLocalManager().clubId);
         console.log("deleteUserClick, user to removee:", customer);
         // this.userService.getUserById(userToRemove.customerId.id);
-        
+
         this.managerService.deleteCustomerFromClub(customer.customerId._id, this.managerService.getLocalManager().clubId)
             .subscribe(isDeleted => {
                 if (isDeleted) {
@@ -63,5 +63,63 @@ export class UserCardComponent implements OnInit {
         alert.onDidDismiss(() => {
             this.navCtrl.pop();
         });
+    }
+
+    onClickAddPoints() {
+        //this.managerService.getLocalManager().clubId
+        //this.managerService.addPointsToCustomerById(id, 10, points);
+        //this.managerService.addPointsToCustomerById
+
+        let title = "Add Points";
+        let message = "insert the how many points to add"
+
+        //this.customer.customerId, this.managerService.getLocalManager().clubId, data.title
+
+        //this.managerService.addPointsToCustomerById(this.customer._id, this.managerService.getLocalManager().clubId ,10);
+
+        //this.showPrompt(title, message, this.addPointsToCustomer)
+        this.addPointsToCustomer(10);
+    }
+
+
+    showPrompt(title, message, callBack) {
+        let prompt = this.alertCtrl.create({
+            title: title,
+            message: message,
+            inputs: [
+                {
+                    name: 'points',
+                    placeholder: 'Points'
+                },
+            ],
+            buttons: [
+                {
+                    text: 'Cancel',
+                    handler: data => {
+                        console.log('Cancel clicked');
+                    }
+                },
+                {
+                    text: 'Save',
+                    handler: data => {
+                        callBack(data.points)
+                    }
+                }
+            ]
+        });
+        prompt.present();
+    }
+
+
+    addPointsToCustomer(points) {
+        let newPoints = this.customer.points + points;
+        console.log("new points: ", newPoints);
+
+        this.customer.points = newPoints;
+        this.managerService.addPointsToCustomerById( this.customer._id, this.managerService.getLocalManager().clubId, newPoints);
+
+
+        //this.managerService.addPointsToCustomerById(this.customer._id, this.managerService.getLocalManager().clubId ,10);
+        
     }
 }
