@@ -13,7 +13,7 @@ import { UserService } from './../../services/user.service';
 import { User } from './../../models/user.model';
 import { Manager } from './../../models/manager.model';
 import { ShowCustomerComponent } from './../show-customer/show-customer.component';
-import { ShowStatisticsComponent } from './../show-statistics/show-statistics.component';
+import { ShowStatisticsComponent } from './../show-statistics/show.statistics.component';
 import 'rxjs/add/operator/map';
 import { AddSaleComponent } from './../add-sale/add-sale.component';
 import { AddPointsComponent } from './../add-points/add-points.component';
@@ -25,7 +25,6 @@ import { ShowSalesComponent } from './../show-sales/show-sales.component';
 import { EditManagerClubComponent } from '../edit-manager-club/edit-manager-club.component';
 
 import { EditProfileManagerComponent } from './../edit-profileManager/edit.profileManager.component';
-import { HomePageComponent } from '../home-page/home.page.component';
 
 
 
@@ -95,8 +94,8 @@ export class ManagerComponent {
     }
     subscribePointsToCustomerById()
     {
-        this.navCtrl.push(HomePageComponent);
-        //  this.navCtrl.push(SubscirbePointsComponent);
+      
+          this.navCtrl.push(SubscirbePointsComponent);
     }
     onClickLogout()
     {  
