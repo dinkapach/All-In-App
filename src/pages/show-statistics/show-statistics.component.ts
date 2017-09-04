@@ -2,33 +2,31 @@ import { UserClub } from './../../models/userClub.model';
 import { Club } from './../../models/club.model';
 import { UserService } from './../../services/user.service';
 import { User } from './../../models/user.model';
-
+import { Chart } from 'chart.js';
 import { Http } from '@angular/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'; 
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import {Observable} from 'rxjs/Observable';
 import {UserCardComponent} from  '../user-card/usercard.component';
-
-// import {ManagerRepository} from '../.././database/repositories/manager.repository';
 import 'rxjs/add/operator/map';
 import { ClubCardComponent } from '../clubs/club-card/club.card.component';
 import { Credit } from '../../models/credit.model';
-
 import { Sale } from './../../models/sales.model';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-//import { UserService } from '../../services/user.service';
 import { ManagerComponent } from '../manager/manager.component';
 import { ManagerService } from '../../services/manager.service';
+import { HomePageComponent } from '../home-page/home.page.component';
+import { ViewChild } from '@angular/core';
 
 
-//TODO:
-//Send the updated fields instead of everything
 
 @Component({
     selector: 'show-statistics',
     templateUrl : 'show-statistics.html'
 })
 export class ShowStatisticsComponent{
+
+   @ViewChild('barCanvas') barCanvas;
     club: Club;
     userCard: UserClub;
     customerDisplay: UserClub[];
@@ -47,6 +45,8 @@ export class ShowStatisticsComponent{
           this.getStatistics();
         }
 
+      
+
         getStatistics(){
           var date = new Date();
           var thisMonth = date.getMonth;
@@ -56,7 +56,7 @@ export class ShowStatisticsComponent{
         customersArr = this.managerService.getLocalCustomers()
        
         customersArr.forEach(customer => {
-          //console.log("customer" , customer);
+         
           var date = new Date(customer.customerId.birthday);
           var din = new Date(age);
           var age = new Date().getFullYear() - date.getFullYear(); 
@@ -77,10 +77,11 @@ export class ShowStatisticsComponent{
            this.joinedThisMonth = this.getNumOfJoinedThisMonth();
 
            console.log("total customerssss: " + this.totalCustomers);
-          //  console.log("childs: " + childs);
-          //  console.log("teens: " + teenagers);
-          //  console.log("olds: " + olds);
-          //  console.log("joinedThisMonth: " + joinedThisMonth);    
+           this.navCtrl.push(HomePageComponent ,{totalCustomers: this.totalCustomers, 
+             joinedThisMonth : this.joinedThisMonth, childs: this.childs, 
+             olds: this.olds, teenagers: this.teenagers});
+
+  
       }
 
       getNumOfJoinedThisMonth(){

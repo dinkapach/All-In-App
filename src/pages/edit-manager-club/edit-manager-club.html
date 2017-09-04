@@ -47,6 +47,16 @@
                 <ion-label floating>Phone Number</ion-label>
                 <ion-input formControlName="phoneNumber" type="text" value={{club?.phoneNumber}} (blur)="onBlur($event)"></ion-input>
             </ion-item>
+
+                <!--<ion-item>
+                    <ion-label floating  >Open Houer</ion-label>  
+                    <ion-datetime formControlName="openHours" pickerFormat="HH" value="club.openingHours[0]"></ion-datetime>
+              </ion-item>
+
+              <ion-item>
+                    <ion-label floating  >Close Hour</ion-label>  
+                    <ion-datetime formControlName="closeHours" pickerFormat="HH" value="club.openingHours[1]"></ion-datetime>
+                </ion-item>   -->
         </ion-list>
     </form>
 </ion-content>

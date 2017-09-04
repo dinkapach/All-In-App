@@ -25,6 +25,7 @@ import { ShowSalesComponent } from './../show-sales/show-sales.component';
 import { EditManagerClubComponent } from '../edit-manager-club/edit-manager-club.component';
 
 import { EditProfileManagerComponent } from './../edit-profileManager/edit.profileManager.component';
+import { HomePageComponent } from '../home-page/home.page.component';
 
 
 
@@ -94,7 +95,8 @@ export class ManagerComponent {
     }
     subscribePointsToCustomerById()
     {
-         this.navCtrl.push(SubscirbePointsComponent);
+        this.navCtrl.push(HomePageComponent);
+        //  this.navCtrl.push(SubscirbePointsComponent);
     }
     onClickLogout()
     {  

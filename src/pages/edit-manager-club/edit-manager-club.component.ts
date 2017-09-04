@@ -35,6 +35,8 @@ export class EditManagerClubComponent{
             'name': ["", Validators.required],
             'address': ["", Validators.required],
             'phoneNumber': ["", Validators.required],
+            'openingHours': ["", Validators.required],
+            
             'img': [""],
         })
         console.log(this.formData.controls);
