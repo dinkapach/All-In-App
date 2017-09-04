@@ -66,23 +66,21 @@ export class UserCardComponent implements OnInit {
     }
 
     onClickAddPoints() {
-        //this.managerService.getLocalManager().clubId
-        //this.managerService.addPointsToCustomerById(id, 10, points);
-        //this.managerService.addPointsToCustomerById
-
         let title = "Add Points";
         let message = "insert the how many points to add"
 
-        //this.customer.customerId, this.managerService.getLocalManager().clubId, data.title
+        this.showAddPrompt(title, message)
+    }
 
-        //this.managerService.addPointsToCustomerById(this.customer._id, this.managerService.getLocalManager().clubId ,10);
+    onClickSubscribePoints() {
+        let title = "subscribe Points";
+        let message = "insert the how many points to subscribe"
 
-        //this.showPrompt(title, message, this.addPointsToCustomer)
-        this.addPointsToCustomer(10);
+        this.showRemovePrompt(title, message)
     }
 
 
-    showPrompt(title, message, callBack) {
+    showAddPrompt(title, message) {
         let prompt = this.alertCtrl.create({
             title: title,
             message: message,
@@ -102,7 +100,35 @@ export class UserCardComponent implements OnInit {
                 {
                     text: 'Save',
                     handler: data => {
-                        callBack(data.points)
+                        this.addPointsToCustomer(data.points)
+                    }
+                }
+            ]
+        });
+        prompt.present();
+    }
+
+    showRemovePrompt(title, message) {
+        let prompt = this.alertCtrl.create({
+            title: title,
+            message: message,
+            inputs: [
+                {
+                    name: 'points',
+                    placeholder: 'Points'
+                },
+            ],
+            buttons: [
+                {
+                    text: 'Cancel',
+                    handler: data => {
+                        console.log('Cancel clicked');
+                    }
+                },
+                {
+                    text: 'Save',
+                    handler: data => {
+                        this.subscribePointsFromCustomer(data.points)
                     }
                 }
             ]
@@ -112,14 +138,29 @@ export class UserCardComponent implements OnInit {
 
 
     addPointsToCustomer(points) {
-        let newPoints = this.customer.points + points;
-        console.log("new points: ", newPoints);
-
-        this.customer.points = newPoints;
-        this.managerService.addPointsToCustomerById( this.customer._id, this.managerService.getLocalManager().clubId, newPoints);
-
-
-        //this.managerService.addPointsToCustomerById(this.customer._id, this.managerService.getLocalManager().clubId ,10);
-        
+        this.managerService.addPointsToCustomerById( this.customer.customerId._id, this.managerService.getLocalManager().clubId, points)
+        .subscribe( res => {
+            console.log("is updated", res);
+            if(res.isUpdated){
+                this.customer.points = res.newPoints;
+            }
+            else{
+                console.log("err");
+            }
+        })
     }
+
+    subscribePointsFromCustomer(points) {
+        this.managerService.subscribePointsToCustomerById( this.customer.customerId._id, this.managerService.getLocalManager().clubId, points)
+        .subscribe( res => {
+            console.log("is updated");
+            if(res.isUpdated){
+                this.customer.points = res.newPoints;
+            }
+            else{
+                console.log("err");
+            }
+        })
+    }
+
 }

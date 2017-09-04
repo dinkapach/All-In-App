@@ -16,8 +16,6 @@ import { ShowCustomerComponent } from './../show-customer/show-customer.componen
 import { ShowStatisticsComponent } from './../show-statistics/show-statistics.component';
 import 'rxjs/add/operator/map';
 import { AddSaleComponent } from './../add-sale/add-sale.component';
-import { AddPointsComponent } from './../add-points/add-points.component';
-import { SubscirbePointsComponent } from './../subscribe-points/subscribe-points.component';
 import { SigningService } from '../../services/signing.service';
 import { LoginComponent } from '../login/login.component';
 import { ShowSalesComponent } from './../show-sales/show-sales.component';
@@ -86,16 +84,7 @@ export class ManagerComponent {
     showSales(){
         this.navCtrl.push(ShowSalesComponent, {club: this.club});
     }
-    
-    addPointsToCustomerById()
-    {
-        this.navCtrl.push(AddPointsComponent);
-  
-    }
-    subscribePointsToCustomerById()
-    {
-         this.navCtrl.push(SubscirbePointsComponent);
-    }
+
     onClickLogout()
     {  
         this.signService.logoutUser().subscribe(isAuth => {
