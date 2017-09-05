@@ -53,6 +53,7 @@ export class EditProfileComponent {
     }
 
     onClickupdateInfo() {
+        // console.log(this.updatedUser);
         this.userService.updateUser(this.updatedUser)
             .subscribe(customer => {
                 // console.log(customer);

@@ -61,7 +61,7 @@
             </ion-item>
             <ion-item>
                 <ion-label floating>Birthday</ion-label>
-                <ion-input formControlName="birthday" type="Date" [ngModel]="updatedUser.birthday  | date:'yyyy-MM-dd'"></ion-input>
+                <ion-input formControlName="birthday" type="Date" [(ngModel)]="updatedUser.birthday"></ion-input>
             </ion-item>
         </ion-list>
         <button ion-button class="submit-btn" full type="submit" [disabled]="!updateProfileForm.form.valid">Update Profile</button>
