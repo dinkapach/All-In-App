@@ -27,14 +27,15 @@
             <ion-label floating>Image</ion-label>
             <ion-input formControlName="img" type="text" value={{user?.img}} (blur)="onBlur($event)"></ion-input>
     </ion-item> -->
-    
+    <img id="profile-img" [src]="updatedUser.img"/>
+    <ion-buttons text-center>
+    <button ion-button clear small color="danger" icon-start (click)="onClickOpenCameraOptionTake()">
+        <ion-icon name='create'></ion-icon>
+        Edit Photo
+    </button>
+    </ion-buttons>
     <form [formGroup]="formData" #updateProfileForm="ngForm" (ngSubmit)="onClickupdateInfo()">
         <ion-list>
-            <img id="profile-img" [src]="updatedUser.img"/>
-            <button ion-button clear small color="danger" icon-start (click)="onClickOpenCameraOptionTake()">
-                <ion-icon name='create'></ion-icon>
-                Edit
-            </button>
             <ion-item>
                 <ion-label floating>Id</ion-label>
                 <ion-input type="text" value={{user?.id}} disabled="true"></ion-input>
