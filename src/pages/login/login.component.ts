@@ -50,13 +50,16 @@ export class LoginComponent {
                 }
                 else{
                     console.log("problam in submit login for super manager");
+                    alert("Your user name or password inncorrect");
                 }
             },
             err => {
                 console.log(err);
                 alert(err);
             },
-            () => this.loadingService.dismissLoading());
+            () => {
+                this.loadingService.dismissLoading();
+            });
         }
         else {
             this.signService.loginUser(this.email.toLowerCase(), this.password, this.isManager)

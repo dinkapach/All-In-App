@@ -101,9 +101,9 @@ export class ClubCardSuperComponent implements OnInit {
             buttons: ['סבבה']
         });
         alert.present();
-        alert.onDidDismiss(() => {
-            this.navCtrl.pop();
-        });
+        // alert.onDidDismiss(() => {
+        //     this.navCtrl.pop();
+        // });
     }
 
 

@@ -15,14 +15,6 @@ export class SigningSuperManagerService {
         console.log(this.url);
     }
 
-    logoutUser(): Observable<Boolean> {
-        return Observable.create(observer => {
-            this.storage.remove(environment.CURRENT_USER_KEY).then((isAuth) => {
-                observer.next(true);
-                observer.complete();
-            });
-        });
-    }
 
     loginSuperManager(email: string, password: string): Observable<any>  {
         let loginSuperManagerUrl = this.getLoginSuperManagerUrl();

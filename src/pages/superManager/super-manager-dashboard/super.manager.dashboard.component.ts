@@ -1,3 +1,4 @@
+import { LoginComponent } from './../../login/login.component';
 import { DeleteCustomerComponent } from './../customerActions/delete-customer/delete.customer.component';
 import { EditDeleteClubComponent } from './../clubActions/edit-delete-club/edit.delete.club.component';
 import { AddClubComponent } from './../clubActions/add-club/add.club.component';
@@ -46,6 +47,10 @@ export class SuperManagerDashboardComponent implements OnInit{
                 this.navCtrl.push(AddClubToManagerComponent);
                 break;
          }
+     }
+
+     logout() {
+         this.navCtrl.setRoot(LoginComponent);
      }
 
      onClickCustomerAction(action){
