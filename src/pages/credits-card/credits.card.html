@@ -9,7 +9,7 @@
   </ion-card-content>
   <ion-item>
       <ion-label>Remind me a week before</ion-label>
-      <ion-toggle [(ngModel)]="doesNotificationScheduled" (click)="onClickNotificationToggle()"></ion-toggle>
+      <ion-toggle [(ngModel)]="doesNotificationScheduled" (ionChange)="onChangeNotificationToggle()"></ion-toggle>
   </ion-item>
   <ion-row no-padding>
     <ion-col>

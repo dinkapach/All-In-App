@@ -18,6 +18,7 @@ export class CreditsCardComponent implements OnInit {
    credit : Credit;
    user : User;
    doesNotificationScheduled: boolean;
+   firstInitToggle: boolean = true;
    @Output() creditDeleted = new EventEmitter();
 
     constructor(private clubService : ClubService, private navCtrl: NavController,
@@ -67,12 +68,21 @@ export class CreditsCardComponent implements OnInit {
         alert("notification scheduled");
     }
 
-    onClickNotificationToggle(){
+    handleNotificationToggle(){
         if(this.doesNotificationScheduled){
             this.scheduleNotification(this.credit.id);
         }
         else{
             this.cancelNotification(this.credit.id);
+        }
+    }
+
+    onChangeNotificationToggle(){
+        if(this.firstInitToggle){
+            this.firstInitToggle = false;
+        }
+        else{
+            this.handleNotificationToggle();
         }
     }
 
