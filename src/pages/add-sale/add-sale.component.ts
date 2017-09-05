@@ -38,7 +38,7 @@ export class AddSaleComponent{
             'description' : ["", Validators.required],
             'price' : ["", Validators.required],
             'points' : ["", Validators.required],
-            'img': [""],
+            // 'img': [""],
             
         })
      }

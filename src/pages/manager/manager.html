@@ -9,19 +9,15 @@
      </ion-navbar>
 </ion-header> 
 <ion-content padding>
-      <button (click)="showCustomers()" ion-button round>Show Customers</button>
-      <button (click)="addSale()" ion-button round>Add Sale</button>
-      <button (click)="showSales()" ion-button round>My Sales</button>
-      <button (click)="showStatistics()" ion-button round>Show Statistics</button>
-
-
-      <ion-card>
-    <img [src]="club.img"/>
-        </ion-card>
+    <img [src]="club.img" class="form-top-image"/>
     <!--<ion-card-content>-->
-      <ion-card-title text-center>
-        {{club.name}}
-      </ion-card-title>
+        <ion-buttons text-center>
+        <button (click)="showCustomers()" ion-button round>Show Customers</button>
+        <button (click)="addSale()" ion-button round>Add Sale</button>
+        <button (click)="showSales()" ion-button round>My Sales</button>
+        <button (click)="showStatistics()" ion-button round>Show Statistics</button>
+        </ion-buttons>
+        <h2>{{club.name}} Info</h2>
           <ion-item>
             <ion-icon name="call" item-start large></ion-icon>
             <p>{{club.phoneNumber}}</p>
