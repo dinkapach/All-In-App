@@ -4,11 +4,7 @@
         <ion-icon name="add"></ion-icon>
       </button>
   </ion-fab>
-  <ion-grid *ngIf="user">
-    <ion-row *ngFor="let credit of creditArr">
-      <ion-col>
-        <credit-card [credit]="credit" (creditDeleted)="handleCreditDeleted($event)"></credit-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-list>
+        <credit-card *ngFor="let credit of creditArr" [credit]="credit" (creditDeleted)="handleCreditDeleted($event)"></credit-card>
+  </ion-list>
 </div>
