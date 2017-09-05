@@ -11,7 +11,7 @@
 
 <ion-content padding *ngIf="club">
     <ion-card>
-        <img id="club-img" [src]="club?.img" />
+        <img class="form-top-image" [src]="club?.img" />
         <ion-card-content></ion-card-content>
         <ion-row no-padding>
             <ion-col>
@@ -21,7 +21,7 @@
                 </button>
             </ion-col>
             <ion-col text-center>
-                <button ion-button clear small color="danger" icon-start>
+                <button ion-button clear small color="danger" icon-start (click)="onClickPhotoFromGallery()">
                     <ion-icon name='albums'></ion-icon>
                     choose from gallery
                 </button>

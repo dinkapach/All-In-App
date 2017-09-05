@@ -26,44 +26,45 @@ export class ClubCardSuperComponent implements OnInit {
     }
 
     deleteClubClick(club) {
-        let confirm = this.alertCtrl.create({
-            title: 'Do you want to remove the club form manager?',
-            message: '',
-            buttons: [
-              {
-                text: 'No',
-                handler: () => { this.deleteClub(club) }
-              }, {
-                text: 'Yes',
-                handler: () => { this.deleteClubAndRemoveFromManager(club)}
-              }
-            ]
-          });
-        confirm.present();       
+        this.deleteClub(club);
+        // let confirm = this.alertCtrl.create({
+        //     title: 'Do you want to remove the club form manager?',
+        //     message: '',
+        //     buttons: [
+        //       {
+        //         text: 'No',
+        //         handler: () => { this.deleteClub(club) }
+        //       }, {
+        //         text: 'Yes',
+        //         handler: () => { this.deleteClubAndRemoveFromManager(club)}
+        //       }
+        //     ]
+        //   });
+        // confirm.present();    
     }
 
-    deleteClubAndRemoveFromManager(club) {
-        let prompt = this.alertCtrl.create({
-            title: 'Remove club from manager',
-            message: "Enter Manager ID",
-            inputs: [
-              {
-                name: 'managerId',
-                placeholder: 'manager Id'
-              },
-            ],
-            buttons: [
-              {
-                text: 'Save',
-                handler: data => {
-                  console.log('Saved clicked', data.managerId);
-                  this.deleteClubFromDBAndRemoveFromManager(data.managerId, club)
-                }
-              }
-            ]
-          });
-          prompt.present();
-    }
+    // deleteClubAndRemoveFromManager(club) {
+    //     let prompt = this.alertCtrl.create({
+    //         title: 'Remove club from manager',
+    //         message: "Enter Manager ID",
+    //         inputs: [
+    //           {
+    //             name: 'managerId',
+    //             placeholder: 'manager Id'
+    //           },
+    //         ],
+    //         buttons: [
+    //           {
+    //             text: 'Save',
+    //             handler: data => {
+    //               console.log('Saved clicked', data.managerId);
+    //               this.deleteClubFromDBAndRemoveFromManager(data.managerId, club)
+    //             }
+    //           }
+    //         ]
+    //       });
+    //       prompt.present();
+    // }
 
     deleteClub(club){
         this.superManagerService.deleteClub(club).

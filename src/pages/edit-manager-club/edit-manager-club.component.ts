@@ -64,6 +64,16 @@ export class EditManagerClubComponent{
         })
     }
 
+    onClickPhotoFromGallery() {
+        this.cameraService.choosePhotoFromGallery()
+        .then(url => {
+            this.updatedClub.img = url;
+        })
+        .catch(err => {
+            console.log("err to take picture", err);
+        })
+    }
+
     onClickupdateInfo() {
         this.managerService.updateClub(this.updatedClub)
         .subscribe(isAuth => {
