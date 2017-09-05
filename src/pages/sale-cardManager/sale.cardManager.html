@@ -1,5 +1,6 @@
-<ion-card>
-    <div (click)="onClubClicked()">
+<ion-item>
+<!-- <ion-card> -->
+    <!-- <div (click)="onClubClicked()">
     <img [src]="sale.img"/>
     <ion-card-content>
       <ion-card-title>
@@ -9,8 +10,11 @@
       <p> sale price: {{sale.price}} </p>
       <p> sale point: {{sale.point}} </p>  
     </ion-card-content>
-    </div>
-  
+    </div> -->
+    <ion-thumbnail item-start>
+        <img [src]="sale.img"/>
+    </ion-thumbnail>
+    <h2>{{sale.name}}</h2>
     <ion-row no-padding>
       <ion-col>
         <button ion-button clear small color="danger" icon-start (click)="editSaleClick(sale)">
@@ -25,8 +29,8 @@
             </button>
       </ion-col>
     </ion-row>
-  
-  </ion-card>
+  <!-- </ion-card> -->
+</ion-item>
 
 
 

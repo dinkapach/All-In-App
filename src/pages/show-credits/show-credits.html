@@ -1,29 +1,14 @@
 <div>
-    <button ion-button full (click)="onClickAddCredit()" >
-        <ion-icon name="clipboard"></ion-icon>&nbsp;&nbsp; Add Credit</button>
-    
-      <ion-grid *ngIf="user">
-        <ion-row *ngFor="let credit of creditArr">
-          <ion-col>
-             <credit-card [credit]="credit" (creditDeleted)="handleCreditDeleted($event)"></credit-card>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-</div>
-
-
-<!-- <div style="margin-top: 77px; margin-bottom: 77px;">
-
-
-<button ion-button full (click)="onClickAddCredit()" >
-    <ion-icon name="clipboard"></ion-icon>&nbsp;&nbsp; Add Credit</button>
-
+  <ion-fab bottom right>
+      <button ion-fab color="vibrant" mini (click)="onClickAddCredit()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+  </ion-fab>
   <ion-grid *ngIf="user">
     <ion-row *ngFor="let credit of creditArr">
       <ion-col>
-         <credit-card [credit]="credit" (creditDeleted)="handleCreditDeleted($event)"></credit-card>
+        <credit-card [credit]="credit" (creditDeleted)="handleCreditDeleted($event)"></credit-card>
       </ion-col>
     </ion-row>
   </ion-grid>
-
-</div> -->
+</div>
