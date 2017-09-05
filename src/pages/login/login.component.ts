@@ -26,10 +26,10 @@ export class LoginComponent {
     private userService: UserService, private loadingService: LoadingService) {
         this.isManager = false;
         this.formData = fBuilder.group({
-            'email': ["allin@gmail.com", Validators.required],
-            'password' : ["1234567", Validators.required]
-            // 'email': ["", Validators.required],
-            // 'password' : ["", Validators.required]
+            // 'email': ["allin@gmail.com", Validators.required],
+            // 'password' : ["1234567", Validators.required]
+            'email': ["", Validators.required],
+            'password' : ["", Validators.required]
         })
     }
    
@@ -37,7 +37,7 @@ export class LoginComponent {
         const emailVal = this.formData.value.email;
         const passwordVal = this.formData.value.password;
         this.loadingService.presentLoading();
-        this.isSuperManager = true; // DELETE
+        //this.isSuperManager = true; // DELETE
         if(this.isSuperManager){
             this.signingSuperManager.loginSuperManager(emailVal, passwordVal)
             .subscribe(superManager => {
