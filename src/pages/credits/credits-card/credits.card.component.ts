@@ -78,12 +78,14 @@ export class CreditsCardComponent implements OnInit {
     }
 
     onChangeNotificationToggle(){
-        if(this.firstInitToggle){
-            this.firstInitToggle = false;
-        }
-        else{
-            this.handleNotificationToggle();
-        }
+        this.handleNotificationToggle();
+        console.log("toggling notification event: " + this.doesNotificationScheduled);
+        // if(this.firstInitToggle){
+        //     this.firstInitToggle = false;
+        // }
+        // else{
+        //     this.handleNotificationToggle();
+        // }
     }
 
     deleteCreditClick(credit){
