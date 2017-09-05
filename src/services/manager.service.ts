@@ -142,4 +142,15 @@ export class ManagerService {
          })
         .map( res => res.json());
     }
+
+    changePassword(currentPassword: string, newPassword: string): Observable<boolean> {
+        console.log("change password service ");
+        return this.http.post(`${this.url}/api/manager/changePassword`, {
+            managerId: this.getLocalManagerId(),
+            currentPassword: currentPassword,
+            newPassword: newPassword
+            })
+        .map( res => res.json());
+
+    }
 }

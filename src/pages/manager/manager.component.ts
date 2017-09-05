@@ -1,9 +1,5 @@
-//import { DashboardComponent } from './../dashboard/dashboard.component';
-//import { SignupComponent } from './../signup/signup.component';
 import { NavController } from 'ionic-angular';
-//import { ClubDetailsComponent } from './../clubs/club-details/club.details.component';
 import { ManagerService } from './../../services/manager.service';
-import { Sale } from './../../models/sales.model';
 import { Club } from './../../models/club.model';
 import { ClubService } from './../../services/club.service';
 import { Component } from '@angular/core';
@@ -19,13 +15,9 @@ import { AddSaleComponent } from './../add-sale/add-sale.component';
 import { SigningService } from '../../services/signing.service';
 import { LoginComponent } from '../login/login.component';
 import { ShowSalesComponent } from './../show-sales/show-sales.component';
-
 import { EditManagerClubComponent } from '../edit-manager-club/edit-manager-club.component';
-
-import { EditProfileManagerComponent } from './../edit-profileManager/edit.profileManager.component';
-
-
-
+import { ManagerSettingsComponent } from '../manager-settings/manager.settings.component';
+import { MenuController } from 'ionic-angular';
 
 @Component({
     selector: 'manager',
@@ -38,7 +30,7 @@ export class ManagerComponent {
     constructor(private fBuilder : FormBuilder, private http: Http, 
     private managerService: ManagerService,private clubService: ClubService, 
     private navCtrl : NavController, private userService: UserService,
-    private signService : SigningService ) {
+    private signService : SigningService, public menuCtrl: MenuController ) {
 
            console.log("getting manager from service:");
         this.manager = this.managerService.getLocalManager();
@@ -49,6 +41,7 @@ export class ManagerComponent {
       ngOnInit() {
     }
 
+
     addSale(){
         this.navCtrl.push(AddSaleComponent);
     }
@@ -58,40 +51,17 @@ export class ManagerComponent {
     }
     
 
-    // showCustomers(){
-    //     console.log(this.manager);
-    //      this.clubService.getClubByObjectId(this.manager.clubId)
-    //      .subscribe(club =>{
-    //          if (club)
-    //          {
-    //               this.navCtrl.push(ShowCustomerComponent, {club: club});
-    //          }
-    //          else{
-    //               console.log("Error No clubs");
-    //          }
-
-    //      })
- 
-    // }
-
     showCustomers(){
         this.navCtrl.push(ShowCustomerComponent);
     }
 
-    editProfile(){
-          this.navCtrl.push(EditProfileManagerComponent);
-    }
+    
 
     showSales(){
         this.navCtrl.push(ShowSalesComponent, {club: this.club});
     }
 
-    onClickLogout()
-    {  
-        this.signService.logoutUser().subscribe(isAuth => {
-            this.navCtrl.setRoot(LoginComponent);
-        });
-    }
+  
 
     showStatistics(){
          console.log(this.manager);
@@ -105,5 +75,8 @@ export class ManagerComponent {
                    console.log("Error No clubs");
               }
           })
+     }
+     onClickSettings(){
+          this.navCtrl.push(ManagerSettingsComponent);
      }
 }
