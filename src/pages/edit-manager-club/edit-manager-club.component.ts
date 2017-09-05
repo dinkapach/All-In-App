@@ -7,7 +7,7 @@ import { Club } from './../../models/club.model';
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'; 
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ActionSheetController } from 'ionic-angular';
 import {Observable} from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
@@ -28,50 +28,20 @@ export class EditManagerClubComponent{
 
     constructor(private fBuilder : FormBuilder, private http: Http, private navCtrl : NavController,
         private managerService: ManagerService, private navParams: NavParams, private alertCtrl: AlertController, 
-        private cameraService: CameraService, private cloneService: CloneService) {
+        private cameraService: CameraService, private cloneService: CloneService, public actionSheetCtrl: ActionSheetController) {
         this.club = this.managerService.getLocalClub();
         this.updatedClub = this.cloneService.getDeepCopyOfClub(this.club);
+        this.buildForm();
+    }
 
-        this.formData = fBuilder.group({
+    buildForm(){
+        this.formData = this.fBuilder.group({
             'name': ["", Validators.required],
             'address': ["", Validators.required],
             'phoneNumber': ["", Validators.required],
             'openingHour': ["", Validators.required],
             'closingHour': ["", Validators.required],
-        })
-        this.loadFormValuesFromUser();
-    }
-
-    loadFormValuesFromUser(){
-        Object.keys(this.formData.controls).forEach(key => {
-            console.log(key);
-            this.formData.controls[key].setValue(this.club[key]);
-         });
-    }
-
-    onClickTest(){
-        console.log(this.updatedClub);
-        this.updateClub();
-    }
-
-    onClickTakePhoto() {
-        this.cameraService.takePhotoFromCamera()
-        .then(url => {
-            this.updatedClub.img = url;
-        })
-        .catch(err => {
-            console.log("err to take picture", err);
-        })
-    }
-
-    onClickPhotoFromGallery() {
-        this.cameraService.choosePhotoFromGallery()
-        .then(url => {
-            this.updatedClub.img = url;
-        })
-        .catch(err => {
-            console.log("err to take picture", err);
-        })
+        });
     }
 
     onClickupdateInfo() {
@@ -80,30 +50,74 @@ export class EditManagerClubComponent{
             console.log(isAuth);
             if(isAuth){
                 this.updateClub();
-                this.showAlert("Club Updated" + isAuth);
+                alert("Club Updated");
                 console.log(isAuth);
                 this.navCtrl.pop();
             }
             else{
-                this.showAlert("Updated failed" + isAuth);
+                alert("Updated failed");
             }
         })
     }
 
     updateClub(){
-        Object.keys(this.updatedClub).forEach(key => {
-            let value = this.updatedClub[key];
-            console.log(value);
-            this.club[key] = this.updatedClub[key];
-          });
+        this.cloneService.cloneObject(this.updateClub, this.club);
+    }
+    // to do
+    updateImg(url) {
+        console.log("in save img")
+        this.updatedClub.img = url;
+    }
+    
+    onClickOpenCameraOptionTake() {
+        let actionSheet = this.actionSheetCtrl.create({
+            title: 'Choose Camera Option',
+            buttons: [
+                {
+                    text: 'Camera',
+                    role: 'destructive',
+                    handler: () => {
+                        this.onClickTakePhoto();
+                    }
+                },
+                {
+                    text: 'Photo Libary',
+                    handler: () => {
+                        this.onClickGetPhotoFromGallery();
+                    }
+                },
+                {
+                    text: 'Cancel',
+                    role: 'cancel',
+                    handler: () => {
+                        console.log('Cancel clicked');
+                    }
+                }
+            ]
+        });
+
+        actionSheet.present();
+    }
+    
+    onClickTakePhoto() {
+        this.cameraService.takePhotoFromCamera()
+            .then(url => {
+                this.updateImg(url)
+            })
+            .catch(err => {
+                console.log("err to take picture", err);
+                // handle error
+            })
     }
 
-    showAlert(message){
-    let alert = this.alertCtrl.create({
-    //   title: 'Title!',
-      subTitle: message,
-      buttons: ['סבבה']
-    });
-    alert.present();
+    onClickGetPhotoFromGallery() {
+        this.cameraService.choosePhotoFromGallery()
+            .then(url => {
+                this.updateImg(url);
+            })
+            .catch(err => {
+                console.log("err to take picture", err);
+                // handle error
+            })
     }
 }
