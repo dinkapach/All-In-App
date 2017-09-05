@@ -20,6 +20,8 @@ export class LoginComponent {
     formData : FormGroup;
     isManager : boolean;
     isSuperManager : boolean;
+    email: string;
+    password: string;
     
     constructor(private fBuilder : FormBuilder, private alertCtrl: AlertController, private http: Http, 
     private signService : SigningService, private navCtrl : NavController, private signingSuperManager:SigningSuperManagerService,
@@ -34,12 +36,14 @@ export class LoginComponent {
     }
    
     submitLogin() {
-        const emailVal = this.formData.value.email;
-        const passwordVal = this.formData.value.password;
+        // console.log("on login");
+        // console.log("email: ", this.email);
+        // console.log("password: ", this.password);
+        // this.email = this.email.toLowerCase();
         this.loadingService.presentLoading();
         //this.isSuperManager = true; // DELETE
         if(this.isSuperManager){
-            this.signingSuperManager.loginSuperManager(emailVal, passwordVal)
+            this.signingSuperManager.loginSuperManager(this.email.toLowerCase(), this.password)
             .subscribe(superManager => {
                 if(superManager){
                     this.navCtrl.setRoot(SuperManagerDashboardComponent, {superManager: superManager});
@@ -55,7 +59,7 @@ export class LoginComponent {
             () => this.loadingService.dismissLoading());
         }
         else {
-            this.signService.loginUser(emailVal, passwordVal, this.isManager)
+            this.signService.loginUser(this.email.toLowerCase(), this.password, this.isManager)
             .subscribe(isAuth => {
                 console.log(isAuth);
                 if (isAuth) {

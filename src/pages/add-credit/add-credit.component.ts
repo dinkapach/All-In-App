@@ -102,12 +102,13 @@ export class AddCreditComponent{
     // }
 
     scheduleCreditNotification(){
-        this.localNotifications.schedule({
-            title: "Credit About To Expire",
-            id: this.newCredit.id,
-            text: "Your credit in " + this.club.name + " is about to expire. Credit Id: "+this.newCredit.id,
-            at: new Date(this.newCredit.dateOfExpired)
-        });
+        if(this.setReminder){
+            this.localNotifications.schedule({
+                title: "Credit About To Expire",
+                id: this.newCredit.id,
+                text: "Your credit in " + this.club.name + " is about to expire.",
+                at: new Date(this.newCredit.dateOfExpired)
+            });
+        }
     }
-
 }
