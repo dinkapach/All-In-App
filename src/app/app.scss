@@ -58,3 +58,12 @@ img.center-image{
     margin: auto;
     max-width: 200px;
 }
+
+.no-border,
+.no-border .item-inner{
+    border: none;
+}
+
+.text-bold{
+    font-weight: bold;
+}
