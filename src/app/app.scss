@@ -60,6 +60,8 @@ img.center-image{
 }
 
 .no-border,
+.no-border .item-inner,
+.no-border .item-md.item-block,
 .no-border .item-inner{
     border: none;
 }

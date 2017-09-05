@@ -52,12 +52,18 @@ export class UserService {
                 observer.next(true);
                 observer.complete();
             },
-        err => {
+            err => {
             console.log("error at getUserById: " + err);
             observer.next(false);
             observer.complete();
+            });
         });
-        });
+    }
+
+    updateLocalCustomerWithoutPromise(){
+        this.updateLocalCustomer()
+        .subscribe(updated => console.log(updated),
+                    err => console.log(err));
     }
 
     saveLoggedInUserToStorage(data, isManager: Boolean){

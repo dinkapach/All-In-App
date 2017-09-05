@@ -20,16 +20,16 @@
         <button (click)="showSales()" ion-button round>My Sales</button>
         <button (click)="showStatistics()" ion-button round>Show Statistics</button>
         </ion-buttons>
-        <h2>{{club.name}} Info</h2>
-          <ion-item>
+        <h2 text-center>{{club.name}} Info</h2>
+          <ion-item class="no-border">
             <ion-icon name="call" item-start large></ion-icon>
             <p>{{club.phoneNumber}}</p>
           </ion-item>
-          <ion-item>
+          <ion-item class="no-border">
             <ion-icon name="cart" item-start large></ion-icon>
             <p>{{club.address}}</p>
             </ion-item>   
-            <ion-item>  
+            <ion-item class="no-border">  
              <ion-icon name="time" item-start large></ion-icon>
             <p>
               {{club.openingHours[0]}}

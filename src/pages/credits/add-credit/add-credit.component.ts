@@ -79,16 +79,10 @@ export class AddCreditComponent{
         subscribe(isAuth => {
             console.log("From 'add-credit.component', print 'isAuth': ", isAuth);
             if(isAuth){
-                this.user.credits.push(this.newCredit);        
+                // this.user.credits.push(this.newCredit);     
+                // this.userService.updateLocalCustomerWithoutPromise();   
                 this.scheduleCreditNotification();
-                let alert = this.alertCtrl.create({
-                    subTitle: 'credit added',
-                    buttons: ['סבבי']
-                });
-            alert.present();
-            alert.onDidDismiss(() => {
                 this.navCtrl.pop();
-            });
             }
             else{
                 console.log("unSuccess");
