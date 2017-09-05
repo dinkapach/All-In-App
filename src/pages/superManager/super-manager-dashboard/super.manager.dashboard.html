@@ -6,6 +6,7 @@
     </ion-navbar>
   
     <ion-toolbar no-border-top>
+      <button ion-button small (click)="logout()"> Lougout </button>
       <ion-segment [(ngModel)]="viewOptions">
         <ion-segment-button value="managers">
           Managers

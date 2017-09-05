@@ -37,9 +37,9 @@ export class CustomerCardSuperComponent {
             buttons: ['סבבה']
         });
         alert.present();
-        alert.onDidDismiss(() => {
-            this.navCtrl.pop();
-        });
+        // alert.onDidDismiss(() => {
+        //     this.navCtrl.pop();
+        // });
     }
 
 }
