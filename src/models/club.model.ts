@@ -4,7 +4,7 @@ export class Club {
     address: string;
     phoneNumber: string;
     img? : string;
-    openingHours: [Date, Date];
+    openingHours: [string, string];
     usersClub?: any[]; //todo: UserClubSchema 
     sales?: any[]; // todo: SaleSchema
     branches?: any[]; //mongoose.Schema.Types.ObjectId

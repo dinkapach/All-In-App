@@ -12,8 +12,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class AddClubComponent implements OnInit{
     formData: FormGroup;
     isAddClub: boolean;
-    newClub: Club;
+    newClub: Club = new Club();
     managerId: number;
+    TempOpeningHours : [Date, Date];
 
     constructor(private fBuilder : FormBuilder, private navParams: NavParams,
         private navCtrl: NavController, private alertCtrl: AlertController,
@@ -35,7 +36,7 @@ export class AddClubComponent implements OnInit{
 
     initClub(){
         this.newClub = new Club();
-        this.newClub.openingHours = [new Date() , new Date()];
+        this.newClub.openingHours = ["" , ""];
         this.newClub.isManual = false;
         this.newClub.branches = [];
         this.newClub.sales = [];
