@@ -1,6 +1,11 @@
 <ion-header>
     <ion-navbar>
         <ion-title>Welcome Manager {{manager.firstName}}</ion-title>
+           <ion-buttons end>
+              <button ion-button (click)="onClickSettings()" icon-only>
+                <ion-icon name="more"></ion-icon>
+              </button>
+        </ion-buttons>
      </ion-navbar>
 </ion-header> 
 <ion-content padding>
@@ -8,8 +13,6 @@
       <button (click)="addSale()" ion-button round>Add Sale</button>
       <button (click)="showSales()" ion-button round>My Sales</button>
       <button (click)="showStatistics()" ion-button round>Show Statistics</button>
-       <button (click)="editProfile()" ion-button round>Edit Profile</button>
-      <button ion-button (click)="onClickLogout()" color="danger">Logout</button>
 
 
       <ion-card>
