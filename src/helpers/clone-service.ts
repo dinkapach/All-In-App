@@ -61,16 +61,23 @@ export class CloneService {
         });
     }
 
+    // getDeepCopyOfManager(manager: Manager) {
+    //     let copyOfManager: Manager = new Manager();
+    //     copyOfManager.id = manager.id;
+    //     copyOfManager.clubId = manager.clubId;
+    //     copyOfManager.firstName = manager.firstName;
+    //     copyOfManager.lastName = manager.lastName;
+    //     copyOfManager.email = manager.email;
+    //     copyOfManager.permissions = manager.permissions;
+    //     copyOfManager.password = manager.password;
+    //     copyOfManager.userName = manager.userName;
+
+    //     return copyOfManager;
+    // }
+
     getDeepCopyOfManager(manager: Manager) {
         let copyOfManager: Manager = new Manager();
-        copyOfManager.id = manager.id;
-        copyOfManager.clubId = manager.clubId;
-        copyOfManager.firstName = manager.firstName;
-        copyOfManager.lastName = manager.lastName;
-        copyOfManager.email = manager.email;
-        copyOfManager.permissions = manager.permissions;
-        copyOfManager.password = manager.password;
-        copyOfManager.userName = manager.userName;
+        this.cloneObject(manager, copyOfManager);
 
         return copyOfManager;
     }

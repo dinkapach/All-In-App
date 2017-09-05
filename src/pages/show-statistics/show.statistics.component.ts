@@ -75,7 +75,7 @@ export class ShowStatisticsComponent {
                         ticks: {
                             beginAtZero: true,
                             stepSize: 1,
-                            suggestedMax: 20
+                            maxTicksLimit: 20
                         }
                     }]
                 }

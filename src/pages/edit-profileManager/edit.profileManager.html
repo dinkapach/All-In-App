@@ -1,47 +1,32 @@
 <ion-header>
     <ion-navbar primary>
-        <ion-buttons end>
-            <button (click)="onClickupdateInfo()">
-            <ion-icon name="refresh"></ion-icon>
-        </button>
-        </ion-buttons>
         <ion-title>Edit Profile</ion-title>
     </ion-navbar>
 </ion-header>
-
 <ion-content padding *ngIf="manager">
-  
-    <form [formGroup]="formData">
+    <form [formGroup]="formData" #updateProfileForm="ngForm" (ngSubmit)="onClickUpdateInfo()">
         <ion-list>
             <ion-item>
                 <ion-label floating>Id</ion-label>
-                <ion-input formControlName="id" type="text" value={{manager?.id}} (blur)="onBlur($event)" disabled="true"></ion-input>
+                <ion-input type="text" value={{updatedManager.id}} disabled="true"></ion-input>
             </ion-item>
-
-             <ion-item>
+             <!-- <ion-item>
                 <ion-label floating>User Name</ion-label>
-                <ion-input formControlName="userName" type="text" value={{manager?.userName}} (blur)="onBlur($event)"></ion-input>
-            </ion-item>
-            
+                <ion-input formControlName="userName" type="text" [(ngModel)]="manager?.userName"></ion-input>
+            </ion-item> -->
             <ion-item>
                 <ion-label floating>First Name</ion-label>
-                <ion-input formControlName="firstName" type="text" value={{manager?.firstName}} (blur)="onBlur($event)"></ion-input>
+                <ion-input formControlName="firstName" type="text" [(ngModel)]="updatedManager.firstName"></ion-input>
             </ion-item>
-            
             <ion-item>
                 <ion-label floating>Last Name</ion-label>
-                <ion-input formControlName="lastName" type="text" value={{manager?.lastName}} (blur)="onBlur($event)"></ion-input>
+                <ion-input formControlName="lastName" type="text" [(ngModel)]="updatedManager.lastName"></ion-input>
             </ion-item>
-           
             <ion-item>
                 <ion-label floating>Email</ion-label>
-                <ion-input formControlName="email" type="email" value={{manager?.email}} (blur)="onBlur($event)"></ion-input>
+                <ion-input formControlName="email" type="email" [(ngModel)]="updatedManager.email"></ion-input>
             </ion-item>
-        
         </ion-list>
+        <button ion-button class="submit-btn" full type="submit" [disabled]="!updateProfileForm.form.valid">Update Profile</button>
     </form>
-    <button (click)="onClickTest()">Test</button>
 </ion-content>
-
-
-
