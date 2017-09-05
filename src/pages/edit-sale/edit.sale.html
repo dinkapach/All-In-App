@@ -4,15 +4,15 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
+        <img class="form-top-image" [src]="updatedSale.img"/>
+        <ion-buttons text-center>
+            <button ion-button clear small color="danger" icon-start (click)="onClickOpenCameraOptionTake()">
+                <ion-icon name='create'></ion-icon>
+                Edit Photo
+            </button>
+        </ion-buttons>
     <form [formGroup]="formData" #editSaleForm="ngForm" (ngSubmit)="updateSale()">
         <ion-list>
-            <img class="form-top-image" [src]="updatedSale.img"/>
-            <ion-buttons text-center>
-                <button ion-button clear small color="danger" icon-start (click)="onClickOpenCameraOptionTake()">
-                    <ion-icon name='create'></ion-icon>
-                    Edit Photo
-                </button>
-            </ion-buttons>
             <!-- <ion-item>
                 <ion-input formControlName="id" placeholder="Id" type="text" [(ngModel)]="updatedSale.id"></ion-input>
             </ion-item> -->
