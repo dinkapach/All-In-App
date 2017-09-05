@@ -4,10 +4,10 @@ import { UserService } from './../../services/user.service';
 import { User } from './../../models/user.model';
 
 import { Http } from '@angular/http';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms'; 
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
-import {Observable} from 'rxjs/Observable';
-import {UserCardComponent} from  '../user-card/usercard.component';
+import { Observable } from 'rxjs/Observable';
+import { UserCardComponent } from '../user-card/usercard.component';
 
 // import {ManagerRepository} from '../.././database/repositories/manager.repository';
 import 'rxjs/add/operator/map';
@@ -25,36 +25,54 @@ import { ManagerService } from '../../services/manager.service';
 //Send the updated fields instead of everything
 
 @Component({
-    selector: 'show-customer',
-    templateUrl : 'show-customer.html'
+  selector: 'show-customer',
+  templateUrl: 'show-customer.html'
 })
-export class ShowCustomerComponent{
-    club: Club;
-    userCard: UserClub;
-    customersArray: UserClub[];
-    searchCustomer: string;
-      constructor(private fBuilder : FormBuilder, private http: Http, private navCtrl : NavController,
-        private userService: UserService, private navParams: NavParams,
-        private alertCtrl: AlertController, private managerService: ManagerService) {
-         
-          this.club = this.managerService.getLocalClub();
-          this.customersArray = this.managerService.getLocalCustomers();
-        }
+export class ShowCustomerComponent {
+  club: Club;
+  userCard: UserClub;
+  customersArray: UserClub[];
+  searchCustomer: string;
+  optionToSerch: string = "id";
 
-        ngOnInit(){
-        }
-           
-        handleUserDeleted(userToRemove){
-        
-        }
+  constructor(private fBuilder: FormBuilder, private http: Http, private navCtrl: NavController,
+    private userService: UserService, private navParams: NavParams,
+    private alertCtrl: AlertController, private managerService: ManagerService) {
 
-        searchCustomers() {
-        console.log("on search clubs: " + this.searchCustomer);
-          // this.customersArray = this.club.usersClub;
-        this.customersArray = this.club.usersClub.filter(customer => {
-          let customerFullName = customer.customerId.firstName + " " + customer.customerId.lastName;
-                return customerFullName.toString().toLowerCase().startsWith(this.searchCustomer.toLowerCase()); 
-        });
-     
+    this.club = this.managerService.getLocalClub();
+    this.customersArray = this.managerService.getLocalCustomers();
+  }
+
+  ngOnInit() {
+  }
+
+  handleUserDeleted(userToRemove) {
+
+  }
+
+
+  searchCustomers() {
+    if (this.optionToSerch != "points") {
+      this.customersArray = this.club.usersClub.filter(customer => {
+        return customer.customerId[this.optionToSerch].toString().toLowerCase().startsWith(this.searchCustomer.toLowerCase());
+      });
     }
+    else {
+      this.customersArray = this.club.usersClub.filter(customer => {
+        return customer[this.optionToSerch].toString().toLowerCase().startsWith(this.searchCustomer.toLowerCase());
+      });
+    }
+
+  }
+
+
+  // searchCustomers() {
+  //   console.log("on search clubs: " + this.searchCustomer, this.optionToSerch);
+  //   // this.customersArray = this.club.usersClub;
+  //   this.customersArray = this.club.usersClub.filter(customer => {
+  //     let customerFullName = customer.customerId.firstName + " " + customer.customerId.lastName;
+  //     return customerFullName.toString().toLowerCase().startsWith(this.searchCustomer.toLowerCase());
+  //   });
+  // }
+
 }
