@@ -1,3 +1,4 @@
+import { AddPointsFunctions } from './../../helpers/add-points-functions';
 import { Manager } from './../../models/manager.model';
 import { User } from './../../models/user.model';
 import { Club } from './../../models/club.model';
@@ -25,7 +26,7 @@ export class UserCardComponent implements OnInit {
 
     constructor(private clubService: ClubService, private navCtrl: NavController,
         private userService: UserService, private managerService: ManagerService,
-        private alertCtrl: AlertController) {
+        private alertCtrl: AlertController, private addPointsFunctions: AddPointsFunctions) {
     }
 
     ngOnInit() {
@@ -86,8 +87,12 @@ export class UserCardComponent implements OnInit {
             message: message,
             inputs: [
                 {
-                    name: 'points',
-                    placeholder: 'Points'
+                    name: 'amount',
+                    placeholder: 'Amount'
+                },
+                {
+                    name: 'percent',
+                    placeholder: 'Percent'
                 },
             ],
             buttons: [
@@ -100,7 +105,7 @@ export class UserCardComponent implements OnInit {
                 {
                     text: 'Save',
                     handler: data => {
-                        this.addPointsToCustomer(data.points)
+                        this.addPointsToCustomer(data.amount, data.percent);
                     }
                 }
             ]
@@ -137,14 +142,15 @@ export class UserCardComponent implements OnInit {
     }
 
 
-    addPointsToCustomer(points) {
+    addPointsToCustomer(amount, percent) {
+        let points = this.addPointsFunctions.calculatePointsAmountByGivenPercent(amount, percent);
         this.managerService.addPointsToCustomerById( this.customer.customerId._id, this.managerService.getLocalManager().clubId, points)
         .subscribe( res => {
             console.log("is updated", res);
             if(res.isUpdated){
                 this.customer.points = res.newPoints;
             }
-            else{
+            else {
                 console.log("err");
             }
         })

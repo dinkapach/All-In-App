@@ -1,3 +1,4 @@
+import { AddPointsFunctions } from './../helpers/add-points-functions';
 import { ClubInformation } from './../pages/clubs/club-information/club.information.component';
 import { CloneService } from './../helpers/clone-service';
 import { ActionSheetCameraOptions } from './../helpers/action-sheet-camera-options';
@@ -203,7 +204,7 @@ import { EditPasswordManagerComponent } from '../pages/edit-passwordManager/edit
     LocalNotifications,
     ActionSheetCameraOptions,
     CloneService,
-    
+    AddPointsFunctions,
     
     Camera,
     //{ provide: Camera, useClass: CameraMock },
