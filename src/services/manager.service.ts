@@ -114,6 +114,7 @@ export class ManagerService {
     }
 	
     updateManager(managerUpdate : any ) : Observable<boolean> {
+        console.log("updating manager: " + this.getLocalManagerId());
         console.log("updating manager: " + managerUpdate);
         return this.http.post(`${this.url}/api/manager/updateManagerInfo`, { 
             managerUpdate: managerUpdate,
