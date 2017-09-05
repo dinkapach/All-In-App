@@ -74,6 +74,9 @@ export class EditProfileComponent {
         this.cloneService.cloneObject(this.updatedUser, this.user);
     }
 
+
+
+    // TODO
     updateImg(url) {
         this.updatedUser.img = url;
     }

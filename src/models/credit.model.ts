@@ -5,4 +5,5 @@ export class Credit {
     dateOfExpired: Date;
     items: [String];
     totalCredit: number;
+    img: string;
 }

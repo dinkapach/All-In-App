@@ -6,7 +6,7 @@ import { NavParams, NavController, AlertController } from 'ionic-angular';
 import { Club } from './../../../models/club.model';
 import { Component, Input, OnInit } from '@angular/core';
 import { AddCreditComponent } from '../../add-credit/add-credit.component';
-import { ShowCreditsComponent } from '../../show-credits/show-credits.component';
+import { ShowCreditsComponent } from '../../credits/show-credits/show-credits.component';
 
 @Component({
     selector: 'club-details-base',

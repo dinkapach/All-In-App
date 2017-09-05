@@ -4,6 +4,13 @@
     </ion-navbar>
 </ion-header>
 <ion-content padding>
+        <img id="credit-img" *ngIf="newCredit.img"[src]="newCredit.img"/>
+        <ion-buttons text-center>
+        <button ion-button clear small color="danger" icon-start (click)="onClickOpenCameraOptionTake()">
+            <ion-icon name='create'></ion-icon>
+            Edit Photo
+        </button>
+        </ion-buttons>
     <form [formGroup]="formData" #addCreditForm="ngForm" (ngSubmit)="onClickAddCredit()">
         <ion-list>
             <ion-item>

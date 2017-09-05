@@ -8,7 +8,7 @@ import { Club } from './../../../models/club.model';
 import { Component, Input, OnInit } from '@angular/core';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { AddCreditComponent } from '../../add-credit/add-credit.component';
-import { ShowCreditsComponent } from '../../show-credits/show-credits.component';
+import { ShowCreditsComponent } from '../../credits/show-credits/show-credits.component';
 import { SaleViewComponent } from '../../sale-view/sale.view.component';
 import { Sale } from '../../../models/sales.model';
 
