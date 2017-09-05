@@ -7,6 +7,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ClubService } from './../../services/club.service';
 import { EditCreditComponent } from './../edit-credit/edit-credit.component';
 // import { EditSaleComponent } from '../edit-sale/edit.sale.component';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 @Component({
     selector: 'credit-card',
@@ -16,24 +17,29 @@ export class CreditsCardComponent implements OnInit {
     @Input()
    credit : Credit;
    user : User;
+   doesNotificationScheduled: boolean;
    @Output() creditDeleted = new EventEmitter();
 
     constructor(private clubService : ClubService, private navCtrl: NavController,
-    private userService: UserService, private alertCtrl: AlertController) {
+    private userService: UserService, private alertCtrl: AlertController,
+    private localNotifications: LocalNotifications) {
         this.user = this.userService.getLocalUser();
     }
 
     ngOnInit() {
         console.log("from credit-card credit:", this.credit);
-        // this.clubService.getCredits()
-        // .subscribe( res => {
-        //     this.credit = res;
-        // })
+        this.checkIfNotificationScheduled(this.credit.id);
+    }
+
+    checkIfNotificationScheduled(notificationId: number){
+        this.localNotifications.isScheduled(notificationId)
+        .then(isScheduled => {
+            this.doesNotificationScheduled = isScheduled;
+        })
+        .catch(err => console.log(err));
     }
 
     onCreditClicked() {
-      //  this.navCtrl.push(ClubDetailsComponent, {club : this.club});
-
     }
 
     editCreditClick(credit){
@@ -60,5 +66,4 @@ export class CreditsCardComponent implements OnInit {
             }
         })
     }
-
 }
