@@ -28,9 +28,33 @@ ion-content .scroll-content{
 }
 
 // .toolbar-background-md {
-//     background: color($colors, danger, base);
+//     background: color($colors, vitara, base);
 //   }
 
 // .toolbar-title-md{
 //     color: white;
 // }
+
+@media only screen and (min-width: 781px){
+    body{
+        max-width: 900px;
+        left: 25%;
+    }
+}
+
+.item-md ion-thumbnail ion-img, .item-md ion-thumbnail img {
+    width: 101px;
+    height: auto;
+}
+
+img.center-image{
+    margin: auto;
+    display: block;
+}
+
+.form-top-image {
+    border-radius: 50%;
+    display: block;
+    margin: auto;
+    max-width: 200px;
+}

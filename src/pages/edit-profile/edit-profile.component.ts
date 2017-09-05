@@ -12,6 +12,7 @@ import { NavController, NavParams, AlertController, ModalController, ActionSheet
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
+import { CloneService } from '../../helpers/clone-service';
 
 //TODO:
 //Send the updated fields instead of everything
@@ -22,96 +23,57 @@ import 'rxjs/add/operator/map';
 })
 export class EditProfileComponent {
     user: User;
-    updatedUser: any = {};
+    updatedUser: User;
     formData: FormGroup;
-    isUrlImg: boolean;
-
 
     constructor(private fBuilder: FormBuilder, private http: Http, private navCtrl: NavController,
         private userService: UserService, private navParams: NavParams, private alertCtrl: AlertController,
         public modalCtrl: ModalController, private cameraService: CameraService,
-        public actionSheetCtrl: ActionSheetController) {
+        public actionSheetCtrl: ActionSheetController, private cloneService: CloneService) {
         this.user = this.userService.getLocalUser();
+        this.updatedUser = this.cloneService.getDeepCopyOfCustomer(this.user);
+        // console.log("in update cutomer profile");
+        // console.log("customer: ", this.user);
+        // console.log("updatedUser: ", this.updatedUser);
+        this.buildForm();
+    }
 
-        // this.formData.controls['email'].setValue("din@gmail.com");
-        this.updatedUser = {};
-        this.updatedUser.img = this.user.img;
-
-        this.formData = fBuilder.group({
-            'id': ["", Validators.required],
+    buildForm(){
+        // console.log("updating cutomer profile");
+        // console.log("customer: ", this.user);
+        // console.log("updatedUser: ", this.updatedUser);
+        this.formData = this.fBuilder.group({
             'firstName': ["", Validators.required],
             'lastName': ["", Validators.required],
             'address': ["", Validators.required],
             'email': ["", Validators.required],
             'phoneNumber': ["", Validators.required],
-            'birthday': ["", Validators.required],
-            'img': [""],
-        })
-        console.log(this.formData.controls);
-        this.loadFormValuesFromUser();
-    }
-
-    loadFormValuesFromUser() {
-        Object.keys(this.formData.controls).forEach(key => {
-            // let value = this.updatedUser[key];
-            console.log(key);
-            this.formData.controls[key].setValue(this.user[key]);
+            'birthday': ["", Validators.required]
         });
     }
-
-    onClickTest() {
-        console.log(this.updatedUser);
-        this.updateUser();
-    }
-
-
-
 
     onClickupdateInfo() {
         this.userService.updateUser(this.updatedUser)
-            .subscribe(isAuth => {
-                console.log(isAuth);
-                if (isAuth) {
-                    this.updateUser();
-                    this.showAlert("Profile Updated" + isAuth);
-                    console.log(isAuth);
+            .subscribe(customer => {
+                // console.log(customer);
+                if (customer) {
+                    this.updateUserFromUpdatedUser();
+                    alert("Profile Updated");
+                    console.log("profile updated ", customer);
                     this.navCtrl.pop();
                 }
                 else {
-                    this.showAlert("Updated failed" + isAuth);
+                    console.log("update customer info faild", customer);
+                    alert("Updated failed");
                 }
-            })
+            });
     }
 
-    updateUser() {
-        Object.keys(this.updatedUser).forEach(key => {
-            let value = this.updatedUser[key];
-            console.log(value);
-            this.user[key] = this.updatedUser[key];
-        });
+    updateUserFromUpdatedUser() {
+        this.cloneService.cloneObject(this.updatedUser, this.user);
     }
 
-    showAlert(message) {
-        let alert = this.alertCtrl.create({
-            //   title: 'Title!',
-            subTitle: message,
-            buttons: ['סבבה']
-        });
-        alert.present();
-    }
-
-    onBlur(event) {
-        var formName = event.target.attributes['formControlName'].value;
-        this.updatedUser[formName] = this.formData.value[formName];
-    }
-
-    // onClickOpenOptionTakeImgModal() {
-    //     this.actionSheetCameraOptions.onClickOpenOptionTakeImgModal(this.updateUser)
-    // }
-
-    // to do
     updateImg(url) {
-        console.log("in save img")
         this.updatedUser.img = url;
     }
 
@@ -152,7 +114,7 @@ export class EditProfileComponent {
             })
             .catch(err => {
                 console.log("err to take picture", err);
-                // handle error
+                alert("error");
             })
     }
 
@@ -163,8 +125,7 @@ export class EditProfileComponent {
             })
             .catch(err => {
                 console.log("err to take picture", err);
-                // handle error
+                alert("error");
             })
     }
-
 }

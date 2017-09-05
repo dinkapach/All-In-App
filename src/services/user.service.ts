@@ -86,7 +86,7 @@ export class UserService {
         });
         });
     }
-    updateUser(userUpdate : any) : Observable<boolean> {
+    updateUser(userUpdate : any) : Observable<User> {
         console.log("updating customer: " + userUpdate);
         return this.http.post(`${this.url}/api/users/updateCustomerInfo`, { 
             customerUpdate: userUpdate,

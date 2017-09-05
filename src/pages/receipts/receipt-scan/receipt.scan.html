@@ -1,4 +1,4 @@
-<div padding class="card-background-page" style="margin-top: 77px; margin-bottom: 77px;">
+<div padding class="card-background-page">
 
 <ion-fab bottom right>
     <button ion-fab color="vibrant" mini><ion-icon name="add"></ion-icon></button>
@@ -12,14 +12,14 @@
 
   <ion-grid>
       <ion-row>
-        <ion-col col-6 >
+        <!-- <ion-col col-6 > -->
           <ion-col col-6 *ngFor="let photo of photos; let id = index">
               <ion-card class="block">
                 <ion-icon name="trash" class="deleteIcon" (click)="deletePhoto(photo)"></ion-icon>
                 <img [src]="photo" *ngIf="photo" />
               </ion-card>
           </ion-col>
-        </ion-col>
+        <!-- </ion-col> -->
       </ion-row>
     </ion-grid>
 </div>

@@ -64,40 +64,41 @@ export class ManagerService {
         })
     }
 
-    addPointsToCustomerById(customerId: any, clubObjId:any, numOfPoints: number){
-        console.log("in addPointsToCustomerById", customerId, clubObjId, numOfPoints)
-        this.http.post(`${this.url}/api/manager/addPointsToCustomerById`,{
+    // addPointsToCustomerById(customerId: any, clubObjId:any, numOfPoints: number){
+    //     console.log("in addPointsToCustomerById", customerId, clubObjId, numOfPoints)
+    //     this.http.post(`${this.url}/api/manager/addPointsToCustomerById`,{
+    //         customerId : customerId,
+    //         clubObjId : clubObjId,
+    //         numOfPoints : numOfPoints
+            
+    //     }).map(res => res.json());
+    // }
+
+    addPointsToCustomerById(customerId: any, clubObjId: any, numOfPoints: number ) : Observable<any> {
+        return this.http.post(`${this.url}/api/manager/addPointsToCustomerById`, {
             customerId : customerId,
             clubObjId : clubObjId,
             numOfPoints : numOfPoints
-            
-        }).map(res => res.json());
+         })
+        .map( res => res.json());
     }
 
 
-    deleteCustomerFromClub(userObjectId: any, clubId: any) : Observable<Boolean> {
+    deleteCustomerFromClub(userObjectId: any, clubId: any) : Observable<boolean> {
         return this.http.post(`${this.url}/api/manager/deleteCustomer`, {
             userObjectId: userObjectId,
             clubId: clubId
          })
         .map( res => res.json());
-        }
+    }
 
-    subscribePointsToCustomerById(customerId: number, clubId:number, numOfPoints: number){
-        this.http.post(`${this.url}/api/manager/subscribePointsToCustomerById`,{
+    subscribePointsToCustomerById(customerId: any, clubObjId: any, numOfPoints: number) : Observable<any> {
+        return this.http.post(`${this.url}/api/manager/subscribePointsToCustomerById`,{
             customerId : customerId,
-            clubId : clubId,
+            clubObjId : clubObjId,
             numOfPoints : numOfPoints
             
         }).map(res => res.json())
-         .subscribe(function (isAuth) {
-             if(isAuth) {
-                console.log("decreased  points");
-            }
-            else {
-                console.log("Not decreased points");
-            }
-        })
     }
 
     getCustomerDetails(customerId: number){

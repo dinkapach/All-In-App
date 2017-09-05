@@ -25,6 +25,7 @@ export class AddCreditComponent{
     formData: FormGroup;
     newCredit: Credit;
     club: Club;
+    setReminder: boolean = true;
 
     constructor(private fBuilder : FormBuilder, private http: Http, private navCtrl : NavController,
         private userService: UserService, private navParams: NavParams, private alertCtrl: AlertController,
@@ -66,7 +67,7 @@ export class AddCreditComponent{
         this.formData = this.fBuilder.group({
             'dateOfPurchase' : ["", Validators.required],
             'dateOfExpired': ["", Validators.required],
-            'items' : ["", Validators.required],
+            'setReminder' : ["", Validators.required],
             'totalCredit' : ["", Validators.required]
         });
     }

@@ -31,15 +31,19 @@ export class EditSaleComponent {
          private cameraService: CameraService, public actionSheetCtrl: ActionSheetController) {
         this.sale = this.navParams.get("sale");
         this.updatedSale = this.cloneService.getDeepCopyOfSale(this.sale);
-        this.formData = fBuilder.group({
-            'id': ["", Validators.required],
+        this.buildEditSaleForm();
+        console.log(this.sale);
+    }
+
+    buildEditSaleForm(){
+        this.formData = this.fBuilder.group({
+            // 'id': ["", Validators.required],
             'name': ["", Validators.required],
-            'img': "",
+            // 'img': "",
             'description': ["", Validators.required],
             'points': "",
             'price': "",
         })
-        console.log(this.sale);
     }
 
   updateSale(){

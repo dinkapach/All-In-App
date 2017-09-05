@@ -59,8 +59,6 @@ import { ShowCustomerComponent } from '../pages/show-customer/show-customer.comp
 import { Camera } from '@ionic-native/camera';
 import { CameraMock } from '../pages/receipts/receipt-scan/camera.mock';
 import { AddSaleComponent } from '../pages/add-sale/add-sale.component';
-import { AddPointsComponent } from '../pages/add-points/add-points.component';
-import { SubscirbePointsComponent } from '../pages/subscribe-points/subscribe-points.component';
 import { ShowSalesComponent } from '../pages/show-sales/show-sales.component';
 import { LoadingService } from '../helpers/loading-service';
 import { CustomerSettingsComponent } from '../pages/customer-settings/customer-settings.component';
@@ -101,8 +99,6 @@ import { EditProfileManagerComponent } from '../pages/edit-profileManager/edit.p
     EditPasswordComponent,
     ClubManualDetailsComponent,
     AddSaleComponent,
-    AddPointsComponent,
-    SubscirbePointsComponent,
     ShowSalesComponent,
     CustomerSettingsComponent,
     SaleViewComponent,
@@ -159,8 +155,6 @@ import { EditProfileManagerComponent } from '../pages/edit-profileManager/edit.p
     ShowStatisticsComponent,
     ClubManualDetailsComponent,
     AddSaleComponent,
-    AddPointsComponent,
-    SubscirbePointsComponent,
     ShowSalesComponent,
     CustomerSettingsComponent,
     SaleViewComponent,

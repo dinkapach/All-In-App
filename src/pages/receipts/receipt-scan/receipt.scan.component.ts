@@ -18,9 +18,7 @@ export class ScanReceiptComponent implements OnInit {
     isManual: boolean;
     receipt: Receipt;
     photos: any[];
-    base64Image: string;
     clubReceiptArr: any[];
-    trustedUrl: any;
     @Input()
     club: any;
 
