@@ -7,10 +7,12 @@
     <form [formGroup]="formData" #editSaleForm="ngForm" (ngSubmit)="updateSale()">
         <ion-list>
             <img class="form-top-image" [src]="updatedSale.img"/>
-            <button ion-button clear small color="danger" icon-start (click)="onClickOpenCameraOptionTake()">
-                <ion-icon name='create'></ion-icon>
-                Edit
-            </button>
+            <ion-buttons text-center>
+                <button ion-button clear small color="danger" icon-start (click)="onClickOpenCameraOptionTake()">
+                    <ion-icon name='create'></ion-icon>
+                    Edit Photo
+                </button>
+            </ion-buttons>
             <!-- <ion-item>
                 <ion-input formControlName="id" placeholder="Id" type="text" [(ngModel)]="updatedSale.id"></ion-input>
             </ion-item> -->
@@ -23,7 +25,7 @@
             </ion-item> -->
             <ion-item>
                 <ion-label floating>Description</ion-label>
-                <ion-textarea formControlName="description" type="text" ></ion-textarea>
+                <ion-textarea formControlName="description" type="text" [(ngModel)]="updatedSale.description"></ion-textarea>
             </ion-item>
             <ion-item>
                 <ion-label floating>Points</ion-label>

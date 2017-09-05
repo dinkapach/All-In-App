@@ -4,45 +4,42 @@
     </ion-navbar>
 </ion-header>
 <ion-content>
-    <ion-card>
-        <img id="add-sale-img" *ngIf="sale.img" [src]="sale?.img" />
-        <ion-card-content></ion-card-content>
-        <ion-row no-padding>
-            <ion-col>
-                <button ion-button clear small color="danger" icon-start (click)="onClickOpenCameraOptionTake()">
-                        <ion-icon name='create'></ion-icon>
-                        Add Photo
-                    </button>
-            </ion-col>
-        </ion-row>
-    </ion-card>
-    <form [formGroup]="formData" (ngSubmit)="addingSale()">
+    <form [formGroup]="formData" #addSaleForm="ngForm" (ngSubmit)="addingSale()">
         <ion-list>
-            <ion-item>
+                <img id="add-sale-img" [src]="sale.img" />
+                <ion-buttons text-center>
+                <button ion-button clear small color="danger" icon-start (click)="onClickOpenCameraOptionTake()">
+                    <ion-icon name='create'></ion-icon>
+                    Add Photo
+                </button>
+                </ion-buttons>
+            <!-- <ion-item>
                 <ion-label floating>Image</ion-label>
                 <ion-input formControlName="img" type="text"></ion-input>
-            </ion-item>
-            <ion-item>
+            </ion-item> -->
+            <!-- <ion-item>
                 <ion-label floating>Image</ion-label>
                 <ion-input formControlName="img" type="text"></ion-input>
-            </ion-item>
+            </ion-item> -->
             <ion-item>
                 <ion-label floating>Name</ion-label>
-                <ion-input formControlName="name" type="text" value={{sale?.name}} ></ion-input>
+                <ion-input formControlName="name" type="text" [(ngModel)]="sale.name"></ion-input>
             </ion-item>
               <ion-item>
                 <ion-label floating>Description</ion-label>
-                <ion-input formControlName="description" type="text" value={{sale.description}} ></ion-input>
+                <ion-textarea formControlName="description" type="text" [(ngModel)]="sale.description"></ion-textarea>
             </ion-item>
              <ion-item>
                 <ion-label floating>Price</ion-label>
-                <ion-input formControlName="price" type="number" value={{sale?.price}} ></ion-input>
+                <ion-input formControlName="price" type="number" [(ngModel)]="sale.price"></ion-input>
             </ion-item>
              <ion-item>
                 <ion-label floating>Points</ion-label>
-                <ion-input formControlName="points" type="number" value={{sale?.points}}></ion-input>
+                <ion-input formControlName="points" type="number" [(ngModel)]="sale.points"></ion-input>
             </ion-item>
         </ion-list>
-        <button type="submit" ion-button round>Add Sale</button>
+        <!-- <button type="submit" ion-button round>Add Sale</button> -->
+        <button ion-button class="submit-btn" full type="submit" [disabled]="!addSaleForm.form.valid">Add Sale</button>
+        
     </form>
 </ion-content>
