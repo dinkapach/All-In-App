@@ -27,7 +27,7 @@ export class AddManagerComponent implements OnInit{
     createFormData() {
         this.formData = this.fBuilder.group({
             'id': ["", Validators.required],
-            'userName' : ["", Validators.required],
+            // 'userName' : ["", Validators.required],
             'firstName': ["", Validators.required],
             'lastName' : ["", Validators.required],
             'password' : ["", Validators.required],
@@ -37,8 +37,9 @@ export class AddManagerComponent implements OnInit{
 
     initManager() {
         this.newManager = new Manager();
-        this.newManager.clubId = null;
+        this.newManager.clubId;
         this.newManager.permissions = "";
+        this.newManager.userName = "";
     }
 
     onClickAddManager() {

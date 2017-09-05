@@ -19,18 +19,78 @@ export class CloneService {
 
     getDeepCopyOfClub(club: Club) {
         let copyOfClub: Club = new Club();
-        copyOfClub.id = club.id;
-        copyOfClub.name = club.name;
-        copyOfClub.address = club.address;
-        copyOfClub.openingHours = club.openingHours;
-        copyOfClub.phoneNumber = club.phoneNumber;
-        copyOfClub.isManual = club.isManual;
-        copyOfClub.usersClub = club.usersClub;
-        copyOfClub.sales = club.sales;
-        copyOfClub.branches = club.branches;
-        
+        this.cloneObject(club, copyOfClub);
+
         return copyOfClub;
     }
+
+    getDeepCopyOfCustomer(customer: User) {
+        let copyOfCustomer: User = new User();
+        this.cloneObject(customer, copyOfCustomer);
+
+        return copyOfCustomer;
+    }
+
+    public cloneObject(from, to){
+        Object.keys(from).forEach(key => {
+            to[key] = from[key];
+        });
+    }
+
+    getDeepCopyOfManager(manager: Manager) {
+        let copyOfManager: Manager = new Manager();
+        this.cloneObject(manager, copyOfManager);
+
+        return copyOfManager;
+    }
+
+    getDeepCopyOfSale(sale: Sale) {
+        let copyOfSale: Sale = new Sale();
+        this.cloneObject(sale, copyOfSale);
+
+        return copyOfSale;
+    }
+
+    getDeepCopyOfClubManually(club: ClubManually){
+        let copyOfClubManual: ClubManually = new ClubManually();
+        this.cloneObject(club, copyOfClubManual);
+        return copyOfClubManual;
+    }
+
+
+    getDeepCopyOfCredit(credit: Credit) {
+        let copyOfCredit: Credit = new Credit();
+        this.cloneObject(credit, copyOfCredit);
+
+        return copyOfCredit;
+    }
+
+    // getDeepCopyOfClubManually(club: ClubManually){
+    //     let copyOfClubManual: ClubManually = new ClubManually();
+    //     copyOfClubManual.id = club.id;
+    //     copyOfClubManual.name = club.name;
+    //     copyOfClubManual.address = club.address;
+    //     copyOfClubManual.phoneNumber = club.phoneNumber;
+    //     copyOfClubManual.points = club.points;
+    //     copyOfClubManual.img = club.img;
+    //     copyOfClubManual.isManual = club.isManual;
+
+    //     return copyOfClubManual;
+    // }
+
+
+
+    // getDeepCopyOfCredit(credit: Credit) {
+    //     let copyOfCredit: Credit = new Credit();
+    //     copyOfCredit.id = credit.id;
+    //     copyOfCredit.clubId = credit.clubId;
+    //     copyOfCredit.dateOfExpired = credit.dateOfExpired;
+    //     copyOfCredit.dateOfPurchase = credit.dateOfPurchase;
+    //     copyOfCredit.items = credit.items;
+    //     copyOfCredit.totalCredit = credit.totalCredit;
+        
+    //     return copyOfCredit;
+    // }
 
     // getDeepCopyOfCustomer(customer: User) {
     //     let copyOfCustomer: User = new User();
@@ -48,20 +108,7 @@ export class CloneService {
     //     return copyOfCustomer;
     // }
 
-    getDeepCopyOfCustomer(customer: User) {
-        let copyOfCustomer: User = new User();
-        this.cloneObject(customer, copyOfCustomer);
-
-        return copyOfCustomer;
-    }
-
-    public cloneObject(from, to){
-        Object.keys(from).forEach(key => {
-            to[key] = from[key];
-        });
-    }
-
-    // getDeepCopyOfManager(manager: Manager) {
+        // getDeepCopyOfManager(manager: Manager) {
     //     let copyOfManager: Manager = new Manager();
     //     copyOfManager.id = manager.id;
     //     copyOfManager.clubId = manager.clubId;
@@ -75,34 +122,8 @@ export class CloneService {
     //     return copyOfManager;
     // }
 
-    getDeepCopyOfManager(manager: Manager) {
-        let copyOfManager: Manager = new Manager();
-        this.cloneObject(manager, copyOfManager);
 
-        return copyOfManager;
-    }
-
-    getDeepCopyOfClubManually(club: ClubManually){
-        let copyOfClubManual: ClubManually = new ClubManually();
-        copyOfClubManual.id = club.id;
-        copyOfClubManual.name = club.name;
-        copyOfClubManual.address = club.address;
-        copyOfClubManual.phoneNumber = club.phoneNumber;
-        copyOfClubManual.points = club.points;
-        copyOfClubManual.img = club.img;
-        copyOfClubManual.isManual = club.isManual;
-
-        return copyOfClubManual;
-    }
-
-    getDeepCopyOfSale(sale: Sale) {
-        let copyOfSale: Sale = new Sale();
-        this.cloneObject(sale, copyOfSale);
-
-        return copyOfSale;
-    }
-
-    // getDeepCopyOfSale(sale: Sale) {
+        // getDeepCopyOfSale(sale: Sale) {
     //     let copyOfSale: Sale = new Sale();
     //     copyOfSale.id = sale.id;
     //     copyOfSale.name = sale.name;
@@ -114,15 +135,18 @@ export class CloneService {
     //     return copyOfSale;
     // }
 
-    getDeepCopyOfCredit(credit: Credit) {
-        let copyOfCredit: Credit = new Credit();
-        copyOfCredit.id = credit.id;
-        copyOfCredit.clubId = credit.clubId;
-        copyOfCredit.dateOfExpired = credit.dateOfExpired;
-        copyOfCredit.dateOfPurchase = credit.dateOfPurchase;
-        copyOfCredit.items = credit.items;
-        copyOfCredit.totalCredit = credit.totalCredit;
+        // getDeepCopyOfClub(club: Club) {
+    //     let copyOfClub: Club = new Club();
+    //     copyOfClub.id = club.id;
+    //     copyOfClub.name = club.name;
+    //     copyOfClub.address = club.address;
+    //     copyOfClub.openingHours = club.openingHours;
+    //     copyOfClub.phoneNumber = club.phoneNumber;
+    //     copyOfClub.isManual = club.isManual;
+    //     copyOfClub.usersClub = club.usersClub;
+    //     copyOfClub.sales = club.sales;
+    //     copyOfClub.branches = club.branches;
         
-        return copyOfCredit;
-    }
+    //     return copyOfClub;
+    // }
 }

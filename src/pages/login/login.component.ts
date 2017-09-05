@@ -37,6 +37,7 @@ export class LoginComponent {
         const emailVal = this.formData.value.email;
         const passwordVal = this.formData.value.password;
         this.loadingService.presentLoading();
+        //this.isSuperManager = true; // DELETE
         if(this.isSuperManager){
             this.signingSuperManager.loginSuperManager(emailVal, passwordVal)
             .subscribe(superManager => {

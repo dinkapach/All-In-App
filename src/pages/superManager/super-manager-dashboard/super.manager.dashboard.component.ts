@@ -18,7 +18,7 @@ import * as superManagerConfig from './../../../../super-manager-config.json';
 })
 export class SuperManagerDashboardComponent implements OnInit{
     superManager: SuperManager;
-    viewOptions: string;
+    viewOptions: string = "managers";
     clubActions: string[];
     managerActions: string[];
     customerActions: string[];

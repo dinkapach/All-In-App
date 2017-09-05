@@ -1,3 +1,4 @@
+import { CameraService } from './../../../../helpers/camera-service';
 import { Club } from './../../../../models/club.model';
 import { SuperManagerService } from './../../../../services/superManager.service';
 import { NavParams, NavController, AlertController } from 'ionic-angular';
@@ -16,7 +17,7 @@ export class AddClubComponent implements OnInit{
 
     constructor(private fBuilder : FormBuilder, private navParams: NavParams,
         private navCtrl: NavController, private alertCtrl: AlertController,
-        private superManagerService: SuperManagerService) {
+        private superManagerService: SuperManagerService, private cameraService: CameraService) {
         this.initClub();
         this.formData = fBuilder.group({
             'managerId':["", Validators.required],
@@ -56,6 +57,26 @@ export class AddClubComponent implements OnInit{
                 console.log("cuold not create manager");
             }
         });
+    }
+
+    onClickTakePhoto() {
+        this.cameraService.takePhotoFromCamera()
+        .then(url => {
+            this.newClub.img = url;
+        })
+        .catch(err => {
+            console.log("err to take picture", err);
+        })
+    }
+
+    onClickPhotoFromGallery() {
+        this.cameraService.choosePhotoFromGallery()
+        .then(url => {
+            this.newClub.img = url;
+        })
+        .catch(err => {
+            console.log("err to take picture", err);
+        })
     }
 
 
