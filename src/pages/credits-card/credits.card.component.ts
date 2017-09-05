@@ -46,6 +46,36 @@ export class CreditsCardComponent implements OnInit {
         this.navCtrl.push(EditCreditComponent, {credit: credit});
     }
 
+    cancelNotification(notificationId: number){
+        this.localNotifications.cancel(notificationId)
+        .then(isCanceled => {
+            if(isCanceled){
+                this.doesNotificationScheduled = false;
+                alert("notification canceled");
+            }
+        })
+        .catch(err => console.log(err));
+    }
+
+    scheduleNotification(notificationId: number){
+        this.localNotifications.schedule({
+            title: "Credit About To Expire",
+            id: this.credit.id,
+            text: "Your credit in " + this.credit.id + " is about to expire.",
+            at: new Date(this.credit.dateOfExpired)
+        });
+        alert("notification scheduled");
+    }
+
+    onClickNotificationToggle(){
+        if(this.doesNotificationScheduled){
+            this.scheduleNotification(this.credit.id);
+        }
+        else{
+            this.cancelNotification(this.credit.id);
+        }
+    }
+
     deleteCreditClick(credit){
         this.userService.deleteCredit(credit).
         subscribe(isAuth => {
