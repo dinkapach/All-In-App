@@ -7,6 +7,7 @@ import { Manager } from './../models/manager.model';
 import { Storage } from '@ionic/storage';
 import * as environment from './../../environment.json';
 import { Club } from '../models/club.model';
+import { SigningService } from './signing.service';
 
 @Injectable()
 export class ManagerService {
@@ -38,6 +39,43 @@ export class ManagerService {
 	
 	getLocalManagerId(){
         return this.currentManager.id;
+    }
+
+    getManagerId(){
+        return this.currentManager.id;
+    }
+
+    updateLocalManager() : Observable<Manager> {
+        let managerId = this.getManagerId();
+        
+        return Observable.create(observer => {
+            this.http.get(`${this.url}/api/manager/${managerId}`)
+            .map(response => response.json())
+            .subscribe((data) =>{
+                console.log("got user data from getManagerById: ");
+                console.log(data);
+                this.setLocalManager(data.manager, data.club);
+                this.saveLoggedInUserToStorage(data, true);
+                // this.storage.set("customerDetails", data);
+                observer.next(true);
+                observer.complete();
+            },
+        err => {
+            console.log("error at getManagerById: " + err);
+            observer.next(false);
+            observer.complete();
+        });
+        });
+    }
+
+    saveLoggedInUserToStorage(data, isManager: Boolean){
+        let currentUser = {
+            isManager: isManager,
+            data: data
+        }
+        console.log("saving user to storage. key: " + environment.CURRENT_USER_KEY);
+        console.log(currentUser);
+        this.storage.set(environment.CURRENT_USER_KEY, currentUser);
     }
 
     setLocalManager(manager: Manager, club: Club){

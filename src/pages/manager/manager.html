@@ -1,6 +1,6 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>Welcome Manager {{manager.firstName}}</ion-title>
+        <ion-title>Welcome {{manager.firstName}}</ion-title>
            <ion-buttons end>
               <button ion-button (click)="onClickSettings()" icon-only>
                 <ion-icon name="more"></ion-icon>
@@ -9,6 +9,9 @@
      </ion-navbar>
 </ion-header> 
 <ion-content padding>
+    <ion-refresher (ionRefresh)="doRefresh($event)" [pullMin]="200">
+        <ion-refresher-content> </ion-refresher-content>
+      </ion-refresher>
     <img [src]="club.img" class="form-top-image"/>
     <!--<ion-card-content>-->
         <ion-buttons text-center>

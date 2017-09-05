@@ -73,20 +73,20 @@ export class DashboardComponent implements OnInit {
 
     doRefresh(refresher){
         console.log('Begin async operation', refresher);
-        this.userService.getUserById()
+        this.userService.updateLocalCustomer()
         .subscribe(isAuth => {
             if (isAuth) {
-                alert("customer updated from server");
+                // alert("customer updated from server");
                 this.user = this.userService.getLocalUser();
                 this.refreshClubDispaly()
             }
             else {
                 console.log('user not connected not auth');
-                alert("customer was not updated from server");
+                alert("Not Updated");
             }
         },
         err => {
-            alert("customer was not updated from server - error");
+            alert("Connection Error");
             console.log(err);
         },
         () => {
