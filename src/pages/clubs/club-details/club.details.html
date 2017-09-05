@@ -4,52 +4,34 @@
       {{club.name}}
     </ion-title>
   </ion-navbar>
-
   <ion-toolbar no-border-top>
     <ion-segment [(ngModel)]="viewOptions">
+      <ion-segment-button *ngIf="club.sales" value="sales">
+        Sales
+      </ion-segment-button>
       <ion-segment-button value="receipts">
         Receipts
       </ion-segment-button>
       <ion-segment-button value="credits" (click)=onClickCredits()>
         Credits
       </ion-segment-button>
-      <ion-segment-button *ngIf="club.sales" value="sales">
-        Sales
-      </ion-segment-button>
-      <!-- <ion-segment-button *ngIf="club.sales" value="sales">
-          Delete Club
-        </ion-segment-button>
-        <ion-segment-button *ngIf="club.sales" value="sales">
-          
-        </ion-segment-button> -->
     </ion-segment>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <div [ngSwitch]="viewOptions">
     <ion-list *ngSwitchCase="'receipts'">
       <receipt-scan [club]="club"></receipt-scan>
     </ion-list>
-
     <ion-list *ngSwitchCase="'credits'">
       <show-credits [creditArr]="creditArr" [club]="club"></show-credits>
     </ion-list>
-
     <ion-list *ngSwitchCase="'sales'">
-      <ion-grid>
-        <ion-row *ngFor="let sale of club.sales">
-          <ion-col>
-            <sale-card [sale]="sale" (click)="onSaleClicked(sale)"></sale-card>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+      <sale-card *ngFor="let sale of club.sales" [sale]="sale" (click)="onSaleClicked(sale)"></sale-card>
     </ion-list>
-
     <ion-list *ngSwitchDefault>
       <!-- <receipt-scan [club]="club"></receipt-scan> -->
     </ion-list>
-
   </div>
 </ion-content>
 

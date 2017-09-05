@@ -5,11 +5,12 @@
 </ion-header>
 <ion-content>
   <h2>{{sale.name}}</h2>
-  <img [src]="sale.img"/>
+  <img id="sale-image" class="center-image" [src]="sale.img"/>
   <h3>Description</h3>
   <p>{{sale.description}} </p>
   <p><span class="bold-text">Price:</span> {{sale.price}}</p>
-  <a ion-button icon-only href="tel:{{club.phoneNumber}}">
+  <a ion-button icon-start href="tel:{{club.phoneNumber}}">
       <ion-icon name="call"></ion-icon>
+      Call
   </a>
 </ion-content>

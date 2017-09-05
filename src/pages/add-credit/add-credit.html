@@ -15,14 +15,14 @@
                 <ion-input formControlName="dateOfExpired" type="Date" [(ngModel)]="newCredit.dateOfExpired"></ion-input>
             </ion-item> 
             <ion-item>
-                <ion-label floating>Items</ion-label>
-                <ion-input formControlName="items" type="string" [(ngModel)]="newCredit.items"></ion-input>
-            </ion-item>  
-            <ion-item>
                 <ion-label floating>Total Credit</ion-label>
                 <ion-input formControlName="totalCredit" type="number" [(ngModel)]="newCredit.totalCredit"></ion-input>
-            </ion-item>   
+            </ion-item>
         </ion-list>
+        <ion-item>
+            <ion-label>Reminder me a week before</ion-label>
+            <ion-toggle formControlName="setReminder" [(ngModel)]="setReminder"></ion-toggle>
+        </ion-item>
         <button ion-button class="submit-btn" full type="submit" [disabled]="!addCreditForm.form.valid">Add Credit</button>
     </form> 
 </ion-content>
