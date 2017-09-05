@@ -27,7 +27,7 @@ export class EditCreditComponent {
     this.formGroup = this.fBuilder.group({
         'dateOfPurchase': ["", Validators.required],
         'dateOfExpired': ["", Validators.required],
-        'items': ["", Validators.required],
+        // 'items': ["", Validators.required],
         'totalCredit': ["", Validators.required]
     });
   }
