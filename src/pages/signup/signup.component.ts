@@ -41,6 +41,7 @@ export class SignupComponent{
     submitSingup() {
         console.log(this.newCustomer);
         this.newCustomer.joinDate = new Date();
+        this.newCustomer.email = this.newCustomer.email.toLowerCase();
         console.log(this.newCustomer.joinDate);
         this.signingService.signupUser(this.newCustomer)
         .subscribe(newCust => {
