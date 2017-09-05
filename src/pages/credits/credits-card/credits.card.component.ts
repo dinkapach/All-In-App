@@ -1,10 +1,10 @@
-import { User } from './../../models/user.model';
-import { UserService } from './../../services/user.service';
+import { User } from './../../../models/user.model';
+import { UserService } from './../../../services/user.service';
 //import { ClubDetailsComponent } from './../club-details/club.details.component';
 import { NavController, AlertController } from 'ionic-angular';
-import { Credit } from './../../models/credit.model';
+import { Credit } from './../../../models/credit.model';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { ClubService } from './../../services/club.service';
+import { ClubService } from './../../../services/club.service';
 import { EditCreditComponent } from './../edit-credit/edit-credit.component';
 // import { EditSaleComponent } from '../edit-sale/edit.sale.component';
 import { LocalNotifications } from '@ionic-native/local-notifications';

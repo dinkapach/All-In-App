@@ -1,7 +1,6 @@
 import { AddCreditComponent } from './../add-credit/add-credit.component';
-import { LoginComponent } from './../login/login.component';
-import { UserService } from './../../services/user.service';
-import { User } from './../../models/user.model';
+import { UserService } from './../../../services/user.service';
+import { User } from './../../../models/user.model';
 import { Component, OnInit, Input } from '@angular/core';
 import { Http } from '@angular/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'; 
@@ -10,9 +9,9 @@ import {Observable} from 'rxjs/Observable';
 import {CreditsCardComponent} from  '../credits-card/credits.card.component';
 
 import 'rxjs/add/operator/map';
-import { ClubCardComponent } from '../clubs/club-card/club.card.component';
-import { Credit } from '../../models/credit.model';
-import { Club } from '../../models/club.model';
+import { ClubCardComponent } from '../../clubs/club-card/club.card.component';
+import { Credit } from '../../../models/credit.model';
+import { Club } from '../../../models/club.model';
 
 //TODO:
 //Send the updated fields instead of everything
