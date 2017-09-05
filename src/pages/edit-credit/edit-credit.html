@@ -8,17 +8,17 @@
         <ion-list>
             <ion-item>
                 <ion-label floating>Purchase Date</ion-label>
-                <ion-input formControlName="dateOfPurchase" type="Date" [(ngModel)]="updatedCredit.dateOfPurchase"></ion-input>
+                <ion-input formControlName="dateOfPurchase" type="Date" [ngModel]="updatedCredit.dateOfPurchase | date:'yyyy-MM-dd'" (ngModelChange)="updatedCredit.dateOfPurchase = $event"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label floating>Expire Date</ion-label>
-                <ion-input formControlName="dateOfExpired" type="Date" [(ngModel)]="updatedCredit.dateOfExpired"></ion-input>
-                <!-- <ion-input formControlName="dateOfExpired" type="Date" [ngModel]="updatedCredit.dateOfExpired | date:'yyyy-MM-dd'"></ion-input> -->
+                <!-- <ion-input formControlName="dateOfExpired" type="Date" [(ngModel)]="updatedCredit.dateOfExpired"></ion-input> -->
+                <ion-input formControlName="dateOfExpired" type="Date" [ngModel]="updatedCredit.dateOfExpired | date:'yyyy-MM-dd'" (ngModelChange)="updatedCredit.dateOfExpired = $event"></ion-input>
             </ion-item> 
-            <ion-item>
+            <!-- <ion-item>
                 <ion-label floating>Items</ion-label>
                 <ion-input formControlName="items" type="string" [(ngModel)]="updatedCredit.items"></ion-input>
-            </ion-item>  
+            </ion-item>   -->
             <ion-item>
                 <ion-label floating>Total Credit</ion-label>
                 <ion-input formControlName="totalCredit" type="number" [(ngModel)]="updatedCredit.totalCredit"></ion-input>
