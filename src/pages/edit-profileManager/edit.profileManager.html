@@ -25,17 +25,17 @@
             
             <ion-item>
                 <ion-label floating>First Name</ion-label>
-                <ion-input formControlName="firstName" type="text" value={{user?.firstName}} (blur)="onBlur($event)"></ion-input>
+                <ion-input formControlName="firstName" type="text" value={{manager?.firstName}} (blur)="onBlur($event)"></ion-input>
             </ion-item>
             
             <ion-item>
                 <ion-label floating>Last Name</ion-label>
-                <ion-input formControlName="lastName" type="text" value={{user?.lastName}} (blur)="onBlur($event)"></ion-input>
+                <ion-input formControlName="lastName" type="text" value={{manager?.lastName}} (blur)="onBlur($event)"></ion-input>
             </ion-item>
            
             <ion-item>
                 <ion-label floating>Email</ion-label>
-                <ion-input formControlName="email" type="email" value={{user?.email}} (blur)="onBlur($event)"></ion-input>
+                <ion-input formControlName="email" type="email" value={{manager?.email}} (blur)="onBlur($event)"></ion-input>
             </ion-item>
         
         </ion-list>
