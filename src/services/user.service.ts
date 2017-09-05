@@ -8,13 +8,14 @@ import { Storage } from '@ionic/storage';
 import * as environment from './../../environment.json';
 //import * as environment from './../../environment.json';
 import { Credit } from '../models/credit.model';
+import { SigningService } from './signing.service';
 
 @Injectable()
 export class UserService {
     private currentUser: User;
     private url: string;
 
-    constructor(private http : Http, private storage: Storage) {
+    constructor(private http : Http, private storage: Storage, private signService: SigningService) {
         this.url = environment[environment.RUNNING];
         console.log(this.url);
     }
@@ -47,7 +48,8 @@ export class UserService {
                 console.log("got user data from getUserById: ");
                 console.log(data);
                 this.setLocalUser(data);
-                this.storage.set("customerDetails", data);
+                this.signService.saveLoggedInUserToStorage(data, false);
+                // this.storage.set("customerDetails", data);
                 observer.next(true);
                 observer.complete();
             },
@@ -95,23 +97,23 @@ export class UserService {
         .map( res => res.json());
     }
 
-    getCostumerByCostumerId(customerId : number){
-        console.log("get customer from repository..."+ customerId);
-        return this.http.get(`${this.url}/api/users/`, customerId)
-            .map(response => response.json()),
-        err => {
-            console.log("error at getUserById: " + err);           
-        };
-    }  
+    // getCostumerByCostumerId(customerId : number){
+    //     console.log("get customer from repository..."+ customerId);
+    //     return this.http.get(`${this.url}/api/users/`, customerId)
+    //         .map(response => response.json()),
+    //     err => {
+    //         console.log("error at getUserById: " + err);           
+    //     };
+    // }  
 
-     getIdByCostumerId(customerId : number){
-        console.log("get customer from repository..."+ customerId);
-        return this.http.get(`${this.url}/api/users/getIdByCustomerId`, customerId)
-            .map(response => response.json()),
-        err => {
-            console.log("error at getUserById: " + err);           
-        };
-    } 
+    //  getIdByCostumerId(customerId : number){
+    //     console.log("get customer from repository..."+ customerId);
+    //     return this.http.get(`${this.url}/api/users/getIdByCustomerId`, customerId)
+    //         .map(response => response.json()),
+    //     err => {
+    //         console.log("error at getUserById: " + err);           
+    //     };
+    // } 
 
     addCredit(credit: Credit): Observable<boolean> {
         console.log("adding credit 6");

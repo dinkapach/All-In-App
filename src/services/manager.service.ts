@@ -2,11 +2,12 @@ import { Sale } from './../models/sales.model';
 import { User } from './../models/user.model';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, RequestOptions } from '@angular/http';
 import { Manager } from './../models/manager.model';
 import { Storage } from '@ionic/storage';
 import * as environment from './../../environment.json';
 import { Club } from '../models/club.model';
+import { SigningService } from './signing.service';
 
 @Injectable()
 export class ManagerService {
@@ -15,7 +16,7 @@ export class ManagerService {
     private currentClub: Club;
     private isManager: Boolean;
     private currentCustomers;
-    constructor(private http : Http, private storage: Storage) {
+    constructor(private http : Http, private storage: Storage, private signService: SigningService) {
         this.url = environment[environment.RUNNING];
         console.log(this.url);
     }
@@ -52,6 +53,33 @@ export class ManagerService {
 
     setCustomerArray(customers : User[]){
         this.currentCustomers = customers;
+    }
+
+    getManagerId(){
+        return this.currentManager.id;
+    }
+
+    UpdateLocalManager() : Observable<boolean> {
+        let managerId = this.getManagerId();
+        
+        return Observable.create(observer => {
+            this.http.get(`${this.url}/api/users/${managerId}`)
+            .map(response => response.json())
+            .subscribe((data) =>{
+                console.log("got user data from getManagerById: ");
+                console.log(data);
+                this.setLocalManager(data.manager, data.club);
+                this.signService.saveLoggedInUserToStorage(data, true);
+                // this.storage.set("customerDetails", data);
+                observer.next(true);
+                observer.complete();
+            },
+        err => {
+            console.log("error at getManagerById: " + err);
+            observer.next(false);
+            observer.complete();
+        });
+        });
     }
 
     addSale(clubId: any, sale: Sale){

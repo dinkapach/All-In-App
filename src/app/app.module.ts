@@ -206,8 +206,8 @@ import { EditPasswordManagerComponent } from '../pages/edit-passwordManager/edit
     CloneService,
     AddPointsFunctions,
     
-    Camera,
-    //{ provide: Camera, useClass: CameraMock },
+    // Camera,
+    { provide: Camera, useClass: CameraMock },
     ]
 })
 export class AppModule {}
