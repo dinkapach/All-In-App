@@ -4,7 +4,7 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-    <form [formGroup]="formData" #updateProfileForm="ngForm" (ngSubmit)="updateSale()">
+    <form [formGroup]="formData" #editSaleForm="ngForm" (ngSubmit)="updateSale()">
         <ion-list>
             <img class="form-top-image" [src]="updatedSale.img"/>
             <button ion-button clear small color="danger" icon-start (click)="onClickOpenCameraOptionTake()">
@@ -34,7 +34,7 @@
                 <ion-input formControlName="price" type="number" [(ngModel)]="updatedSale.price" ></ion-input>
             </ion-item>   
         </ion-list>
-        <button ion-button class="submit-btn" full type="submit" [disabled]="!updateProfileForm.form.valid">Update Sale</button>
+        <button ion-button class="submit-btn" full type="submit" [disabled]="!editSaleForm.form.valid">Update Sale</button>
     </form>
 </ion-content>
 
