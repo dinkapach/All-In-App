@@ -4,7 +4,7 @@
     </ion-navbar>
 </ion-header>
 <ion-content>
-        <img id="add-sale-img" [src]="sale.img" />
+        <img id="add-sale-img" *ngIf="sale.img" [src]="sale.img" />
         <ion-buttons text-center>
         <button ion-button clear small color="danger" icon-start (click)="onClickOpenCameraOptionTake()">
             <ion-icon name='create'></ion-icon>
