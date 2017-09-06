@@ -150,7 +150,7 @@ export class AddCreditComponent{
             })
             .catch(err => {
                 console.log("err to take picture", err);
-                alert("error");
+                // alert("error");
             })
     }
 
@@ -161,7 +161,7 @@ export class AddCreditComponent{
             })
             .catch(err => {
                 console.log("err to take picture", err);
-                alert("error");
+                // alert("error");
             })
     }
 }

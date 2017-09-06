@@ -4,7 +4,7 @@
     </ion-navbar>
 </ion-header>
 <ion-content padding>
-        <img id="credit-img" *ngIf="newCredit.img"[src]="newCredit.img"/>
+        <img class="top-image" *ngIf="newCredit.img"[src]="newCredit.img"/>
         <ion-buttons text-center>
         <button ion-button clear small color="danger" icon-start (click)="onClickOpenCameraOptionTake()">
             <ion-icon name='create'></ion-icon>
