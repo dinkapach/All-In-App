@@ -92,14 +92,11 @@ export class ManagerService {
         this.currentCustomers = customers;
     }
 
-    addSale(clubId: any, sale: Sale){
-        this.http.post(`${this.url}/api/manager/addSale`, {
-            clubId : clubId,
+    addSale(sale: Sale): Observable<Sale>{
+        return this.http.post(`${this.url}/api/manager/addSale`, {
+            clubId : this.getClubId(),
             sale: sale
         }).map(response => response.json())
-        .subscribe(Sale => {
-            console.log("sale" + Sale);
-        })
     }
 
     // addPointsToCustomerById(customerId: any, clubObjId:any, numOfPoints: number){

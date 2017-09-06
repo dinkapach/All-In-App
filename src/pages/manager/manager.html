@@ -15,10 +15,10 @@
     <img [src]="club.img" class="form-top-image"/>
     <!--<ion-card-content>-->
         <ion-buttons text-center>
-        <button (click)="showCustomers()" ion-button round>Show Customers</button>
-        <button (click)="addSale()" ion-button round>Add Sale</button>
-        <button (click)="showSales()" ion-button round>My Sales</button>
-        <button (click)="showStatistics()" ion-button round>Show Statistics</button>
+        <button (click)="showCustomers()" ion-button>Show Customers</button>
+        <button (click)="addSale()" ion-button >Add Sale</button>
+        <button (click)="showSales()" ion-button >My Sales</button>
+        <button (click)="showStatistics()" ion-button >Show Statistics</button>
         </ion-buttons>
         <h2 text-center>{{club.name}} Info</h2>
           <ion-item class="no-border">
@@ -26,7 +26,7 @@
             <p>{{club.phoneNumber}}</p>
           </ion-item>
           <ion-item class="no-border">
-            <ion-icon name="cart" item-start large></ion-icon>
+            <ion-icon name="map" item-start large></ion-icon>
             <p>{{club.address}}</p>
             </ion-item>   
             <ion-item class="no-border">  
@@ -42,7 +42,7 @@
     <ion-col>
       <button ion-button clear small color="danger" icon-start (click)="onClickEditClub(club)" >
           <ion-icon name='create'></ion-icon>
-          Edit
+          Edit Club Info
         </button>
       </ion-col>
   </ion-row>

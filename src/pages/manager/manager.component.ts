@@ -56,7 +56,7 @@ export class ManagerComponent {
     }
 
     showSales(){
-        this.navCtrl.push(ShowSalesComponent, {club: this.club});
+        this.navCtrl.push(ShowSalesComponent);
     }
 
     doUpdate(){
@@ -72,18 +72,18 @@ export class ManagerComponent {
         this.managerService.updateLocalManager()
         .subscribe(isAuth => {
             if (isAuth) {
-                alert("manager updated from server");
+                // alert("manager updated from server");
                 this.manager = this.managerService.getLocalManager();
                 this.club = this.managerService.getLocalClub();
                 // this.refreshClubDispaly()
             }
             else {
                 console.log('manager not connected not auth');
-                alert("Not Updated");
+                // alert("Not Updated");
             }
         },
         err => {
-            alert("Connection Error");
+            // alert("Connection Error");
             console.log(err);
         },
         () => {

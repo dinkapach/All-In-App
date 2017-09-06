@@ -34,11 +34,11 @@ export class SaleCardManagerComponent implements OnInit {
             .subscribe(isAuth => {
                 console.log("From 'delete-sale.component', print 'isAuth': ", isAuth);
                 if(isAuth){
-                    alert("sale deleted");
+                    // alert("sale deleted");
                     this.saleDeleted.emit(sale);
                 }
             else{
-                alert("error delete sale");
+                // alert("error delete sale");
                 console.log("unSuccess");
             }
         });

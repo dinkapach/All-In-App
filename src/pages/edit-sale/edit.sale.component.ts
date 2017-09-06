@@ -53,10 +53,10 @@ export class EditSaleComponent {
           console.log(isAuth);
           if(isAuth){
               this.cloneService.cloneObject(this.updatedSale, this.sale);
-             alert("Sale Updated");
+            //  alert("Sale Updated");
              this.navCtrl.pop();
-              console.log(isAuth);
-               console.log("sale updated");
+            //   console.log(isAuth);
+            //    console.log("sale updated");
           }
           else{
               console.log(" Not update club ");
