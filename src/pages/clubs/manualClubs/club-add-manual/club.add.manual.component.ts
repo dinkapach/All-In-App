@@ -37,7 +37,7 @@ export class AddClubManualComponent {
             'name': ["", Validators.required],
             'address': [""],
             'phoneNumber': [""],
-            'img': [""],
+            // 'img': [""],
             'points': [""],
         });
     }
@@ -49,14 +49,7 @@ export class AddClubManualComponent {
         .subscribe(isUpdated => {
             if (isUpdated) {
                 console.log("updated");
-                let alert = this.alertCtrl.create({
-                    subTitle: 'Club Added',
-                    buttons: ['סבבה']
-                });
-            alert.present();
-            alert.onDidDismiss(() => {
                 this.navCtrl.pop();
-            });
             }
             else {
                 console.log("not updated");

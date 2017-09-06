@@ -4,28 +4,23 @@
     </ion-navbar>
 </ion-header>
 <ion-content padding>
-      <ion-card>
-        <img id="add-club-img" [src]="clubNew?.img" />
-        <ion-card-content></ion-card-content>
-        <ion-row no-padding>
-            <ion-col>
-                <button ion-button clear small color="danger" icon-start (click)="onClickOpenCameraOptionTake()">
-                    <ion-icon name='create'></ion-icon>
-                    Add Photo
-                </button>
-            </ion-col>
-        </ion-row>
-    </ion-card>
+        <img class="top-image" *ngIf="clubNew.img" [src]="clubNew.img" />
+        <ion-buttons text-center>
+            <button ion-button clear small color="danger" icon-start (click)="onClickOpenCameraOptionTake()">
+                <ion-icon name='create'></ion-icon>
+                Add Photo
+            </button>
+        </ion-buttons>
       <form [formGroup]="addClubForm" #addManualClubForm="ngForm" (ngSubmit)="onClickAddClub()">
           <ion-list>
             <ion-item>
                 <ion-label floating>Name</ion-label>
                 <ion-input formControlName="name" type="text" [(ngModel)]="clubNew.name" ></ion-input>
             </ion-item>  
-            <ion-item>
+            <!-- <ion-item>
                 <ion-label floating>Img</ion-label>
                 <ion-input formControlName="img" type="text" [(ngModel)]="clubNew.img" ></ion-input>
-            </ion-item>
+            </ion-item> -->
               <ion-item>
                 <ion-label floating>Address</ion-label>
                 <ion-input formControlName="address" type="text" [(ngModel)]="clubNew.address" ></ion-input>
