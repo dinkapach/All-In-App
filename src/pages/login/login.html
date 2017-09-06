@@ -14,25 +14,25 @@
                 <ion-input formControlName="password" placeholder="Password" type="password" [(ngModel)]="password"></ion-input>
             </ion-item>    
         </ion-list>
-        <button type="submit" ion-button round [disabled]="!loginForm.form.valid">Log in</button>
+        <button type="submit" ion-button full [disabled]="!loginForm.form.valid">Log in</button>
     </form>
-
-<ion-list>
-     <ion-item>
-     <ion-label>manager</ion-label>
-     <ion-checkbox [(ngModel)]="isManager" ></ion-checkbox>
+    <ion-row>
+<ion-col>
+    <ion-item text-center>
+     <ion-label>Manager</ion-label>
+     <ion-checkbox [(ngModel)]="isManager"></ion-checkbox>
    </ion-item>                
-</ion-list>
+</ion-col>
 
-<ion-list>
-     <ion-item>
-        <ion-label>super manager</ion-label>
-        <ion-checkbox [(ngModel)]="isSuperManager" ></ion-checkbox>
+<ion-col>
+     <ion-item text-center>
+        <ion-label>Super Manager</ion-label>
+        <ion-checkbox [(ngModel)]="isSuperManager"></ion-checkbox>
     </ion-item>                
-</ion-list>
-
-<ion-list>
-    <button ion-button color="dark" clear>Forgot password?</button>
+</ion-col>
+</ion-row>
+<ion-list text-center>
+    <!-- <button ion-button color="dark" clear>Forgot password?</button> -->
     <button ion-button clear (click)="goToSignUpPage()">Create an account!</button>
 </ion-list>
 
