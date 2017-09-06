@@ -55,7 +55,7 @@ export class EditCreditComponent {
           if(isAuth){
               // this.showAlert("Profile Updated" + isAuth);
               this.credit = this.updatedCredit;
-              alert("updated");
+            //   alert("updated");
               this.navCtrl.pop();
           }
           else{

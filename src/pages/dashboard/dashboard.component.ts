@@ -61,6 +61,16 @@ export class DashboardComponent implements OnInit {
         // this.initGrid();
     }
 
+    // ionViewWillEnter(){
+    //     console.log("enter page");
+    //     this.userService.updateLocalCustomer()
+    //     .subscribe(updated =>{
+    //         if(updated){
+    //             this.fetchDataFromService();
+    //         }
+    //     });
+    // }
+
     onClearClubSearchBar(){
         this.showClubSearchBar = !this.showClubSearchBar
     }
@@ -71,22 +81,26 @@ export class DashboardComponent implements OnInit {
         this.showClubSearchBar = !this.showClubSearchBar
     }
 
+    fetchDataFromService(){
+        this.user = this.userService.getLocalUser();
+        this.refreshClubDispaly()
+    }
+
     doRefresh(refresher){
         console.log('Begin async operation', refresher);
         this.userService.updateLocalCustomer()
         .subscribe(isAuth => {
             if (isAuth) {
                 // alert("customer updated from server");
-                this.user = this.userService.getLocalUser();
-                this.refreshClubDispaly()
+                this.fetchDataFromService();
             }
             else {
                 console.log('user not connected not auth');
-                alert("Not Updated");
+                // alert("Not Updated");
             }
         },
         err => {
-            alert("Connection Error");
+            // alert("Connection Error");
             console.log(err);
         },
         () => {
