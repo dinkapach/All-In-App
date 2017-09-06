@@ -35,6 +35,10 @@ export class ShowCreditsComponent implements OnInit {
         //this.creditArr = this.navParams.get("creditArr");
     }
 
+    ionViewWillEnter(){
+        console.log("enterPage");
+    }
+
     ngOnInit() {
         this.user = this.userService.getLocalUser();
         console.log("from show credit: ", this.creditArr)
@@ -43,7 +47,8 @@ export class ShowCreditsComponent implements OnInit {
     handleCreditDeleted(creditToRemove){
         this.creditArr = this.creditArr.filter(credit => {
             return credit.id != creditToRemove.id;
-        })
+        });
+        this.userService.updateLocalCustomerWithoutPromise();
     }
 
     onClickAddCredit(){

@@ -1,17 +1,20 @@
-<ion-item>
+<ion-item class="club-card">
     <ion-thumbnail item-start (click)="onClubClicked()">
       <img id="card-img" [src]="club.img" />
     </ion-thumbnail>
     <ion-buttons end>
-        <button ion-button clear icon-only (click)="onClickPresentClubInfo({club: club})">
+        <button ion-button clear icon-end (click)="onClickPresentClubInfo({club: club})">
           <ion-icon color="dark" name="information-circle"></ion-icon>
+          <!-- Info -->
         </button>
   </ion-buttons>
-    <h2> {{club.name}}</h2>
-    <button ion-button large clear color="dark">
-      <ion-icon name="trophy" item-start large></ion-icon>
-      {{userPoints}}
-    </button>
+    <h2>{{club.name}}</h2>
+    <!-- <button ion-button clear> -->
+      <p>
+      <ion-icon name="trophy" color="dark" item-start large> {{userPoints}} </ion-icon>
+      
+      </p>
+    <!-- </button> -->
     <ion-row no-padding>
         <ion-col>
           <button ion-button clear small color="danger" icon-start (click)="onClickEditClub(club)" *ngIf="club.isManual">

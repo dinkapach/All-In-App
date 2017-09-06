@@ -93,18 +93,10 @@ export class CreditsCardComponent implements OnInit {
         subscribe(isAuth => {
             console.log("From 'delete-credit.component', print 'isAuth': ", isAuth);
             if(isAuth){
-                let alert = this.alertCtrl.create({
-                    subTitle: 'credit deleted',
-                    buttons: ['סבבה']
-                });
-            alert.present();
-            alert.onDidDismiss(() => {
-                this.navCtrl.pop();
-            });
-            this.creditDeleted.emit(credit);
+                this.creditDeleted.emit(credit);
             }
             else{
-                console.log("unSuccess");
+                console.log("Error deleting credit");
             }
         })
     }

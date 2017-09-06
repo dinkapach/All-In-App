@@ -60,10 +60,23 @@ img.center-image{
 }
 
 .no-border,
+.no-border .item-inner,
+.no-border .item-md.item-block,
 .no-border .item-inner{
     border: none;
 }
 
 .text-bold{
     font-weight: bold;
+}
+
+.top-image{
+    display: block;
+    margin: auto;
+    max-width: 200px;
+    // border-radius: 10px;
+}
+
+img{
+    border-radius: 5px;
 }

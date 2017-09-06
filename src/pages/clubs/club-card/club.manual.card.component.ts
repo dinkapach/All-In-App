@@ -48,11 +48,11 @@ export class ClubManualCardComponent implements OnInit {
         this.userService.updateUser(this.user).
         subscribe(isAuth => {
             if(isAuth){
-                let alert = this.alertCtrl.create({
-                    subTitle: 'club deleted',
-                    buttons: ['סבבה']
-                });
-            alert.present();
+            //     let alert = this.alertCtrl.create({
+            //         subTitle: 'club deleted',
+            //         buttons: ['סבבה']
+            //     });
+            // alert.present();
             // alert.onDidDismiss(() => {
             //     this.navCtrl.pop();
             // });

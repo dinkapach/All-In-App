@@ -41,34 +41,19 @@ export class EditPasswordComponent{
           areEqual: true
         };
     }
-    
 
     onClickChangePassword() {
-
         this.userService.changePassword(this.currentPassword, this.newPassword)
         .subscribe(isAuth => {
             console.log(isAuth);
             if(isAuth){
-                this.showAlert("password Updated" + isAuth);
+                alert("Password Updated");
                 console.log(isAuth);
                 this.navCtrl.pop();
             }
             else{
-                this.showAlert("password not Updated"+isAuth);
+                // this.showAlert("password not Updated"+isAuth);
             }
         })
-    }
-
-    checkPassword(){
-
-    }
-
-    showAlert(message){
-    let alert = this.alertCtrl.create({
-    //   title: 'Title!',
-      subTitle: message,
-      buttons: ['סבבה']
-    });
-    alert.present();
     }
 }

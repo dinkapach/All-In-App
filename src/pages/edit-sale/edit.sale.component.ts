@@ -52,27 +52,17 @@ export class EditSaleComponent {
       .subscribe(isAuth => {
           console.log(isAuth);
           if(isAuth){
-             this.presentAlert();
-              console.log(isAuth);
-               console.log("sale updated");
+              this.cloneService.cloneObject(this.updatedSale, this.sale);
+            //  alert("Sale Updated");
+             this.navCtrl.pop();
+            //   console.log(isAuth);
+            //    console.log("sale updated");
           }
           else{
               console.log(" Not update club ");
           }
       });
   }
-
-
-    presentAlert() {
-        let alert = this.alertCtrl.create({
-            subTitle: 'sale added to club succecfully',
-            buttons: ['סבבה']
-        });
-        alert.present();
-        alert.onDidDismiss(() => {
-            this.navCtrl.pop();
-        });
-    }
 
         // to do
         updateImg(url) {

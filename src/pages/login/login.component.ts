@@ -50,12 +50,12 @@ export class LoginComponent {
                 }
                 else{
                     console.log("problam in submit login for super manager");
-                    alert("Your user name or password inncorrect");
+                    // alert("Your user name or password inncorrect");
                 }
             },
             err => {
                 console.log(err);
-                alert(err);
+                // alert(err);
             },
             () => {
                 this.loadingService.dismissLoading();
@@ -70,13 +70,13 @@ export class LoginComponent {
                 }
                 else {
                     console.log('user not connected');
-                    alert("Your user name or password inncorrect");
+                    // alert("Your user name or password inncorrect");
                     // this.loadingService.dismissLoading();
                 }
             },
             err => {
                 console.log(err);
-                alert(err);
+                // alert(err);
             },
             () => {
                 this.loadingService.dismissLoading();
@@ -86,15 +86,15 @@ export class LoginComponent {
 
     gotoDashboard(){
         if(this.isSuperManager) {
-            alert("login super manager success");
+            // alert("login super manager success");
         }
         else if(this.isManager) {
             this.navCtrl.setRoot(ManagerComponent);
-            alert("login manager success");
+            // alert("login manager success");
         }
         else {
             this.navCtrl.setRoot(DashboardComponent);            
-            alert("login customer success");
+            // alert("login customer success");
         }
     }
 

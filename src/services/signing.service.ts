@@ -32,8 +32,8 @@ export class SigningService {
             if (data != null){
                 console.log("in isLoggedIn method");
                 let isManager = data.isManager;
-                // console.log("is manager: " ,isManager);
-                console.log(data);
+                console.log("isManager: " + isManager);
+                console.log("data" ,data);
                 if(isManager){
                     this.managerService.setLocalManager(data.data.manager, data.data.club);
                 }
@@ -113,7 +113,7 @@ export class SigningService {
             isManager: isManager,
             data: data
         }
-        console.log("saving user to storage");
+        console.log("saving user to storage. key: " + environment.CURRENT_USER_KEY);
         console.log(currentUser);
         this.storage.set(environment.CURRENT_USER_KEY, currentUser);
     }

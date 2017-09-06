@@ -55,13 +55,47 @@ export class ManagerComponent {
         this.navCtrl.push(ShowCustomerComponent);
     }
 
-    
-
     showSales(){
-        this.navCtrl.push(ShowSalesComponent, {club: this.club});
+        this.navCtrl.push(ShowSalesComponent);
     }
 
-  
+    ionViewWillEnter(){
+        this.doUpdate();
+    }
+
+    doUpdate(){
+        this.managerService.updateLocalManager()
+        .subscribe(data => {
+            this.manager = this.managerService.getLocalManager();
+            this.club = this.managerService.getLocalClub();
+            console.log(data);
+        });
+    }
+
+    doRefresh(refresher){
+        console.log('Begin async operation', refresher);
+        this.managerService.updateLocalManager()
+        .subscribe(isAuth => {
+            if (isAuth) {
+                // alert("manager updated from server");
+                this.manager = this.managerService.getLocalManager();
+                this.club = this.managerService.getLocalClub();
+                // this.refreshClubDispaly()
+            }
+            else {
+                console.log('manager not connected not auth');
+                // alert("Not Updated");
+            }
+        },
+        err => {
+            // alert("Connection Error");
+            console.log(err);
+        },
+        () => {
+            console.log("yay");
+            refresher.complete();
+        });
+    }
 
     showStatistics(){
          console.log(this.manager);

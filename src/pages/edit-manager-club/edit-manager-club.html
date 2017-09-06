@@ -1,34 +1,16 @@
 <ion-header>
     <ion-navbar primary>
-        <!-- <ion-buttons end>
-            <button (click)="onClickupdateInfo()">
-            <ion-icon name="refresh"></ion-icon>
-        </button>
-        </ion-buttons> -->
         <ion-title>Edit Club</ion-title>
     </ion-navbar>
 </ion-header>
-
 <ion-content padding *ngIf="club">
-    <ion-card>
-        <img class="form-top-image" [src]="club?.img" />
-        <ion-card-content></ion-card-content>
-        <ion-row no-padding>
-            <ion-col>
-                <button ion-button clear small color="danger" icon-start (click)="onClickTakePhoto()">
-                    <ion-icon name='camera'></ion-icon>
-                    teke photo
-                </button>
-            </ion-col>
-            <ion-col text-center>
-                <button ion-button clear small color="danger" icon-start (click)="onClickPhotoFromGallery()">
-                    <ion-icon name='albums'></ion-icon>
-                    choose from gallery
-                </button>
-            </ion-col>
-        </ion-row>
-
-    </ion-card>
+        <img class="form-top-image" [src]="updatedClub.img" />
+        <ion-buttons text-center>
+            <button ion-button clear small color="danger" icon-start (click)="onClickOpenCameraOptionTake()">
+                <ion-icon name='create'></ion-icon>
+                Edit Photo
+            </button>
+        </ion-buttons>
     <form [formGroup]="formData" #editClubForm="ngForm" (ngSubmit)="onClickupdateInfo()">
         <ion-list>
             <ion-item>

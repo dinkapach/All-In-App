@@ -43,34 +43,23 @@ export class AddSaleComponent{
         })
      }
 
- addingSale(){
-        this.sale.id =  this.formData.value.id;
+     onClickAddSale(){
+         this.sale.id = Date.now();
+        // this.sale.id =  this.formData.value.id;
         //this.sale.img //.= this.formData.value.img;
-        this.sale.name = this.formData.value.name;
-        this.sale.points = this.formData.value.points;
-        this.sale.description = this.formData.value.description;
-        this.sale.price = this.formData.value.price;
-        console.log("Added sale = "+this.sale);
-        this.managerService.addSale(this.managerService.getLocalManager().clubId, this.sale);  
-        this.presentAlert();
+        // this.sale.name = this.formData.value.name;
+        // this.sale.points = this.formData.value.points;
+        // this.sale.description = this.formData.value.description;
+        // this.sale.price = this.formData.value.price;
+        console.log("Added sale = ",this.sale);
+        this.managerService.addSale(this.sale)
+        .subscribe(sale =>{
+            console.log("added sale: ", sale);
+            this.navCtrl.pop();
+        });  
+        // this.presentAlert();
 
     }
-
-    presentAlert(){
-    let alert = this.alertCtrl.create({
-        subTitle: 'sale added to club succecfully',
-        buttons: ['סבבה']
-    });
-       alert.present();
-       alert.onDidDismiss(() => {
-       this.navCtrl.pop();
-       });
-    }
-
-    // onBlur(event){
-    //     var formName = event.target.attributes['formControlName'].value;
- 
-    // }
 
             // to do
     updateImg(url) {

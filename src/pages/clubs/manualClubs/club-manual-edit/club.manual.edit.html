@@ -1,45 +1,36 @@
 <ion-header>
-        <ion-navbar primary>
-          <ion-title>Edit Club</ion-title>
-        </ion-navbar>
-      </ion-header>
-      <ion-content padding>
-	      <ion-card>
-        <img id="edit-club-img" [src]="updatedClub?.img" />
-        <ion-card-content></ion-card-content>
-        <ion-row no-padding>
-            <ion-col>
-                <button ion-button clear small color="danger" icon-start 
-                (click)="onClickOpenCameraOptionTake()" >
-                    <ion-icon name='create'></ion-icon>
-                    edit
-                </button>
-            </ion-col>
-        </ion-row>
-    </ion-card>
-          <form [formGroup]="editClubForm" #editManualClubForm="ngForm" (ngSubmit)="onClickEditClub()">
-              <ion-list>
-                <ion-item>
-                    <ion-label floating>Name</ion-label>
-                    <ion-input formControlName="name" type="text" [(ngModel)]="club.name" ></ion-input>
-                </ion-item>  
-                <ion-item>
-                    <ion-label floating>Img</ion-label>
-                    <ion-input formControlName="img" type="text" [(ngModel)]="club.img" ></ion-input>
-                </ion-item>
-                  <ion-item>
-                    <ion-label floating>Address</ion-label>
-                    <ion-input formControlName="address" type="text" [(ngModel)]="club.address" ></ion-input>
-                </ion-item>
-                  <ion-item>
-                    <ion-label floating>Phone Number</ion-label>
-                    <ion-input formControlName="phoneNumber" type="text" [(ngModel)]="club.phoneNumber" ></ion-input>
-                </ion-item>
-                  <ion-item>
-                    <ion-label floating>Points</ion-label>
-                    <ion-input formControlName="points" type="number" [(ngModel)]="club.points" ></ion-input>
-                </ion-item>
-            </ion-list>
-            <button ion-button class="submit-btn" full type="submit" [disabled]="!editManualClubForm.form.valid">Edit Club</button>        
-          </form>
-      </ion-content>
+    <ion-navbar primary>
+        <ion-title>Edit Club</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <img class="top-image" *ngIf="updatedClub.img" [src]="updatedClub.img"/>
+    <ion-buttons text-center>
+        <button ion-button clear small color="danger" icon-start 
+            (click)="onClickOpenCameraOptionTake()" >
+            <ion-icon name='create'></ion-icon>
+            Edit Photo
+        </button>
+    </ion-buttons>
+    <form [formGroup]="editClubForm" #editManualClubForm="ngForm" (ngSubmit)="onClickEditClub()">
+        <ion-list>
+        <ion-item>
+            <ion-label floating>Name</ion-label>
+            <ion-input formControlName="name" type="text" [(ngModel)]="updatedClub.name" ></ion-input>
+        </ion-item>  
+            <ion-item>
+            <ion-label floating>Address</ion-label>
+            <ion-input formControlName="address" type="text" [(ngModel)]="updatedClub.address" ></ion-input>
+        </ion-item>
+            <ion-item>
+            <ion-label floating>Phone Number</ion-label>
+            <ion-input formControlName="phoneNumber" type="text" [(ngModel)]="updatedClub.phoneNumber" ></ion-input>
+        </ion-item>
+            <ion-item>
+            <ion-label floating>Points</ion-label>
+            <ion-input formControlName="points" type="number" [(ngModel)]="updatedClub.points" ></ion-input>
+        </ion-item>
+    </ion-list>
+    <button ion-button class="submit-btn" full type="submit" [disabled]="!editManualClubForm.form.valid">Edit Club</button>        
+    </form>
+</ion-content>

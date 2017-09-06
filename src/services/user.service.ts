@@ -32,7 +32,7 @@ export class UserService {
         this.currentUser = user;
     }
 
-    getUserById() : Observable<User> {
+    updateLocalCustomer() : Observable<User> {
         let params: URLSearchParams = new URLSearchParams();
         params.set('customerId', this.getUserId().toString());
         let requestOptions = new RequestOptions();
@@ -47,16 +47,33 @@ export class UserService {
                 console.log("got user data from getUserById: ");
                 console.log(data);
                 this.setLocalUser(data);
-                this.storage.set("customerDetails", data);
+                this.saveLoggedInUserToStorage(data, false);
+                // this.storage.set("customerDetails", data);
                 observer.next(true);
                 observer.complete();
             },
-        err => {
+            err => {
             console.log("error at getUserById: " + err);
             observer.next(false);
             observer.complete();
+            });
         });
-        });
+    }
+
+    updateLocalCustomerWithoutPromise(){
+        this.updateLocalCustomer()
+        .subscribe(updated => console.log(updated),
+                    err => console.log(err));
+    }
+
+    saveLoggedInUserToStorage(data, isManager: Boolean){
+        let currentUser = {
+            isManager: isManager,
+            data: data
+        }
+        console.log("saving user to storage. key: " + environment.CURRENT_USER_KEY);
+        console.log(currentUser);
+        this.storage.set(environment.CURRENT_USER_KEY, currentUser);
     }
 
 

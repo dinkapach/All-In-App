@@ -4,15 +4,15 @@
     </ion-navbar>
 </ion-header>
 <ion-content>
-    <form [formGroup]="formData" #addSaleForm="ngForm" (ngSubmit)="addingSale()">
+        <img id="add-sale-img" [src]="sale.img" />
+        <ion-buttons text-center>
+        <button ion-button clear small color="danger" icon-start (click)="onClickOpenCameraOptionTake()">
+            <ion-icon name='create'></ion-icon>
+            Add Photo
+        </button>
+        </ion-buttons>
+    <form [formGroup]="formData" #addSaleForm="ngForm" (ngSubmit)="onClickAddSale()">
         <ion-list>
-                <img id="add-sale-img" [src]="sale.img" />
-                <ion-buttons text-center>
-                <button ion-button clear small color="danger" icon-start (click)="onClickOpenCameraOptionTake()">
-                    <ion-icon name='create'></ion-icon>
-                    Add Photo
-                </button>
-                </ion-buttons>
             <!-- <ion-item>
                 <ion-label floating>Image</ion-label>
                 <ion-input formControlName="img" type="text"></ion-input>

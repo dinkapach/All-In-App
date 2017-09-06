@@ -29,7 +29,7 @@ export class EditClubManuallyComponent {
             'name': ["", Validators.required],
             'address': [""],
             'phoneNumber': [""],
-            'img': [""],
+            // 'img': [""],
             'points': [""],
         })
   }

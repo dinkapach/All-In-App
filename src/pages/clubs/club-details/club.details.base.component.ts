@@ -25,6 +25,17 @@ export class ClubDetailsBaseComponent {
             this.club = this.navParams.get("club");
     }
 
+    ionViewWillEnter(){
+        console.log("enter page");
+        this.userService.updateLocalCustomer()
+        .subscribe(updated =>{
+            if(updated){
+                this.user = this.userService.getLocalUser();
+                this.onClickCredits();
+            }
+        });
+    }
+
     onClickReceipts() {
         let isManual = false;
         this.navCtrl.push(ScanReceiptComponent, {club: this.club , isManual : isManual });

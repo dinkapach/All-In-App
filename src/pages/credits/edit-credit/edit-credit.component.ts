@@ -55,11 +55,11 @@ export class EditCreditComponent {
           if(isAuth){
               // this.showAlert("Profile Updated" + isAuth);
               this.credit = this.updatedCredit;
-              alert("updated");
+            //   alert("updated");
               this.navCtrl.pop();
           }
           else{
-            alert("not updated");
+            // alert("not updated");
           }
       });
   }
@@ -106,7 +106,7 @@ export class EditCreditComponent {
             })
             .catch(err => {
                 console.log("err to take picture", err);
-                alert("error");
+                // alert("error");
             })
     }
 
@@ -117,7 +117,7 @@ export class EditCreditComponent {
             })
             .catch(err => {
                 console.log("err to take picture", err);
-                alert("error");
+                // alert("error");
             })
     }
 }
