@@ -86,15 +86,15 @@ export class LoginComponent {
 
     gotoDashboard(){
         if(this.isSuperManager) {
-            alert("login super manager success");
+            // alert("login super manager success");
         }
         else if(this.isManager) {
             this.navCtrl.setRoot(ManagerComponent);
-            alert("login manager success");
+            // alert("login manager success");
         }
         else {
             this.navCtrl.setRoot(DashboardComponent);            
-            alert("login customer success");
+            // alert("login customer success");
         }
     }
 

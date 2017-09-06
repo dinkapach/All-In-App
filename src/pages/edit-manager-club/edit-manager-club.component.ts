@@ -50,12 +50,12 @@ export class EditManagerClubComponent{
             console.log(isAuth);
             if(isAuth){
                 this.updateClub();
-                alert("Club Updated");
+                // alert("Club Updated");
                 console.log(isAuth);
                 this.navCtrl.pop();
             }
             else{
-                alert("Updated failed");
+                // alert("Updated failed");
             }
         })
     }

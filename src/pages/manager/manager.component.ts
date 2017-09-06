@@ -59,10 +59,15 @@ export class ManagerComponent {
         this.navCtrl.push(ShowSalesComponent);
     }
 
+    ionViewWillEnter(){
+        this.doUpdate();
+    }
+
     doUpdate(){
         this.managerService.updateLocalManager()
         .subscribe(data => {
             this.manager = this.managerService.getLocalManager();
+            this.club = this.managerService.getLocalClub();
             console.log(data);
         });
     }
