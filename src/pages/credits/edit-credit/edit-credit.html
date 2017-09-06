@@ -1,18 +1,16 @@
 <ion-header>
   <ion-navbar primary>
-    <ion-title>edit-credit</ion-title>
+    <ion-title>Edit Credit</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-        <img id="profile-img" *ngIf="updatedCredit.img" [src]="updatedCredit.img"/>
+        <img class="top-image" *ngIf="updatedCredit.img" [src]="updatedCredit.img"/>
         <ion-buttons text-center>
         <button ion-button clear small color="danger" icon-start (click)="onClickOpenCameraOptionTake()">
             <ion-icon name='create'></ion-icon>
             Edit Photo
         </button>
         </ion-buttons>
-
-
     <form [formGroup]="formGroup" #editCreditForm="ngForm" (ngSubmit)="onClickEditCredit()">
         <ion-list>
             <ion-item>
