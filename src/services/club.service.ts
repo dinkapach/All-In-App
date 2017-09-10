@@ -6,7 +6,6 @@ import { Http } from '@angular/http';
 import { Credit } from './../models/credit.model';
 import * as environment from './../../environment.json';
 import { UserService } from './user.service';
-import { ManagerComponent } from '../pages/manager/manager.component';
 import { ManagerService } from './manager.service';
 import { Sale } from '../models/sales.model';
 

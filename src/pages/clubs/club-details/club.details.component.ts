@@ -1,3 +1,5 @@
+import { Sale } from './../../../models/sales.model';
+import { SaleViewComponent } from './../../sales/sale-view/sale.view.component';
 import { ClubDetailsBaseComponent } from './club.details.base.component';
 import { ScanReceiptComponent } from './../../receipts/receipt-scan/receipt.scan.component';
 import { ClubService } from './../../../services/club.service';
@@ -9,8 +11,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { AddCreditComponent } from '../../add-credit/add-credit.component';
 import { ShowCreditsComponent } from '../../credits/show-credits/show-credits.component';
-import { SaleViewComponent } from '../../sale-view/sale.view.component';
-import { Sale } from '../../../models/sales.model';
 
 @Component({
     selector: 'club-details',

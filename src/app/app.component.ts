@@ -3,7 +3,7 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginComponent } from '../pages/login/login.component';
-import { ManagerComponent } from '../pages/manager/manager.component';
+import { ManagerComponent } from '../pages/managers/manager/manager.component';
 import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { SigningService } from '../services/signing.service';
 import { CustomerSettingsComponent } from '../pages/customer-settings/customer-settings.component';

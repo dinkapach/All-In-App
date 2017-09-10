@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'; 
 import 'rxjs/add/operator/map';
-import { ManagerComponent } from '../manager/manager.component';
+import { ManagerComponent } from '../managers/manager/manager.component';
 import { LoadingService } from '../../helpers/loading-service';
 
 @Component({
@@ -36,12 +36,7 @@ export class LoginComponent {
     }
    
     submitLogin() {
-        // console.log("on login");
-        // console.log("email: ", this.email);
-        // console.log("password: ", this.password);
-        // this.email = this.email.toLowerCase();
         this.loadingService.presentLoading();
-        //this.isSuperManager = true; // DELETE
         if(this.isSuperManager){
             this.signingSuperManager.loginSuperManager(this.email.toLowerCase(), this.password)
             .subscribe(superManager => {
@@ -50,12 +45,10 @@ export class LoginComponent {
                 }
                 else{
                     console.log("problam in submit login for super manager");
-                    // alert("Your user name or password inncorrect");
                 }
             },
             err => {
                 console.log(err);
-                // alert(err);
             },
             () => {
                 this.loadingService.dismissLoading();
@@ -70,13 +63,10 @@ export class LoginComponent {
                 }
                 else {
                     console.log('user not connected');
-                    // alert("Your user name or password inncorrect");
-                    // this.loadingService.dismissLoading();
                 }
             },
             err => {
                 console.log(err);
-                // alert(err);
             },
             () => {
                 this.loadingService.dismissLoading();

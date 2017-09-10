@@ -1,0 +1,49 @@
+<ion-item>
+    <ion-thumbnail item-start>
+        <img [src]="sale.img"/>
+    </ion-thumbnail>
+    <h2>{{sale.name}}</h2>
+    <ion-row no-padding>
+      <ion-col>
+        <button ion-button clear small color="danger" icon-start (click)="editSaleClick(sale)">
+              <ion-icon name='create'></ion-icon>
+              Edit
+            </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button clear small color="danger" icon-start (click)="deleteSaleClick(sale)">
+              <ion-icon name='trash'></ion-icon>
+              Delete
+            </button>
+      </ion-col>
+    </ion-row>
+</ion-item>
+
+
+
+
+
+
+
+<!-- <ion-card padding  >
+  <img [src]="sale.img"/>
+  <ion-card-content>
+
+<ion-list *ngIf="sale">
+  <ion-item-sliding #item >
+    <ion-item>
+        <ion-card-title>
+            {{sale.name}}
+        </ion-card-title> 
+          <p> sale description: {{sale.description}}  </p>
+          <p> sale price: {{sale.price}} </p>
+          <p> sale point: {{sale.point}} </p>  
+      </ion-item>
+        <ion-item-options side="left">
+            <button ion-button color="danger" (click)="editSaleClick(sale)">Edit</button>
+           <button ion-button (click)="deleteSaleClick(sale)">Delete</button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </ion-card-content>
+ </ion-card> -->
