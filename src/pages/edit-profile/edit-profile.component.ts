@@ -29,7 +29,8 @@ export class EditProfileComponent {
     constructor(private fBuilder: FormBuilder, private http: Http, private navCtrl: NavController,
         private userService: UserService, private navParams: NavParams, private alertCtrl: AlertController,
         public modalCtrl: ModalController, private cameraService: CameraService,
-        public actionSheetCtrl: ActionSheetController, private cloneService: CloneService) {
+        public actionSheetCtrl: ActionSheetController, private cloneService: CloneService,
+        private actionSheetCameraOptions: ActionSheetCameraOptions) {
         this.user = this.userService.getLocalUser();
         this.updatedUser = this.cloneService.getDeepCopyOfCustomer(this.user);
         // console.log("in update cutomer profile");
@@ -38,7 +39,7 @@ export class EditProfileComponent {
         this.buildForm();
     }
 
-    buildForm(){
+    buildForm() {
         // console.log("updating cutomer profile");
         // console.log("customer: ", this.user);
         // console.log("updatedUser: ", this.updatedUser);
@@ -76,60 +77,17 @@ export class EditProfileComponent {
 
 
 
-    // TODO
+    onClickOpenCameraOptionTake() {
+        this.actionSheetCameraOptions.onClickOpenOptionTakeImgModal()
+        this.actionSheetCameraOptions.onPhotoTaken.subscribe(res => {
+            if (res.isAuth) {
+                this.updateImg(res.url);
+            }
+        })
+    }
+
     updateImg(url) {
         this.updatedUser.img = url;
     }
 
-    onClickOpenCameraOptionTake() {
-        let actionSheet = this.actionSheetCtrl.create({
-            title: 'Choose Camera Option',
-            buttons: [
-                {
-                    text: 'Camera',
-                    role: 'destructive',
-                    handler: () => {
-                        this.onClickTakePhoto();
-                    }
-                },
-                {
-                    text: 'Photo Libary',
-                    handler: () => {
-                        this.onClickGetPhotoFromGallery();
-                    }
-                },
-                {
-                    text: 'Cancel',
-                    role: 'cancel',
-                    handler: () => {
-                        console.log('Cancel clicked');
-                    }
-                }
-            ]
-        });
-
-        actionSheet.present();
-    }
-
-    onClickTakePhoto() {
-        this.cameraService.takePhotoFromCamera()
-            .then(url => {
-                this.updateImg(url)
-            })
-            .catch(err => {
-                console.log("err to take picture", err);
-                alert("error");
-            })
-    }
-
-    onClickGetPhotoFromGallery() {
-        this.cameraService.choosePhotoFromGallery()
-            .then(url => {
-                this.updateImg(url);
-            })
-            .catch(err => {
-                console.log("err to take picture", err);
-                alert("error");
-            })
-    }
 }

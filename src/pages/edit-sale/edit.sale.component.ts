@@ -1,3 +1,4 @@
+import { ActionSheetCameraOptions } from './../../helpers/action-sheet-camera-options';
 import { CameraService } from './../../helpers/camera-service';
 import { CloneService } from './../../helpers/clone-service';
 import { Sale } from './../../models/sales.model';
@@ -28,14 +29,15 @@ export class EditSaleComponent {
     constructor(private fBuilder: FormBuilder, public navCtrl: NavController,
         public navParams: NavParams, private alertCtrl: AlertController,
         private managerService: ManagerService, private cloneService: CloneService,
-         private cameraService: CameraService, public actionSheetCtrl: ActionSheetController) {
+        private cameraService: CameraService, public actionSheetCtrl: ActionSheetController,
+        private actionSheetCameraOptions: ActionSheetCameraOptions) {
         this.sale = this.navParams.get("sale");
         this.updatedSale = this.cloneService.getDeepCopyOfSale(this.sale);
         this.buildEditSaleForm();
         console.log(this.sale);
     }
 
-    buildEditSaleForm(){
+    buildEditSaleForm() {
         this.formData = this.fBuilder.group({
             // 'id': ["", Validators.required],
             'name': ["", Validators.required],
@@ -46,79 +48,35 @@ export class EditSaleComponent {
         })
     }
 
-  updateSale(){
-    console.log(this.sale);
-    this.managerService.editSale(this.updatedSale)
-      .subscribe(isAuth => {
-          console.log(isAuth);
-          if(isAuth){
-              this.cloneService.cloneObject(this.updatedSale, this.sale);
-            //  alert("Sale Updated");
-             this.navCtrl.pop();
-            //   console.log(isAuth);
-            //    console.log("sale updated");
-          }
-          else{
-              console.log(" Not update club ");
-          }
-      });
-  }
-
-        // to do
-        updateImg(url) {
-            console.log("in save img")
-            this.updatedSale.img = url;
-        }
-    
-        onClickOpenCameraOptionTake() {
-            let actionSheet = this.actionSheetCtrl.create({
-                title: 'Choose Camera Option',
-                buttons: [
-                    {
-                        text: 'Camera',
-                        role: 'destructive',
-                        handler: () => {
-                            this.onClickTakePhoto();
-                        }
-                    },
-                    {
-                        text: 'Photo Libary',
-                        handler: () => {
-                            this.onClickGetPhotoFromGallery();
-                        }
-                    },
-                    {
-                        text: 'Cancel',
-                        role: 'cancel',
-                        handler: () => {
-                            console.log('Cancel clicked');
-                        }
-                    }
-                ]
+    updateSale() {
+        console.log(this.sale);
+        this.managerService.editSale(this.updatedSale)
+            .subscribe(isAuth => {
+                console.log(isAuth);
+                if (isAuth) {
+                    this.cloneService.cloneObject(this.updatedSale, this.sale);
+                    //  alert("Sale Updated");
+                    this.navCtrl.pop();
+                    //   console.log(isAuth);
+                    //    console.log("sale updated");
+                }
+                else {
+                    console.log(" Not update club ");
+                }
             });
-    
-            actionSheet.present();
-        }
-    
-        onClickTakePhoto() {
-            this.cameraService.takePhotoFromCamera()
-                .then(url => {
-                    this.updateImg(url)
-                })
-                .catch(err => {
-                    console.log("err to take picture", err);
-                    // handle error
-                })
-        }
-    
-        onClickGetPhotoFromGallery() {
-            this.cameraService.choosePhotoFromGallery()
-                .then(url => {
-                    this.updateImg(url);
-                })
-                .catch(err => {
-                    console.log("err to take picture", err);
-                    // handle error
-                })
-        }
+    }
+
+    onClickOpenCameraOptionTake() {
+        this.actionSheetCameraOptions.onClickOpenOptionTakeImgModal()
+        this.actionSheetCameraOptions.onPhotoTaken.subscribe(res => {
+            if (res.isAuth) {
+                this.updateImg(res.url);
+            }
+        })
+    }
+
+    updateImg(url) {
+        console.log("in save img")
+        this.updatedSale.img = url;
+    }
 }

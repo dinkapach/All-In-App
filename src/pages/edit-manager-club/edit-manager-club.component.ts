@@ -1,3 +1,4 @@
+import { ActionSheetCameraOptions } from './../../helpers/action-sheet-camera-options';
 import { CameraService } from './../../helpers/camera-service';
 import { LoginComponent } from './../login/login.component';
 import { AddCreditComponent } from './../add-credit/add-credit.component';
@@ -28,7 +29,8 @@ export class EditManagerClubComponent{
 
     constructor(private fBuilder : FormBuilder, private http: Http, private navCtrl : NavController,
         private managerService: ManagerService, private navParams: NavParams, private alertCtrl: AlertController, 
-        private cameraService: CameraService, private cloneService: CloneService, public actionSheetCtrl: ActionSheetController) {
+        private cameraService: CameraService, private cloneService: CloneService, public actionSheetCtrl: ActionSheetController,
+        private actionSheetCameraOptions: ActionSheetCameraOptions) {
         this.club = this.managerService.getLocalClub();
         this.updatedClub = this.cloneService.getDeepCopyOfClub(this.club);
         this.buildForm();
@@ -63,61 +65,20 @@ export class EditManagerClubComponent{
     updateClub(){
         this.cloneService.cloneObject(this.updateClub, this.club);
     }
-    // to do
+
+
+    onClickOpenCameraOptionTake() {
+        this.actionSheetCameraOptions.onClickOpenOptionTakeImgModal()
+        this.actionSheetCameraOptions.onPhotoTaken.subscribe(res => {
+            if(res.isAuth){
+                this.updateImg(res.url);
+            }
+        })
+    }
+
     updateImg(url) {
         console.log("in save img")
         this.updatedClub.img = url;
     }
-    
-    onClickOpenCameraOptionTake() {
-        let actionSheet = this.actionSheetCtrl.create({
-            title: 'Choose Camera Option',
-            buttons: [
-                {
-                    text: 'Camera',
-                    role: 'destructive',
-                    handler: () => {
-                        this.onClickTakePhoto();
-                    }
-                },
-                {
-                    text: 'Photo Libary',
-                    handler: () => {
-                        this.onClickGetPhotoFromGallery();
-                    }
-                },
-                {
-                    text: 'Cancel',
-                    role: 'cancel',
-                    handler: () => {
-                        console.log('Cancel clicked');
-                    }
-                }
-            ]
-        });
 
-        actionSheet.present();
-    }
-    
-    onClickTakePhoto() {
-        this.cameraService.takePhotoFromCamera()
-            .then(url => {
-                this.updateImg(url)
-            })
-            .catch(err => {
-                console.log("err to take picture", err);
-                // handle error
-            })
-    }
-
-    onClickGetPhotoFromGallery() {
-        this.cameraService.choosePhotoFromGallery()
-            .then(url => {
-                this.updateImg(url);
-            })
-            .catch(err => {
-                console.log("err to take picture", err);
-                // handle error
-            })
-    }
 }

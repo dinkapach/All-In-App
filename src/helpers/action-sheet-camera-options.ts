@@ -1,3 +1,4 @@
+import { EventEmitter } from '@angular/core';
 import { CameraService } from './camera-service';
 import { Observable } from 'rxjs/Observable';
 import { AlertController, ActionSheetController } from 'ionic-angular';
@@ -8,13 +9,14 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 
 @Injectable()
 export class ActionSheetCameraOptions {
+    public onPhotoTaken = new EventEmitter();
 
     constructor(private alertCtrl: AlertController, private camera: Camera,
         public actionSheetCtrl: ActionSheetController, private cameraService: CameraService) {
 
     }
 
-    onClickOpenOptionTakeImgModal(paramToUpdate) {
+    onClickOpenOptionTakeImgModal() {
         let actionSheet = this.actionSheetCtrl.create({
             title: 'Modify your album',
             buttons: [
@@ -22,13 +24,13 @@ export class ActionSheetCameraOptions {
                     text: 'Camera',
                     role: 'destructive',
                     handler: () => {
-                        this.onClickTakePhoto(paramToUpdate);
+                        this.onClickTakePhoto();
                     }
                 },
                 {
                     text: 'Photo Libary',
                     handler: () => {
-                        this.onClickGetPhotoFromGallery(paramToUpdate);
+                        this.onClickGetPhotoFromGallery();
                     }
                 },
                 {
@@ -44,32 +46,36 @@ export class ActionSheetCameraOptions {
     actionSheet.present();
     }
     
-    onClickTakePhoto(paramToUpdate) {
-        this.cameraService.takePhotoFromCamera()
+    onClickTakePhoto() {
+        return this.cameraService.takePhotoFromCamera()
             .then(url => {
-                this.updateImg(paramToUpdate, url)
+                this.onPhotoTaken.emit({isAuth: true, url: url});
+                //this.updateImg(paramToUpdate, url)
             })
             .catch(err => {
+                this.onPhotoTaken.emit({isAuth: false, err: err});
                 console.log("err to take picture", err);
                 // handle error
             })
     }
 
-     onClickGetPhotoFromGallery(paramToUpdate) {
+     onClickGetPhotoFromGallery() {
         this.cameraService.choosePhotoFromGallery()
             .then(url => {
-                this.updateImg(paramToUpdate, url);
+                this.onPhotoTaken.emit({isAuth: true, url: url});
+                //this.updateImg(paramToUpdate, url);
             })
             .catch(err => {
+                this.onPhotoTaken.emit({isAuth: false, err: err});
                 console.log("err to take picture", err);
                 // handle error
             })
     }
 
-    updateImg(paramToUpdate, url) {
-        console.log("in save img")
-        paramToUpdate.img = url;
-    }
+    // updateImg(paramToUpdate, url) {
+    //     console.log("in save img")
+    //     paramToUpdate.img = url;
+    // }
 
 
 

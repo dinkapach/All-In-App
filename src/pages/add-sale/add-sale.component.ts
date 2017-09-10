@@ -1,3 +1,4 @@
+import { ActionSheetCameraOptions } from './../../helpers/action-sheet-camera-options';
 import { CameraService } from './../../helpers/camera-service';
 import { ManagerService } from './../../services/manager.service';
 import { UserService } from './../../services/user.service';
@@ -31,7 +32,7 @@ export class AddSaleComponent {
     constructor(private fBuilder: FormBuilder, private http: Http,
         private managerService: ManagerService, private navCtrl: NavController,
         private alertCtrl: AlertController, private cameraService: CameraService,
-        public actionSheetCtrl: ActionSheetController) {
+        public actionSheetCtrl: ActionSheetController, private actionSheetCameraOptions: ActionSheetCameraOptions) {
         this.formData = fBuilder.group({
             'id': Date.now(),
             'name': ["", Validators.required],
@@ -64,61 +65,18 @@ export class AddSaleComponent {
 
     }
 
-    // to do
+    onClickOpenCameraOptionTake() {
+        this.actionSheetCameraOptions.onClickOpenOptionTakeImgModal()
+        this.actionSheetCameraOptions.onPhotoTaken.subscribe(res => {
+            if(res.isAuth){
+                this.updateImg(res.url);
+            }
+        })
+    }
+
     updateImg(url) {
         console.log("in save img")
         this.sale.img = url;
     }
 
-    onClickOpenCameraOptionTake() {
-        let actionSheet = this.actionSheetCtrl.create({
-            title: 'Choose Camera Option',
-            buttons: [
-                {
-                    text: 'Camera',
-                    role: 'destructive',
-                    handler: () => {
-                        this.onClickTakePhoto();
-                    }
-                },
-                {
-                    text: 'Photo Libary',
-                    handler: () => {
-                        this.onClickGetPhotoFromGallery();
-                    }
-                },
-                {
-                    text: 'Cancel',
-                    role: 'cancel',
-                    handler: () => {
-                        console.log('Cancel clicked');
-                    }
-                }
-            ]
-        });
-
-        actionSheet.present();
-    }
-
-    onClickTakePhoto() {
-        this.cameraService.takePhotoFromCamera()
-            .then(url => {
-                this.updateImg(url)
-            })
-            .catch(err => {
-                console.log("err to take picture", err);
-                // handle error
-            })
-    }
-
-    onClickGetPhotoFromGallery() {
-        this.cameraService.choosePhotoFromGallery()
-            .then(url => {
-                this.updateImg(url);
-            })
-            .catch(err => {
-                console.log("err to take picture", err);
-                // handle error
-            })
-    }
 }

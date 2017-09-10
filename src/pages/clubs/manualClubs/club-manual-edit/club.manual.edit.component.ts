@@ -1,3 +1,4 @@
+import { ActionSheetCameraOptions } from './../../../../helpers/action-sheet-camera-options';
 import { CloneService } from './../../../../helpers/clone-service';
 import { CameraService } from './../../../../helpers/camera-service';
 import { User } from './../../../../models/user.model';
@@ -8,22 +9,23 @@ import { UserService } from './../../../../services/user.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
-  selector: 'club-manual-edit',
-  templateUrl: 'club.manual.edit.html',
+    selector: 'club-manual-edit',
+    templateUrl: 'club.manual.edit.html',
 })
 export class EditClubManuallyComponent {
-  user: User;
-  updatedClub: ClubManually;
-  club: ClubManually;
-  editClubForm : FormGroup;
-  clubId: number;
-  
-  constructor(private fBuilder : FormBuilder, public navCtrl: NavController, public navParams: NavParams,
-    private alertCtrl: AlertController, private userService: UserService, private cameraService: CameraService,
-    public actionSheetCtrl: ActionSheetController, private cloneService: CloneService) {
-    this.club = this.navParams.get("club");
-    this.updatedClub = this.cloneService.getDeepCopyOfClubManually(this.club);
-    this.user = this.userService.getLocalUser();
+    user: User;
+    updatedClub: ClubManually;
+    club: ClubManually;
+    editClubForm: FormGroup;
+    clubId: number;
+
+    constructor(private fBuilder: FormBuilder, public navCtrl: NavController, public navParams: NavParams,
+        private alertCtrl: AlertController, private userService: UserService, private cameraService: CameraService,
+        public actionSheetCtrl: ActionSheetController, private cloneService: CloneService,
+        private actionSheetCameraOptions: ActionSheetCameraOptions) {
+        this.club = this.navParams.get("club");
+        this.updatedClub = this.cloneService.getDeepCopyOfClubManually(this.club);
+        this.user = this.userService.getLocalUser();
 
         this.editClubForm = fBuilder.group({
             'name': ["", Validators.required],
@@ -32,88 +34,53 @@ export class EditClubManuallyComponent {
             // 'img': [""],
             'points': [""],
         })
-  }
+    }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EditClub');
-  }
+    ionViewDidLoad() {
+        console.log('ionViewDidLoad EditClub');
+    }
 
-  onClickEditClub(){
-    this.userService.updateUser(this.user)
-          .subscribe(isAuth => {
-              if(isAuth){
-                  console.log("from edit club manuall return from server");
-                  let alert = this.alertCtrl.create({
-                    subTitle: 'club edited',
-                    buttons: ['סבבה']
-                });
-            alert.present();
-            alert.onDidDismiss(() => {
-                this.navCtrl.pop();
+    onClickEditClub() {
+        this.getUpdatedClub()
+        this.userService.updateUser(this.user)
+            .subscribe(isAuth => {
+                if (isAuth) {
+                    console.log("from edit club manuall return from server");
+                    let alert = this.alertCtrl.create({
+                        subTitle: 'club edited',
+                        buttons: ['סבבה']
+                    });
+                    alert.present();
+                    alert.onDidDismiss(() => {
+                        this.navCtrl.pop();
+                    });
+                }
+                else {
+                    console.log(isAuth);
+                    alert("edit failed");
+                }
             });
-              }
-              else{
-                console.log(isAuth);
-                alert("edit failed");
-              }
-          });
-  }
+    }
 
-        // to do
-        updateImg(url) {
-            console.log("in save img")
-            this.updatedClub.img = url;
-        }
-    
-        onClickOpenCameraOptionTake() {
-            let actionSheet = this.actionSheetCtrl.create({
-                title: 'Choose Camera Option',
-                buttons: [
-                    {
-                        text: 'Camera',
-                        role: 'destructive',
-                        handler: () => {
-                            this.onClickTakePhoto();
-                        }
-                    },
-                    {
-                        text: 'Photo Libary',
-                        handler: () => {
-                            this.onClickGetPhotoFromGallery();
-                        }
-                    },
-                    {
-                        text: 'Cancel',
-                        role: 'cancel',
-                        handler: () => {
-                            console.log('Cancel clicked');
-                        }
-                    }
-                ]
-            });
-    
-            actionSheet.present();
-        }
-    
-        onClickTakePhoto() {
-            this.cameraService.takePhotoFromCamera()
-                .then(url => {
-                    this.updateImg(url)
-                })
-                .catch(err => {
-                    console.log("err to take picture", err);
-                    // handle error
-                })
-        }
-    
-        onClickGetPhotoFromGallery() {
-            this.cameraService.choosePhotoFromGallery()
-                .then(url => {
-                    this.updateImg(url);
-                })
-                .catch(err => {
-                    console.log("err to take picture", err);
-                    // handle error
-                })
-        }
+    getUpdatedClub() {
+        this.user.manuallyClubs = this.user.manuallyClubs.filter( clubManual => {
+            return clubManual.id != this.club.id;
+        })
+        this.user.manuallyClubs.push(this.updatedClub);
+    }
+
+    onClickOpenCameraOptionTake() {
+        this.actionSheetCameraOptions.onClickOpenOptionTakeImgModal()
+        this.actionSheetCameraOptions.onPhotoTaken.subscribe(res => {
+            if (res.isAuth) {
+                this.updateImg(res.url);
+            }
+        })
+    }
+
+    updateImg(url) {
+        console.log("in save img")
+        this.updatedClub.img = url;
+    }
+
 }
