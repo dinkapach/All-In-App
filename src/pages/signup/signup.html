@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content padding>
-    <form [formGroup]="formData" #signupForm="ngForm" (ngSubmit)="submitSingup()">
+    <form [formGroup]="formData" #signupForm="ngForm" (ngSubmit)="onSubmitForm()">
         <ion-list>
             <ion-item>
                 <ion-input formControlName="id" placeholder="Id" type="text" [(ngModel)]="newCustomer.id"></ion-input>

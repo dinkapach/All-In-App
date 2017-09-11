@@ -18,7 +18,7 @@ export class EditClubBaseComponent {
 
     constructor(public navCtrl: NavController, public fBuilder: FormBuilder,
         public cloneService: CloneService, public actionSheetCameraOptions: ActionSheetCameraOptions,
-         public clubIn: Club) {
+        public clubIn: Club) {
         this.club = clubIn;
         this.updatedClub = this.cloneService.getDeepCopyOfClub(this.club);
         this.buildForm();
@@ -63,5 +63,4 @@ export class EditClubBaseComponent {
             this.club[key] = this.updatedClub[key];
         });
     }
-
 }

@@ -14,10 +14,7 @@ import { ShowCreditsComponent } from '../../credits/show-credits/show-credits.co
     selector: 'club-details',
     templateUrl: 'club.details.html'
 })
-export class ClubManualDetailsComponent extends ClubDetailsBaseComponent implements OnInit {
-//    club: Club;
-    // barcodeData : string;
-    // user: User
+export class ClubManualDetailsComponent extends ClubDetailsBaseComponent {
 
     constructor(public navParams: NavParams,
         public navCtrl: NavController, public userService: UserService, 
@@ -26,9 +23,4 @@ export class ClubManualDetailsComponent extends ClubDetailsBaseComponent impleme
             //this.user = this.userService.getLocalUser();
             this.viewOptions = 'receipts'
     }
-
-    ngOnInit() {
-       // this.club = this.navParams.get("club");
-    }
-
 }

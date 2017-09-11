@@ -1,52 +1,45 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title>Welcome {{manager.firstName}}</ion-title>
-           <ion-buttons end>
-              <button ion-button (click)="onClickSettings()" icon-only>
+  <ion-navbar>
+    <ion-title>Welcome {{manager.firstName}}</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="onClickSettings()" icon-only>
                 <ion-icon name="more"></ion-icon>
               </button>
-        </ion-buttons>
-     </ion-navbar>
-</ion-header> 
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
 <ion-content padding>
-    <ion-refresher (ionRefresh)="doRefresh($event)" [pullMin]="200">
-        <ion-refresher-content> </ion-refresher-content>
-      </ion-refresher>
-    <img [src]="club.img" class="form-top-image"/>
-    <!--<ion-card-content>-->
-        <ion-buttons text-center>
-        <button (click)="showCustomers()" ion-button>Show Customers</button>
-        <button (click)="addSale()" ion-button >Add Sale</button>
-        <button (click)="showSales()" ion-button >My Sales</button>
-        <button (click)="showStatistics()" ion-button >Show Statistics</button>
-        </ion-buttons>
-        <h2 text-center>{{club.name}} Info</h2>
-          <ion-item class="no-border">
-            <ion-icon name="call" item-start large></ion-icon>
-            <p>{{club.phoneNumber}}</p>
-          </ion-item>
-          <ion-item class="no-border">
-            <ion-icon name="map" item-start large></ion-icon>
-            <p>{{club.address}}</p>
-            </ion-item>   
-            <ion-item class="no-border">  
-             <ion-icon name="time" item-start large></ion-icon>
-            <p>
-              {{club.openingHours[0]}}
-               - 
-              {{club.openingHours[1]}} 
-            </p>
-            </ion-item>  
-
-     <ion-row no-padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)" [pullMin]="200">
+    <ion-refresher-content> </ion-refresher-content>
+  </ion-refresher>
+  <img [src]="club.img" class="form-top-image" />
+  <ion-buttons text-center>
+    <button (click)="showCustomers()" ion-button>Show Customers</button>
+    <button (click)="addSale()" ion-button>Add Sale</button>
+    <button (click)="showSales()" ion-button>My Sales</button>
+    <button (click)="showStatistics()" ion-button>Show Statistics</button>
+  </ion-buttons>
+  <h2 text-center>{{club.name}} Info</h2>
+  <ion-item class="no-border">
+    <ion-icon name="call" item-start large></ion-icon>
+    <p>{{club.phoneNumber}}</p>
+  </ion-item>
+  <ion-item class="no-border">
+    <ion-icon name="map" item-start large></ion-icon>
+    <p>{{club.address}}</p>
+  </ion-item>
+  <ion-item class="no-border">
+    <ion-icon name="time" item-start large></ion-icon>
+    <p>
+      {{club.openingHours[0]}} - {{club.openingHours[1]}}
+    </p>
+  </ion-item>
+  <ion-row no-padding>
     <ion-col>
-      <button ion-button clear small color="danger" icon-start (click)="onClickEditClub(club)" >
+      <button ion-button clear small color="danger" icon-start (click)="onClickEditClub(club)">
           <ion-icon name='create'></ion-icon>
           Edit Club Info
         </button>
-      </ion-col>
+    </ion-col>
   </ion-row>
-</ion-content> 
-
-
-
+</ion-content>

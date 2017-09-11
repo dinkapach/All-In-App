@@ -4,13 +4,13 @@
     </ion-navbar>
 </ion-header>
 <ion-content padding>
-        <img class="top-image" *ngIf="newCredit.img"[src]="newCredit.img"/>
-        <ion-buttons text-center>
+    <img class="top-image" *ngIf="newCredit.img" [src]="newCredit.img" />
+    <ion-buttons text-center>
         <button ion-button clear small color="danger" icon-start (click)="onClickOpenCameraOptionTake()">
             <ion-icon name='create'></ion-icon>
             Edit Photo
         </button>
-        </ion-buttons>
+    </ion-buttons>
     <form [formGroup]="formData" #addCreditForm="ngForm" (ngSubmit)="onClickAddCredit()">
         <ion-list>
             <ion-item>
@@ -20,7 +20,7 @@
             <ion-item>
                 <ion-label floating>Expire Date</ion-label>
                 <ion-input formControlName="dateOfExpired" type="Date" [(ngModel)]="newCredit.dateOfExpired"></ion-input>
-            </ion-item> 
+            </ion-item>
             <ion-item>
                 <ion-label floating>Total Credit</ion-label>
                 <ion-input formControlName="totalCredit" type="number" [(ngModel)]="newCredit.totalCredit"></ion-input>
@@ -31,5 +31,5 @@
             <ion-toggle formControlName="setReminder" [(ngModel)]="setReminder"></ion-toggle>
         </ion-item>
         <button ion-button class="submit-btn" full type="submit" [disabled]="!addCreditForm.form.valid">Add Credit</button>
-    </form> 
+    </form>
 </ion-content>

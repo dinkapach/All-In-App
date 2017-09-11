@@ -18,11 +18,9 @@ export class ShowSalesComponent {
          private navParams: NavParams, 
         private alertCtrl: AlertController, private managerService: ManagerService) {
             this.club = this.managerService.getLocalClub();
-            // this.saleArr = this.club.sales;
-            // console.log(this.saleArr);
         }
 
-    addSale(){
+    onClickAddSale(){
         this.navCtrl.push(AddSaleComponent);
     }
 

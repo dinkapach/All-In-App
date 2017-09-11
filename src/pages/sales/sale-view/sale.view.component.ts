@@ -3,7 +3,6 @@ import { Sale } from './../../../models/sales.model';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { NavController, AlertController, NavParams } from 'ionic-angular';
 
-
 @Component({
     selector: 'sale-view',
     templateUrl: 'sale.view.html'
@@ -17,5 +16,4 @@ export class SaleViewComponent {
     this.sale = this.navParams.get("sale");
     this.club = this.navParams.get("club");
     }
-
 }

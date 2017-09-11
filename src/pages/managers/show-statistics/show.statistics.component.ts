@@ -29,18 +29,13 @@ export class ShowStatisticsComponent {
         private alertCtrl: AlertController, private managerService: ManagerService) {
         this.club = this.navParams.get("club");
         this.getStatistics();
-
-        console.log("club in show :", this.club);
-        console.log("statisti childs:" + this.childs);
-        console.log("statisti teenagers:" + this.teenagers);
-        console.log("statisti ollds:" + this.olds);
-        console.log("statisti total:" + this.totalCustomers);
-        console.log("statisti joind:" + this.joinedThisMonth);
     }
 
-
-
     ionViewDidLoad() {
+        this.buildGraph();
+    }
+
+    buildGraph() {
         this.barChart = new Chart(this.barCanvas.nativeElement, {
             type: 'bar',
             data: {
@@ -80,23 +75,16 @@ export class ShowStatisticsComponent {
             }
 
         });
-
     }
 
     getStatistics() {
         var date = new Date();
         var thisMonth = date.getMonth;
         var customersArr;
-
-
         customersArr = this.managerService.getLocalCustomers()
-
         customersArr.forEach(customer => {
-
             var date = new Date(customer.customerId.birthday);
-            var din = new Date(age);
             var age = new Date().getFullYear() - date.getFullYear();
-
             if (age < 20) {
                 this.childs++;
             }
@@ -106,12 +94,9 @@ export class ShowStatisticsComponent {
             else {
                 this.olds++;
             }
-
-        })
-
+        });
         this.totalCustomers = this.childs + this.teenagers + this.olds;
         this.joinedThisMonth = this.getNumOfJoinedThisMonth();
-
     }
 
     getNumOfJoinedThisMonth() {
@@ -126,28 +111,5 @@ export class ShowStatisticsComponent {
         })
 
         return numOfJoins;
-    }
-
-    calculateAge(dateString) {
-        var newFormatDate = this.changeDateFortmat(dateString);
-        var today = new Date();
-        var birthDate = new Date(newFormatDate);
-        var age = today.getFullYear() - birthDate.getFullYear();
-        var m = today.getMonth() - birthDate.getMonth();
-        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-            age--;
-        }
-        return age;
-    }
-
-    calculateOpeningHours(hourString) {
-        var hourOpen = hourString.split(":")[0];
-        var minutesOpen = hourString.split(":")[1];
-
-        return new Date(0, 0, 0, hourOpen, minutesOpen);
-    }
-
-    changeDateFortmat(dateString) {
-        return dateString.slice(3, 5) + '/' + dateString.slice(0, 2) + '/' + dateString.slice(6, 10);
     }
 }

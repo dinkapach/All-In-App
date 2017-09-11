@@ -12,7 +12,5 @@ export class SaleCardComponent {
     @Output() saleDeleted = new EventEmitter();
 
     constructor(private navCtrl: NavController,  private alertCtrl: AlertController) {
-
     }
-
 }

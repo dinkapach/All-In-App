@@ -13,15 +13,15 @@ import { EditCreditComponent } from '../edit-credit/edit-credit.component';
 })
 export class CreditsCardComponent implements OnInit {
     @Input()
-   credit : Credit;
-   user : User;
-   doesNotificationScheduled: boolean;
-   firstInitToggle: boolean = true;
-   @Output() creditDeleted = new EventEmitter();
+    credit: Credit;
+    user: User;
+    doesNotificationScheduled: boolean;
+    firstInitToggle: boolean = true;
+    @Output() creditDeleted = new EventEmitter();
 
-    constructor(private clubService : ClubService, private navCtrl: NavController,
-    private userService: UserService, private alertCtrl: AlertController,
-    private localNotifications: LocalNotifications) {
+    constructor(private clubService: ClubService, private navCtrl: NavController,
+        private userService: UserService, private alertCtrl: AlertController,
+        private localNotifications: LocalNotifications) {
         this.user = this.userService.getLocalUser();
     }
 
@@ -30,33 +30,30 @@ export class CreditsCardComponent implements OnInit {
         this.checkIfNotificationScheduled(this.credit.id);
     }
 
-    checkIfNotificationScheduled(notificationId: number){
+    checkIfNotificationScheduled(notificationId: number) {
         this.localNotifications.isScheduled(notificationId)
-        .then(isScheduled => {
-            this.doesNotificationScheduled = isScheduled;
-        })
-        .catch(err => console.log(err));
+            .then(isScheduled => {
+                this.doesNotificationScheduled = isScheduled;
+            })
+            .catch(err => console.log(err));
     }
 
-    onCreditClicked() {
+    editCreditClick(credit) {
+        this.navCtrl.push(EditCreditComponent, { credit: credit });
     }
 
-    editCreditClick(credit){
-        this.navCtrl.push(EditCreditComponent, {credit: credit});
-    }
-
-    cancelNotification(notificationId: number){
+    cancelNotification(notificationId: number) {
         this.localNotifications.cancel(notificationId)
-        .then(isCanceled => {
-            if(isCanceled){
-                this.doesNotificationScheduled = false;
-                alert("notification canceled");
-            }
-        })
-        .catch(err => console.log(err));
+            .then(isCanceled => {
+                if (isCanceled) {
+                    this.doesNotificationScheduled = false;
+                    alert("notification canceled");
+                }
+            })
+            .catch(err => console.log(err));
     }
 
-    scheduleNotification(notificationId: number){
+    scheduleNotification(notificationId: number) {
         this.localNotifications.schedule({
             title: "Credit About To Expire",
             id: this.credit.id,
@@ -66,36 +63,30 @@ export class CreditsCardComponent implements OnInit {
         alert("notification scheduled");
     }
 
-    handleNotificationToggle(){
-        if(this.doesNotificationScheduled){
+    handleNotificationToggle() {
+        if (this.doesNotificationScheduled) {
             this.scheduleNotification(this.credit.id);
         }
-        else{
+        else {
             this.cancelNotification(this.credit.id);
         }
     }
 
-    onChangeNotificationToggle(){
+    onChangeNotificationToggle() {
         this.handleNotificationToggle();
         console.log("toggling notification event: " + this.doesNotificationScheduled);
-        // if(this.firstInitToggle){
-        //     this.firstInitToggle = false;
-        // }
-        // else{
-        //     this.handleNotificationToggle();
-        // }
     }
 
-    deleteCreditClick(credit){
+    deleteCreditClick(credit) {
         this.userService.deleteCredit(credit).
-        subscribe(isAuth => {
-            console.log("From 'delete-credit.component', print 'isAuth': ", isAuth);
-            if(isAuth){
-                this.creditDeleted.emit(credit);
-            }
-            else{
-                console.log("Error deleting credit");
-            }
-        })
+            subscribe(isAuth => {
+                console.log("From 'delete-credit.component', print 'isAuth': ", isAuth);
+                if (isAuth) {
+                    this.creditDeleted.emit(credit);
+                }
+                else {
+                    console.log("Error deleting credit");
+                }
+            })
     }
 }

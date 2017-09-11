@@ -5,125 +5,112 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Http, RequestOptions, URLSearchParams } from '@angular/http';
 import { Storage } from '@ionic/storage';
-
 import * as environment from './../../environment.json';
-//import * as environment from './../../environment.json';
 
 @Injectable()
 export class SuperManagerService {
     private url: string;
 
-    constructor(private http : Http, private storage: Storage) {
+    constructor(private http: Http, private storage: Storage) {
         this.url = environment[environment.RUNNING];
         console.log(this.url);
     }
-
-
-////////////////////// Managers ////////////////////////////////////////////
-
-    getManagersArr():  Observable<any> {
+    ////////////////////// Managers ////////////////////////////////////////////
+    getManagersArr(): Observable<any> {
         return this.http.get(`${this.url}/api/supermanager/managerArr`)
-        .map(response => response.json())
+            .map(response => response.json())
     }
 
     createManager(newManager: Manager): Observable<boolean> {
         return this.http.post(`${this.url}/api/supermanager/addManager`, {
             newManager: newManager
         })
-        .map( res => res.json());
+            .map(res => res.json());
     }
-    
-    deleteManagerWithClub(managerId: number, clubId: object) :  Observable<boolean> {
+
+    deleteManagerWithClub(managerId: number, clubId: object): Observable<boolean> {
         return this.http.post(`${this.url}/api/supermanager/deleteManagerWithClub`, {
             managerId: managerId,
             clubId: clubId
         })
-        .map( res => res.json());
+            .map(res => res.json());
     }
 
-    deleteManagerWithoutClub(managerId: number) : Observable<boolean> {
+    deleteManagerWithoutClub(managerId: number): Observable<boolean> {
         return this.http.post(`${this.url}/api/supermanager/deleteManagerWithoutClub`, {
             managerId: managerId
         })
-        .map( res => res.json());
+            .map(res => res.json());
     }
 
-    replaceManaerForClubAndDeleteManager(newManagerOfClubId: number, managerToRemove: number,  clubId: object) :  Observable<boolean> {
+    replaceManaerForClubAndDeleteManager(newManagerOfClubId: number, managerToRemove: number, clubId: object): Observable<boolean> {
         return this.http.post(`${this.url}/api/supermanager/deleteManagerReplaceManagment`, {
             newManagerOfClubId: newManagerOfClubId,
             managerToRemove: managerToRemove,
             clubId: clubId
         })
-        .map( res => res.json());
+            .map(res => res.json());
     }
 
-    addExistingClubToManager(managerId: number, clubId: string) : Observable<boolean> {
+    addExistingClubToManager(managerId: number, clubId: string): Observable<boolean> {
         return this.http.post(`${this.url}/api/supermanager/addExistingClubToManager`, {
             managerId: managerId,
             clubId: clubId
         })
-        .map( res => res.json());
+            .map(res => res.json());
     }
 
-    updateManager(manager: Manager) : Observable<boolean> {
+    updateManager(manager: Manager): Observable<boolean> {
         return this.http.post(`${this.url}/api/supermanager/updateManager`, {
             manager: manager,
         })
-        .map( res => res.json());
+            .map(res => res.json());
+    }
+    ////////////////////// CLUBS ////////////////////////////////////////////
+    getClubsArr(): Observable<any> {
+        return this.http.get(`${this.url}/api/supermanager/clubArr`)
+            .map(response => response.json())
     }
 
-////////////////////// CLUBS ////////////////////////////////////////////
+    createClubAndAddToManager(newClub: Club, managerId: number): Observable<boolean> {
+        return this.http.post(`${this.url}/api/supermanager/addClub`, {
+            newClub: newClub,
+            managerId: managerId
+        })
+            .map(res => res.json());
+    }
 
-getClubsArr():  Observable<any> {
-    return this.http.get(`${this.url}/api/supermanager/clubArr`)
-    .map(response => response.json())
-}
+    deleteClub(club: Club): Observable<boolean> {
+        return this.http.post(`${this.url}/api/supermanager/deleteClub`, {
+            club: club,
+        })
+            .map(res => res.json());
+    }
 
-createClubAndAddToManager(newClub: Club, managerId: number): Observable<boolean> {
-    return this.http.post(`${this.url}/api/supermanager/addClub`, {
-        newClub: newClub,
-        managerId: managerId
-    })
-    .map( res => res.json());
-}
+    deleteClubFromDBAndRemoveFromManager(managerId: number, club: Club): Observable<boolean> {
+        return this.http.post(`${this.url}/api/supermanager/deleteClubRemoveFromManager`, {
+            club: club,
+            managerId: managerId
+        })
+            .map(res => res.json());
+    }
 
-deleteClub(club: Club): Observable<boolean> {
-    return this.http.post(`${this.url}/api/supermanager/deleteClub`, {
-        club: club,
-    })
-    .map( res => res.json());
-}
+    updateClub(club: Club): Observable<boolean> {
+        return this.http.post(`${this.url}/api/supermanager/updateClub`, {
+            club: club,
+        })
+            .map(res => res.json());
+    }
+    //////////////////////////////////// CUSTOMER ////////////////////////////////////////////////////
+    getCustomerArr(): Observable<any> {
+        return this.http.get(`${this.url}/api/supermanager/customerArr`)
+            .map(response => response.json())
+    }
 
-deleteClubFromDBAndRemoveFromManager(managerId: number, club: Club): Observable<boolean> {
-    return this.http.post(`${this.url}/api/supermanager/deleteClubRemoveFromManager`, {
-        club: club,
-        managerId: managerId
-    })
-    .map( res => res.json());
-}
-
-updateClub(club: Club): Observable<boolean> {
-    return this.http.post(`${this.url}/api/supermanager/updateClub`, {
-        club: club,
-    })
-    .map( res => res.json());
-}
-
-//////////////////////////////////// CUSTOMER ////////////////////////////////////////////////////
-
-getCustomerArr() :  Observable<any> {
-    return this.http.get(`${this.url}/api/supermanager/customerArr`)
-    .map(response => response.json())
-}
-
-deleteCustomerFromDB(userId: User): Observable<boolean> {
-    return this.http.post(`${this.url}/api/supermanager/deleteCustomerFromDB`, {
-        userId: userId
-    })
-    .map( res => res.json());
-}
-
-
-    
-
+    deleteCustomerFromDB(userId: User): Observable<boolean> {
+        return this.http.post(`${this.url}/api/supermanager/deleteCustomerFromDB`, {
+            userId: userId
+        })
+            .map(res => res.json());
+    }
 }

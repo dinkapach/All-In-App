@@ -26,18 +26,16 @@ export class EditClubManuallyComponent {
         this.club = this.navParams.get("club");
         this.updatedClub = this.cloneService.getDeepCopyOfClubManually(this.club);
         this.user = this.userService.getLocalUser();
+        this.buildForm();
+    }
 
-        this.editClubForm = fBuilder.group({
+    buildForm() {
+        this.editClubForm = this.fBuilder.group({
             'name': ["", Validators.required],
             'address': [""],
             'phoneNumber': [""],
-            // 'img': [""],
             'points': [""],
         })
-    }
-
-    ionViewDidLoad() {
-        console.log('ionViewDidLoad EditClub');
     }
 
     onClickEditClub() {
@@ -46,14 +44,7 @@ export class EditClubManuallyComponent {
             .subscribe(isAuth => {
                 if (isAuth) {
                     console.log("from edit club manuall return from server");
-                    let alert = this.alertCtrl.create({
-                        subTitle: 'club edited',
-                        buttons: ['סבבה']
-                    });
-                    alert.present();
-                    alert.onDidDismiss(() => {
-                        this.navCtrl.pop();
-                    });
+                    this.navCtrl.pop();
                 }
                 else {
                     console.log(isAuth);
@@ -63,7 +54,7 @@ export class EditClubManuallyComponent {
     }
 
     getUpdatedClub() {
-        this.user.manuallyClubs = this.user.manuallyClubs.filter( clubManual => {
+        this.user.manuallyClubs = this.user.manuallyClubs.filter(clubManual => {
             return clubManual.id != this.club.id;
         })
         this.user.manuallyClubs.push(this.updatedClub);
@@ -82,5 +73,4 @@ export class EditClubManuallyComponent {
         console.log("in save img")
         this.updatedClub.img = url;
     }
-
 }

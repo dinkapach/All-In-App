@@ -3,7 +3,6 @@ import { User } from './../models/user.model';
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
-
 import * as environment from './../../environment.json';
 
 @Injectable()
@@ -15,18 +14,17 @@ export class SigningSuperManagerService {
         console.log(this.url);
     }
 
-
-    loginSuperManager(email: string, password: string): Observable<any>  {
+    loginSuperManager(email: string, password: string): Observable<any> {
         let loginSuperManagerUrl = this.getLoginSuperManagerUrl();
-        console.log(`${this.url}`+loginSuperManagerUrl);
-        return this.http.post(`${this.url}`+loginSuperManagerUrl, {
+        console.log(`${this.url}` + loginSuperManagerUrl);
+        return this.http.post(`${this.url}` + loginSuperManagerUrl, {
             email: email,
             password: password
         })
-        .map( res => res.json());
-    }   
+            .map(res => res.json());
+    }
 
-    getLoginSuperManagerUrl(){
+    getLoginSuperManagerUrl() {
         return environment.SUPER_MANAGER_LOGIN_URL;
     }
 }

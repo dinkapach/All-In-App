@@ -1,35 +1,12 @@
 <ion-header>
     <ion-navbar primary>
-        <!-- <ion-buttons end>
-            <button (click)="onClickupdateInfo()">
-            <ion-icon name="refresh"></ion-icon>
-        </button>
-        </ion-buttons> -->
         <ion-title>Edit Profile</ion-title>
     </ion-navbar>
 </ion-header>
-
 <ion-content padding *ngIf="user">
-    <!-- <ion-card>
-        <img id="profile-img" [src]="updatedUser?.img"/>
-        <ion-card-content></ion-card-content>
-        <ion-row no-padding>
-            <ion-col>
-                <button ion-button clear small color="danger" icon-start 
-                (click)="onClickOpenCameraOptionTake()" >
-                    <ion-icon name='create'></ion-icon>
-                    edit
-                </button>
-            </ion-col>
-        </ion-row>
-    </ion-card>
-    <ion-item>
-            <ion-label floating>Image</ion-label>
-            <ion-input formControlName="img" type="text" value={{user?.img}} (blur)="onBlur($event)"></ion-input>
-    </ion-item> -->
-    <img id="profile-img" [src]="updatedUser.img"/>
+    <img id="profile-img" [src]="updatedUser.img" />
     <ion-buttons text-center>
-    <button ion-button clear small color="danger" icon-start (click)="onClickOpenCameraOptionTake()">
+        <button ion-button clear small color="danger" icon-start (click)="onClickOpenCameraOptionTake()">
         <ion-icon name='create'></ion-icon>
         Edit Photo
     </button>
@@ -68,32 +45,3 @@
         <button ion-button class="submit-btn" full type="submit" [disabled]="!updateProfileForm.form.valid">Update Profile</button>
     </form>
 </ion-content>
-
-
-<!-- 
-<ion-list>
-    <ion-item>
-        <ion-input formControlName="img" placeholder="Image" type="text" value="dw" [(ngModel)]="updatedUser.img" (blur)="onBlur($event)"></ion-input>
-    </ion-item>
-    <ion-item>
-        <ion-input formControlName="id" placeholder="Id" type="text" [(ngModel)]="updatedUser.id" (blur)="onBlur($event)"></ion-input>
-    </ion-item>
-    <ion-item>
-        <ion-input formControlName="firstName" placeholder="First Name" type="text" [(ngModel)]="updatedUser.firstName" (blur)="onBlur($event)"></ion-input>
-    </ion-item>
-    <ion-item>
-        <ion-input formControlName="lastName" placeholder="Last Name" type="text" [(ngModel)]="updatedUser.lastName" (blur)="onBlur($event)"></ion-input>
-    </ion-item>
-    <ion-item>
-        <ion-input formControlName="address" placeholder="Address" type="text" [(ngModel)]="updatedUser.address" (blur)="onBlur($event)"></ion-input>
-    </ion-item>
-    <ion-item>
-        <ion-input formControlName="email" placeholder="Email" type="email" [(ngModel)]="updatedUser.email" (blur)="onBlur($event)"></ion-input>
-    </ion-item>
-    <ion-item>
-        <ion-input formControlName="phoneNumber" placeholder="Phone Number" type="text" [(ngModel)]="updatedUser.phoneNumber" (blur)="onBlur($event)"></ion-input>
-    </ion-item>
-    <ion-item>
-        <ion-input formControlName="birthday" placeholder="Birthday" type="text" [(ngModel)]="updatedUser.birthday" (blur)="onBlur($event)"></ion-input>
-    </ion-item>       
-</ion-list> -->

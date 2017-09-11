@@ -3,19 +3,16 @@
         <ion-title>Add Club To Manager</ion-title>
     </ion-navbar>
 </ion-header>
-      
 <ion-content padding>
     <ion-list>
         <ion-item>
-        <ion-label floating  >Manager ID</ion-label>
-        <ion-input type="number" [(ngModel)]="managerId" ></ion-input>
+            <ion-label floating>Manager ID</ion-label>
+            <ion-input type="number" [(ngModel)]="managerId"></ion-input>
         </ion-item>
-    
         <ion-item>
-        <ion-label floating >Club Id</ion-label>
-        <ion-input type="text" [(ngModel)]="clubId"></ion-input>
+            <ion-label floating>Club Id</ion-label>
+            <ion-input type="text" [(ngModel)]="clubId"></ion-input>
         </ion-item>
-
         <button ion-button (click)="onClickAddExistingClubToManager()">Commit</button>
     </ion-list>
 </ion-content>

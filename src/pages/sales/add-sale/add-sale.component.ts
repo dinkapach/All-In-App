@@ -2,12 +2,10 @@ import { ActionSheetCameraOptions } from './../../../helpers/action-sheet-camera
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NavController, NavParams, AlertController, ActionSheetController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
-
 import 'rxjs/add/operator/map';
 import { Sale } from './../../../models/sales.model';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ManagerService } from "../../../services/manager.service";
-
 
 @Component({
     selector: 'add-sale',
@@ -19,8 +17,12 @@ export class AddSaleComponent {
 
     constructor(private fBuilder: FormBuilder,
         private managerService: ManagerService, private navCtrl: NavController,
-         private actionSheetCameraOptions: ActionSheetCameraOptions) {
-        this.formData = fBuilder.group({
+        private actionSheetCameraOptions: ActionSheetCameraOptions) {
+        this.buildForm();
+    }
+
+    buildForm() {
+        this.formData = this.fBuilder.group({
             'id': Date.now(),
             'name': ["", Validators.required],
             'description': ["", Validators.required],
@@ -46,7 +48,7 @@ export class AddSaleComponent {
     onClickOpenCameraOptionTake() {
         this.actionSheetCameraOptions.onClickOpenOptionTakeImgModal()
         this.actionSheetCameraOptions.onPhotoTaken.subscribe(res => {
-            if(res.isAuth){
+            if (res.isAuth) {
                 this.updateImg(res.url);
             }
         })
@@ -56,5 +58,4 @@ export class AddSaleComponent {
         console.log("in save img")
         this.sale.img = url;
     }
-
 }

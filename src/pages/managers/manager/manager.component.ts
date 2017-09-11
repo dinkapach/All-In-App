@@ -28,7 +28,6 @@ export class ManagerComponent {
         console.log(this.club);
     }
 
-
     addSale() {
         this.navCtrl.push(AddSaleComponent);
     }
@@ -36,7 +35,6 @@ export class ManagerComponent {
     onClickEditClub(club) {
         this.navCtrl.push(EditManagerClubComponent);
     }
-
 
     showCustomers() {
         this.navCtrl.push(ShowCustomerComponent);
@@ -64,18 +62,14 @@ export class ManagerComponent {
         this.managerService.updateLocalManager()
             .subscribe(isAuth => {
                 if (isAuth) {
-                    // alert("manager updated from server");
                     this.manager = this.managerService.getLocalManager();
                     this.club = this.managerService.getLocalClub();
-                    // this.refreshClubDispaly()
                 }
                 else {
                     console.log('manager not connected not auth');
-                    // alert("Not Updated");
                 }
             },
             err => {
-                // alert("Connection Error");
                 console.log(err);
             },
             () => {
@@ -96,6 +90,7 @@ export class ManagerComponent {
                 }
             })
     }
+
     onClickSettings() {
         this.navCtrl.push(ManagerSettingsComponent);
     }

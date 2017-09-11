@@ -1,8 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Http } from '@angular/http';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms'; 
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NavController, NavParams, AlertController, ActionSheetController } from 'ionic-angular';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import 'rxjs/add/operator/map';
 import { User } from '../../../../models/user.model';
@@ -12,92 +12,60 @@ import { UserService } from '../../../../services/user.service';
 import { CameraService } from '../../../../helpers/camera-service';
 import { ActionSheetCameraOptions } from '../../../../helpers/action-sheet-camera-options';
 
-//TODO:
-//Send the updated fields instead of everything
-
 @Component({
     selector: 'add-credit',
-    templateUrl : 'add-credit.html'
+    templateUrl: 'add-credit.html'
 })
-export class AddCreditComponent{
+export class AddCreditComponent {
     user: User;
     formData: FormGroup;
     newCredit: Credit;
     club: Club;
     setReminder: boolean = true;
 
-    constructor(private fBuilder : FormBuilder, private http: Http, private navCtrl : NavController,
+    constructor(private fBuilder: FormBuilder, private http: Http, private navCtrl: NavController,
         private userService: UserService, private navParams: NavParams, private alertCtrl: AlertController,
-        private localNotifications: LocalNotifications,  private cameraService: CameraService,
+        private localNotifications: LocalNotifications, private cameraService: CameraService,
         public actionSheetCtrl: ActionSheetController,
         private actionSheetCameraOptions: ActionSheetCameraOptions) {
         this.club = this.navParams.get("club");
         this.initCredit();
         this.user = this.userService.getLocalUser();
         this.buildAddCreditForm();
-        this.initLocalNotificationClickEvent();
     }
 
-    initCredit(){
+    initCredit() {
         this.newCredit = new Credit();
         this.newCredit.clubId = this.club.id;
         this.newCredit.id = Date.now();
     }
 
-    initLocalNotificationClickEvent(){
-        this.localNotifications.on("click", (notification, state) => {
-            let alert = this.alertCtrl.create({
-                title: "Notification " + notification.id + " Clicked",
-                subTitle: "You just clicked the scheduled notification",
-                buttons: ["OK"]
-            });
-            alert.present();
-            alert.onDidDismiss(() => {
-                // this.gotoClubPage();
-            });
-        });
-    }
-
-    // gotoClubPage(){
-    //     this.navCtrl.popAll();
-    //     this.navCtrl.push(DashboardComponent);
-    //     this.navCtrl.push(ClubDetailsComponent, {club : this.club});
-    // }
-
-    buildAddCreditForm(){
+    buildAddCreditForm() {
         this.formData = this.fBuilder.group({
-            'dateOfPurchase' : ["", Validators.required],
+            'dateOfPurchase': ["", Validators.required],
             'dateOfExpired': ["", Validators.required],
-            'setReminder' : ["", Validators.required],
-            'totalCredit' : ["", Validators.required]
+            'setReminder': ["", Validators.required],
+            'totalCredit': ["", Validators.required]
         });
     }
 
     onClickAddCredit() {
-        console.log("From 'add-credit.component'. club id:",  this.club.id);
+        console.log("From 'add-credit.component'. club id:", this.club.id);
         this.userService.addCredit(this.newCredit).
-        subscribe(isAuth => {
-            console.log("From 'add-credit.component', print 'isAuth': ", isAuth);
-            if(isAuth){
-                // this.user.credits.push(this.newCredit);     
-                // this.userService.updateLocalCustomerWithoutPromise();   
-                this.scheduleCreditNotification();
-                this.navCtrl.pop();
-            }
-            else{
-                console.log("unSuccess");
-            }
-        })
+            subscribe(isAuth => {
+                console.log("From 'add-credit.component', print 'isAuth': ", isAuth);
+                if (isAuth) {
+                    this.scheduleCreditNotification();
+                    this.navCtrl.pop();
+                }
+                else {
+                    console.log("unSuccess");
+                }
+            })
     }
 
-    // onClickAddCredit() {
-    //     console.log(this.newCredit.dateOfPurchase);
-    //     console.log(this.formData.value);
-    //     console.log(new Date(this.newCredit.dateOfPurchase));
-    // }
-
-    scheduleCreditNotification(){
-        if(this.setReminder){
+    scheduleCreditNotification() {
+        if (this.setReminder) {
             this.localNotifications.schedule({
                 title: "Credit About To Expire",
                 id: this.newCredit.id,
@@ -106,7 +74,6 @@ export class AddCreditComponent{
             });
         }
     }
-
 
     onClickOpenCameraOptionTake() {
         this.actionSheetCameraOptions.onClickOpenOptionTakeImgModal()
@@ -120,5 +87,4 @@ export class AddCreditComponent{
     updateImg(url) {
         this.newCredit.img = url;
     }
-
 }

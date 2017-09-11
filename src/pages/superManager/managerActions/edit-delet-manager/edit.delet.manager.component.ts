@@ -9,43 +9,39 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
     selector: 'edit-delete-manager',
     templateUrl: 'edit.delet.manager.html'
 })
-export class EditDeleteManagerComponent implements OnInit{
+export class EditDeleteManagerComponent {
     managersArr: Manager[];
     searchManager: string;
     tempManagerArr: Manager[];
 
-    constructor(private fBuilder : FormBuilder, private navParams: NavParams,
+    constructor(private fBuilder: FormBuilder, private navParams: NavParams,
         private navCtrl: NavController, private alertCtrl: AlertController,
         private superManagerService: SuperManagerService) {
-         this.initManagersArr();
+        this.initManagersArr();
     }
 
-    ngOnInit() {
-    }
-
-    initManagersArr(){
+    initManagersArr() {
         this.managersArr = [];
         this.superManagerService.getManagersArr()
-        .subscribe(result => {
-            console.log("result from inint managersArr", result);
-            if(result.isAuth){
-                this.managersArr = result.managerArr;
-                this.tempManagerArr = this.doDeepCopyOfArr(this.managersArr);
-            }
-            else {
-                console.log("super manager error in get manager arr");
-            }
-        })
-
+            .subscribe(result => {
+                console.log("result from inint managersArr", result);
+                if (result.isAuth) {
+                    this.managersArr = result.managerArr;
+                    this.tempManagerArr = this.doDeepCopyOfArr(this.managersArr);
+                }
+                else {
+                    console.log("super manager error in get manager arr");
+                }
+            })
     }
 
-    handleManagerDeleted(managerToRemove){
+    handleManagerDeleted(managerToRemove) {
         this.managersArr = this.managersArr.filter(currManager => {
             return currManager.id != managerToRemove.id;
         })
     }
 
-    searchManagers  () {
+    searchManagers() {
         this.managersArr = this.tempManagerArr.filter(manager => {
             return manager.id.toString().startsWith(this.searchManager);
         });
@@ -58,5 +54,4 @@ export class EditDeleteManagerComponent implements OnInit{
         });
         return copiedArr;
     }
-
 }

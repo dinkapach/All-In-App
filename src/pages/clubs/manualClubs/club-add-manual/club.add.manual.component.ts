@@ -39,7 +39,6 @@ export class AddClubManualComponent {
             'name': ["", Validators.required],
             'address': [""],
             'phoneNumber': [""],
-            // 'img': [""],
             'points': [""],
         });
     }
@@ -62,7 +61,7 @@ export class AddClubManualComponent {
     onClickOpenCameraOptionTake() {
         this.actionSheetCameraOptions.onClickOpenOptionTakeImgModal()
         this.actionSheetCameraOptions.onPhotoTaken.subscribe(res => {
-            if(res.isAuth){
+            if (res.isAuth) {
                 this.updateImg(res.url);
             }
         })
@@ -72,5 +71,4 @@ export class AddClubManualComponent {
         console.log("in save img")
         this.clubNew.img = url;
     }
-
 }

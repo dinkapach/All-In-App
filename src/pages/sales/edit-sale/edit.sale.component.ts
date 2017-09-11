@@ -34,7 +34,7 @@ export class EditSaleComponent {
             'description': ["", Validators.required],
             'points': "",
             'price': "",
-        })
+        });
     }
 
     updateSale() {

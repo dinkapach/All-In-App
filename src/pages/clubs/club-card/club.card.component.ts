@@ -6,7 +6,6 @@ import { NavController, ModalController } from 'ionic-angular';
 import { Club } from './../../../models/club.model';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
-
 @Component({
     selector: 'club-card',
     templateUrl: 'club.card.html'
@@ -20,13 +19,11 @@ export class ClubCardComponent implements OnInit {
 
     constructor(private navCtrl: NavController, private userService: UserService,
         public modalCtrl: ModalController) {
-        
-        
     }
 
     ngOnInit() {
         console.log("init club card", this.club);
-        this.getUserPointsByClubId()
+        this.getUserPointsByClubId();
     }
 
     onClickPresentClubInfo(club) {

@@ -4,56 +4,53 @@ import { UserService } from './../../../services/user.service';
 import { User } from './../../../models/user.model';
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms'; 
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
-import {Observable} from 'rxjs/Observable';
-
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-
-//TODO:
-//Send the updated fields instead of everything
 
 @Component({
     selector: 'edit-password',
-    templateUrl : 'edit-password.html'
+    templateUrl: 'edit-password.html'
 })
-export class EditPasswordComponent{
+export class EditPasswordComponent {
     currentPassword: string;
     newPassword: string;
     newPasswordVarify: string;
-    formData : FormGroup;
+    formData: FormGroup;
 
-    constructor(private fBuilder : FormBuilder, private http: Http, private navCtrl : NavController,
+    constructor(private fBuilder: FormBuilder, private http: Http, private navCtrl: NavController,
         private userService: UserService, private navParams: NavParams, private alertCtrl: AlertController) {
+        this.buildForm();
+    }
 
-        this.formData = fBuilder.group({
+    buildForm() {
+        this.formData = this.fBuilder.group({
             'currentPassword': ["", Validators.required],
             'newPassword': ["", Validators.required],
-            'newPasswordVarify': ["", Validators.required]}, {validator: this.areEqual});
+            'newPasswordVarify': ["", Validators.required]
+        }, { validator: this.areEqual });
     }
 
     areEqual(fg: FormGroup) {
         let valid = fg.value.newPassword == fg.value.newPasswordVarify;
         if (valid) {
-          return null;
+            return null;
         }
         return {
-          areEqual: true
+            areEqual: true
         };
     }
 
     onClickChangePassword() {
         this.userService.changePassword(this.currentPassword, this.newPassword)
-        .subscribe(isAuth => {
-            console.log(isAuth);
-            if(isAuth){
-                alert("Password Updated");
+            .subscribe(isAuth => {
                 console.log(isAuth);
-                this.navCtrl.pop();
-            }
-            else{
-                // this.showAlert("password not Updated"+isAuth);
-            }
-        })
+                if (isAuth) {
+                    alert("Password Updated");
+                    console.log(isAuth);
+                    this.navCtrl.pop();
+                }
+            })
     }
 }

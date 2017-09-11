@@ -15,8 +15,7 @@ import { AddCreditComponent } from '../../add-credit/add-credit.component';
     selector: 'club-details',
     templateUrl: 'club.details.html'
 })
-export class ClubDetailsComponent extends ClubDetailsBaseComponent implements OnInit {
-
+export class ClubDetailsComponent extends ClubDetailsBaseComponent {
 
     constructor(public navParams: NavParams,
         public navCtrl: NavController, public userService: UserService,
@@ -24,13 +23,9 @@ export class ClubDetailsComponent extends ClubDetailsBaseComponent implements On
         super(navParams, navCtrl, userService, clubService, alertCtrl);
         this.viewOptions = 'sales'
     }
-
-    ngOnInit() {
-        // this.club = this.navParams.get("club");
-    }
-
-    onSaleClicked(sale: Sale){
+    
+    onSaleClicked(sale: Sale) {
         console.log("new");
-         this.navCtrl.push(SaleViewComponent, {sale: sale, club: this.club});
+        this.navCtrl.push(SaleViewComponent, { sale: sale, club: this.club });
     }
 }

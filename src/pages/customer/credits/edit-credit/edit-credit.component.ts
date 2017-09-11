@@ -31,18 +31,12 @@ export class EditCreditComponent {
         this.formGroup = this.fBuilder.group({
             'dateOfPurchase': ["", Validators.required],
             'dateOfExpired': ["", Validators.required],
-            // 'items': ["", Validators.required],
             'totalCredit': ["", Validators.required]
         });
     }
 
     initCredit() {
         this.updatedCredit = this.cloneService.getDeepCopyOfCredit(this.credit);
-        // this.updatedCredit = 
-        //   this.updatedCredit = { 
-        //       clubId: this.credit.clubId,
-        //       id: this.credit.id
-        //     };
     }
 
     ionViewDidLoad() {
@@ -55,13 +49,8 @@ export class EditCreditComponent {
             .subscribe(isAuth => {
                 console.log(isAuth);
                 if (isAuth) {
-                    // this.showAlert("Profile Updated" + isAuth);
                     this.credit = this.updatedCredit;
-                    //   alert("updated");
                     this.navCtrl.pop();
-                }
-                else {
-                    // alert("not updated");
                 }
             });
     }
@@ -78,5 +67,4 @@ export class EditCreditComponent {
     updateImg(url) {
         this.updatedCredit.img = url;
     }
-
 }

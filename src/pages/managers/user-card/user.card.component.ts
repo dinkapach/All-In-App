@@ -6,15 +6,13 @@ import { NavController, AlertController } from 'ionic-angular';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ManagerService } from '../../../services/manager.service';
 
-
 @Component({
     selector: 'user-card',
     templateUrl: 'user.card.html'
 })
-export class UserCardComponent  {
+export class UserCardComponent {
     @Input()
     customer;
-
     @Output() userDeleted = new EventEmitter();
 
     constructor(private navCtrl: NavController,
@@ -22,30 +20,16 @@ export class UserCardComponent  {
         private alertCtrl: AlertController, private addPointsFunctions: AddPointsFunctions) {
     }
 
-
     deleteUserClick(customer) {
         this.managerService.deleteCustomerFromClub(customer.customerId._id, this.managerService.getLocalManager().clubId)
             .subscribe(isDeleted => {
                 if (isDeleted) {
                     console.log("user deleted from club succecfully");
-                    this.presentAlert();
+                    alert("user deleted from club succecfully");
                 }
             })
     }
 
-    presentAlert() {
-        let alert = this.alertCtrl.create({
-            subTitle: 'user deleted from club succecfully',
-            buttons: ['סבבה']
-        });
-        alert.present();
-        alert.onDidDismiss(() => {
-            this.navCtrl.pop();
-        });
-    }
-
-
-    // TODOO
     onClickAddPoints() {
         let title = "Add Points";
         let message = "insert the how many points to add"
@@ -59,7 +43,6 @@ export class UserCardComponent  {
 
         this.showRemovePrompt(title, message)
     }
-
 
     showAddPrompt(title, message) {
         let prompt = this.alertCtrl.create({
@@ -121,32 +104,30 @@ export class UserCardComponent  {
         prompt.present();
     }
 
-
     addPointsToCustomer(amount, percent) {
         let points = this.addPointsFunctions.calculatePointsAmountByGivenPercent(amount, percent);
-        this.managerService.addPointsToCustomerById( this.customer.customerId._id, this.managerService.getLocalManager().clubId, points)
-        .subscribe( res => {
-            console.log("is updated", res);
-            if(res.isUpdated){
-                this.customer.points = res.newPoints;
-            }
-            else {
-                console.log("err");
-            }
-        })
+        this.managerService.addPointsToCustomerById(this.customer.customerId._id, this.managerService.getLocalManager().clubId, points)
+            .subscribe(res => {
+                console.log("is updated", res);
+                if (res.isUpdated) {
+                    this.customer.points = res.newPoints;
+                }
+                else {
+                    console.log("err");
+                }
+            })
     }
 
     subscribePointsFromCustomer(points) {
-        this.managerService.subscribePointsToCustomerById( this.customer.customerId._id, this.managerService.getLocalManager().clubId, points)
-        .subscribe( res => {
-            console.log("is updated");
-            if(res.isUpdated){
-                this.customer.points = res.newPoints;
-            }
-            else{
-                console.log("err");
-            }
-        })
+        this.managerService.subscribePointsToCustomerById(this.customer.customerId._id, this.managerService.getLocalManager().clubId, points)
+            .subscribe(res => {
+                console.log("is updated");
+                if (res.isUpdated) {
+                    this.customer.points = res.newPoints;
+                }
+                else {
+                    console.log("err");
+                }
+            })
     }
-
 }

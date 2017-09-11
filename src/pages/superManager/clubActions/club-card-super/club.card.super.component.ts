@@ -8,68 +8,46 @@ import { EditClubComponent } from "../../../clubs/edit-club/edit.club.component"
     selector: 'club-card-super',
     templateUrl: 'club.card.super.html'
 })
-export class ClubCardSuperComponent implements OnInit {
+export class ClubCardSuperComponent {
     @Input()
-    club : Club;
-   @Output() clubDeleted = new EventEmitter();
+    club: Club;
+    @Output() clubDeleted = new EventEmitter();
 
-    constructor( private navCtrl: NavController, private alertCtrl: AlertController,
+    constructor(private navCtrl: NavController, private alertCtrl: AlertController,
         private superManagerService: SuperManagerService) {
     }
 
-    ngOnInit() {
-
-    }
-
-    editClubClick(club){
-        this.navCtrl.push(EditClubComponent, {club: club});
+    editClubClick(club) {
+        this.navCtrl.push(EditClubComponent, { club: club });
     }
 
     deleteClubClick(club) {
         this.deleteClub(club);
-
     }
 
-
-    deleteClub(club){
+    deleteClub(club) {
         this.superManagerService.deleteClub(club).
-        subscribe(isAuth => {
-            console.log("From 'delete-manager', print 'isAuth': ", isAuth);
-            if(isAuth) {
-            this.presentAlert();
-            this.clubDeleted.emit(club);
-            }
-            else{
-                console.log("unSuccess");
-            }
-        });
+            subscribe(isAuth => {
+                console.log("From 'delete-manager', print 'isAuth': ", isAuth);
+                if (isAuth) {
+                    this.clubDeleted.emit(club);
+                }
+                else {
+                    console.log("unSuccess");
+                }
+            });
     }
 
-    deleteClubFromDBAndRemoveFromManager(managerId, club) { 
+    deleteClubFromDBAndRemoveFromManager(managerId, club) {
         this.superManagerService.deleteClubFromDBAndRemoveFromManager(managerId, club).
-        subscribe(isAuth => {
-            console.log("From 'delete-manager', print 'isAuth': ", isAuth);
-            if(isAuth) {
-            this.presentAlert();
-            this.clubDeleted.emit(club);
-            }
-            else{
-                console.log("unSuccess");
-            }
-        });
+            subscribe(isAuth => {
+                console.log("From 'delete-manager', print 'isAuth': ", isAuth);
+                if (isAuth) {
+                    this.clubDeleted.emit(club);
+                }
+                else {
+                    console.log("unSuccess");
+                }
+            });
     }
-
-
-    presentAlert() {
-        let alert = this.alertCtrl.create({
-            subTitle: 'club deleted',
-            buttons: ['סבבה']
-        });
-        alert.present();
-        // alert.onDidDismiss(() => {
-        //     this.navCtrl.pop();
-        // });
-    }
-
-
 }

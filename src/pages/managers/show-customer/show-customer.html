@@ -3,24 +3,23 @@
     <ion-title>My Customers</ion-title>
   </ion-navbar>
   <ion-toolbar no-border-top>
-      <ion-item>
-          <ion-label>Serch Options</ion-label>
-          <ion-select [(ngModel)]="optionToSerch">
-            <ion-option value="id">Id</ion-option>
-            <ion-option value="firstName">First Name</ion-option>
-            <ion-option value="lastName">Last Name</ion-option>
-            <ion-option value="address">Address</ion-option>
-            <ion-option value="email">Email</ion-option>
-            <ion-option value="phoneNumber">Phone Number</ion-option>
-            <ion-option value="points">Points</ion-option>
-          </ion-select>
-        </ion-item> 
-      <ion-searchbar [(ngModel)]="searchCustomer" (ionInput)="searchCustomers()"></ion-searchbar>
+    <ion-item>
+      <ion-label>Serch Options</ion-label>
+      <ion-select [(ngModel)]="optionToSerch">
+        <ion-option value="id">Id</ion-option>
+        <ion-option value="firstName">First Name</ion-option>
+        <ion-option value="lastName">Last Name</ion-option>
+        <ion-option value="address">Address</ion-option>
+        <ion-option value="email">Email</ion-option>
+        <ion-option value="phoneNumber">Phone Number</ion-option>
+        <ion-option value="points">Points</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-searchbar [(ngModel)]="searchCustomer" (ionInput)="searchCustomers()"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-    <!-- <ion-searchbar [(ngModel)]="searchCustomer" (ionInput)="searchCustomers()"></ion-searchbar> -->
-    <ion-list *ngFor="let customer of customersArray">
-        <user-card [customer]="customer" (userDeleted)="handleUserDeleted($event)"></user-card>
-    </ion-list>
-  </ion-content>
+  <ion-list *ngFor="let customer of customersArray">
+    <user-card [customer]="customer"></user-card>
+  </ion-list>
+</ion-content>

@@ -11,7 +11,6 @@ export class ClubsListComponent implements OnInit{
     clubs: Club[];
 
     constructor(private clubService : ClubService, private viewCtrl : ViewController) {
-
     }
 
     ngOnInit() {
@@ -28,5 +27,4 @@ export class ClubsListComponent implements OnInit{
     clickClose() {
         this.viewCtrl.dismiss();
     }
-
 }

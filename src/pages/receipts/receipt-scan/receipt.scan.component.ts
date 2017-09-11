@@ -8,7 +8,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { DomSanitizer } from '@angular/platform-browser';
 
-
 @Component({
     selector: 'receipt-scan',
     templateUrl: 'receipt.scan.html'
@@ -22,13 +21,11 @@ export class ScanReceiptComponent implements OnInit {
     @Input()
     club: any;
 
-
     constructor(public navCtrl: NavController, private sanitizer: DomSanitizer,
         private userService: UserService, private navParams: NavParams, private alertCtrl: AlertController,
         private cameraServie: CameraService) {
         this.user = this.userService.getLocalUser();
         this.receipt = new Receipt();
-
     }
 
     ngOnInit() {
@@ -39,9 +36,7 @@ export class ScanReceiptComponent implements OnInit {
         this.clubReceiptArr = this.user.receipts.filter(currentReceipt => {
             return currentReceipt.clubId == this.club.id
         });
-
         console.log(this.clubReceiptArr.length);
-
         if (this.clubReceiptArr.length > 0) {
             this.clubReceiptArr.forEach(currClubReceipt => {
                 this.photos.push(currClubReceipt.img);
@@ -52,7 +47,8 @@ export class ScanReceiptComponent implements OnInit {
         }
     }
 
-    deletePhoto(photo) {
+    onClickDeletePhoto(photo) {
+        //prompt user to delete image
         let confirm = this.alertCtrl.create({
             title: 'Sure you want to delete this photo? There is NO undo!',
             message: '',
@@ -96,7 +92,7 @@ export class ScanReceiptComponent implements OnInit {
             .then(url => {
                 this.saveReceiptToUser(url);
             })
-            .catch( err => {
+            .catch(err => {
                 console.log("err from onClickFromGallery: ", err);
             })
     }
@@ -107,7 +103,6 @@ export class ScanReceiptComponent implements OnInit {
                 this.saveReceiptToUser(url);
             })
             .catch(err => {
-                // TODO: Handle error
                 console.log("err from onClickTakePhoto:", err);
             });
     }
@@ -116,13 +111,10 @@ export class ScanReceiptComponent implements OnInit {
         console.log("grom scan receipt, the url is: ", url);
         this.photos.push(url);
         this.photos.reverse();
-
         this.receipt.clubId = this.club.id;
         this.receipt.img = url;
         this.receipt.isManual = this.isManual;
-
         this.user.receipts.push(this.receipt);
-
         this.userService.updateUser(this.user)
             .subscribe(isUpdated => {
                 if (isUpdated) {
@@ -134,5 +126,4 @@ export class ScanReceiptComponent implements OnInit {
                 }
             })
     }
-
 }

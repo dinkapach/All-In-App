@@ -8,43 +8,39 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
     selector: 'delete-customer',
     templateUrl: 'delete.customer.html'
 })
-export class DeleteCustomerComponent implements OnInit{
+export class DeleteCustomerComponent {
     customersArr: User[];
     searchCustomer: string;
     tempCustomerrArr: User[];
 
-    constructor(private fBuilder : FormBuilder, private navParams: NavParams,
+    constructor(private fBuilder: FormBuilder, private navParams: NavParams,
         private navCtrl: NavController, private alertCtrl: AlertController,
         private superManagerService: SuperManagerService) {
-         this.initCustomersArr();
+        this.initCustomersArr();
     }
 
-    ngOnInit() {
-    }
-
-    initCustomersArr(){
+    initCustomersArr() {
         this.customersArr = [];
         this.superManagerService.getCustomerArr()
-        .subscribe(result => {
-            console.log("result from inint managersArr", result);
-            if(result.isAuth){
-                this.customersArr = result.customerArr;
-                this.tempCustomerrArr = this.doDeepCopyOfArr(this.customersArr);
-            }
-            else {
-                console.log("super manager error in get manager arr");
-            }
-        })
-
+            .subscribe(result => {
+                console.log("result from inint managersArr", result);
+                if (result.isAuth) {
+                    this.customersArr = result.customerArr;
+                    this.tempCustomerrArr = this.doDeepCopyOfArr(this.customersArr);
+                }
+                else {
+                    console.log("super manager error in get manager arr");
+                }
+            })
     }
 
-    handleCustomerDeleted(customerToRemove){
+    handleCustomerDeleted(customerToRemove) {
         this.customersArr = this.customersArr.filter(currCustomer => {
             return currCustomer.id != customerToRemove.id;
         })
     }
 
-    searchManagers  () {
+    searchManagers() {
         this.customersArr = this.tempCustomerrArr.filter(customer => {
             return customer.id.toString().startsWith(this.searchCustomer);
         });
@@ -57,5 +53,4 @@ export class DeleteCustomerComponent implements OnInit{
         });
         return copiedArr;
     }
-
 }

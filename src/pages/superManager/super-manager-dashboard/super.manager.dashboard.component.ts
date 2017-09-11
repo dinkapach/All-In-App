@@ -10,14 +10,13 @@ import { ManagerActionComponent } from './../managerActions/super-manager-manage
 import { SuperManager } from './../../../models/superManager.model';
 import { NavParams, NavController, AlertController } from 'ionic-angular';
 import { Component, Input, OnInit } from '@angular/core';
-
 import * as superManagerConfig from './../../../../super-manager-config.json';
 
 @Component({
     selector: 'super-manager-dashboard',
     templateUrl: 'super.manager.dashboard.html'
 })
-export class SuperManagerDashboardComponent implements OnInit{
+export class SuperManagerDashboardComponent implements OnInit {
     superManager: SuperManager;
     viewOptions: string = "managers";
     clubActions: string[];
@@ -33,10 +32,10 @@ export class SuperManagerDashboardComponent implements OnInit{
         this.clubActions = superManagerConfig.CLUB_ACTIONS;
         this.managerActions = superManagerConfig.MANAGER_ACTIONS;
         this.customerActions = superManagerConfig.CUSTOMER_ACTIONS;
-     }
+    }
 
-     onClickManagerAction(action){
-         switch(action){
+    onClickManagerAction(action) {
+        switch (action) {
             case superManagerConfig.MANAGER_ACTIONS[0]:
                 this.navCtrl.push(AddManagerComponent);
                 break;
@@ -46,30 +45,29 @@ export class SuperManagerDashboardComponent implements OnInit{
             case superManagerConfig.MANAGER_ACTIONS[2]:
                 this.navCtrl.push(AddClubToManagerComponent);
                 break;
-         }
-     }
+        }
+    }
 
-     logout() {
-         this.navCtrl.setRoot(LoginComponent);
-     }
+    onClickLogout() {
+        this.navCtrl.setRoot(LoginComponent);
+    }
 
-     onClickCustomerAction(action){
-        switch(action){
+    onClickCustomerAction(action) {
+        switch (action) {
             case superManagerConfig.CUSTOMER_ACTIONS[0]:
                 this.navCtrl.push(DeleteCustomerComponent);
                 break;
-         }
+        }
     }
 
-     onClickClubAction(action){
-        switch(action){
+    onClickClubAction(action) {
+        switch (action) {
             case superManagerConfig.CLUB_ACTIONS[0]:
                 this.navCtrl.push(AddClubComponent);
                 break;
             case superManagerConfig.CLUB_ACTIONS[1]:
                 this.navCtrl.push(EditDeleteClubComponent);
                 break;
-         }
-     }
-
+        }
+    }
 }

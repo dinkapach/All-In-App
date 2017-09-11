@@ -10,12 +10,8 @@ import { Http } from '@angular/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NavController, NavParams, AlertController, ModalController, ActionSheetController } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
-
 import 'rxjs/add/operator/map';
 import { CloneService } from '../../../helpers/clone-service';
-
-//TODO:
-//Send the updated fields instead of everything
 
 @Component({
     selector: 'edit-profile',
@@ -33,16 +29,10 @@ export class EditProfileComponent {
         private actionSheetCameraOptions: ActionSheetCameraOptions) {
         this.user = this.userService.getLocalUser();
         this.updatedUser = this.cloneService.getDeepCopyOfCustomer(this.user);
-        // console.log("in update cutomer profile");
-        // console.log("customer: ", this.user);
-        // console.log("updatedUser: ", this.updatedUser);
         this.buildForm();
     }
 
     buildForm() {
-        // console.log("updating cutomer profile");
-        // console.log("customer: ", this.user);
-        // console.log("updatedUser: ", this.updatedUser);
         this.formData = this.fBuilder.group({
             'firstName': ["", Validators.required],
             'lastName': ["", Validators.required],
@@ -54,10 +44,8 @@ export class EditProfileComponent {
     }
 
     onClickupdateInfo() {
-        // console.log(this.updatedUser);
         this.userService.updateUser(this.updatedUser)
             .subscribe(customer => {
-                // console.log(customer);
                 if (customer) {
                     this.updateUserFromUpdatedUser();
                     alert("Profile Updated");
@@ -75,8 +63,6 @@ export class EditProfileComponent {
         this.cloneService.cloneObject(this.updatedUser, this.user);
     }
 
-
-
     onClickOpenCameraOptionTake() {
         this.actionSheetCameraOptions.onClickOpenOptionTakeImgModal()
         this.actionSheetCameraOptions.onPhotoTaken.subscribe(res => {
@@ -89,5 +75,4 @@ export class EditProfileComponent {
     updateImg(url) {
         this.updatedUser.img = url;
     }
-
 }

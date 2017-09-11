@@ -1,75 +1,31 @@
-  <ion-item>
-    <ion-avatar item-start>
-      <img *ngIf="customer.customerId.img" [src]="customer.customerId.img" />
-    </ion-avatar>
-    <h2>{{customer.customerId.firstName}}
-      {{customer.customerId.lastName}}</h2>
-    <p> Address: {{customer.customerId.address}} </p>
-    <p> Email: {{customer.customerId.email}} </p>
-    <p> Phone Number: {{customer.customerId.phoneNumber}} </p>
-    <p> Points: {{customer.points}} </p>
-    <ion-row no-padding>
-      <ion-col>
-        <button ion-button clear small color="danger" icon-start (click)="onClickAddPoints(customer)">
-            <ion-icon name='add'></ion-icon>
-            Add Points
-          </button>
-      </ion-col>
-      <ion-col>
-        <button ion-button clear small color="danger" icon-start (click)="onClickSubscribePoints()">
-            <ion-icon name='remove'></ion-icon>
-            Subscribe Points
-          </button>
-      </ion-col>
-      <ion-col>
-        <button ion-button clear small color="danger" icon-start (click)="deleteUserClick()">
-            <ion-icon name='trash'></ion-icon>
-            Remove
-          </button>
-      </ion-col>
-    </ion-row>
-  </ion-item>
-
-
-
-
-<!-- <ion-card>
-    <ion-card-content>
-      <ion-card-title text-center>
-        {{customer.customerId.firstName}}
-        {{customer.customerId.lastName}}
-      </ion-card-title>
-      <ion-item>
-      <p> Address: {{customer.customerId.address}} </p>
-      <p> Email: {{customer.customerId.email}} </p>
-      <p> Phone Number: {{customer.customerId.phoneNumber}} </p>
-    </ion-item>
-    </ion-card-content>
-
+<ion-item>
+  <ion-avatar item-start>
+    <img *ngIf="customer.customerId.img" [src]="customer.customerId.img" />
+  </ion-avatar>
+  <h2>{{customer.customerId.firstName}} {{customer.customerId.lastName}}
+  </h2>
+  <p> Address: {{customer.customerId.address}} </p>
+  <p> Email: {{customer.customerId.email}} </p>
+  <p> Phone Number: {{customer.customerId.phoneNumber}} </p>
+  <p> Points: {{customer.points}} </p>
   <ion-row no-padding>
     <ion-col>
       <button ion-button clear small color="danger" icon-start (click)="onClickAddPoints(customer)">
-          <ion-icon name='add'></ion-icon>
-          Add Points
-        </button>
+            <ion-icon name='add'></ion-icon>
+            Add Points
+          </button>
     </ion-col>
-    <ion-col text-center>
-      <button ion-button clear small color="danger" icon-start (click)="onClickRemovePoints(customer)">
-          <ion-icon name='remove'></ion-icon>
-          Subscribe Points
-        </button>
+    <ion-col>
+      <button ion-button clear small color="danger" icon-start (click)="onClickSubscribePoints()">
+            <ion-icon name='remove'></ion-icon>
+            Subscribe Points
+          </button>
     </ion-col>
-    <ion-col text-right>
-      <button ion-button clear small color="danger" icon-start (click)="deleteUserClickTest(customer)">
-          <ion-icon name='trash'></ion-icon>
-          Remove
-        </button>
+    <ion-col>
+      <button ion-button clear small color="danger" icon-start (click)="deleteUserClick()">
+            <ion-icon name='trash'></ion-icon>
+            Remove
+          </button>
     </ion-col>
   </ion-row>
-
-</ion-card> -->
-
-
-
-
-
+</ion-item>

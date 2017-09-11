@@ -7,7 +7,7 @@ import { NavController, AlertController } from 'ionic-angular';
 import { SigningService } from './../../services/signing.service';
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms'; 
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import 'rxjs/add/operator/map';
 import { ManagerComponent } from '../managers/manager/manager.component';
 import { LoadingService } from '../../helpers/loading-service';
@@ -17,78 +17,73 @@ import { LoadingService } from '../../helpers/loading-service';
     templateUrl: 'login.html'
 })
 export class LoginComponent {
-    formData : FormGroup;
-    isManager : boolean;
-    isSuperManager : boolean;
+    formData: FormGroup;
+    isManager: boolean;
+    isSuperManager: boolean;
     email: string;
     password: string;
-    
-    constructor(private fBuilder : FormBuilder, private alertCtrl: AlertController, private http: Http, 
-    private signService : SigningService, private navCtrl : NavController, private signingSuperManager:SigningSuperManagerService,
-    private userService: UserService, private loadingService: LoadingService) {
+
+    constructor(private fBuilder: FormBuilder, private alertCtrl: AlertController, private http: Http,
+        private signService: SigningService, private navCtrl: NavController, private signingSuperManager: SigningSuperManagerService,
+        private userService: UserService, private loadingService: LoadingService) {
         this.isManager = false;
         this.formData = fBuilder.group({
-            // 'email': ["allin@gmail.com", Validators.required],
-            // 'password' : ["1234567", Validators.required]
             'email': ["", Validators.required],
-            'password' : ["", Validators.required]
+            'password': ["", Validators.required]
         })
     }
-   
+
     submitLogin() {
         this.loadingService.presentLoading();
-        if(this.isSuperManager){
+        if (this.isSuperManager) {
             this.signingSuperManager.loginSuperManager(this.email.toLowerCase(), this.password)
-            .subscribe(superManager => {
-                if(superManager){
-                    this.navCtrl.setRoot(SuperManagerDashboardComponent, {superManager: superManager});
-                }
-                else{
-                    console.log("problam in submit login for super manager");
-                }
-            },
-            err => {
-                console.log(err);
-            },
-            () => {
-                this.loadingService.dismissLoading();
-            });
+                .subscribe(superManager => {
+                    if (superManager) {
+                        this.navCtrl.setRoot(SuperManagerDashboardComponent, { superManager: superManager });
+                    }
+                    else {
+                        console.log("problam in submit login for super manager");
+                    }
+                },
+                err => {
+                    console.log(err);
+                },
+                () => {
+                    this.loadingService.dismissLoading();
+                });
         }
         else {
             this.signService.loginUser(this.email.toLowerCase(), this.password, this.isManager)
-            .subscribe(isAuth => {
-                console.log(isAuth);
-                if (isAuth) {
-                    this.gotoDashboard();
-                }
-                else {
-                    console.log('user not connected');
-                }
-            },
-            err => {
-                console.log(err);
-            },
-            () => {
-                this.loadingService.dismissLoading();
-            });
+                .subscribe(isAuth => {
+                    console.log(isAuth);
+                    if (isAuth) {
+                        this.gotoDashboard();
+                    }
+                    else {
+                        console.log('user not connected');
+                    }
+                },
+                err => {
+                    console.log(err);
+                },
+                () => {
+                    this.loadingService.dismissLoading();
+                });
         }
     }
 
-    gotoDashboard(){
-        if(this.isSuperManager) {
-            // alert("login super manager success");
+    gotoDashboard() {
+        if (this.isSuperManager) {
         }
-        else if(this.isManager) {
+        else if (this.isManager) {
             this.navCtrl.setRoot(ManagerComponent);
-            // alert("login manager success");
         }
         else {
-            this.navCtrl.setRoot(DashboardComponent);            
-            // alert("login customer success");
+            this.navCtrl.setRoot(DashboardComponent);
         }
     }
 
-    goToSignUpPage(){
+    goToSignUpPage() {
         this.navCtrl.push(SignupComponent);
     }
 }

@@ -1,23 +1,21 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Settings</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>Settings</ion-title>
+    </ion-navbar>
 </ion-header>
-
 <ion-content padding>
     <ion-list>
-        <!-- Button item with an icon on the left -->
         <button ion-item (click)="gotoPage(editProfilePage)">
             <ion-icon name="contact" item-start></ion-icon>
             Edit Profile
         </button>
         <button ion-item (click)="gotoPage(editPasswordPage)">
-                <ion-icon name="key" item-start></ion-icon>
-                Change Password
+            <ion-icon name="key" item-start></ion-icon>
+            Change Password
         </button>
         <button ion-item (click)="onClickLogout()">
-                <ion-icon name="log-out" item-start></ion-icon>
-                Logout
+            <ion-icon name="log-out" item-start></ion-icon>
+            Logout
         </button>
     </ion-list>
 </ion-content>

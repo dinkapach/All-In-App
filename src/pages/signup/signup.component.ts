@@ -1,29 +1,29 @@
 import { LoginComponent } from './../login/login.component';
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms'; 
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NavController } from 'ionic-angular';
-
 import 'rxjs/add/operator/map';
-//import * as environment from './../../../environment.json';
 import { SigningService } from '../../services/signing.service';
 import { User } from '../../models/user.model';
 
 @Component({
     selector: 'signup',
-    templateUrl : 'signup.html'
+    templateUrl: 'signup.html'
 })
-export class SignupComponent{
-    private formData : FormGroup;
+export class SignupComponent {
+    private formData: FormGroup;
     private url: string;
     private newCustomer: User;
 
-    constructor(private fBuilder : FormBuilder, private http: Http, private navCtrl : NavController,
+    constructor(private fBuilder: FormBuilder, private http: Http, private navCtrl: NavController,
         private signingService: SigningService) {
-        
-      this.newCustomer = new User();
+        this.newCustomer = new User();
+        this.buildForm();
+    }
 
-        this.formData = fBuilder.group({
+    buildForm(){
+        this.formData = this.fBuilder.group({
             'id': ["", Validators.required],
             'firstName': ["", Validators.required],
             'lastName': ["", Validators.required],
@@ -34,30 +34,28 @@ export class SignupComponent{
             'birthday': ["", Validators.required],
             'username': ["", Validators.required],
         });
-        // this.formData.controls['id'].setValue("432");
-        // this.formData.controls['firstName'].setValue("hello");
     }
 
-    submitSingup() {
+    onSubmitForm() {
         console.log(this.newCustomer);
         this.newCustomer.joinDate = new Date();
         this.newCustomer.email = this.newCustomer.email.toLowerCase();
         console.log(this.newCustomer.joinDate);
         this.signingService.signupUser(this.newCustomer)
-        .subscribe(newCust => {
-            if(newCust){
-                console.log(newCust);
-                alert("User singup" + newCust);
-                this.navCtrl.pop();
-            }
-            else{
-                alert("Singup failed" + newCust);
-            }
-        },
-            err =>{
+            .subscribe(newCust => {
+                if (newCust) {
+                    console.log(newCust);
+                    alert("User singup" + newCust);
+                    this.navCtrl.pop();
+                }
+                else {
+                    alert("Singup failed" + newCust);
+                }
+            },
+            err => {
                 console.log(err);
                 alert("Singup failed" + err._body);
-    });
+            });
     }
 
     goToLoginPage() {

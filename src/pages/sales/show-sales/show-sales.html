@@ -1,20 +1,19 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Our Sales</ion-title>
-       <!-- <button type="submit" (click)="addSale()" ion-button round>Add Sale</button> -->
-    </ion-navbar>
+  </ion-navbar>
 </ion-header>
 <ion-content>
-    <ion-fab bottom right>
-        <button ion-fab color="vibrant" mini (click)="addSale()">
+  <ion-fab bottom right>
+    <button ion-fab color="vibrant" mini (click)="onClickAddSale()">
           <ion-icon name="add"></ion-icon>
         </button>
-    </ion-fab>
-    <ion-grid>
+  </ion-fab>
+  <ion-grid>
     <ion-row *ngFor="let sale of club.sales">
       <ion-col>
-       <sale-cardManager [sale] = "sale"(saleDeleted)="handleSaleDeleted($event)"></sale-cardManager>
-       </ion-col>
+        <sale-cardManager [sale]="sale" (saleDeleted)="handleSaleDeleted($event)"></sale-cardManager>
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

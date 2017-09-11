@@ -5,19 +5,11 @@ import { EditPasswordComponent } from '../edit-password/edit-password.component'
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 import { SigningService } from '../../../services/signing.service';
 
-
-/**
- * Generated class for the EditCredit page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 @Component({
   selector: 'customer-settings',
   templateUrl: 'customer-settings.html',
 })
 export class CustomerSettingsComponent {
-
     editPasswordPage;
     editProfilePage;
   
