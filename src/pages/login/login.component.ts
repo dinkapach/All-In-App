@@ -1,7 +1,7 @@
 import { SuperManagerDashboardComponent } from './../superManager/super-manager-dashboard/super.manager.dashboard.component';
 import { SigningSuperManagerService } from './../../services/signing.superManager.service';
 import { UserService } from './../../services/user.service';
-import { DashboardComponent } from './../dashboard/dashboard.component';
+import { DashboardComponent } from './../customer/dashboard/dashboard.component';
 import { SignupComponent } from './../signup/signup.component';
 import { NavController, AlertController } from 'ionic-angular';
 import { SigningService } from './../../services/signing.service';

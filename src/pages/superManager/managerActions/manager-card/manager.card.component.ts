@@ -3,7 +3,6 @@ import { SuperManagerService } from './../../../../services/superManager.service
 import { Manager } from './../../../../models/manager.model';
 import { NavController, AlertController } from 'ionic-angular';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { EditCreditComponent } from './../edit-credit/edit-credit.component';
 
 @Component({
     selector: 'manager-card',

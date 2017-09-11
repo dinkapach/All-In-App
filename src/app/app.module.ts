@@ -10,7 +10,7 @@ import { ClubManualDetailsComponent } from './../pages/clubs/club-details/club.m
 import { EditClubManuallyComponent } from './../pages/clubs/manualClubs/club-manual-edit/club.manual.edit.component';
 import { ClubManualCardComponent } from './../pages/clubs/club-card/club.manual.card.component';
 import { AddClubManualComponent } from './../pages/clubs/manualClubs/club-add-manual/club.add.manual.component';
-import { FilterClubDetailsComponent } from './../pages/dashboard/filter-club.component';
+import { FilterClubDetailsComponent } from './../pages/customer/dashboard/filter-club.component';
 import { ClubsListComponent } from './../pages/clubs/clubs-list/clubs.list.component';
 import { ClubCardComponent } from './../pages/clubs/club-card/club.card.component';
 import { ClubDetailsComponent } from './../pages/clubs/club-details/club.details.component'
@@ -26,10 +26,7 @@ import { SaleViewComponent } from '../pages/sales/sale-view/sale.view.component'
 import { SaleCardManagerComponent } from '../pages/sales/sale-cardManager/sale.cardManager.component';
 
 // customer staff
-import { DashboardComponent } from './../pages/dashboard/dashboard.component';
-import { EditProfileComponent } from './../pages/edit-profile/edit-profile.component';
-import { EditPasswordComponent } from './../pages/edit-password/edit-password.component';
-import { CustomerSettingsComponent } from '../pages/customer-settings/customer-settings.component';
+import { DashboardComponent } from './../pages/customer/dashboard/dashboard.component';
 
 //manager staff
 import { ManagerComponent } from './../pages/managers/manager/manager.component';
@@ -70,11 +67,10 @@ import { ActionSheetCameraOptions } from './../helpers/action-sheet-camera-optio
 
 
 // credit/receipt staff
-import { EditCreditComponent } from './../pages/credits/edit-credit/edit-credit.component';
-import { AddCreditComponent } from '../pages/credits/add-credit/add-credit.component';
-import { CreditsCardComponent } from '../pages/credits/credits-card/credits.card.component';
-import { ShowCreditsComponent } from '../pages/credits/show-credits/show-credits.component';
-
+import { EditCreditComponent } from './../pages/customer/credits/edit-credit/edit-credit.component';
+import { CreditsCardComponent } from '../pages/customer/credits/credits-card/credits.card.component';
+import { ShowCreditsComponent } from '../pages/customer/credits/show-credits/show-credits.component';
+import { AddCreditComponent } from '../pages/customer/credits/add-credit/add-credit.component';
 import { ScanReceiptComponent } from './../pages/receipts/receipt-scan/receipt.scan.component';
 import { CameraMock } from '../pages/receipts/receipt-scan/camera.mock';
 
@@ -98,6 +94,9 @@ import { Camera } from '@ionic-native/camera';
 
 
 import { MyApp } from './app.component';
+import { EditProfileComponent } from '../pages/customer/edit-profile/edit-profile.component';
+import { EditPasswordComponent } from '../pages/customer/edit-password/edit-password.component';
+import { CustomerSettingsComponent } from '../pages/customer/customer-settings/customer-settings.component';
 
 
 @NgModule({
@@ -166,7 +165,6 @@ import { MyApp } from './app.component';
     AddCreditComponent,
     SignupComponent,
     DashboardComponent,
-    // DashboardManagerComponent,
     ClubCardComponent,
     ClubsListComponent,
     ClubDetailsComponent,
