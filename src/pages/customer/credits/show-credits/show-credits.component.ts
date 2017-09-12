@@ -10,6 +10,10 @@ import { Credit } from '../../../../models/credit.model';
 import { UserService } from '../../../../services/user.service';
 import { AddCreditComponent } from '../add-credit/add-credit.component';
 
+// this component present the credits
+// the credits that presented belong to a specific club 
+// that we get from the HTML (with the '@Input' decorator) from the components that call this one
+
 @Component({
     selector: 'show-credits',
     templateUrl : 'show-credits.html'
@@ -21,7 +25,7 @@ export class ShowCreditsComponent implements OnInit {
     @Input()
     creditArr : any
     @Input()
-    club : any
+    club : any // can be Club or ManualClub
 
     constructor(private fBuilder : FormBuilder, private http: Http, private navCtrl : NavController,
         private userService: UserService, private navParams: NavParams, private alertCtrl: AlertController) {

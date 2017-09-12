@@ -28,7 +28,7 @@ import { SigningService } from '../../../services/signing.service';
 @Component({
     selector: 'dashboard',
     templateUrl: 'dashboard.html'
-})
+}) // the dashboard component for user, the one that present his clubs, and options (like edit prfile, logout, etc.)
 export class DashboardComponent implements OnInit {
     user: User;
     clubsDisplay: Club[];
@@ -49,6 +49,7 @@ export class DashboardComponent implements OnInit {
         this.searchClub = '';
     }
 
+    // when component is init, get current user and init his clubs in array to dispaly
     ngOnInit() {
         console.log("getting customer from service:")
         this.user = this.userService.getLocalUser();
@@ -61,16 +62,17 @@ export class DashboardComponent implements OnInit {
     }
 
     onClickSearchButton() {
-        console.log(this.clubSearchBar);
         this.clubSearchBar.setFocus();
         this.showClubSearchBar = !this.showClubSearchBar
     }
 
+    // fetch update data of user from DB (include his clubs and etc.)
     fetchDataFromService() {
         this.user = this.userService.getLocalUser();
         this.refreshClubDispaly()
     }
 
+    // when the user do refresh (pull down the screen), get the update user from DB  
     doRefresh(refresher) {
         console.log('Begin async operation', refresher);
         this.userService.updateLocalCustomer()
@@ -90,15 +92,16 @@ export class DashboardComponent implements OnInit {
             });
     }
 
+    // when click add club, open the QR scanner to scan QR code
     onClickAddClubByScanQR() {
         this.barcodeScanner.scan().then((barcodeData) => {
             this.barcodeData = barcodeData;
             if (this.barcodeData.cancelled == 0) {
-                let clubObjId = this.barcodeData.text;
-                this.clubService.getClubByObjectId(clubObjId)
+                let clubObjId = this.barcodeData.text; // the QR code data is the club object id (mongo uniq id)
+                this.clubService.getClubByObjectId(clubObjId) // get the ckub from DB
                     .subscribe(clubRes => {
                         if (clubRes) {
-                            this.addClubToCustomer(clubRes);
+                            this.addClubToCustomer(clubRes); // add the club to customer
                         }
                         else {
                             alert("club wasnt save")
@@ -111,6 +114,8 @@ export class DashboardComponent implements OnInit {
 
     }
 
+    // this option was when we added the club by choose it from list, before we had the QR code functionality
+    // we remove this option but it's still here in case we want fast access to add club (debug using and etc.)
     onClickAddClub() {
         let clubsModal = this.modalCtrl.create(ClubsListComponent);
         clubsModal.onDidDismiss(clubChosen => {
@@ -128,8 +133,6 @@ export class DashboardComponent implements OnInit {
                     isExists = true;
                 }
             })
-            console.log(isExists);
-
             if (!isExists) {  //add club only if its new club
                 clubChosen.isManual = false;
                 this.user.clubs.push(clubChosen);
@@ -146,21 +149,25 @@ export class DashboardComponent implements OnInit {
         }
     }
 
+    // open the settings component (that have the option to edit profile/ change password/ logout)
     onClickSettings() {
         this.navCtrl.push(CustomerSettingsComponent);
     }
 
+    // serch for club in the search bar when typing club name
     searchClubs() {
-        console.log("on search clubs: " + this.searchClub);
         this.clubsDisplay = this.user.clubs.filter(club => {
             return club.name.toLowerCase().startsWith(this.searchClub.toLowerCase());
         });
     }
 
+    // when the user choose to add club manually, open the relevant component
     onClickAddManualClub() {
         this.navCtrl.push(AddClubManualComponent);
     }
 
+    // we download this option, but its here if we would like to return this option
+    // when the user pick option it'll present the option as details on every club card
     openPopupFilter() {
         let popover = this.popOverCtrl.create(FilterClubDetailsComponent);
         popover.present();
@@ -176,6 +183,8 @@ export class DashboardComponent implements OnInit {
         });
     }
 
+    // when delete manual club, the component that deleted the club emit the event that club delted
+    // so this component would remove the club from display 
     handleClubDeleted(clubToRemove) {
         this.clubsManualDisplay = this.user.manuallyClubs;
     }

@@ -29,19 +29,23 @@ export class ClubManualCardComponent implements OnInit {
         this.userPoints = this.club.points;
     }
 
+    // when click the club, move to the manual club details page
     onClubClicked() {
         this.navCtrl.push(ClubManualDetailsComponent, { club: this.club })
     }
 
+    // when click edit club, move to the edit club manually page
     onClickEditClub(club) {
         this.navCtrl.push(EditClubManuallyComponent, { club: club });
     }
 
+    // present the modal with club information
     onClickPresentClubInfo(club) {
         let modal = this.modalCtrl.create(ClubInformation, club);
         modal.present();
     }
 
+    // delete club from the array and update to user
     onClickDeleteClub(clubToDelete) {
         this.user.manuallyClubs = this.user.manuallyClubs.filter(club => { return club.id != clubToDelete.id })
         this.userService.updateUser(this.user).

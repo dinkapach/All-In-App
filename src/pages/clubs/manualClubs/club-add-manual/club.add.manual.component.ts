@@ -28,9 +28,11 @@ export class AddClubManualComponent {
         this.buildForm();
     }
 
+    // init the new club 
     initNewClub() {
         this.clubNew = new ClubManually();
         this.clubNew.isManual = true;
+        // create uniq id
         this.clubNew.id = Date.now();
     }
 
@@ -43,13 +45,12 @@ export class AddClubManualComponent {
         });
     }
 
+    // when add new club, save it to user 
     onClickAddClub() {
-        console.log(this.clubNew);
         this.user.manuallyClubs.push(this.clubNew);
         this.userService.updateUser(this.user)
             .subscribe(isUpdated => {
                 if (isUpdated) {
-                    console.log("updated");
                     this.navCtrl.pop();
                 }
                 else {
@@ -58,6 +59,7 @@ export class AddClubManualComponent {
             });
     }
 
+    // the options are comare or gallery
     onClickOpenCameraOptionTake() {
         this.actionSheetCameraOptions.onClickOpenOptionTakeImgModal()
         this.actionSheetCameraOptions.onPhotoTaken.subscribe(res => {
@@ -68,7 +70,6 @@ export class AddClubManualComponent {
     }
 
     updateImg(url) {
-        console.log("in save img")
         this.clubNew.img = url;
     }
 }

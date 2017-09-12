@@ -28,6 +28,7 @@ export class EditPasswordManagerComponent {
         }, { validator: this.areEqual });
     }
 
+    // in the form the user requires to enter the password twice, validate thet both eaual
     areEqual(fg: FormGroup) {
         let valid = fg.value.newPassword == fg.value.newPasswordVarify;
         if (valid) {
@@ -38,14 +39,12 @@ export class EditPasswordManagerComponent {
         };
     }
 
+    // change the password in the DB
     onClickChangePassword() {
-        console.log("changingggg passwordd");
         this.managerService.changePassword(this.currentPassword, this.newPassword)
             .subscribe(isAuth => {
-                console.log(isAuth);
                 if (isAuth) {
                     alert("Password Updated");
-                    console.log(isAuth);
                     this.navCtrl.pop();
                 }
             });

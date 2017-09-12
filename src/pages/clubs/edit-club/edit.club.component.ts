@@ -8,6 +8,7 @@ import { CloneService } from "../../../helpers/clone-service";
 import { SuperManagerService } from "../../../services/superManager.service";
 import { ActionSheetCameraOptions } from "../../../helpers/action-sheet-camera-options";
 
+
 @Component({
     selector: 'edit-club',
     templateUrl: 'edit.club.base.html'
@@ -22,10 +23,10 @@ export class EditClubComponent extends EditClubBaseComponent {
     }
 
     onClickupdateInfo() {
-        console.log("edited manager: ", this.updatedClub);
         this.superManagerService.updateClub(this.updatedClub)
             .subscribe(isUpdated => {
                 if (isUpdated) {
+                    // this function is in the super component
                     this.updateClub();
                     alert("club edited");
                 }
@@ -35,11 +36,4 @@ export class EditClubComponent extends EditClubBaseComponent {
             })
     }
 
-    updateClub() {
-        Object.keys(this.updatedClub).forEach(key => {
-            let value = this.updatedClub[key];
-            console.log(value);
-            this.club[key] = this.updatedClub[key];
-        });
-    }
 }

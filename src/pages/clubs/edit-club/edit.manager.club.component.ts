@@ -26,20 +26,14 @@ export class EditManagerClubComponent extends EditClubBaseComponent{
     onClickupdateInfo() {
         this.managerService.updateClub(this.updatedClub)
         .subscribe(isAuth => {
-            console.log(isAuth);
             if(isAuth){
+                // this function is in the super component
                 this.updateClub();
-                console.log(isAuth);
                 this.navCtrl.pop();
             }
             else{
             }
         })
     }
-
-    updateClub(){
-        this.cloneService.cloneObject(this.updateClub, this.club);
-    }
-
 
 }

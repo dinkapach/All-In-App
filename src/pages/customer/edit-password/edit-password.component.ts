@@ -45,10 +45,8 @@ export class EditPasswordComponent {
     onClickChangePassword() {
         this.userService.changePassword(this.currentPassword, this.newPassword)
             .subscribe(isAuth => {
-                console.log(isAuth);
                 if (isAuth) {
                     alert("Password Updated");
-                    console.log(isAuth);
                     this.navCtrl.pop();
                 }
             })

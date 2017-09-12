@@ -17,6 +17,7 @@ export class ClubCardSuperComponent {
         private superManagerService: SuperManagerService) {
     }
 
+    // open edit club page
     editClubClick(club) {
         this.navCtrl.push(EditClubComponent, { club: club });
     }
@@ -28,7 +29,6 @@ export class ClubCardSuperComponent {
     deleteClub(club) {
         this.superManagerService.deleteClub(club).
             subscribe(isAuth => {
-                console.log("From 'delete-manager', print 'isAuth': ", isAuth);
                 if (isAuth) {
                     this.clubDeleted.emit(club);
                 }
@@ -41,7 +41,6 @@ export class ClubCardSuperComponent {
     deleteClubFromDBAndRemoveFromManager(managerId, club) {
         this.superManagerService.deleteClubFromDBAndRemoveFromManager(managerId, club).
             subscribe(isAuth => {
-                console.log("From 'delete-manager', print 'isAuth': ", isAuth);
                 if (isAuth) {
                     this.clubDeleted.emit(club);
                 }

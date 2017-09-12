@@ -12,7 +12,7 @@ import { ManagerService } from '../../../services/manager.service';
 @Component({
   selector: 'show-customer',
   templateUrl: 'show-customer.html'
-})
+}) // this component present manager's customers
 export class ShowCustomerComponent {
   club: Club;
   userCard: UserClub;
@@ -27,6 +27,8 @@ export class ShowCustomerComponent {
     this.customersArray = this.managerService.getLocalCustomers();
   }
 
+  // serch customers in serch bar, the user can choose multiple options for search
+  // (for example - by id, by first name, by last name, by points, etc.)
   searchCustomers() {
     if (this.optionToSerch != "points") {
       this.customersArray = this.club.usersClub.filter(customer => {

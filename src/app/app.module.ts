@@ -1,4 +1,4 @@
-// club staff
+// club stuff
 import { EditClubBaseComponent } from './../pages/clubs/edit-club/edit.club.base.component';
 import { ClubInformation } from './../pages/clubs/club-information/club.information.component';
 import { EditDeleteClubComponent } from './../pages/superManager/clubActions/edit-delete-club/edit.delete.club.component';
@@ -17,7 +17,7 @@ import { ClubDetailsComponent } from './../pages/clubs/club-details/club.details
 import { EditManagerClubComponent } from './../pages/clubs/edit-club/edit.manager.club.component';
 
 
-// sale staff
+// sale stuff
 import { SaleCardComponent } from  './../pages/sales/sale-card/sale.card.component';
 import { AddSaleComponent } from '../pages/sales/add-sale/add-sale.component';
 import { ShowSalesComponent } from '../pages/sales/show-sales/show-sales.component';
@@ -25,21 +25,22 @@ import { EditSaleComponent } from '../pages/sales/edit-sale/edit.sale.component'
 import { SaleViewComponent } from '../pages/sales/sale-view/sale.view.component';
 import { SaleCardManagerComponent } from '../pages/sales/sale-cardManager/sale.cardManager.component';
 
-// customer staff
+// customer stuff
 import { DashboardComponent } from './../pages/customer/dashboard/dashboard.component';
 
-//manager staff
+//manager stuff
 import { ManagerComponent } from './../pages/managers/manager/manager.component';
-import { EditProfileManagerComponent } from '../pages/managers/edit-profileManager/edit.profileManager.component';
 import { ManagerSettingsComponent } from '../pages/managers/manager-settings/manager.settings.component';
 import { EditPasswordManagerComponent } from '../pages/managers/edit-passwordManager/edit.passwordManager.component';
 import { ShowStatisticsComponent } from '../pages/managers/show-statistics/show.statistics.component';
 import { ShowCustomerComponent } from '../pages/managers/show-customer/show-customer.component';
 import { UserCardComponent } from  '../pages/managers/user-card/user.card.component';
+import { EditProfileManagerBaseComponent } from './../pages/managers/edit-profile-manager/edit.profile.manager.base.component';
+import { EditProfileManagerComponent } from '../pages/managers/edit-profile-manager/edit.profileManager.component';
 
 
-// superManager staff
-import { EditManagerComponent } from './../pages/superManager/managerActions/edit-manager/edit.manager.component';
+// superManager stuff
+import { EditManagerComponent } from './../pages/managers/edit-profile-manager/edit.manager.component';
 import { EditDeleteManagerComponent } from './../pages/superManager/managerActions/edit-delet-manager/edit.delet.manager.component';
 import { AddManagerComponent } from './../pages/superManager/managerActions/add-manager/add.manager.component';
 import { ManagerCardComponent } from './../pages/superManager/managerActions/manager-card/manager.card.component';
@@ -53,7 +54,6 @@ import { SigningSuperManagerService } from './../services/signing.superManager.s
 import { SuperManagerService } from './../services/superManager.service';
 import { CloneService } from './../helpers/clone-service';
 import { CameraService } from './../helpers/camera-service';
-import { AlertService } from './../helpers/alertService';
 import { SigningService } from './../services/signing.service';
 import { UserService } from './../services/user.service';
 import { ManagerService } from './../services/manager.service';
@@ -66,12 +66,13 @@ import { AddPointsFunctions } from './../helpers/add-points-functions';
 import { ActionSheetCameraOptions } from './../helpers/action-sheet-camera-options';
 
 
-// credit/receipt staff
+// credit/receipt stuff
 import { EditCreditComponent } from './../pages/customer/credits/edit-credit/edit-credit.component';
 import { CreditsCardComponent } from '../pages/customer/credits/credits-card/credits.card.component';
 import { ShowCreditsComponent } from '../pages/customer/credits/show-credits/show-credits.component';
 import { AddCreditComponent } from '../pages/customer/credits/add-credit/add-credit.component';
 import { ScanReceiptComponent } from './../pages/receipts/receipt-scan/receipt.scan.component';
+
 import { CameraMock } from '../pages/receipts/receipt-scan/camera.mock';
 
 
@@ -80,7 +81,7 @@ import { LoginComponent } from './../pages/login/login.component';
 import { SignupComponent } from './../pages/signup/signup.component';
 
 
-// angular/ionic staff
+// angular/ionic stuff
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -137,6 +138,7 @@ import { CustomerSettingsComponent } from '../pages/customer/customer-settings/c
     ManagerSettingsComponent,
     EditPasswordManagerComponent,
     EditClubBaseComponent,
+    EditProfileManagerBaseComponent,
 
     // super manager stuff
     SuperManagerDashboardComponent,
@@ -195,6 +197,7 @@ import { CustomerSettingsComponent } from '../pages/customer/customer-settings/c
     ManagerSettingsComponent,
     EditPasswordManagerComponent,
     EditClubBaseComponent,
+    EditProfileManagerBaseComponent,
    
     // super manager stuff
     SuperManagerDashboardComponent,
@@ -223,7 +226,6 @@ import { CustomerSettingsComponent } from '../pages/customer/customer-settings/c
     ManagerService,
     SigningSuperManagerService,
     SuperManagerService,
-    AlertService,
     CameraService,
     LocalNotifications,
     LoadingService,

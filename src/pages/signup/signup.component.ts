@@ -36,15 +36,13 @@ export class SignupComponent {
         });
     }
 
+    // when new user submit, create the user in DB
     onSubmitForm() {
-        console.log(this.newCustomer);
         this.newCustomer.joinDate = new Date();
         this.newCustomer.email = this.newCustomer.email.toLowerCase();
-        console.log(this.newCustomer.joinDate);
         this.signingService.signupUser(this.newCustomer)
             .subscribe(newCust => {
                 if (newCust) {
-                    console.log(newCust);
                     alert("User singup" + newCust);
                     this.navCtrl.pop();
                 }
@@ -53,7 +51,6 @@ export class SignupComponent {
                 }
             },
             err => {
-                console.log(err);
                 alert("Singup failed" + err._body);
             });
     }

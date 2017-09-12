@@ -1,4 +1,4 @@
-import { EditManagerComponent } from './../edit-manager/edit.manager.component';
+import { EditManagerComponent } from './../../../managers/edit-profile-manager/edit.manager.component';
 import { SuperManagerService } from './../../../../services/superManager.service';
 import { Manager } from './../../../../models/manager.model';
 import { NavController, AlertController } from 'ionic-angular';
@@ -7,7 +7,8 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 @Component({
     selector: 'manager-card',
     templateUrl: 'manager.card.html'
-})
+}) // the manager card component, present manager for component that call this in the HTML
+// with the tag <manager-card></manager-card>
 export class ManagerCardComponent {
     @Input()
     manager: Manager;
@@ -17,10 +18,13 @@ export class ManagerCardComponent {
         private superManagerService: SuperManagerService) {
     }
 
+    // when choose to edit manager, open the relevent component
     editManagerClick(manager) {
         this.navCtrl.push(EditManagerComponent, { manager: manager });
     }
 
+    // when click delete manager, check if the manager wants to replace the managment of his club 
+    // for anothe manager, or not with option to delete the club if not.
     deleteManagerClick(manager) {
         let confirm = this.alertCtrl.create({
             title: 'Do you want to move the club for another managment? ',
@@ -41,6 +45,7 @@ export class ManagerCardComponent {
         confirm.present();
     }
 
+    // this fucntion delete manager and replace his mangment with another manager
     deleteManagerAndReplaceManagemant(manager) {
         let prompt = this.alertCtrl.create({
             title: 'Replace Managment',
@@ -55,7 +60,6 @@ export class ManagerCardComponent {
                 {
                     text: 'Save',
                     handler: data => {
-                        console.log('Saved clicked', data.managerId);
                         this.replaceManaerForClubAndDeleteManager(data.managerId, manager)
                     }
                 }
@@ -64,10 +68,10 @@ export class ManagerCardComponent {
         prompt.present();
     }
 
+    // this function delete manager, and keep the club
     deleteManagerWithoutClub(manager) {
         this.superManagerService.deleteManagerWithoutClub(manager.id).
             subscribe(isAuth => {
-                console.log("From 'delete-manager', print 'isAuth': ", isAuth);
                 if (isAuth) {
                     this.managerDeleted.emit(manager);
                 }
@@ -77,10 +81,10 @@ export class ManagerCardComponent {
             });
     }
 
+    // this function replace the managment of the club for another manager
     replaceManaerForClubAndDeleteManager(newManagerOfClubId, managerToRemove) {
         this.superManagerService.replaceManaerForClubAndDeleteManager(newManagerOfClubId, managerToRemove.id, managerToRemove.clubId)
             .subscribe(isAuth => {
-                console.log("From 'delete-manager', print 'isAuth': ", isAuth);
                 if (isAuth) {
                     this.managerDeleted.emit(managerToRemove);
                 }
@@ -90,10 +94,10 @@ export class ManagerCardComponent {
             });
     }
 
+    // this function delete the manager and his club
     deleteManagerWithClub(manager) {
         this.superManagerService.deleteManagerWithClub(manager.id, manager.clubId).
             subscribe(isAuth => {
-                console.log("From 'delete-manager', print 'isAuth': ", isAuth);
                 if (isAuth) {
                     alert("manager deleted");
                     this.managerDeleted.emit(manager);

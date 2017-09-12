@@ -20,7 +20,7 @@ export class ClubManualDetailsComponent extends ClubDetailsBaseComponent {
         public navCtrl: NavController, public userService: UserService, 
         public clubService: ClubService, public alertCtrl: AlertController) {
             super(navParams, navCtrl, userService, clubService, alertCtrl);
-            //this.user = this.userService.getLocalUser();
+            // in case the club is manual, the defult view is receipt
             this.viewOptions = 'receipts'
     }
 }

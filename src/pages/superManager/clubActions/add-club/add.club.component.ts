@@ -23,6 +23,7 @@ export class AddClubComponent {
         this.buildForm();
     }
 
+    // build the form for add club
     buildForm() {
         this.formData = this.fBuilder.group({
             'managerId': ["", Validators.required],
@@ -35,6 +36,7 @@ export class AddClubComponent {
         });
     }
 
+    // initial new club with requier values
     initClub() {
         this.newClub = new Club();
         this.newClub.openingHours = ["", ""];
@@ -46,12 +48,9 @@ export class AddClubComponent {
     }
 
     onClickAddClub() {
-        console.log("from add club");
-        console.log("newClub: ", this.newClub);
         this.superManagerService.createClubAndAddToManager(this.newClub, this.managerId)
             .subscribe(isCreated => {
                 if (isCreated) {
-                    console.log("club create succecfully");
                     alert("club added");
                 }
                 else {
@@ -60,6 +59,7 @@ export class AddClubComponent {
             });
     }
 
+    // take photo from camaera
     onClickTakePhoto() {
         this.cameraService.takePhotoFromCamera()
             .then(url => {
@@ -70,6 +70,7 @@ export class AddClubComponent {
             })
     }
 
+    // choose photo from gallery
     onClickPhotoFromGallery() {
         this.cameraService.choosePhotoFromGallery()
             .then(url => {

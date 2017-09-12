@@ -15,7 +15,7 @@ import * as superManagerConfig from './../../../../super-manager-config.json';
 @Component({
     selector: 'super-manager-dashboard',
     templateUrl: 'super.manager.dashboard.html'
-})
+}) // this is the super manager dashboard, here the super manager can choose the option he wold like to commit
 export class SuperManagerDashboardComponent implements OnInit {
     superManager: SuperManager;
     viewOptions: string = "managers";
@@ -34,9 +34,15 @@ export class SuperManagerDashboardComponent implements OnInit {
         this.customerActions = superManagerConfig.CUSTOMER_ACTIONS;
     }
 
+    // In general:
+    // the actions that the manager can do are saved in 'super-manager-config.json'
+    // so in case in the future we woulds like to add some option, we'll add them to the configuration file,
+    // and it will be presented to the super manager with no need to change the HTML
+
+    // when super manager choosing to do some actions on manager
     onClickManagerAction(action) {
         switch (action) {
-            case superManagerConfig.MANAGER_ACTIONS[0]:
+            case superManagerConfig.MANAGER_ACTIONS[0]: 
                 this.navCtrl.push(AddManagerComponent);
                 break;
             case superManagerConfig.MANAGER_ACTIONS[1]:
@@ -52,6 +58,7 @@ export class SuperManagerDashboardComponent implements OnInit {
         this.navCtrl.setRoot(LoginComponent);
     }
 
+     // when super manager choosing to do some actions on customers
     onClickCustomerAction(action) {
         switch (action) {
             case superManagerConfig.CUSTOMER_ACTIONS[0]:
@@ -60,6 +67,7 @@ export class SuperManagerDashboardComponent implements OnInit {
         }
     }
 
+     // when super manager choosing to do some actions on clubs
     onClickClubAction(action) {
         switch (action) {
             case superManagerConfig.CLUB_ACTIONS[0]:

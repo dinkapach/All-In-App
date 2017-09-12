@@ -30,6 +30,7 @@ export class AddManagerComponent {
         });
     }
 
+    // init new manager with the requirs values
     initManager() {
         this.newManager = new Manager();
         this.newManager.clubId;
@@ -37,10 +38,8 @@ export class AddManagerComponent {
         this.newManager.userName = "";
     }
 
+    // when click add manager, create the manager in the DB
     onClickAddManager() {
-        console.log("from click add manager");
-        console.log("newManager: ", this.newManager);
-
         this.superManagerService.createManager(this.newManager)
         .subscribe(isCreated => {
             if(isCreated){

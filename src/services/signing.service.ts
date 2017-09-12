@@ -7,6 +7,8 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import * as environment from './../../environment.json';
 
+// this service is for singing issues
+
 @Injectable()
 export class SigningService {
     private url: string;
@@ -16,7 +18,6 @@ export class SigningService {
     }
 
     signupUser(customer: User): Observable<any> {
-        console.log(customer);
         return this.http.post(`${this.url}/api/users/signup`, {
             customer: customer
         })
@@ -28,10 +29,7 @@ export class SigningService {
         return Observable.create(observer => {
         this.storage.get(currentUserKey).then((data) => {
             if (data != null){
-                console.log("in isLoggedIn method");
                 let isManager = data.isManager;
-                console.log("isManager: " + isManager);
-                console.log("data" ,data);
                 if(isManager){
                     this.managerService.setLocalManager(data.data.manager, data.data.club);
                 }
@@ -63,16 +61,12 @@ export class SigningService {
 
     loginUser(email: string, password: string, isManager: boolean): Observable<Boolean> {
         let loginUrl = this.getLoginUrl(isManager);
-        console.log("is manager: " + isManager);
-        console.log(`${this.url}`+loginUrl);
         return Observable.create(observer => {
             this.http.post(`${this.url}`+loginUrl, {
                 email: email,
                 password: password
             }).map(response => response.json())
             .subscribe((data) =>{
-                console.log("got user data from login: ");
-                console.log(data);
                 if (isManager){
                     this.managerService.setLocalManager(data.manager, data.club);
                 }
@@ -84,12 +78,10 @@ export class SigningService {
                 observer.complete();
             },
             err => {
-                console.log("error at login service");
                 observer.next(false);
                 observer.complete();
             },
             () => {
-                console.log("complete observer");
                 observer.complete();
             });
         });
@@ -100,8 +92,6 @@ export class SigningService {
             isManager: isManager,
             data: data
         }
-        console.log("saving user to storage. key: " + environment.CURRENT_USER_KEY);
-        console.log(currentUser);
         this.storage.set(environment.CURRENT_USER_KEY, currentUser);
     }
 

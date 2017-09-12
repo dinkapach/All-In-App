@@ -7,6 +7,7 @@ import { CameraService } from '../../../../helpers/camera-service';
 import { UserService } from '../../../../services/user.service';
 import { ActionSheetCameraOptions } from '../../../../helpers/action-sheet-camera-options';
 
+
 @Component({
     selector: 'edit-credit',
     templateUrl: 'edit-credit.html',
@@ -20,11 +21,10 @@ export class EditCreditComponent {
         private cloneService: CloneService, private cameraService: CameraService,
         public actionSheetCtrl: ActionSheetController,
         private actionSheetCameraOptions: ActionSheetCameraOptions) {
-        this.credit = this.navParams.get("credit");
-        this.initCredit();
-        this.buildForm();
-        console.log("updated credit: ", this.updatedCredit);
-        console.log(this.credit);
+            
+            this.credit = this.navParams.get("credit"); // get the credit the user wants to edit
+            this.initCredit(); // get clone of the credit (the clone will be the credit after the changes)
+            this.buildForm(); 
     }
 
     buildForm() {
@@ -43,11 +43,10 @@ export class EditCreditComponent {
         console.log('ionViewDidLoad EditCredit');
     }
 
+    // when user click edit credit, save the updated one in DB
     onClickEditCredit() {
-        console.log(this.updatedCredit);
         this.userService.editCredit(this.updatedCredit)
             .subscribe(isAuth => {
-                console.log(isAuth);
                 if (isAuth) {
                     this.credit = this.updatedCredit;
                     this.navCtrl.pop();
@@ -55,6 +54,7 @@ export class EditCreditComponent {
             });
     }
 
+    // the options are camera or gallery
     onClickOpenCameraOptionTake() {
         this.actionSheetCameraOptions.onClickOpenOptionTakeImgModal()
         this.actionSheetCameraOptions.onPhotoTaken.subscribe(res => {

@@ -6,6 +6,11 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
+// this class prived us the action sheet that present the option to get photo,
+// whether from camera or gallery.
+// when another component ask for this service, the user need to choose the option,
+// after the user choose an option and get the photo, this components notify when the url is ready
+
 
 @Injectable()
 export class ActionSheetCameraOptions {
@@ -49,35 +54,28 @@ export class ActionSheetCameraOptions {
     onClickTakePhoto() {
         return this.cameraService.takePhotoFromCamera()
             .then(url => {
+                // notify the url is ready and pass the url for the component that ask for it
                 this.onPhotoTaken.emit({isAuth: true, url: url});
-                //this.updateImg(paramToUpdate, url)
             })
             .catch(err => {
+                // notify the error
                 this.onPhotoTaken.emit({isAuth: false, err: err});
                 console.log("err to take picture", err);
-                // handle error
             })
     }
 
      onClickGetPhotoFromGallery() {
         this.cameraService.choosePhotoFromGallery()
             .then(url => {
+                // notify the url is ready and pass the url for the component that ask for it
                 this.onPhotoTaken.emit({isAuth: true, url: url});
-                //this.updateImg(paramToUpdate, url);
             })
             .catch(err => {
+                // notify the error
                 this.onPhotoTaken.emit({isAuth: false, err: err});
                 console.log("err to take picture", err);
-                // handle error
             })
     }
-
-    // updateImg(paramToUpdate, url) {
-    //     console.log("in save img")
-    //     paramToUpdate.img = url;
-    // }
-
-
 
 
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, Platform, NavParams, ViewController } from 'ionic-angular';
 
+// this class present the club information
+
 @Component({
     selector: 'club-information',
     templateUrl: 'club.information.html'

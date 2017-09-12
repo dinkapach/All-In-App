@@ -20,12 +20,13 @@ export class ShowSalesComponent {
             this.club = this.managerService.getLocalClub();
         }
 
+    // when click add sale, opan the 'add sale' component
     onClickAddSale(){
         this.navCtrl.push(AddSaleComponent);
     }
 
+    // update the sales to present from DB (lazy fetch -> only when get to this component)
     ionViewWillEnter(){
-        console.log("enter page");
         this.managerService.updateLocalManager()
         .subscribe(updated =>{
             if(updated){
@@ -36,11 +37,10 @@ export class ShowSalesComponent {
 
     fetchDataFromService(){
         this.club = this.managerService.getLocalClub();
-        console.log("updated club: ", this.club);
     }
 
+    // when sale delted, remove it from the salse array (the array that present the sales)
     handleSaleDeleted(saleToRemove){
-        console.log("delete sale emmited");
         this.club.sales = this.club.sales.filter(sale => {
             return sale.id != saleToRemove.id;
         })

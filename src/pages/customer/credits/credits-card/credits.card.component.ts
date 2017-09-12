@@ -7,6 +7,10 @@ import { ClubService } from '../../../../services/club.service';
 import { UserService } from '../../../../services/user.service';
 import { EditCreditComponent } from '../edit-credit/edit-credit.component';
 
+// this is the credit card component, when we present all credits,
+// we present them from the HTML with the tag <credit-card></credit-card>
+// so this component is show of one credit
+
 @Component({
     selector: 'credit-card',
     templateUrl: 'credits.card.html'
@@ -26,7 +30,6 @@ export class CreditsCardComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log("from credit-card credit:", this.credit);
         this.checkIfNotificationScheduled(this.credit.id);
     }
 
@@ -74,13 +77,11 @@ export class CreditsCardComponent implements OnInit {
 
     onChangeNotificationToggle() {
         this.handleNotificationToggle();
-        console.log("toggling notification event: " + this.doesNotificationScheduled);
     }
 
     deleteCreditClick(credit) {
         this.userService.deleteCredit(credit).
             subscribe(isAuth => {
-                console.log("From 'delete-credit.component', print 'isAuth': ", isAuth);
                 if (isAuth) {
                     this.creditDeleted.emit(credit);
                 }

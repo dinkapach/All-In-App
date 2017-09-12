@@ -13,9 +13,11 @@ export class SuperManagerService {
 
     constructor(private http: Http, private storage: Storage) {
         this.url = environment[environment.RUNNING];
-        console.log(this.url);
     }
+
+    // below is calls to server with manager issues
     ////////////////////// Managers ////////////////////////////////////////////
+
     getManagersArr(): Observable<any> {
         return this.http.get(`${this.url}/api/supermanager/managerArr`)
             .map(response => response.json())
@@ -66,7 +68,10 @@ export class SuperManagerService {
         })
             .map(res => res.json());
     }
+
+    // below is calls to server with clubs issues
     ////////////////////// CLUBS ////////////////////////////////////////////
+
     getClubsArr(): Observable<any> {
         return this.http.get(`${this.url}/api/supermanager/clubArr`)
             .map(response => response.json())
@@ -101,7 +106,10 @@ export class SuperManagerService {
         })
             .map(res => res.json());
     }
+
+    // below is calls to server with customer issues
     //////////////////////////////////// CUSTOMER ////////////////////////////////////////////////////
+    
     getCustomerArr(): Observable<any> {
         return this.http.get(`${this.url}/api/supermanager/customerArr`)
             .map(response => response.json())

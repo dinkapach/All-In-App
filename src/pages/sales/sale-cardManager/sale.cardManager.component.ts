@@ -7,7 +7,7 @@ import { EditSaleComponent } from "../edit-sale/edit.sale.component";
 @Component({
     selector: 'sale-cardManager',
     templateUrl: 'sale.cardManager.html'
-})
+}) // this component is sale card for manager, manager heve more options on his sales, like edit or delete sale
 export class SaleCardManagerComponent {
     @Input()
     sale: Sale;
@@ -17,15 +17,15 @@ export class SaleCardManagerComponent {
         private alertCtrl: AlertController) {
     }
 
+    // when click on edit sale, open the 'edit sale' component
     onClickEditeSale(sale) {
         this.navCtrl.push(EditSaleComponent, { sale: sale });
     }
 
+    // when click delete sale, delete sale from DB
     onClickDeleteSale(sale) {
-        console.log("in delete sale", sale.id);
         this.managerService.deleteSale(this.sale.id)
             .subscribe(isAuth => {
-                console.log("From 'delete-sale.component', print 'isAuth': ", isAuth);
                 if (isAuth) {
                     this.saleDeleted.emit(sale);
                 }

@@ -10,7 +10,7 @@ import { ManagerService } from "../../../services/manager.service";
 @Component({
     selector: 'add-sale',
     templateUrl: 'add-sale.html'
-})
+}) // this component is for adding new sale for club (only manager can do it)
 export class AddSaleComponent {
     formData: FormGroup;
     sale = new Sale();
@@ -32,19 +32,18 @@ export class AddSaleComponent {
         })
     }
 
+    // when click add sale, save new sale in DB
     onClickAddSale() {
         this.sale.id = Date.now();
-        console.log("Added sale = ", this.sale);
         this.managerService.addSale(this.sale)
             .subscribe(sale => {
-                console.log("sale issss:", sale);
                 if (sale) {
-                    console.log("added sale: ", sale);
                     this.navCtrl.pop();
                 }
             });
     }
 
+    // the option are camera or gallery
     onClickOpenCameraOptionTake() {
         this.actionSheetCameraOptions.onClickOpenOptionTakeImgModal()
         this.actionSheetCameraOptions.onPhotoTaken.subscribe(res => {
@@ -55,7 +54,6 @@ export class AddSaleComponent {
     }
 
     updateImg(url) {
-        console.log("in save img")
         this.sale.img = url;
     }
 }

@@ -9,7 +9,8 @@ import { ManagerService } from '../../../services/manager.service';
 @Component({
     selector: 'user-card',
     templateUrl: 'user.card.html'
-})
+}) // this component is the user card component 
+  // (show customers present every customer in the HTML with the tag <user-card></user-card>)
 export class UserCardComponent {
     @Input()
     customer;
@@ -20,16 +21,17 @@ export class UserCardComponent {
         private alertCtrl: AlertController, private addPointsFunctions: AddPointsFunctions) {
     }
 
+    // when the manager choose to delete customer, remove the customer from DB
     deleteUserClick(customer) {
         this.managerService.deleteCustomerFromClub(customer.customerId._id, this.managerService.getLocalManager().clubId)
             .subscribe(isDeleted => {
                 if (isDeleted) {
-                    console.log("user deleted from club succecfully");
                     alert("user deleted from club succecfully");
                 }
             })
     }
 
+    // when the manager need to add point to customer
     onClickAddPoints() {
         let title = "Add Points";
         let message = "insert the how many points to add"
@@ -37,6 +39,7 @@ export class UserCardComponent {
         this.showAddPrompt(title, message)
     }
 
+    // when the manager need to subscribe points to user
     onClickSubscribePoints() {
         let title = "subscribe Points";
         let message = "insert the how many points to subscribe"
@@ -44,6 +47,7 @@ export class UserCardComponent {
         this.showRemovePrompt(title, message)
     }
 
+    // the manager need to enter the amount, and how mach percent of the amount to add to the points
     showAddPrompt(title, message) {
         let prompt = this.alertCtrl.create({
             title: title,
@@ -76,6 +80,7 @@ export class UserCardComponent {
         prompt.present();
     }
 
+    // the manager need to insert how many points to subscribe
     showRemovePrompt(title, message) {
         let prompt = this.alertCtrl.create({
             title: title,
@@ -104,11 +109,11 @@ export class UserCardComponent {
         prompt.present();
     }
 
+    // add point to customer and update the DB
     addPointsToCustomer(amount, percent) {
         let points = this.addPointsFunctions.calculatePointsAmountByGivenPercent(amount, percent);
         this.managerService.addPointsToCustomerById(this.customer.customerId._id, this.managerService.getLocalManager().clubId, points)
             .subscribe(res => {
-                console.log("is updated", res);
                 if (res.isUpdated) {
                     this.customer.points = res.newPoints;
                 }
@@ -118,10 +123,10 @@ export class UserCardComponent {
             })
     }
 
+    // subscribe points from customer and upate the DB
     subscribePointsFromCustomer(points) {
         this.managerService.subscribePointsToCustomerById(this.customer.customerId._id, this.managerService.getLocalManager().clubId, points)
             .subscribe(res => {
-                console.log("is updated");
                 if (res.isUpdated) {
                     this.customer.points = res.newPoints;
                 }

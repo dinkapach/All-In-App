@@ -21,11 +21,11 @@ export class ClubDetailsComponent extends ClubDetailsBaseComponent {
         public navCtrl: NavController, public userService: UserService,
         public clubService: ClubService, public alertCtrl: AlertController) {
         super(navParams, navCtrl, userService, clubService, alertCtrl);
+        // in case the club is manual, the defult view is sales
         this.viewOptions = 'sales'
     }
     
     onSaleClicked(sale: Sale) {
-        console.log("new");
         this.navCtrl.push(SaleViewComponent, { sale: sale, club: this.club });
     }
 }

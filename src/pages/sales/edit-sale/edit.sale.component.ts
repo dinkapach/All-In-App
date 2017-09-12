@@ -17,15 +17,16 @@ export class EditSaleComponent {
     formData: FormGroup;
     club: Club;
     clubId: string;
+
     constructor(private fBuilder: FormBuilder, public navCtrl: NavController,
         public navParams: NavParams, private alertCtrl: AlertController,
         private managerService: ManagerService, private cloneService: CloneService,
         public actionSheetCtrl: ActionSheetController,
         private actionSheetCameraOptions: ActionSheetCameraOptions) {
-        this.sale = this.navParams.get("sale");
-        this.updatedSale = this.cloneService.getDeepCopyOfSale(this.sale);
+
+        this.sale = this.navParams.get("sale"); // get sale that was chosen for editing
+        this.updatedSale = this.cloneService.getDeepCopyOfSale(this.sale); // get deep copy of sale
         this.buildEditSaleForm();
-        console.log(this.sale);
     }
 
     buildEditSaleForm() {
@@ -37,11 +38,10 @@ export class EditSaleComponent {
         });
     }
 
+    // update the edited sale in DB
     updateSale() {
-        console.log(this.sale);
         this.managerService.editSale(this.updatedSale)
             .subscribe(isAuth => {
-                console.log(isAuth);
                 if (isAuth) {
                     this.cloneService.cloneObject(this.updatedSale, this.sale);
                     this.navCtrl.pop();
@@ -52,6 +52,7 @@ export class EditSaleComponent {
             });
     }
 
+    // the option are camera or gallery
     onClickOpenCameraOptionTake() {
         this.actionSheetCameraOptions.onClickOpenOptionTakeImgModal()
         this.actionSheetCameraOptions.onPhotoTaken.subscribe(res => {
@@ -62,7 +63,6 @@ export class EditSaleComponent {
     }
 
     updateImg(url) {
-        console.log("in save img")
         this.updatedSale.img = url;
     }
 }

@@ -19,11 +19,11 @@ export class EditDeleteClubComponent {
         this.initClubsArr();
     }
 
+    // init the clubs array that the HTML present
     initClubsArr() {
         this.clubsArr = [];
         this.superManagerService.getClubsArr()
             .subscribe(result => {
-                console.log("result from inint managersArr", result);
                 if (result.isAuth) {
                     this.clubsArr = result.clubArr;
                     this.tempClubArr = this.doDeepCopyOfArr(this.clubsArr);
@@ -34,12 +34,14 @@ export class EditDeleteClubComponent {
             })
     }
 
+    // if club delted, the event arrive here, and we need to update the club array
     handleClubDeleted(clubToRemove) {
         this.clubsArr = this.clubsArr.filter(currManager => {
             return currManager.id != clubToRemove.id;
         })
     }
 
+    
     searchClubs() {
         this.clubsArr = this.tempClubArr.filter(club => {
             return club.name.toLowerCase().startsWith(this.searchclub);

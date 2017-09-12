@@ -23,21 +23,21 @@ import { Component, EventEmitter, Output } from "@angular/core";
 
     `
 })
+    // we download this option, but its here if we would like to return this option
+    // when the user pick option it'll present the option as details on every club card
 export class FilterClubDetailsComponent {
+   // the options to present as mini details on every club card 
     isSales: boolean;
     isClubDetails: boolean;
     isPoints: boolean;
 
     constructor(private viewCtrl: ViewController) { }
 
+    // the chosen one will be set to true
     filter() {
         const isSales = this.isSales;
         const isClubDetails = this.isClubDetails;
         const isPoints = this.isPoints;
-
-        console.log(isSales,
-            isClubDetails,
-            isPoints)
 
         this.viewCtrl.dismiss({
             isSales,

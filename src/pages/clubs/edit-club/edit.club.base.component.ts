@@ -20,7 +20,7 @@ export class EditClubBaseComponent {
         public cloneService: CloneService, public actionSheetCameraOptions: ActionSheetCameraOptions,
         public clubIn: Club) {
         this.club = clubIn;
-        this.updatedClub = this.cloneService.getDeepCopyOfClub(this.club);
+        this.updatedClub = this.cloneService.getDeepCopyOfClub(this.club); // clone club object that use for editing
         this.buildForm();
         this.loadFormValuesFromUser();
     }
@@ -37,11 +37,11 @@ export class EditClubBaseComponent {
 
     loadFormValuesFromUser() {
         Object.keys(this.formData.controls).forEach(key => {
-            console.log(key);
             this.formData.controls[key].setValue(this.club[key]);
         });
     }
 
+    // open the option to choose photo- from camera or gallery
     onClickOpenCameraOptionTake() {
         this.actionSheetCameraOptions.onClickOpenOptionTakeImgModal()
         this.actionSheetCameraOptions.onPhotoTaken.subscribe(res => {
@@ -52,14 +52,13 @@ export class EditClubBaseComponent {
     }
 
     updateImg(url) {
-        console.log("in save img")
         this.updatedClub.img = url;
     }
 
+    // update the club after edited
     updateClub() {
         Object.keys(this.updatedClub).forEach(key => {
             let value = this.updatedClub[key];
-            console.log(value);
             this.club[key] = this.updatedClub[key];
         });
     }

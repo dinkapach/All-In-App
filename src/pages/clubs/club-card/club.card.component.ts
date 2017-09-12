@@ -10,6 +10,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
     selector: 'club-card',
     templateUrl: 'club.card.html'
 })
+// this component present the club card in the dashboard/home page (the page after login)
 export class ClubCardComponent implements OnInit {
     @Input()
     club: Club;
@@ -22,16 +23,17 @@ export class ClubCardComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log("init club card", this.club);
         this.getUserPointsByClubId();
     }
 
+    // when click on the icon of information, open the modal that present the club inforamtion
     onClickPresentClubInfo(club) {
-        console.log(club);
         let modal = this.modalCtrl.create(ClubInformation, club);
         modal.present();
     }
 
+    // get points in every club 
+    //in club cards we present the points the user have in every club
     getUserPointsByClubId() {
         this.userService.getUserObjectId()
         .subscribe( res => {
@@ -48,8 +50,8 @@ export class ClubCardComponent implements OnInit {
         })
     }
 
+    // when click on club, move to the club deatails component (the page that present sales/credits/receipt) 
     onClubClicked() {
-        console.log("click!");
       this.navCtrl.push(ClubDetailsComponent, {club : this.club});
     }
 }

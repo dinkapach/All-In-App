@@ -9,13 +9,14 @@ import { UserService } from './user.service';
 import { ManagerService } from './manager.service';
 import { Sale } from '../models/sales.model';
 
+// this service is the club service for clubs issues when we call the server
+
 @Injectable()
 export class ClubService {
     private url: string;
 
     constructor(private http: Http, private userService: UserService) {
         this.url = environment[environment.RUNNING];
-        console.log(this.url);
     }
 
     getClubsByUserId(userId: number): Observable<any> {

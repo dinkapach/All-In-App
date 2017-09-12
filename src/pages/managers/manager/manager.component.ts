@@ -15,31 +15,33 @@ import { MenuController, NavController } from 'ionic-angular';
 @Component({
     selector: 'manager',
     templateUrl: 'manager.html'
-})
+}) // this is the manager component, his home page
 export class ManagerComponent {
     manager: Manager;
     club: Club;
 
     constructor(private managerService: ManagerService, private clubService: ClubService,
         private navCtrl: NavController, public menuCtrl: MenuController) {
-        console.log("getting manager from service:");
         this.manager = this.managerService.getLocalManager();
         this.club = this.managerService.getLocalClub();
-        console.log(this.club);
     }
 
+    // when the manager choose to add sale, open the relevant component
     addSale() {
         this.navCtrl.push(AddSaleComponent);
     }
 
+    // when the manager choose to edit club, open the relevant component
     onClickEditClub(club) {
         this.navCtrl.push(EditManagerClubComponent);
     }
 
+    // when the manager choose to watch his customers, open the relevant component
     showCustomers() {
         this.navCtrl.push(ShowCustomerComponent);
     }
 
+    // when the manager choose to show his sales, open the relevant component
     showSales() {
         this.navCtrl.push(ShowSalesComponent);
     }
@@ -48,15 +50,16 @@ export class ManagerComponent {
         this.doUpdate();
     }
 
+    // when the manager logged in, get the updated data 
     doUpdate() {
         this.managerService.updateLocalManager()
             .subscribe(data => {
                 this.manager = this.managerService.getLocalManager();
                 this.club = this.managerService.getLocalClub();
-                console.log(data);
             });
     }
 
+    // when the manager do refresh (pull down the page), update the local (= current) manager from DB
     doRefresh(refresher) {
         console.log('Begin async operation', refresher);
         this.managerService.updateLocalManager()
@@ -73,13 +76,12 @@ export class ManagerComponent {
                 console.log(err);
             },
             () => {
-                console.log("yay");
                 refresher.complete();
             });
     }
 
+    // when the manager choose watch statistics, open the relevant component
     showStatistics() {
-        console.log(this.manager);
         this.clubService.getClubByObjectId(this.manager.clubId)
             .subscribe(club => {
                 if (club) {
@@ -91,6 +93,7 @@ export class ManagerComponent {
             })
     }
 
+    // open the settings option (edit profile/change password/ logout)
     onClickSettings() {
         this.navCtrl.push(ManagerSettingsComponent);
     }

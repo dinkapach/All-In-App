@@ -12,6 +12,8 @@ import 'rxjs/add/operator/map';
 import { ManagerComponent } from '../managers/manager/manager.component';
 import { LoadingService } from '../../helpers/loading-service';
 
+// this is the login component for managers, super manager or user
+
 @Component({
     selector: 'login',
     templateUrl: 'login.html'
@@ -36,6 +38,8 @@ export class LoginComponent {
     submitLogin() {
         this.loadingService.presentLoading();
         if (this.isSuperManager) {
+            // the super manager is separated, 
+            // from the reason we'll want in the future to put the super manager in another application 
             this.signingSuperManager.loginSuperManager(this.email.toLowerCase(), this.password)
                 .subscribe(superManager => {
                     if (superManager) {
@@ -72,10 +76,9 @@ export class LoginComponent {
         }
     }
 
+    // go to the relevnt dashboard (user to user dashboard and manager to manager dashboard)
     gotoDashboard() {
-        if (this.isSuperManager) {
-        }
-        else if (this.isManager) {
+        if (this.isManager) {
             this.navCtrl.setRoot(ManagerComponent);
         }
         else {

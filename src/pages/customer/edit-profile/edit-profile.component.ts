@@ -49,11 +49,9 @@ export class EditProfileComponent {
                 if (customer) {
                     this.updateUserFromUpdatedUser();
                     alert("Profile Updated");
-                    console.log("profile updated ", customer);
                     this.navCtrl.pop();
                 }
                 else {
-                    console.log("update customer info faild", customer);
                     alert("Updated failed");
                 }
             });

@@ -26,7 +26,6 @@ export class ClubDetailsBaseComponent {
     }
 
     ionViewWillEnter() {
-        console.log("enter page");
         this.userService.updateLocalCustomer()
             .subscribe(updated => {
                 if (updated) {
@@ -58,7 +57,6 @@ export class ClubDetailsBaseComponent {
             }
         })
 
-        console.log("From club.details.component, 'showCredits', print- creditByClubsArr: ", creditByClubsArr);
         this.navCtrl.push(ShowCreditsComponent, { creditArr: creditByClubsArr });
     }
 }

@@ -7,6 +7,9 @@ import { Storage } from '@ionic/storage';
 import * as environment from './../../environment.json';
 import { Credit } from '../models/credit.model';
 
+// this service is the user service for users issues when we call the server
+// or get/set the local (current) user
+
 @Injectable()
 export class UserService {
     private currentUser: User;
@@ -14,7 +17,6 @@ export class UserService {
 
     constructor(private http: Http, private storage: Storage) {
         this.url = environment[environment.RUNNING];
-        console.log(this.url);
     }
 
     getUserId() {
@@ -34,21 +36,17 @@ export class UserService {
         params.set('customerId', this.getUserId().toString());
         let requestOptions = new RequestOptions();
         requestOptions.search = params;
-        console.log("in func get user by cust id " + this.getUserId());
 
         return Observable.create(observer => {
             this.http.get(`${this.url}/api/users/`, requestOptions)
                 .map(response => response.json())
                 .subscribe((data) => {
-                    console.log("got user data from getUserById: ");
-                    console.log(data);
                     this.setLocalUser(data);
                     this.saveLoggedInUserToStorage(data, false);
                     observer.next(true);
                     observer.complete();
                 },
                 err => {
-                    console.log("error at getUserById: " + err);
                     observer.next(false);
                     observer.complete();
                 });
@@ -66,8 +64,6 @@ export class UserService {
             isManager: isManager,
             data: data
         }
-        console.log("saving user to storage. key: " + environment.CURRENT_USER_KEY);
-        console.log(currentUser);
         this.storage.set(environment.CURRENT_USER_KEY, currentUser);
     }
 
@@ -76,14 +72,11 @@ export class UserService {
         params.set('id', customerId.toString());
         let requestOptions = new RequestOptions();
         requestOptions.search = params;
-        console.log("in func get user by cust id " + customerId);
 
         return Observable.create(observer => {
             this.http.get(`${this.url}/api/users/`, requestOptions)
                 .map(response => response.json())
                 .subscribe((data) => {
-                    console.log("got user data from getUserById: ");
-                    console.log(data);
                     this.setLocalUser(data);
                     this.storage.set("customerDetails", data);
                     observer.next(true);
@@ -97,7 +90,6 @@ export class UserService {
         });
     }
     updateUser(userUpdate: any): Observable<User> {
-        console.log("updating customer: " + userUpdate);
         return this.http.post(`${this.url}/api/users/updateCustomerInfo`, {
             customerUpdate: userUpdate,
             customerId: this.getUserId()
@@ -106,7 +98,6 @@ export class UserService {
     }
 
     getCostumerByCostumerId(customerId: number) {
-        console.log("get customer from repository..." + customerId);
         return this.http.get(`${this.url}/api/users/`, customerId)
             .map(response => response.json()),
             err => {
@@ -115,7 +106,6 @@ export class UserService {
     }
 
     getIdByCostumerId(customerId: number) {
-        console.log("get customer from repository..." + customerId);
         return this.http.get(`${this.url}/api/users/getIdByCustomerId`, customerId)
             .map(response => response.json()),
             err => {
@@ -124,7 +114,6 @@ export class UserService {
     }
 
     addCredit(credit: Credit): Observable<boolean> {
-        console.log("adding credit 6");
         return this.http.post(`${this.url}/api/users/addCredit`, {
             userId: this.getUserId(),
             credit: credit
@@ -141,7 +130,6 @@ export class UserService {
     }
 
     editCredit(credit: Credit): Observable<boolean> {
-        console.log('edit credit :' + this.getUserId());
         return this.http.post(`${this.url}/api/users/editCredit`, {
             customerId: this.getUserId(),
             creditUpdate: credit

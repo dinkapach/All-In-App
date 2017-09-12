@@ -28,15 +28,15 @@ export class ScanReceiptComponent implements OnInit {
         this.receipt = new Receipt();
     }
 
+    // when the component init, init also the receipt arr to present
     ngOnInit() {
-        console.log("from scan receipt, is manual: ", this.club);
         // take from the photos that belong to this club
         this.clubReceiptArr = [];
         this.photos = [];
         this.clubReceiptArr = this.user.receipts.filter(currentReceipt => {
             return currentReceipt.clubId == this.club.id
         });
-        console.log(this.clubReceiptArr.length);
+        // after the filter-> push the photos in the array that present them from the HTML
         if (this.clubReceiptArr.length > 0) {
             this.clubReceiptArr.forEach(currClubReceipt => {
                 this.photos.push(currClubReceipt.img);
@@ -61,15 +61,12 @@ export class ScanReceiptComponent implements OnInit {
                 }, {
                     text: 'Yes',
                     handler: () => {
-                        console.log('Agree clicked');
                         this.photos = this.photos.filter(currPhoto => {
                             return currPhoto != photo;
                         })
                         this.user.receipts = this.user.receipts.filter(currReceipt => {
                             return currReceipt.img != photo;
                         })
-
-                        console.log(this.user.receipts);
 
                         this.userService.updateUser(this.user)
                             .subscribe(isUpdated => {
@@ -108,18 +105,19 @@ export class ScanReceiptComponent implements OnInit {
     }
 
     saveReceiptToUser(url) {
-        console.log("grom scan receipt, the url is: ", url);
-        this.photos.push(url);
+        this.photos.push(url); 
         this.photos.reverse();
+
+        // create the receipt
         this.receipt.clubId = this.club.id;
         this.receipt.img = url;
         this.receipt.isManual = this.isManual;
+        // set the new receipt to user, and updated the DB
         this.user.receipts.push(this.receipt);
         this.userService.updateUser(this.user)
             .subscribe(isUpdated => {
                 if (isUpdated) {
                     alert("Picture saved succesfully");
-                    console.log("receipt", this.receipt);
                 }
                 else {
                     alert("Unable to save picture");

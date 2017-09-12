@@ -13,9 +13,9 @@ export class User {
     phoneNumber?: string;
     img? : string;
     birthday: string;
-    clubs?: any[]; //TODO: mongoose.Schema.Types.ObjectId
-    credits?: any[]; //CreditSchema
-    receipts?: any[]; //ReceiptSchema
+    clubs?: any[]; 
+    credits?: any[]; 
+    receipts?: any[];
     manuallyClubs?: ClubManually[];
     joinDate?: Date;
 }

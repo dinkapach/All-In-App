@@ -38,16 +38,15 @@ export class EditClubManuallyComponent {
         })
     }
 
+    // when click 'edit club', save the updated club to user
     onClickEditClub() {
         this.getUpdatedClub()
         this.userService.updateUser(this.user)
             .subscribe(isAuth => {
                 if (isAuth) {
-                    console.log("from edit club manuall return from server");
                     this.navCtrl.pop();
                 }
                 else {
-                    console.log(isAuth);
                     alert("edit failed");
                 }
             });
@@ -60,6 +59,7 @@ export class EditClubManuallyComponent {
         this.user.manuallyClubs.push(this.updatedClub);
     }
 
+    // the option is camera or gallery
     onClickOpenCameraOptionTake() {
         this.actionSheetCameraOptions.onClickOpenOptionTakeImgModal()
         this.actionSheetCameraOptions.onPhotoTaken.subscribe(res => {
@@ -70,7 +70,6 @@ export class EditClubManuallyComponent {
     }
 
     updateImg(url) {
-        console.log("in save img")
         this.updatedClub.img = url;
     }
 }

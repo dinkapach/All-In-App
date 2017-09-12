@@ -33,7 +33,6 @@ export class MyApp {
   loadApp(){
     this.signService.loadUserFromStorage()
     .subscribe(res => {
-      console.log(res);
       if (res.isManager) {
           this.rootPage = ManagerComponent;
       }

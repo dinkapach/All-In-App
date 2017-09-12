@@ -4,7 +4,7 @@
     </ion-navbar>
 </ion-header>
 <ion-content padding>
-    <ion-searchbar [(ngModel)]="searchCustomer" (ionInput)="searchManagers()"></ion-searchbar>
+    <ion-searchbar [(ngModel)]="searchCustomer" (ionInput)="searchCustomers()"></ion-searchbar>
     <ion-grid>
         <ion-row *ngFor="let customer of customersArr">
             <ion-col>

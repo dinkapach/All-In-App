@@ -12,6 +12,7 @@ import { UserService } from '../../../../services/user.service';
 import { CameraService } from '../../../../helpers/camera-service';
 import { ActionSheetCameraOptions } from '../../../../helpers/action-sheet-camera-options';
 
+
 @Component({
     selector: 'add-credit',
     templateUrl: 'add-credit.html'
@@ -28,12 +29,14 @@ export class AddCreditComponent {
         private localNotifications: LocalNotifications, private cameraService: CameraService,
         public actionSheetCtrl: ActionSheetController,
         private actionSheetCameraOptions: ActionSheetCameraOptions) {
-        this.club = this.navParams.get("club");
+        
+        this.club = this.navParams.get("club"); // get club that the new credit belongs to
         this.initCredit();
         this.user = this.userService.getLocalUser();
         this.buildAddCreditForm();
     }
 
+    // init credit with require values
     initCredit() {
         this.newCredit = new Credit();
         this.newCredit.clubId = this.club.id;
@@ -49,11 +52,10 @@ export class AddCreditComponent {
         });
     }
 
+    // when click add credit, save it in DB
     onClickAddCredit() {
-        console.log("From 'add-credit.component'. club id:", this.club.id);
         this.userService.addCredit(this.newCredit).
             subscribe(isAuth => {
-                console.log("From 'add-credit.component', print 'isAuth': ", isAuth);
                 if (isAuth) {
                     this.scheduleCreditNotification();
                     this.navCtrl.pop();
@@ -75,6 +77,7 @@ export class AddCreditComponent {
         }
     }
 
+    // the options is camera or gallery
     onClickOpenCameraOptionTake() {
         this.actionSheetCameraOptions.onClickOpenOptionTakeImgModal()
         this.actionSheetCameraOptions.onPhotoTaken.subscribe(res => {

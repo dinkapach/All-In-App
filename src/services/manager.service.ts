@@ -9,6 +9,9 @@ import * as environment from './../../environment.json';
 import { Club } from '../models/club.model';
 import { SigningService } from './signing.service';
 
+// this service is the manager service for managers issues when we call the server
+// or get/set the local (current) manager
+
 @Injectable()
 export class ManagerService {
     private url: string;
@@ -16,9 +19,9 @@ export class ManagerService {
     private currentClub: Club;
     private isManager: Boolean;
     private currentCustomers;
+
     constructor(private http: Http, private storage: Storage) {
         this.url = environment[environment.RUNNING];
-        console.log(this.url);
     }
 
     getLocalManager() {
@@ -52,15 +55,12 @@ export class ManagerService {
             this.http.get(`${this.url}/api/manager/${managerId}`)
                 .map(response => response.json())
                 .subscribe((data) => {
-                    console.log("got user data from getManagerById: ");
-                    console.log(data);
                     this.setLocalManager(data.manager, data.club);
                     this.saveLoggedInUserToStorage(data, true);
                     observer.next(true);
                     observer.complete();
                 },
                 err => {
-                    console.log("error at getManagerById: " + err);
                     observer.next(false);
                     observer.complete();
                 });
@@ -72,18 +72,13 @@ export class ManagerService {
             isManager: isManager,
             data: data
         }
-        console.log("saving user to storage. key: " + environment.CURRENT_USER_KEY);
-        console.log(currentUser);
         this.storage.set(environment.CURRENT_USER_KEY, currentUser);
     }
 
     setLocalManager(manager: Manager, club: Club) {
-        console.log(manager, club);
         this.currentManager = manager;
         this.currentClub = club;
         this.currentCustomers = this.currentClub.usersClub;
-        console.log(manager, club);
-        console.log("current customers", this.currentCustomers);
     }
 
     setCustomerArray(customers: User[]) {
@@ -138,8 +133,6 @@ export class ManagerService {
     }
 
     updateManager(managerUpdate: any): Observable<boolean> {
-        console.log("updating manager: " + this.getLocalManagerId());
-        console.log("updating manager: " + managerUpdate);
         return this.http.post(`${this.url}/api/manager/updateManagerInfo`, {
             managerUpdate: managerUpdate,
             managerId: this.getLocalManagerId()
@@ -148,7 +141,6 @@ export class ManagerService {
     }
 
     editSale(sale: Sale): Observable<boolean> {
-        console.log('service edit sale :' + this.getClubId());
         return this.http.post(`${this.url}/api/manager/editSale`, {
             clubId: this.getClubId(),
             saleUpdate: sale
@@ -157,7 +149,6 @@ export class ManagerService {
     }
 
     updateClub(clubUpdate: any): Observable<boolean> {
-        console.log("updating club: ", clubUpdate);
         return this.http.post(`${this.url}/api/manager/updateClubInfo`, {
             clubUpdate: clubUpdate,
             clubId: this.getClubId()
@@ -166,7 +157,6 @@ export class ManagerService {
     }
 
     changePassword(currentPassword: string, newPassword: string): Observable<boolean> {
-        console.log("change password service ");
         return this.http.post(`${this.url}/api/manager/changePassword`, {
             managerId: this.getLocalManagerId(),
             currentPassword: currentPassword,
