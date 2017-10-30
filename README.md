@@ -75,9 +75,8 @@ Additionally, we developed application for the application's manager that helps 
 
 * ##### Add or remove club manager
 
-## How to use All In:
+## How to use All In - Instructions:
 
-## Instructions
 * Install Ionic CLI - `npm install -g ionic cordova`
 * Clone this repository, and navigate to the repository folder
 * Run - `npm install`
@@ -93,3 +92,18 @@ Additionally, we developed application for the application's manager that helps 
 The application communicates with an API server hosted on Heroku.
 
 You can find the server code in the repository named: "[Project-API](https://github.com/gallib2/Project-API)".
+
+## Screenshots
+
+![5](https://user-images.githubusercontent.com/22280734/32192393-b7694c52-bdbc-11e7-9612-6dca0ba3b934.JPG)
+
+![1](https://user-images.githubusercontent.com/22280734/32192394-b7892e28-bdbc-11e7-8a08-226954687273.JPG)
+
+![2](https://user-images.githubusercontent.com/22280734/32192395-b7a40d60-bdbc-11e7-9714-4535fb275cb2.JPG)
+
+![3](https://user-images.githubusercontent.com/22280734/32192396-b7be9324-bdbc-11e7-9835-c2652d136df3.JPG)
+
+![4](https://user-images.githubusercontent.com/22280734/32192397-b7df6310-bdbc-11e7-9049-d09fe710d5c2.JPG)
+
+![hamashbir_qr](https://user-images.githubusercontent.com/22280734/32192482-f784025a-bdbc-11e7-85ba-ce887e4835d7.png)
+
