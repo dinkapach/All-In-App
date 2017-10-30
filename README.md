@@ -1,6 +1,7 @@
 # All In 
 
 The main idea of our application - All In, is to consolidate your clubs memberships in one place.
+
 All In is a cross platform application writen with ionic framework.
 
 ## Description
@@ -23,7 +24,7 @@ Additionally, we developed application for the application's manager that helps 
 
   Customer can watch previous transactions by view scanned receipts (that scan when making the purchase)
 
-* ##### save credits
+* ##### Save credits
 
   Customer can scan credits and use them while showing the image.
 
@@ -65,13 +66,14 @@ Additionally, we developed application for the application's manager that helps 
   Club manager can add or edit sales that he would like to give his customers.
 
 #### Actions for super-manager
-Add or remove club
 
-Remove customer
+* ##### Add or remove club
 
-Associate club manager with club
+* ##### Remove customer
 
-Add or remove club manager
+* ##### Associate club manager with club
+
+* ##### Add or remove club manager
 
 ## How to use All In:
 
