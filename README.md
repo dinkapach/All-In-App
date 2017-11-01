@@ -95,15 +95,7 @@ You can find the server code in the repository named: "[Project-API](https://git
 
 ## Screenshots
 
-![5](https://user-images.githubusercontent.com/22280734/32192393-b7694c52-bdbc-11e7-9612-6dca0ba3b934.JPG)
+![customer](https://user-images.githubusercontent.com/22280734/32279583-d54ebd90-bf21-11e7-8f8d-7580e664f929.png)
 
-![1](https://user-images.githubusercontent.com/22280734/32192394-b7892e28-bdbc-11e7-8a08-226954687273.JPG)
-
-![2](https://user-images.githubusercontent.com/22280734/32192395-b7a40d60-bdbc-11e7-9714-4535fb275cb2.JPG)
-
-![3](https://user-images.githubusercontent.com/22280734/32192396-b7be9324-bdbc-11e7-9835-c2652d136df3.JPG)
-
-![4](https://user-images.githubusercontent.com/22280734/32192397-b7df6310-bdbc-11e7-9049-d09fe710d5c2.JPG)
-
-![hamashbir_qr](https://user-images.githubusercontent.com/22280734/32192482-f784025a-bdbc-11e7-85ba-ce887e4835d7.png)
+![club_manager](https://user-images.githubusercontent.com/22280734/32279795-5c69daa8-bf22-11e7-80c7-93312e1f043b.png)
 
