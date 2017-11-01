@@ -5,6 +5,11 @@ import { MyApp } from './../../../app/app.component';
 
 import { Camera } from '@ionic-native/camera';
 
+// this class is only for testing
+// this class help us to check camera from browser
+// by simulate that we took picture from camera or gallery (even that we didnt),
+// so we wont need to take photo every time we test our camera/photo from gallery in the application
+
 export class CameraMock extends Camera {
   getPicture(options) {
     return new Promise((resolve, reject) => {

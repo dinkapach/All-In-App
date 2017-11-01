@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-navbar primary>
+        <ion-title>Edit Profile</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding *ngIf="manager">
+    <form [formGroup]="formData" #updateProfileForm="ngForm" (ngSubmit)="onClickUpdateInfo()">
+        <ion-list>
+            <ion-item>
+                <ion-label floating>Id</ion-label>
+                <ion-input type="text" value={{updatedManager.id}} disabled="true"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>First Name</ion-label>
+                <ion-input formControlName="firstName" type="text" [(ngModel)]="updatedManager.firstName"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Last Name</ion-label>
+                <ion-input formControlName="lastName" type="text" [(ngModel)]="updatedManager.lastName"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Email</ion-label>
+                <ion-input formControlName="email" type="email" [(ngModel)]="updatedManager.email"></ion-input>
+            </ion-item>
+        </ion-list>
+        <button ion-button class="submit-btn" full type="submit" [disabled]="!updateProfileForm.form.valid">Update Profile</button>
+    </form>
+</ion-content>

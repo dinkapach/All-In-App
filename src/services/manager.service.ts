@@ -6,87 +6,162 @@ import { Http } from '@angular/http';
 import { Manager } from './../models/manager.model';
 import { Storage } from '@ionic/storage';
 import * as environment from './../../environment.json';
+import { Club } from '../models/club.model';
+import { SigningService } from './signing.service';
+
+// this service is the manager service for managers issues when we call the server
+// or get/set the local (current) manager
 
 @Injectable()
 export class ManagerService {
     private url: string;
     private currentManager: Manager;
+    private currentClub: Club;
     private isManager: Boolean;
+    private currentCustomers;
 
-    constructor(private http : Http, private storage: Storage) {
+    constructor(private http: Http, private storage: Storage) {
         this.url = environment[environment.RUNNING];
-        console.log(this.url);
     }
 
-    getLocalManager(){
+    getLocalManager() {
         return this.currentManager;
     }
 
-    setLocalManager(manager: Manager){
-        // this.storage.set("managerDetails", manager);
-        this.currentManager = manager;
+    getLocalClub() {
+        return this.currentClub;
     }
 
-    addSale(clubId: any, sale: Sale){
-        this.http.post(`${this.url}/api/manager/addSale`, {
-            clubId : clubId,
+    getLocalCustomers() {
+        return this.currentCustomers;
+    }
+
+    getClubId() {
+        return this.currentClub.id;
+    }
+
+    getLocalManagerId() {
+        return this.currentManager.id;
+    }
+
+    getManagerId() {
+        return this.currentManager.id;
+    }
+
+    updateLocalManager(): Observable<Manager> {
+        let managerId = this.getManagerId();
+
+        return Observable.create(observer => {
+            this.http.get(`${this.url}/api/manager/${managerId}`)
+                .map(response => response.json())
+                .subscribe((data) => {
+                    this.setLocalManager(data.manager, data.club);
+                    this.saveLoggedInUserToStorage(data, true);
+                    observer.next(true);
+                    observer.complete();
+                },
+                err => {
+                    observer.next(false);
+                    observer.complete();
+                });
+        });
+    }
+
+    saveLoggedInUserToStorage(data, isManager: Boolean) {
+        let currentUser = {
+            isManager: isManager,
+            data: data
+        }
+        this.storage.set(environment.CURRENT_USER_KEY, currentUser);
+    }
+
+    setLocalManager(manager: Manager, club: Club) {
+        this.currentManager = manager;
+        this.currentClub = club;
+        this.currentCustomers = this.currentClub.usersClub;
+    }
+
+    setCustomerArray(customers: User[]) {
+        this.currentCustomers = customers;
+    }
+
+    addSale(sale: Sale): Observable<Sale> {
+        return this.http.post(`${this.url}/api/manager/addSale`, {
+            clubId: this.getClubId(),
             sale: sale
         }).map(response => response.json())
-        .subscribe(Sale => {
-            console.log("sale" + Sale);
-        })
     }
 
-    addPointsToCustomerById(customerId: number, clubId:number, numOfPoints: number){
-        this.http.post(`${this.url}/api/manager/addPointsToCustomerById`,{
-            customerId : customerId,
-            clubId : clubId,
-            numOfPoints : numOfPoints
-            
-        }).map(res => res.json())
-         .subscribe(function (isAuth) {
-             if(isAuth) {
-                console.log("Added points"); //where customer not found still print this
-            }
-            else {
-                console.log("Not added points");
-            }
+    addPointsToCustomerById(customerId: any, clubObjId: any, numOfPoints: number): Observable<any> {
+        return this.http.post(`${this.url}/api/manager/addPointsToCustomerById`, {
+            customerId: customerId,
+            clubObjId: clubObjId,
+            numOfPoints: numOfPoints
         })
+            .map(res => res.json());
     }
 
 
-    deleteCustomerFromClub(user: User, clubId: any) : Observable<Boolean> {
+    deleteCustomerFromClub(userObjectId: any, clubId: any): Observable<boolean> {
         return this.http.post(`${this.url}/api/manager/deleteCustomer`, {
-            user: user,
+            userObjectId: userObjectId,
             clubId: clubId
-         })
-        .map( res => res.json());
-    }
-
-    getClubId(){
-        return this.currentManager.clubId;
-    }
-
-    subscribePointsToCustomerById(customerId: number, clubId:number, numOfPoints: number){
-        this.http.post(`${this.url}/api/manager/subscribePointsToCustomerById`,{
-            customerId : customerId,
-            clubId : clubId,
-            numOfPoints : numOfPoints
-            
-        }).map(res => res.json())
-         .subscribe(function (isAuth) {
-             if(isAuth) {
-                console.log("decreased  points");
-            }
-            else {
-                console.log("Not decreased points");
-            }
         })
+            .map(res => res.json());
     }
 
-    getCustomerDetails(customerId: number){
+    subscribePointsToCustomerById(customerId: any, clubObjId: any, numOfPoints: number): Observable<any> {
+        return this.http.post(`${this.url}/api/manager/subscribePointsToCustomerById`, {
+            customerId: customerId,
+            clubObjId: clubObjId,
+            numOfPoints: numOfPoints
+
+        }).map(res => res.json())
+    }
+
+    getCustomerDetails(customerId: number) {
         return this.http.get(`${this.url}/api/manager/getCustomerDetails/${customerId}`)
-        .map(res => res.json());
+            .map(res => res.json());
     }
 
+    deleteSale(saleId: Number): Observable<boolean> {
+        return this.http.post(`${this.url}/api/club/deleteSale`, {
+            saleId: saleId,
+            clubId: this.getClubId()
+        })
+            .map(res => res.json());
+    }
+
+    updateManager(managerUpdate: any): Observable<boolean> {
+        return this.http.post(`${this.url}/api/manager/updateManagerInfo`, {
+            managerUpdate: managerUpdate,
+            managerId: this.getLocalManagerId()
+        })
+            .map(res => res.json());
+    }
+
+    editSale(sale: Sale): Observable<boolean> {
+        return this.http.post(`${this.url}/api/manager/editSale`, {
+            clubId: this.getClubId(),
+            saleUpdate: sale
+        })
+            .map(res => res.json());
+    }
+
+    updateClub(clubUpdate: any): Observable<boolean> {
+        return this.http.post(`${this.url}/api/manager/updateClubInfo`, {
+            clubUpdate: clubUpdate,
+            clubId: this.getClubId()
+        })
+            .map(res => res.json());
+    }
+
+    changePassword(currentPassword: string, newPassword: string): Observable<boolean> {
+        return this.http.post(`${this.url}/api/manager/changePassword`, {
+            managerId: this.getLocalManagerId(),
+            currentPassword: currentPassword,
+            newPassword: newPassword
+        })
+            .map(res => res.json());
+    }
 }

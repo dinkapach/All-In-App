@@ -1,6 +1,6 @@
 {
   "name": "AllIn",
-  "app_id": "",
+  "app_id": "f26e2a7f",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}

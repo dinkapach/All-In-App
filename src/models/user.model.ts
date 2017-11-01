@@ -13,20 +13,9 @@ export class User {
     phoneNumber?: string;
     img? : string;
     birthday: string;
-    clubs?: any[]; //TODO: mongoose.Schema.Types.ObjectId
-    credits?: any[]; //CreditSchema
-    receipts?: any[]; //ReceiptSchema
+    clubs?: any[]; 
+    credits?: any[]; 
+    receipts?: any[];
     manuallyClubs?: ClubManually[];
-    // constructor(id: number, userName:string, firstName: string, lastName: string, 
-    //     password: string, address: string, email: string, phoneNumber: string, birthday: string){
-    //         this. id = id;
-    //         this.userName = userName;
-    //         this.firstName = firstName;
-    //         this.lastName = lastName;
-    //         this.password = password;
-    //         this.address = address;
-    //         this.email = email;
-    //         this.phoneNumber = phoneNumber;
-    //         this.birthday = birthday;
-    // }
+    joinDate?: Date;
 }

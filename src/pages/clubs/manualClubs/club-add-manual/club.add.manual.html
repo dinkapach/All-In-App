@@ -1,35 +1,35 @@
 <ion-header>
     <ion-navbar primary>
-      <ion-buttons end>
-          <button (click)="updateInfo()">
-              <ion-icon name="refresh"></ion-icon>
-          </button>
-      </ion-buttons>
-      <ion-title>Add Club Manually</ion-title>
+        <ion-title>Add Club Manually</ion-title>
     </ion-navbar>
-  </ion-header>
-  
-  <ion-content padding>
-      <form [formGroup]="formData">
-          <ion-list>
-              <ion-item>
-                  <ion-input formControlName="img" placeholder="Image" type="text" [(ngModel)]="clubNew.img" (blur)="onBlur($event)"></ion-input>
-              </ion-item>
-              <ion-item>
-                  <ion-input formControlName="id" placeholder="Id" type="text" [(ngModel)]="clubNew.id"></ion-input>
-              </ion-item>
-              <ion-item>
-                  <ion-input formControlName="name" placeholder="Name" type="text"  [(ngModel)]="clubNew.name" (blur)="onBlur($event)"></ion-input>
-              </ion-item>
-              <ion-item>
-                  <ion-input formControlName="address" placeholder="Address" type="text" [(ngModel)]="clubNew.address" (blur)="onBlur($event)"></ion-input>
-              </ion-item>
-              <ion-item>
-                  <ion-input formControlName="phoneNumber" placeholder="Phone Number" type="text"  [(ngModel)]="clubNew.phoneNumber" (blur)="onBlur($event)"></ion-input>
-              </ion-item>
-              <ion-item>
-                  <ion-input formControlName="points" placeholder="Points" type="text" [(ngModel)]="clubNew.points" (blur)="onBlur($event)"></ion-input>
-              </ion-item>       
-          </ion-list>
-      </form>
-  </ion-content>
+</ion-header>
+<ion-content padding>
+    <img class="top-image" *ngIf="clubNew.img" [src]="clubNew.img" />
+    <ion-buttons text-center>
+        <button ion-button clear small color="danger" icon-start (click)="onClickOpenCameraOptionTake()">
+                <ion-icon name='create'></ion-icon>
+                Add Photo
+            </button>
+    </ion-buttons>
+    <form [formGroup]="addClubForm" #addManualClubForm="ngForm" (ngSubmit)="onClickAddClub()">
+        <ion-list>
+            <ion-item>
+                <ion-label floating>Name</ion-label>
+                <ion-input formControlName="name" type="text" [(ngModel)]="clubNew.name"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Address</ion-label>
+                <ion-input formControlName="address" type="text" [(ngModel)]="clubNew.address"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Phone Number</ion-label>
+                <ion-input formControlName="phoneNumber" type="text" [(ngModel)]="clubNew.phoneNumber"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Points</ion-label>
+                <ion-input formControlName="points" type="number" [(ngModel)]="clubNew.points"></ion-input>
+            </ion-item>
+        </ion-list>
+        <button ion-button class="submit-btn" full type="submit" [disabled]="!addManualClubForm.form.valid">Add Club</button>
+    </form>
+</ion-content>

@@ -1,5 +1,3 @@
-// import { ClubManually } from './clubManually.model';
-// import { Club } from './club.model';
 
 export class Manager {
     id: number;

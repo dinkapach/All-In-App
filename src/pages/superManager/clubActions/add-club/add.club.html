@@ -1,44 +1,58 @@
 <ion-header>
-        <ion-navbar primary>
-          <ion-title>Add Club</ion-title>
-        </ion-navbar>
-      </ion-header>
-
-      <ion-content padding>
-          <form [formGroup]="formData">
-              <ion-list>
-                    <ion-item>
-                        <ion-label floating  >Manager ID</ion-label>     
-                        <ion-input formControlName="managerId" placeholder="Manager ID" type="number" [(ngModel)]="managerId"></ion-input>
-                    </ion-item>    
-                  <ion-item>
-                        <ion-label floating  >ID</ion-label>  
-                      <ion-input formControlName="id" placeholder="ID" type="number" [(ngModel)]="newClub.id"></ion-input>
-                  </ion-item>
-                  <ion-item>
-                        <ion-label floating  >Name</ion-label>  
-                      <ion-input formControlName="name" placeholder="Name" type="string" [(ngModel)]="newClub.name"></ion-input>
-                  </ion-item>
-                  <ion-item>
-                        <ion-label floating  >Address</ion-label>  
-                      <ion-input formControlName="address" placeholder="Address" type="string" [(ngModel)]="newClub.address"></ion-input>
-                  </ion-item> 
-                  <ion-item>
-                        <ion-label floating  >PhoneNumber</ion-label>  
-                      <ion-input formControlName="phoneNumber" placeholder="PhoneNumber" type="string" [(ngModel)]="newClub.phoneNumber"></ion-input>
-                  </ion-item>
-                  <ion-item>
-                        <ion-label floating  >Open Houer</ion-label>  
-                        <ion-datetime formControlName="openingHour" displayFormat="HH" pickerFormat="HH" [(ngModel)]="newClub.openingHours[0]"></ion-datetime>
-                      <!-- <ion-input formControlName="openingHour" placeholder="Opening Hour" type="Date" [(ngModel)]="newClub.openingHours[0]"></ion-input> -->
-                  </ion-item>
-                  <ion-item>
-                        <ion-label floating  >Close Hour</ion-label>  
-                        <ion-datetime formControlName="closingHour" displayFormat="HH" pickerFormat="HH" [(ngModel)]="newClub.openingHours[1]"></ion-datetime>
-                        <!-- <ion-input formControlName="closingHour" placeholder="Closing Hour" type="Date" [(ngModel)]="newClub.openingHours[1]"></ion-input> -->
-                    </ion-item>     
-              </ion-list>
-              <button ion-button (click)="onClickAddClub()">Add Club</button>
-          </form> 
-      </ion-content>
-      
+    <ion-navbar primary>
+        <ion-title>Add Club</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-card>
+        <img class="form-top-image" [src]="newClub?.img" />
+        <ion-card-content></ion-card-content>
+        <ion-row no-padding>
+            <ion-col>
+                <button ion-button clear small color="dark" icon-start (click)="onClickTakePhoto()">
+                        <ion-icon name='camera'></ion-icon>
+                        teke photo
+                    </button>
+            </ion-col>
+            <ion-col text-center>
+                <button ion-button clear small color="dark" icon-start (click)="onClickPhotoFromGallery()">
+                        <ion-icon name='albums'></ion-icon>
+                        choose from gallery
+                    </button>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+    <form [formGroup]="formData">
+        <ion-list>
+            <ion-item>
+                <ion-label floating>Manager ID</ion-label>
+                <ion-input formControlName="managerId" type="number" [(ngModel)]="managerId"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Club ID</ion-label>
+                <ion-input formControlName="id" type="number" [(ngModel)]="newClub.id"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Name</ion-label>
+                <ion-input formControlName="name" type="string" [(ngModel)]="newClub.name"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Address</ion-label>
+                <ion-input formControlName="address" type="string" [(ngModel)]="newClub.address"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>PhoneNumber</ion-label>
+                <ion-input formControlName="phoneNumber" type="string" [(ngModel)]="newClub.phoneNumber"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Open Houer</ion-label>
+                <ion-datetime formControlName="openingHour" displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="newClub.openingHours[0]"></ion-datetime>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Close Hour</ion-label>
+                <ion-datetime formControlName="closingHour" displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="newClub.openingHours[1]"></ion-datetime>
+            </ion-item>
+        </ion-list>
+        <button ion-button (click)="onClickAddClub()">Add Club</button>
+    </form>
+</ion-content>

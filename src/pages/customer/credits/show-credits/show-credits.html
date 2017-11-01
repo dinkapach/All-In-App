@@ -1,0 +1,10 @@
+<div>
+  <ion-fab bottom right class="fixed">
+    <button ion-fab color="vibrant" mini (click)="onClickAddCredit()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+  </ion-fab>
+  <ion-list>
+    <credit-card *ngFor="let credit of creditArr" [credit]="credit" (creditDeleted)="handleCreditDeleted($event)"></credit-card>
+  </ion-list>
+</div>

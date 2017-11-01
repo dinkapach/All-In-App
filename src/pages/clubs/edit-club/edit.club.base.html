@@ -1,0 +1,40 @@
+<ion-header>
+    <ion-navbar primary>
+        <ion-title>Edit Club</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding *ngIf="club">
+    <img class="form-top-image" [src]="updatedClub.img" />
+    <ion-buttons text-center>
+        <button ion-button clear small color="danger" icon-start (click)="onClickOpenCameraOptionTake()">
+                <ion-icon name='create'></ion-icon>
+                Edit Photo
+            </button>
+    </ion-buttons>
+    <form [formGroup]="formData" #editClubForm="ngForm" (ngSubmit)="onClickupdateInfo()">
+        <ion-list>
+            <ion-item>
+                <ion-label floating>Name</ion-label>
+                <ion-input formControlName="name" type="text" [(ngModel)]="updatedClub.name"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Address</ion-label>
+                <ion-input formControlName="address" type="text" [(ngModel)]="updatedClub.address"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Phone Number</ion-label>
+                <ion-input formControlName="phoneNumber" type="text" [(ngModel)]="updatedClub.phoneNumber"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Opening Hour</ion-label>
+                <ion-datetime formControlName="openingHour" pickerFormat="HH:mm" [(ngModel)]="updatedClub.openingHours[0]"></ion-datetime>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Closing Hour</ion-label>
+                <ion-datetime formControlName="closingHour" pickerFormat="HH:mm" [(ngModel)]="updatedClub.openingHours[1]"></ion-datetime>
+            </ion-item>
+        </ion-list>
+        <button ion-button class="submit-btn" full type="submit" [disabled]="!editClubForm.form.valid">Edit Club
+        </button>
+    </form>
+</ion-content>

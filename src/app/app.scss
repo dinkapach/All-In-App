@@ -14,3 +14,69 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+// ion-header ion-title {
+//     text-align: center !important;
+// }
+
+.bold-text{
+    font-weight: bold;
+}
+
+ion-content .scroll-content{
+    padding: 4px;
+}
+
+// .toolbar-background-md {
+//     background: color($colors, vitara, base);
+//   }
+
+// .toolbar-title-md{
+//     color: white;
+// }
+
+@media only screen and (min-width: 781px){
+    body{
+        max-width: 900px;
+        left: 25%;
+    }
+}
+
+.item-md ion-thumbnail ion-img, .item-md ion-thumbnail img {
+    width: 101px;
+    height: auto;
+}
+
+img.center-image{
+    margin: auto;
+    display: block;
+}
+
+.form-top-image {
+    border-radius: 50%;
+    display: block;
+    margin: auto;
+    max-width: 200px;
+}
+
+.no-border,
+.no-border .item-inner,
+.no-border .item-md.item-block,
+.no-border .item-inner{
+    border: none;
+}
+
+.text-bold{
+    font-weight: bold;
+}
+
+.top-image{
+    display: block;
+    margin: auto;
+    max-width: 200px;
+    // border-radius: 10px;
+}
+
+img{
+    border-radius: 5px;
+}

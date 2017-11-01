@@ -1,16 +1,15 @@
 <ion-header>
-        <ion-navbar primary>
-            <ion-title>Edit/Delete customer</ion-title>
-        </ion-navbar>
-    </ion-header>
-    
-    <ion-content padding>
-    <ion-searchbar [(ngModel)]="searchCustomer" (ionInput)="searchManagers()"></ion-searchbar>
-    <ion-grid >
-            <ion-row *ngFor="let customer of customersArr">
-                <ion-col>
-                    <customer-card-super [customer]="customer" (customerDeleted)="handleCustomerDeleted($event)"></customer-card-super>
-                </ion-col>
-            </ion-row>
+    <ion-navbar primary>
+        <ion-title>Edit/Delete customer</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-searchbar [(ngModel)]="searchCustomer" (ionInput)="searchCustomers()"></ion-searchbar>
+    <ion-grid>
+        <ion-row *ngFor="let customer of customersArr">
+            <ion-col>
+                <customer-card-super [customer]="customer" (customerDeleted)="handleCustomerDeleted($event)"></customer-card-super>
+            </ion-col>
+        </ion-row>
     </ion-grid>
-    </ion-content>
+</ion-content>

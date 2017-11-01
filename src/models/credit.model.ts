@@ -1,8 +1,9 @@
 export class Credit {
-    id: Number;
-    clubId: Number;
+    id: number;
+    clubId: number;
     dateOfPurchase: Date;
     dateOfExpired: Date;
     items: [String];
-    totalCredit: Number;
+    totalCredit: number;
+    img: string;
 }

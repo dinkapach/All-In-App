@@ -1,14 +1,14 @@
 <ion-card>
-    <ion-list *ngIf="customer"  padding>
-        <ion-item-sliding #item >
+    <ion-list *ngIf="customer" padding>
+        <ion-item-sliding #item>
             <ion-item>
                 <p> customer id: {{customer.id}} </p>
                 <p> customer username: {{customer.userName}} </p>
-                <p> customer first name: {{customer.firstName}} </p> 
-                <p> customer last name: {{customer.lastName}} </p> 
-                <p> customer email : {{customer.email}} </p> 
-                <p> customer address : {{customer.address}} </p> 
-                <p> customer phoneNumber : {{customer.phoneNumber}} </p> 
+                <p> customer first name: {{customer.firstName}} </p>
+                <p> customer last name: {{customer.lastName}} </p>
+                <p> customer email : {{customer.email}} </p>
+                <p> customer address : {{customer.address}} </p>
+                <p> customer phoneNumber : {{customer.phoneNumber}} </p>
             </ion-item>
             <ion-item-options side="left">
                 <button ion-button (click)="deleteCustomerClick(customer)">Delete</button>

@@ -1,3 +1,4 @@
+import { CameraService } from './../../../../helpers/camera-service';
 import { Club } from './../../../../models/club.model';
 import { SuperManagerService } from './../../../../services/superManager.service';
 import { NavParams, NavController, AlertController } from 'ionic-angular';
@@ -8,33 +9,37 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
     selector: 'add-club',
     templateUrl: 'add.club.html'
 })
-export class AddClubComponent implements OnInit{
+export class AddClubComponent {
     formData: FormGroup;
     isAddClub: boolean;
-    newClub: Club;
+    newClub: Club = new Club();
     managerId: number;
+    TempOpeningHours: [Date, Date];
 
-    constructor(private fBuilder : FormBuilder, private navParams: NavParams,
+    constructor(private fBuilder: FormBuilder, private navParams: NavParams,
         private navCtrl: NavController, private alertCtrl: AlertController,
-        private superManagerService: SuperManagerService) {
+        private superManagerService: SuperManagerService, private cameraService: CameraService) {
         this.initClub();
-        this.formData = fBuilder.group({
-            'managerId':["", Validators.required],
+        this.buildForm();
+    }
+
+    // build the form for add club
+    buildForm() {
+        this.formData = this.fBuilder.group({
+            'managerId': ["", Validators.required],
             'id': ["", Validators.required],
-            'name' : ["", Validators.required],
+            'name': ["", Validators.required],
             'address': ["", Validators.required],
-            'phoneNumber' : ["", Validators.required],
-            'openingHour' : "",
-            'closingHour' : ""
-        })
+            'phoneNumber': ["", Validators.required],
+            'openingHour': "",
+            'closingHour': ""
+        });
     }
 
-    ngOnInit() {
-    }
-
-    initClub(){
+    // initial new club with requier values
+    initClub() {
         this.newClub = new Club();
-        this.newClub.openingHours = [new Date() , new Date()];
+        this.newClub.openingHours = ["", ""];
         this.newClub.isManual = false;
         this.newClub.branches = [];
         this.newClub.sales = [];
@@ -43,31 +48,36 @@ export class AddClubComponent implements OnInit{
     }
 
     onClickAddClub() {
-        console.log("from add club");
-        console.log("newClub: ", this.newClub);
-
         this.superManagerService.createClubAndAddToManager(this.newClub, this.managerId)
-        .subscribe(isCreated => {
-            if(isCreated){
-                console.log("club create succecfully");
-                this.presentAlert();
-            }
-            else{
-                console.log("cuold not create manager");
-            }
-        });
+            .subscribe(isCreated => {
+                if (isCreated) {
+                    alert("club added");
+                }
+                else {
+                    console.log("cuold not create manager");
+                }
+            });
     }
 
-
-    presentAlert(){
-        let alert = this.alertCtrl.create({
-            subTitle: 'club added',
-            buttons: ['סבבה']
-        });
-        alert.present();
-        alert.onDidDismiss(() => {
-            this.navCtrl.pop();
-        });
+    // take photo from camaera
+    onClickTakePhoto() {
+        this.cameraService.takePhotoFromCamera()
+            .then(url => {
+                this.newClub.img = url;
+            })
+            .catch(err => {
+                console.log("err to take picture", err);
+            })
     }
 
+    // choose photo from gallery
+    onClickPhotoFromGallery() {
+        this.cameraService.choosePhotoFromGallery()
+            .then(url => {
+                this.newClub.img = url;
+            })
+            .catch(err => {
+                console.log("err to take picture", err);
+            })
+    }
 }

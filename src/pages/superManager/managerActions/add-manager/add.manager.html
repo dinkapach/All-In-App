@@ -3,29 +3,30 @@
         <ion-title>Add Manager</ion-title>
     </ion-navbar>
 </ion-header>
-
 <ion-content padding>
-<form [formGroup]="formData">
+    <form [formGroup]="formData">
         <ion-list>
             <ion-item>
-                <ion-input formControlName="id" placeholder="id" type="number" [(ngModel)]="newManager.id"></ion-input>
+                <ion-label floating>ID</ion-label>
+                <ion-input formControlName="id" type="number" [(ngModel)]="newManager.id"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-input formControlName="userName" placeholder="User Name" type="string" [(ngModel)]="newManager.userName"></ion-input>
+                <ion-label floating>First Name</ion-label>
+                <ion-input formControlName="firstName" type="string" [(ngModel)]="newManager.firstName"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-input formControlName="firstName" placeholder="First Name" type="string" [(ngModel)]="newManager.firstName"></ion-input>
-            </ion-item> 
-            <ion-item>
-                <ion-input formControlName="lastName" placeholder="Last Name" type="string" [(ngModel)]="newManager.lastName"></ion-input>
+                <ion-label floating>Last Name</ion-label>
+                <ion-input formControlName="lastName" type="string" [(ngModel)]="newManager.lastName"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-input formControlName="password" placeholder="password" type="password" [(ngModel)]="newManager.password"></ion-input>
+                <ion-label floating>Password</ion-label>
+                <ion-input formControlName="password" type="password" [(ngModel)]="newManager.password"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-input formControlName="email" placeholder="email" type="string" [(ngModel)]="newManager.email"></ion-input>
-            </ion-item>        
+                <ion-label floating>Email</ion-label>
+                <ion-input formControlName="email" type="string" [(ngModel)]="newManager.email"></ion-input>
+            </ion-item>
         </ion-list>
         <button ion-button (click)="onClickAddManager()">Add Manager</button>
-    </form> 
+    </form>
 </ion-content>

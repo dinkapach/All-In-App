@@ -1,0 +1,40 @@
+<ion-card>
+  <ion-item class="no-border">
+    <ion-thumbnail item-start>
+      <img [src]="credit.img" />
+    </ion-thumbnail>
+    <p>
+      <span class="text-bold">
+        Purchase Date: 
+      </span> {{credit.dateOfPurchase | date:'dd/MM/y' }}
+    </p>
+    <p>
+      <span class="text-bold">
+          Expire Date: 
+      </span> {{credit.dateOfExpired | date:'dd/MM/y' }}
+    </p>
+    <p>
+      <span class="text-bold">
+        Total Credit: 
+      </span> {{credit.totalCredit}}
+    </p>
+  </ion-item>
+  <ion-item>
+    <ion-label>Remind me a week before</ion-label>
+    <ion-toggle [(ngModel)]="doesNotificationScheduled" (ionChange)="onChangeNotificationToggle()"></ion-toggle>
+  </ion-item>
+  <ion-row no-padding>
+    <ion-col>
+      <button ion-button clear small color="danger" icon-start (click)="editCreditClick(credit)">
+              <ion-icon name='create'></ion-icon>
+              Edit
+            </button>
+    </ion-col>
+    <ion-col text-center>
+      <button ion-button clear small color="danger" icon-start (click)="deleteCreditClick(credit)">
+              <ion-icon name='trash'></ion-icon>
+              Delete
+            </button>
+    </ion-col>
+  </ion-row>
+</ion-card>

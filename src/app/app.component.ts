@@ -3,9 +3,9 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginComponent } from '../pages/login/login.component';
-import { ManagerComponent } from '../pages/manager/manager.component';
-import { DashboardComponent } from '../pages/dashboard/dashboard.component';
+import { ManagerComponent } from '../pages/managers/manager/manager.component';
 import { SigningService } from '../services/signing.service';
+import { DashboardComponent } from '../pages/customer/dashboard/dashboard.component';
 @Component({
   templateUrl: 'app.html'
 })
@@ -24,16 +24,15 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-	  alert("platform ready");
+	  // alert("platform ready");
     });
-
+    // this.rootPage = CustomerSettingsComponent;
     this.loadApp();
   }
 
   loadApp(){
     this.signService.loadUserFromStorage()
     .subscribe(res => {
-      console.log(res);
       if (res.isManager) {
           this.rootPage = ManagerComponent;
       }

@@ -1,35 +1,28 @@
-<ion-card padding >
-    <ion-buttons *ngIf="club.isManual" end>
-        <button (click)="onClickDeleteClub(club)">
-            <ion-icon name="trash"></ion-icon>
+<ion-item class="club-card">
+  <ion-thumbnail item-start (click)="onClubClicked()">
+    <img id="card-img" [src]="club.img" />
+  </ion-thumbnail>
+  <ion-buttons end>
+    <button ion-button clear icon-end (click)="onClickPresentClubInfo({club: club})">
+          <ion-icon color="dark" name="information-circle"></ion-icon>
         </button>
-        <button (click)="onClickEditClub(club)">
-            <ion-icon name="create"></ion-icon>
-        </button>
-    </ion-buttons>
-    <ion-item>
-        <ion-thumbnail item-start>    
-  <img [src]="club.img"/>
-</ion-thumbnail>
-<ion-card-content (click)="onClubClicked()">
-    <ion-card-title>
-      {{club.name}}
-    </ion-card-title>
-    <div [ngSwitch]="subDetailsToPresent">
-      <div *ngSwitchCase="'sales'">
-        <p *ngFor="let sale of club.sales">
-          {{sale.description}}
-        </p>
-      </div>
-      <div *ngSwitchCase="'clubDetails'">
-        <p> {{club.name}} phone number: {{club.phoneNumber}} </p>
-        <p> {{club.name}} address: {{club.address}} </p>
-      </div>
-      <div *ngSwitchDefault>
-        <p> {{club.name}} phone number: {{club.phoneNumber}} </p>
-        <p> {{club.name}} address: {{club.address}} </p>
-      </div>
-    </div>
-  </ion-card-content>
+  </ion-buttons>
+  <h2>{{club.name}}</h2>
+  <p>
+    <ion-icon name="trophy" color="dark" item-start large> {{userPoints}} </ion-icon>
+  </p>
+  <ion-row no-padding>
+    <ion-col>
+      <button ion-button clear small color="danger" icon-start (click)="onClickEditClub(club)" *ngIf="club.isManual">
+              <ion-icon name='create'></ion-icon>
+              Edit
+          </button>
+    </ion-col>
+    <ion-col text-center>
+      <button ion-button clear small color="danger" icon-start (click)="onClickDeleteClub(club)" *ngIf="club.isManual">
+              <ion-icon name='trash'></ion-icon>
+              Delete
+            </button>
+    </ion-col>
+  </ion-row>
 </ion-item>
-</ion-card>

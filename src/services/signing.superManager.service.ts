@@ -3,38 +3,29 @@ import { User } from './../models/user.model';
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
-
 import * as environment from './../../environment.json';
+
+// this class provide singing services for super manager
 
 @Injectable()
 export class SigningSuperManagerService {
     private url: string;
 
     constructor(private http: Http, private storage: Storage) {
-        this.url = environment[environment.RUNNING];
-        console.log(this.url);
+        // url: localhost or all-in-app.herokuapp.com get from the 'enviroment' file
+        this.url = environment[environment.RUNNING]; 
     }
 
-    logoutUser(): Observable<Boolean> {
-        return Observable.create(observer => {
-            this.storage.remove(environment.CURRENT_USER_KEY).then((isAuth) => {
-                observer.next(true);
-                observer.complete();
-            });
-        });
-    }
-
-    loginSuperManager(email: string, password: string): Observable<any>  {
+    loginSuperManager(email: string, password: string): Observable<any> {
         let loginSuperManagerUrl = this.getLoginSuperManagerUrl();
-        console.log(`${this.url}`+loginSuperManagerUrl);
-        return this.http.post(`${this.url}`+loginSuperManagerUrl, {
+        return this.http.post(`${this.url}` + loginSuperManagerUrl, {
             email: email,
             password: password
         })
-        .map( res => res.json());
-    }   
+            .map(res => res.json());
+    }
 
-    getLoginSuperManagerUrl(){
+    getLoginSuperManagerUrl() {
         return environment.SUPER_MANAGER_LOGIN_URL;
     }
 }

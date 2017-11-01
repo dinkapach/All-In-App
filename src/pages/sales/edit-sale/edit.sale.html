@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Edit Sale</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <img class="form-top-image" [src]="updatedSale.img" />
+    <ion-buttons text-center>
+        <button ion-button clear small color="danger" icon-start (click)="onClickOpenCameraOptionTake()">
+                <ion-icon name='create'></ion-icon>
+                Edit Photo
+            </button>
+    </ion-buttons>
+    <form [formGroup]="formData" #editSaleForm="ngForm" (ngSubmit)="updateSale()">
+        <ion-list>
+            <ion-item>
+                <ion-label floating>Name</ion-label>
+                <ion-input formControlName="name" type="text" [(ngModel)]="updatedSale.name"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Description</ion-label>
+                <ion-textarea formControlName="description" type="text" [(ngModel)]="updatedSale.description"></ion-textarea>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Points</ion-label>
+                <ion-input formControlName="points" type="number" [(ngModel)]="updatedSale.points"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Price</ion-label>
+                <ion-input formControlName="price" type="number" [(ngModel)]="updatedSale.price"></ion-input>
+            </ion-item>
+        </ion-list>
+        <button ion-button class="submit-btn" full type="submit" [disabled]="!editSaleForm.form.valid">Update Sale</button>
+    </form>
+</ion-content>

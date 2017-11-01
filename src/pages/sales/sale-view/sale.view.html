@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Sale</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <h2>{{sale.name}}</h2>
+  <img id="sale-image" class="center-image" [src]="sale.img" />
+  <h3>Description</h3>
+  <p>{{sale.description}} </p>
+  <p><span class="bold-text">Price:</span> {{sale.price}}</p>
+  <a ion-button icon-start href="tel:{{club.phoneNumber}}">
+    <ion-icon name="call"></ion-icon>
+    Call
+  </a>
+</ion-content>

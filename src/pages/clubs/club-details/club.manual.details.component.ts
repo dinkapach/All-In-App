@@ -8,26 +8,19 @@ import { Club } from './../../../models/club.model';
 import { Component, Input, OnInit } from '@angular/core';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { AddCreditComponent } from '../../add-credit/add-credit.component';
-import { ShowCreditsComponent } from '../../show-credits/show-credits.component';
+import { ShowCreditsComponent } from '../../credits/show-credits/show-credits.component';
 
 @Component({
     selector: 'club-details',
     templateUrl: 'club.details.html'
 })
-export class ClubManualDetailsComponent extends ClubDetailsBaseComponent implements OnInit {
-//    club: Club;
-    // barcodeData : string;
-    // user: User
+export class ClubManualDetailsComponent extends ClubDetailsBaseComponent {
 
-    constructor(public navParams: NavParams, public barcodeScanner: BarcodeScanner,
+    constructor(public navParams: NavParams,
         public navCtrl: NavController, public userService: UserService, 
         public clubService: ClubService, public alertCtrl: AlertController) {
-            super(navParams, barcodeScanner, navCtrl, userService, clubService, alertCtrl);
-            //this.user = this.userService.getLocalUser();
+            super(navParams, navCtrl, userService, clubService, alertCtrl);
+            // in case the club is manual, the defult view is receipt
+            this.viewOptions = 'receipts'
     }
-
-    ngOnInit() {
-       // this.club = this.navParams.get("club");
-    }
-
 }

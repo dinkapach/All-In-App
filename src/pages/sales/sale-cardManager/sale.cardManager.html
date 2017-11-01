@@ -1,0 +1,20 @@
+<ion-item>
+  <ion-thumbnail item-start>
+    <img [src]="sale.img" />
+  </ion-thumbnail>
+  <h2>{{sale.name}}</h2>
+  <ion-row no-padding>
+    <ion-col>
+      <button ion-button clear small color="danger" icon-start (click)="onClickEditeSale(sale)">
+              <ion-icon name='create'></ion-icon>
+              Edit
+            </button>
+    </ion-col>
+    <ion-col>
+      <button ion-button clear small color="danger" icon-start (click)="onClickDeleteSale(sale)">
+              <ion-icon name='trash'></ion-icon>
+              Delete
+            </button>
+    </ion-col>
+  </ion-row>
+</ion-item>

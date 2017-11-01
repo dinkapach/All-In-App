@@ -1,29 +1,21 @@
-<div padding class="card-background-page" style="margin-top: 88px; margin-bottom: 88px;">
-<ion-header>
-    <ion-navbar>
-      <ion-title>
-        Receipts
-      </ion-title>
-    </ion-navbar>
-  </ion-header>
-  
- <!-- <ion-content padding class="card-background-page"> -->
-    
-    <button ion-button full (click)="takePhoto()" >
-    <ion-icon name="camera"></ion-icon>&nbsp;&nbsp; Take Photo</button>
-  
-    <ion-grid>
-        <ion-row>
-          <ion-col col-6 >
-            <ion-col col-6 *ngFor="let photo of photos; let id = index">
-                <ion-card class="block">
-                  <ion-icon name="trash" class="deleteIcon" (click)="deletePhoto(photo)"></ion-icon>
-                  <img [src]="photo" *ngIf="photo" />
-                </ion-card>
-            </ion-col>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-  </div>
-<!--   
-  </ion-content> -->
+<div padding class="card-background-page">
+  <ion-fab bottom right>
+    <button ion-fab color="vibrant" mini><ion-icon name="add"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab><ion-icon name="albums" (click)="onClickFromGallery()" ></ion-icon></button>
+    </ion-fab-list>
+    <ion-fab-list side="left">
+      <button ion-fab><ion-icon name="camera" (click)="onClickTakePhoto()"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6 *ngFor="let photo of photos; let id = index">
+        <ion-card class="block">
+          <ion-icon name="trash" class="deleteIcon" (click)="onClickDeletePhoto(photo)"></ion-icon>
+          <img [src]="photo" *ngIf="photo" />
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
