@@ -2,7 +2,7 @@
 
 The main idea of our application - All In, is to consolidate your clubs memberships in one place.
 
-All In is a cross platform application written with ionic framework.
+All In is a cross platform application written with Ionic framework.
 
 ## Description
 In our days people face difficulties with tracking in the clubs they have memberships,
