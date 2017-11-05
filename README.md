@@ -21,11 +21,11 @@ Additionally, we have developed an application that helps the application's mana
 
 * ##### View previous transactions
 
- The customer can follow their previous transactions by viewing scanned receipts, that were scanned when they have made the purchase.
+  The customer can follow their previous transactions by viewing scanned receipts, that were scanned when they have made the purchase.
 
 * ##### Save credits
 
- In case that the customer returns a product and receives credits in return, they can scan those credits and use them by presenting the scan in the store.
+  In case that the customer returns a product and receives credits in return, they can scan those credits and use them by presenting the   scan in the store.
 
 * ##### Sales & Discounts
 
@@ -33,11 +33,11 @@ Additionally, we have developed an application that helps the application's mana
 
 * ##### Points
 
-The customer can follow the points that were accumulated in any of their various memberships.
+  The customer can follow the points that were accumulated in any of their various memberships.
 
 * ##### Manually Club
 
-  The customer can add a club that is not registered to All In, or a business that doesn’t offer a membership, and manage and organize the statements in their account manually.
+  The customer can add a club that is not registered to All In, or a business that doesn’t offer a membership, and manage and organize     the statements in their account manually.
 
 * ##### Edit Profile
 
@@ -47,7 +47,7 @@ The customer can follow the points that were accumulated in any of their various
 
 * ##### Customers view
 
-  The club manager can view a list of his registered customers. Additionally, they can search certain customers by a chosen category, such as ID number, name, last name, number of points etc.
+  The club manager can view a list of his registered customers. Additionally, they can search certain customers by a chosen category,     such as ID number, name, last name, number of points etc.
 
 * ##### Removing a registered customer
 
@@ -55,7 +55,7 @@ The customer can follow the points that were accumulated in any of their various
 
 * ##### Statistics
 
-  The club manager can produce statistics reports that show how many customers have purchased this month, how many joined the club, segmentation of customers by age. These reports enable the manager to get a broad perspective on his business.
+  The club manager can produce statistics reports that show how many customers have purchased this month, how many joined the club,       segmentation of customers by age. These reports enable the manager to get a broad perspective on his business.
 
 * ##### Sales edit
 
