@@ -1,79 +1,75 @@
 # All In 
 
-The main idea of our application - All In, is to consolidate your clubs memberships in one place.
+The main idea of our application, “All In”, is to allow its users to consolidate all of their club memberships in one place.
 
 All In is a cross platform application written with Ionic framework.
 
 ## Description
-In our days people face difficulties with tracking in the clubs they have memberships,
-and even don't really remember all clubs they are registered.
-for mostly, club members not aware for the sales and discounts in the clubs,
-forgets to use credits, and also can't track their points.
+In our days, people face difficulties with tracking all of their club memberships,
+and even don't really remember all of the clubs they are registered to.
+Club members are mostly not aware of the sales and discounts in the clubs,
+they forget to use their credits and can't track their points.
 
-Accordingly, we developed platform for clubs that have club members and for the users that registered to those clubs,
-that provide a solution the problem above.
-Additionally, we developed application for the application's manager that helps manage the data base.
+We have decided to develop a platform that provides a solution for this problem, both for the businesses and for the customers.
+Additionally, we have developed an application that helps the application's manager to manage the data base.
 
 
 #### Actions for club members:
 * ##### Quick register
 
-  Customer can register for a club by scan QR code
+  Customer can register for a club by scanning a QR code
 
 * ##### View previous transactions
 
-  Customer can watch previous transactions by view scanned receipts (that scan when making the purchase)
+ The customer can follow their previous transactions by viewing scanned receipts, that were scanned when they have made the purchase.
 
 * ##### Save credits
 
-  Customer can scan credits and use them while showing the image.
+ In case that the customer returns a product and receives credits in return, they can scan those credits and use them by presenting the scan in the store.
 
 * ##### Sales & Discounts
 
-  Customer can choose a business and view the sales and discounts offered by the club
+  The customer can view the sales and discounts that are offered by each of the clubs that he is registered to.
 
 * ##### Points
 
-  Customer can see his points at any club to which he is registered
+The customer can follow the points that were accumulated in any of their various memberships.
 
 * ##### Manually Club
 
-  Customer can add a club that not registered in All In, or a club that don't have members club,
-  and manage his actions in the club manually and organized
+  The customer can add a club that is not registered to All In, or a business that doesn’t offer a membership, and manage and organize the statements in their account manually.
 
 * ##### Edit Profile
 
-  Customer can edit his profile, e.g address, password, profile photo and etc.
+  The customer can edit their profile, e.g. they can change their address, password, profile picture etc.
 
 #### Actions for club manager
 
-* ##### Customer view
+* ##### Customers view
 
-  Club manager can see his registered customers, and additionally search customer by a chosen category.
-  e.g, search by id number, name, last name, number of points, etc.
+  The club manager can view a list of his registered customers. Additionally, they can search certain customers by a chosen category, such as ID number, name, last name, number of points etc.
 
-* ##### Remove registered customer
+* ##### Removing a registered customer
 
-  Club manager can remove an registered customer easily and quickly.
+  The club manager can cancel the membership of a registered customer easily and quickly.
 
 * ##### Statistics
 
-  Club manager can see a statistics report of how many purchased this month, how many joined the club this month, 
-  Segmentation of customers by age, and so get perspective on his business.
+  The club manager can produce statistics reports that show how many customers have purchased this month, how many joined the club, segmentation of customers by age. These reports enable the manager to get a broad perspective on his business.
 
 * ##### Sales edit
 
-  Club manager can add or edit sales that he would like to give his customers.
+  The club manager can add or edit deals that he would like to offer to their customers.
 
 #### Actions for super-manager
 
-* ##### Add or remove club
+* ##### Adding or removing a club
 
-* ##### Remove customer
+* ##### Removing a customer
 
-* ##### Associate club manager with club
+* ##### Associating club managers with their clubs
 
-* ##### Add or remove club manager
+* ##### Adding or removing a club manager
 
 ## How to use All In - Instructions:
 
