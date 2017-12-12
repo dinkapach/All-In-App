@@ -87,7 +87,7 @@ Additionally, we have developed an application that helps the application's mana
 ### Note:
 The application communicates with an API server hosted on Heroku.
 
-You can find the server code in the repository named: "[Project-API](https://github.com/gallib2/Project-API)".
+You can find the server code in the repository named: "[Project-API](https://github.com/dinkapach/Project-API)".
 
 ## Screenshots
 
